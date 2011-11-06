@@ -9,5 +9,20 @@
 			<option value="0">JNO</option>
 			<option value="1">JYES</option>
 		</field>
+		<field name="feed_category1"
+			type="itunescategory"
+			label="iTunes Category 1"
+			default="">
+		</field>
+		<field name="feed_category2"
+			type="itunescategory"
+			label="iTunes Category 2"
+			default="">
+		</field>
+		<field name="feed_category3"
+			type="itunescategory"
+			label="iTunes Category 3"
+			default="">
+		</field>
 	</fieldset>
 </form>
