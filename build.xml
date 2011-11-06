@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Podcast Suite" basedir="." default="copy">
+
+    <property name="testdir" value="tmp" override="true" />
+    <property name="srcdir" value="${project.basedir}" override="true" />
+	<property name="component" value="com_podcast" override="true" />
+
+    <fileset dir="${srcdir}" id="front_component_files">
+        <include name="components/${component}/**" />
+    </fileset>
+
+    <fileset dir="${srcdir}" id="admin_component_files">
+        <include name="administrator/components/${component}/**" />
+        <include name="administrator/language/en-GB/en-GB.${component}*" />
+    </fileset>
+
+    <fileset dir="${srcdir}/administrator/components/${component}/" id="component_manifest">
+        <include name="manifest.xml" />
+    </fileset>
+
+    <target name="copy" description="copy target">
+        <echo msg="Creating component archive..." />
+        <delete file="tmp/${component}.zip" quiet="true" />
+        <zip destfile="tmp/${component}.zip">
+            <fileset refid="front_component_files" />
+            <fileset refid="admin_component_files" />
+            <fileset refid="component_manifest" />
+        </zip>
+        <echo msg="Files copied and archive file created OK!" />
+
+      </target>
+
+</project>
