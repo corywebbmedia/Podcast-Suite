@@ -15,7 +15,7 @@
     </fileset>
 
     <fileset dir="${srcdir}/administrator/components/${component}/" id="component_manifest">
-        <include name="manifest.xml" />
+        <include name="podcast.xml" />
     </fileset>
 
     <target name="copy" description="copy target">

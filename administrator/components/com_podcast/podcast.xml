@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="component" method="upgrade" version="1.7.0">
+	<name>com_podcast</name>
+	<author>Podcast Suite</author>
+	<creationDate>November 2011</creationDate>
+	<copyright>Copyright (C) 2011</copyright>
+	<license>GNU General Public License version 2</license>
+	<authorEmail>joe@corywebbmedia.com</authorEmail>
+	<authorUrl>podcastsuite.com</authorUrl>
+	<version>2.0</version>
+	<description>A complete suite of tools you can use to publish a podcast.</description>
+
+	<files folder="components/com_podcast">
+		<filename>podcast.php</filename>
+		<filename>router.php</filename>
+		<filename>controller.php</filename>
+		<filename>index.html</filename>
+		<folder>models</folder>
+		<folder>views</folder>
+	</files>
+
+	<install folder="sql">
+		<sql>
+			<file charset="utf8" driver="mysql">install.mysql.sql</file>
+		</sql>
+	</install>
+
+	<administration>
+		<languages folder="administrator/language/en-GB">
+			<language tag="en-GB">en-GB.com_podcast.sys.ini</language>
+			<language tag="en-GB">en-GB.com_podcast.ini</language>
+		</languages>
+		<menu link="option=com_podcast">COM_PODCAST</menu>
+		<submenu>
+			<menu link="option=com_podcast&amp;view=feeds"
+				alt="COM_PODCAST_FEEDS">COM_PODCAST_FEEDS</menu>
+			<menu link="option=com_podcast&amp;view=mediaitems"
+				alt="COM_PODCAST_MEDIAITEMS">COM_PODCAST_MEDIAITEMS</menu>
+		</submenu>
+		<files folder="administrator/components/com_podcast">
+			<filename>podcast.php</filename>
+			<filename>index.html</filename>
+			<filename>manifest.xml</filename>
+			<filename>install.mysql.sql</filename>
+			<folder>controllers</folder>
+			<folder>models</folder>
+			<folder>tables</folder>
+			<folder>views</folder>
+		</files>
+	</administration>
+</install>
