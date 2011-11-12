@@ -1,4 +1,4 @@
-CREATE TABLE `jos_podcast_feeds` (
+CREATE TABLE `#__podcast_feeds` (
 	`feed_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
 	`feed_default` tinyint(1) DEFAULT '0',
 	`feed_title` varchar(255) DEFAULT NULL,
