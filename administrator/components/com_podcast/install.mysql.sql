@@ -1,4 +1,4 @@
-CREATE TABLE `#__podcast_feeds` (
+CREATE TABLE IF NOT EXISTS `#__podcast_feeds` (
 	`feed_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
 	`feed_default` tinyint(1) DEFAULT '0',
 	`feed_title` varchar(255) DEFAULT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE `#__podcast_feeds` (
 	KEY `feed_alias` (`feed_alias`)
 );
 
-CREATE TABLE `#__podcast_media` (
+CREATE TABLE IF NOT EXISTS `#__podcast_media` (
 	`media_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
 	`feed_id` int(11) DEFAULT NULL,
 	`item_title` varchar(255) DEFAULT NULL,
