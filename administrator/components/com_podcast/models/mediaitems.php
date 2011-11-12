@@ -9,8 +9,9 @@ class PodcastModelMediaitems extends JModelList
 	{
 		$query = parent::getListQuery();
 
-		$query->select('*')
-			->from('#__podcast_media');
+		$query->select('pm.*, pf.feed_title')
+			->from('#__podcast_media AS pm')
+			->join('LEFT', '#__podcast_feeds AS pf USING(feed_id)');
 
 		return $query;
 	}

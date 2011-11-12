@@ -5,8 +5,16 @@ jimport( 'joomla.application.component.view');
 
 class PodcastViewMediaitems extends JView
 {
+	protected $items;
+	protected $state;
+	protected $pagination;
+
 	public function display($tpl = null)
 	{
+		$this->items = $this->get('Items');
+		$this->state = $this->get('State');
+		$this->pagination = $this->get('Pagination');
+
 		$this->addToolbar();
 
 		parent::display($tpl);
