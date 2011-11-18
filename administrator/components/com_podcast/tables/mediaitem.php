@@ -1,7 +1,7 @@
 <?php
 defined( '_JEXEC' ) or die;
 
-class PodcastTableMediaitems extends JTable
+class PodcastTableMediaitem extends JTable
 {
 	public function __construct(&$db)
 	{
