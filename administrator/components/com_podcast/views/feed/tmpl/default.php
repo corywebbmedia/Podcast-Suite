@@ -17,3 +17,7 @@
 	<input type="hidden" name="task" value="" />
 	<?php echo JHtml::_('form.token'); ?>
 </form>
+
+<div id="podcast_suite_link">
+	<p><a href="http://podcastsuite.com">podcastsuite.com</p>
+</div>
