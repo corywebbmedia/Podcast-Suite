@@ -1,13 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
-	<fieldset>
+	<fieldset name="top-col-1">
+		<field name="item_title"
+			type="text"
+			label="COM_PODCAST_MEDIA_ITEM_TITLE"
+			required="true"
+			default="" />
+
+		<field name="alias"
+			type="text"
+			label="JFIELD_ALIAS_LABEL"
+			required="true"
+			default=""/>
+
+		<field name="item_subtitle"
+			type="text"
+			label="COM_PODCAST_MEDIA_ITEM_SUBTITLE"
+			required="true"
+			default="" />
+
+		<field name="feed_id"
+			type="feed"
+			label="COM_PODCAST_FEED"
+			required="true"
+			default="" />
+
+	</fieldset>
+
+	<fieldset name="top-col-2">
+		<field name="item_enclosure_url"
+			type="text"
+			label="COM_PODCAST_MEDIA"
+			required="true"
+			default="" />
+
+		<field name="item_enclosure_length"
+			type="text"
+			label="COM_PODCAST_MEDIA_ITEM_LENGTH"
+			required="true"
+			default="" />
+
+		<field name="item_duration"
+			type="text"
+			label="COM_PODCAST_MEDIA_ITEM_DURATION"
+			required="true"
+			default="" />
+
+		<field name="item_enclosure_type"
+			type="text"
+			label="COM_PODCAST_MEDIA_ITEM_TYPE"
+			required="true"
+			default="" />
+
+	</fieldset>
+
+	<fieldset name="right">
 		<field name="published"
 			type="radio"
-			label="Published"
+			label="JSTATUS"
 			required="true"
 			default="0">
 			<option value="0">JNO</option>
 			<option value="1">JYES</option>
 		</field>
+
+		<field name="item_pubDate"
+			type="date"
+			label="COM_PODCAST_MEDIA_ITEM_CREATED_DATE"
+			default="" />
+
+		<field name="item_author"
+			type="text"
+			label="COM_PODCAST_MEDIA_ITEM_AUTHOR"
+			default="" />
+
+		<field name="item_isClosedCaptioned"
+			type="radio"
+			label="COM_PODCAST_MEDIA_ITEM_CLOSED_CAPTION"
+			default="0">
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
+
+		<field name="item_guid"
+			type="text"
+			class="readonly"
+			label="COM_PODCAST_MEDIA_ITEM_GUID"
+			size="10"
+			default="0"
+			readonly="true" />
+
+		<field name="media_id"
+			type="hidden"
+			class="readonly"
+			readonly="true" />
+
+	</fieldset>
+
+	<fieldset name="bottom">
+
+		<field name="item_summary"
+			type="textarea"
+			label="COM_PODCAST_MEDIA_ITEM_SUMMARY"
+			rows="8"
+			default="" />
+
+		<field name="item_description"
+			type="textarea"
+			label="COM_PODCAST_MEDIA_ITEM_DESCRIPTION"
+			rows="8"
+			default="" />
+
 	</fieldset>
 </form>
