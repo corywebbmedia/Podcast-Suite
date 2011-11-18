@@ -64,7 +64,7 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 					<a href="<?php echo JRoute::_('index.php?option=com_podcast&task=mediaitem.edit&media_id='. $item->media_id); ?>"><?php echo $this->escape($item->item_title) ?></a>
 				</td>
 				<td>
-					<a href="<?php echo $this->item_enclosure_url ?>"><?php echo $this->escape($item->item_enclosure_url) ?></a>
+					<a href="<?php echo $item->item_enclosure_url ?>"><?php echo $this->escape($item->item_enclosure_url) ?></a>
 				</td>
 
 				<td>
@@ -76,7 +76,7 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 				</td>
 
 				<td>
-					<?php echo $this->escape($this->item_pubDate) ?>
+					<?php echo $this->escape($item->item_pubDate) ?>
 				</td>
 			</tr>
 			<?php endforeach; ?>
