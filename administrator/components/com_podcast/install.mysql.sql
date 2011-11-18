@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `#__podcast_media` (
 	`item_enclosure_length` varchar(31) DEFAULT NULL,
 	`item_enclosure_type` varchar(255) DEFAULT NULL,
 	`item_guid` varchar(255) DEFAULT NULL,
-	`item_pubDate` datetime DEFAULT NULL,
+	`item_pubDate` DATE DEFAULT NULL,
 	`item_duration` varchar(31) DEFAULT NULL,
 	`item_keywords` varchar(255) DEFAULT NULL,
 	`item_isClosedCaptioned` tinyint(1) DEFAULT '0',
