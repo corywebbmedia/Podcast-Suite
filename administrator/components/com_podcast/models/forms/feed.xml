@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
-	<fieldset>
-		<field name="published"
-			type="radio"
-			label="Published"
+	<fieldset name="top-col-1">
+		<field name="feed_title"
+			type="text"
+			label="COM_PODCAST_FEED_TITLE"
 			required="true"
-			default="0">
-			<option value="0">JNO</option>
-			<option value="1">JYES</option>
-		</field>
+			default="" />
+
+		<field name="alias"
+			type="text"
+			label="JFIELD_ALIAS_LABEL"
+			required="true"
+			default=""/>
+
+		<field name="feed_subtitle"
+			type="text"
+			label="COM_PODCAST_FEED_SUBTITLE"
+			required="true"
+			default="" />
+
+		<field name="feed_image"
+			type="text"
+			label="COM_PODCAST_FEED_IMAGE"
+			required="true"
+			default="" />
+	</fieldset>
+
+	<fieldset name="top-col-2">
 		<field name="feed_category1"
 			type="itunescategory"
 			label="iTunes Category 1"
@@ -24,5 +42,107 @@
 			label="iTunes Category 3"
 			default="">
 		</field>
+	</fieldset>
+
+	<fieldset name="right">
+		<field name="published"
+			type="radio"
+			label="JSTATUS"
+			default="0">
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
+
+		<field name="feed_default"
+			type="radio"
+			label="COM_PODCAST_FEED_DEFAULT"
+			default="0">
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
+
+		<field name="feed_created"
+			type="date"
+			label="COM_PODCAST_FEED_CREATED"
+			default="" />
+
+		<field name="feed_link"
+			type="text"
+			label="COM_PODCAST_FEED_LINK"
+			required="true"
+			default=""/>
+
+		<field name="feed_copyright"
+			type="text"
+			label="COM_PODCAST_FEED_COPYRIGHT"
+			required="true"
+			default=""/>
+
+		<field name="feed_author"
+			type="text"
+			label="COM_PODCAST_FEED_AUTHOR"
+			required="true"
+			default=""/>
+
+		<field name="feed_keywords"
+			type="text"
+			label="COM_PODCAST_FEED_KEYWORDS"
+			required="true"
+			default=""/>
+
+		<field name="feed_owner_name"
+			type="text"
+			label="COM_PODCAST_FEED_OWNER_NAME"
+			required="true"
+			default=""/>
+
+		<field name="feed_owner_email"
+			type="text"
+			label="COM_PODCAST_FEED_OWNER_EMAIL"
+			required="true"
+			default=""/>
+
+		<field name="feed_new_feed_url"
+			type="text"
+			label="COM_PODCAST_FEED_NEW_URL"
+			default=""/>
+
+		<field name="feed_block"
+			type="radio"
+			label="COM_PODCAST_FEED_BLOCK"
+			default="0">
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
+
+		<field name="feed_explicit"
+			type="radio"
+			label="COM_PODCAST_FEED_EXPLICIT"
+			default="0">
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
+
+		<field name="feed_complete"
+			type="radio"
+			label="COM_PODCAST_FEED_COMPLETE"
+			default="0">
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
+	</fieldset>
+
+	<fieldset name="bottom">
+		<field name="feed_summary"
+			type="textarea"
+			label="COM_PODCAST_FEED_SUMMARY"
+			rows="8"
+			default="" />
+
+		<field name="feed_description"
+			type="textarea"
+			label="COM_PODCAST_FEED_DESCRIPTION"
+			rows="8"
+			default="" />
 	</fieldset>
 </form>
