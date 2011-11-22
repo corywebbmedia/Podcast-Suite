@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `#__podcast_feeds` (
 	`feed_created` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
 	`published` tinyint(1) DEFAULT '0',
 	PRIMARY KEY (`feed_id`),
-	KEY `feed_alias` (`feed_alias`)
+	KEY `alias` (`alias`)
 );
 
 CREATE TABLE IF NOT EXISTS `#__podcast_media` (
@@ -48,5 +48,5 @@ CREATE TABLE IF NOT EXISTS `#__podcast_media` (
 	`published` tinyint(1) DEFAULT '0',
 	PRIMARY KEY (`media_id`),
 	KEY `feed_id` (`feed_id`),
-	KEY `item_alias` (`item_alias`)
+	KEY `alias` (`alias`)
 );
