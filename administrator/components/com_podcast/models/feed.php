@@ -28,4 +28,27 @@ class PodcastModelFeed extends JModelAdmin
 
 		return $data;
 	}
+
+	public function setDefault($id)
+	{
+		$db = $this->getDbo();
+		$query = $db->getQuery(true);
+
+		$query->update('#__podcast_feeds')
+			->set("feed_default = '1'")
+			->set("published = '1'")
+			->where("feed_id = '{$id}'");
+
+		$db->setQuery($query);
+		$db->query();
+
+		$query = $db->getQuery(true);
+
+		$query->update('#__podcast_feeds')
+			->set("feed_default = '0'")
+			->where("feed_id != '{$id}'");
+
+		$db->setQuery($query);
+		$db->query();
+	}
 }
