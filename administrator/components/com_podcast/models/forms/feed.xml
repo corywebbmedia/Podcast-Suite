@@ -62,7 +62,7 @@
 		</field>
 
 		<field name="feed_created"
-			type="date"
+			type="calendar"
 			label="COM_PODCAST_FEED_CREATED"
 			default="" />
 

@@ -65,7 +65,7 @@
 		</field>
 
 		<field name="item_pubDate"
-			type="date"
+			type="calendar"
 			label="COM_PODCAST_MEDIA_ITEM_CREATED_DATE"
 			default="" />
 
