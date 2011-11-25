@@ -76,7 +76,7 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 				</td>
 
 				<td>
-					<?php echo $this->escape($item->item_pubDate) ?>
+					<?php echo JHTML::_('date', $item->item_pubDate) ?>
 				</td>
 			</tr>
 			<?php endforeach; ?>
