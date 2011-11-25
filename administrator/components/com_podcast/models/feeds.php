@@ -9,10 +9,10 @@ class PodcastModelFeeds extends JModelList
 	{
 		$query = parent::getListQuery();
 
-		// TODO: get a count of the number of items in each feed and
-		// return it along with the result set.
-		$query->select('*')
-			->from('#__podcast_feeds AS pf');
+		$query->select('pf.*, count(pm.feed_id) as item_count')
+			->from('#__podcast_feeds AS pf')
+			->join('LEFT', '#__podcast_media AS pm USING(feed_id)')
+			->group('feed_id');
 
 		return $query;
 	}

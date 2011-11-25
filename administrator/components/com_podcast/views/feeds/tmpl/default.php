@@ -5,7 +5,7 @@ $listOrder	= $this->escape($this->state->get('list.ordering'));
 $listDirn	= $this->escape($this->state->get('list.direction'));
 
 ?>
-<form action="<?php echo JRoute::_('index.php?option=com_podcast&view=mediaitems'); ?>" method="post" name="adminForm" id="adminForm">
+<form action="<?php echo JRoute::_('index.php?option=com_podcast&view=feeds'); ?>" method="post" name="adminForm" id="adminForm">
 	<fieldset id="filter-bar">
 		<div class="filter-search fltlft">
 			<label class="filter-search-lbl" for="filter_search"><?php echo JText::_('JSEARCH_FILTER_LABEL'); ?></label>
@@ -65,28 +65,34 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 		<?php foreach ($this->items as $i => $item): ?>
 			<tr class="row<?php echo $i % 2; ?>">
 				<td class="center">
-					<?php echo JHtml::_('grid.id', $i, $item->media_id); ?>
+					<?php echo JHtml::_('grid.id', $i, $item->feed_id); ?>
 				</td>
 				<td>
 					<a href="<?php echo JRoute::_('index.php?option=com_podcast&task=feed.edit&feed_id='. $item->feed_id); ?>"><?php echo $this->escape($item->feed_title) ?></a>
 				</td>
 
-				<td>[star]</td>
+				<td class="center">
+					<?php echo JHtml::_('jgrid.isdefault', $item->feed_default, $i, 'feeds.', !$item->feed_default); ?>
+				</td>
 
 				<td>
-					<a href="<?php echo $this->feed_summary ?>"><?php echo $this->escape($item->feed_summary) ?></a>
+					<?php echo $this->escape($item->feed_summary) ?>
+				</td>
+
+				<td>
+					<a href="<?php echo $this->escape($item->feed_link) ?>"><?php echo $this->escape($item->feed_link) ?></a>
 				</td>
 
 				<td class="center">
-					<?php echo JHtml::_('jgrid.published', $item->published, $i, 'mediaitems.'); ?>
+					<?php echo JHtml::_('jgrid.published', $item->published, $i, 'feeds.'); ?>
 				</td>
 
-				<td>
+				<td class="center">
 					<?php echo $this->escape($item->item_count) ?>
 				</td>
 
 				<td>
-					<?php echo $this->escape($item->feed_created) ?>
+					<?php echo JHTML::_('date', $item->feed_created) ?>
 				</td>
 			</tr>
 			<?php endforeach; ?>
