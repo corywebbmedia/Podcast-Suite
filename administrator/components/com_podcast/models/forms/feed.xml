@@ -10,7 +10,6 @@
 		<field name="alias"
 			type="text"
 			label="JFIELD_ALIAS_LABEL"
-			required="true"
 			default=""/>
 
 		<field name="feed_subtitle"
