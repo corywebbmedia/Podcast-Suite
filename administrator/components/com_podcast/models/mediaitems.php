@@ -15,4 +15,17 @@ class PodcastModelMediaitems extends JModelList
 
 		return $query;
 	}
+
+	public function getItems()
+	{
+		$items = parent::getItems();
+
+		foreach ($items as &$item) {
+			if ($item->item_pubDate == '0000-00-00') {
+				$item->item_pubDate = null;
+			}
+		}
+
+		return $items;
+	}
 }
