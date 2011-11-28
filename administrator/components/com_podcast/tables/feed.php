@@ -20,6 +20,10 @@ class PodcastTableFeed extends JTable
 			$this->alias = JFactory::getDate()->format('Y-m-d-H-i-s');
 		}
 
+		if (!$this->feed_id) {
+			$this->feed_created = date('Y-m-d H:i:s');
+		}
+
 		return true;
 	}
 }
