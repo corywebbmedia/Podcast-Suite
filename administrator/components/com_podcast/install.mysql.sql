@@ -38,13 +38,15 @@ CREATE TABLE IF NOT EXISTS `#__podcast_media` (
 	`item_enclosure_length` varchar(31) DEFAULT NULL,
 	`item_enclosure_type` varchar(255) DEFAULT NULL,
 	`item_guid` varchar(255) DEFAULT NULL,
-	`item_pubDate` DATE DEFAULT NULL,
+	`item_pubDate` date DEFAULT NULL,
 	`item_duration` varchar(31) DEFAULT NULL,
 	`item_keywords` varchar(255) DEFAULT NULL,
 	`item_isClosedCaptioned` tinyint(1) DEFAULT '0',
 	`item_created` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+	`item_image` varchar(511) DEFAULT NULL,
+	`item_block` tinyint(1) DEFAULT NULL,
 	`published` tinyint(1) DEFAULT '0',
 	PRIMARY KEY (`media_id`),
 	KEY `feed_id` (`feed_id`),
-	KEY `alias` (`alias`)
+	KEY `item_alias` (`alias`)
 );

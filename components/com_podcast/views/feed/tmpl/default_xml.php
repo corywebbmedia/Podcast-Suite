@@ -47,6 +47,12 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 <?php if ($this->item->item_isClosedCaptioned): ?>
 			<itunes:isClosedCaptioned>yes</itunes:isClosedCaptioned>
 <?php endif ?>
+<?php if ($this->item->item_image): ?>
+			<itunes:image href="<?php echo $this->escape($this->image->item_image) ?>"/>
+<?php endif ?>
+<?php if ($this->item->item_block): ?>
+			<itunes:block>yes</itunes:block>
+<?php endif ?>
 		</item>
 <?php endforeach ?>
 	</channel>
