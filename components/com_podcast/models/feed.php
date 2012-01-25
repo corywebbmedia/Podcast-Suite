@@ -5,6 +5,21 @@ jimport('joomla.application.component.modellist');
 
 class PodcastModelFeed extends JModelList
 {
+	public function getIsValidFeed()
+	{
+		$feed_id = JRequest::getInt('feed_id', 0);
+
+		$db = $this->getDbo();
+		$query = $db->getQuery(true);
+
+		$query->select('published')
+			->from('#__podcast_feeds')
+			->where("feed_id = '{$feed_id}'");
+
+		$db->setQuery($query);
+		return $db->loadResult();
+	}
+
 	protected function getListQuery()
 	{
 		$query = parent::getListQuery();
@@ -13,7 +28,8 @@ class PodcastModelFeed extends JModelList
 
 		$query->select('*')
 			->from('#__podcast_media')
-			->where("feed_id = '{$feed_id}'");
+			->where("feed_id = '{$feed_id}'")
+			->where("published = 1");
 
 		return $query;
 	}
