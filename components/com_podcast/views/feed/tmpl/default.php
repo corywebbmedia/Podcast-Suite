@@ -9,9 +9,6 @@
 		<dt><strong>summary</strong></dt>
 		<dd><?php echo $this->escape($item->item_summary) ?></dd>
 
-		<dt><strong>description</strong></dt>
-		<dd><?php echo $this->escape($item->item_description) ?></dd>
-
 		<dt><strong>enclosure url</strong></dt>
 		<dd><?php echo $this->escape($item->item_enclosure_url) ?></dd>
 

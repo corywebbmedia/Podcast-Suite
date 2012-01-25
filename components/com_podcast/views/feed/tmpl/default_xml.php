@@ -16,7 +16,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 		<itunes:subtitle><?php echo $this->escape($this->feed->feed_subtitle) ?></itunes:subtitle>
 		<itunes:author><?php echo $this->escape($this->feed->feed_author) ?></itunes:author>
 		<itunes:summary><?php echo $this->escape($this->feed->feed_summary) ?></itunes:summary>
-		<description><?php echo $this->escape($this->feed->feed_description) ?></description>
+		<description><?php echo $this->escape($this->feed->feed_summary) ?></description>
 		<itunes:owner>
 			<itunes:name><?php echo $this->escape($this->feed->feed_owner_name) ?></itunes:name>
 			<itunes:email><?php echo $this->escape($this->feed->feed_owner_email) ?></itunes:email>
@@ -37,6 +37,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 			<itunes:author><?php echo $this->escape($item->item_author) ?></itunes:author>
 			<itunes:subtitle><?php echo $this->escape($item->item_subtitle) ?></itunes:subtitle>
 			<itunes:summary><?php echo $this->escape($item->item_summary) ?></itunes:summary>
+			<description><?php echo $this->escape($item->item_summary) ?></description>
 			<itunes:image href="<?php echo $this->escape($item->item_summary) ?>"/>
 			<enclosure url="<?php echo $this->escape($item->item_enclosure_url) ?>" length="<?php echo $this->escape($item->item_enclosure_length) ?>" type="<?php echo $this->escape($item->item_enclosure_type) ?>"/>
 			<guid><?php echo $this->escape($item->item_guid) ?></guid>

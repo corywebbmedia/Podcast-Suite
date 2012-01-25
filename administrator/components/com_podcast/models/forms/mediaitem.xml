@@ -104,11 +104,5 @@
 			rows="8"
 			default="" />
 
-		<field name="item_description"
-			type="textarea"
-			label="COM_PODCAST_MEDIA_ITEM_DESCRIPTION"
-			rows="8"
-			default="" />
-
 	</fieldset>
 </form>

@@ -138,12 +138,6 @@
 			rows="8"
 			default="" />
 
-		<field name="feed_description"
-			type="textarea"
-			label="COM_PODCAST_FEED_DESCRIPTION"
-			rows="8"
-			default="" />
-
 		<field name="feed_id"
 			type="hidden"
 			class="readonly"
