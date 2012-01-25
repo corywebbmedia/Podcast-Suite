@@ -6,12 +6,13 @@ jimport( 'joomla.application.component.view');
 class PodcastViewFeed extends JView
 {
 	protected $items;
+	protected $feed;
 
 	public function display($tpl = null)
 	{
-		$valid = $this->get('IsValidFeed');
+		$this->feed = $this->get('Feed');
 
-		if ($valid != 1) {
+		if ($this->feed->published != 1) {
 			throw new Exception(JText::_('JGLOBAL_RESOURCE_NOT_FOUND'), 404);
 		}
 
