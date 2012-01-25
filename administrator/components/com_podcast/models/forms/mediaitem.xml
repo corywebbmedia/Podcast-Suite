@@ -65,6 +65,11 @@
 
 		<field name="item_pubDate"
 			type="calendar"
+			label="COM_PODCAST_MEDIA_ITEM_PUBLISHED_DATE"
+			default="" />
+
+		<field name="item_created"
+			type="calendar"
 			label="COM_PODCAST_MEDIA_ITEM_CREATED_DATE"
 			default="" />
 
