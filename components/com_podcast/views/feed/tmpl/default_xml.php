@@ -44,13 +44,13 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 			<pubDate><?php echo date('r', strtotime($item->item_pubDate)) ?></pubDate>
 			<itunes:duration><?php echo $this->escape($item->item_duration) ?></itunes:duration>
 			<itunes:keywords><?php echo $this->escape($item->item_keywords) ?></itunes:keywords>
-<?php if ($this->item->item_isClosedCaptioned): ?>
+<?php if ($item->item_isClosedCaptioned): ?>
 			<itunes:isClosedCaptioned>yes</itunes:isClosedCaptioned>
 <?php endif ?>
-<?php if ($this->item->item_image): ?>
+<?php if ($item->item_image): ?>
 			<itunes:image href="<?php echo $this->escape($this->image->item_image) ?>"/>
 <?php endif ?>
-<?php if ($this->item->item_block): ?>
+<?php if ($item->item_block): ?>
 			<itunes:block>yes</itunes:block>
 <?php endif ?>
 		</item>
