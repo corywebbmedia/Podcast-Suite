@@ -5,30 +5,41 @@ jimport('joomla.application.component.modellist');
 
 class PodcastModelFeed extends JModelList
 {
+	protected $feed;
+
 	public function getFeed()
 	{
-		$feed_id = JRequest::getInt('feed_id', 0);
+		if (!isset($this->feed)) {
+			$feed_id = JRequest::getInt('feed_id', 0);
 
-		$db = $this->getDbo();
-		$query = $db->getQuery(true);
+			$db = $this->getDbo();
+			$query = $db->getQuery(true);
 
-		$query->select('*')
-			->from('#__podcast_feeds')
-			->where("feed_id = '{$feed_id}'");
+			$query->select('*')
+				->from('#__podcast_feeds');
 
-		$db->setQuery($query);
-		$feed = $db->loadObject();
+			if ($feed_id) {
+				$query->where("feed_id = '{$feed_id}'");
+			} else {
+				$query->where("feed_default = '1'");
+			}
 
-		$this->_seedCategories($feed);
+			$db->setQuery($query);
+			$feed = $db->loadObject();
 
-		return $feed;
+			$this->_seedCategories($feed);
+
+			$this->feed = $feed;
+		}
+
+		return $this->feed;
 	}
 
 	protected function getListQuery()
 	{
 		$query = parent::getListQuery();
 
-		$feed_id = JRequest::getInt('feed_id', 0);
+		$feed_id = $this->getFeed()->feed_id;
 
 		$query->select('*')
 			->from('#__podcast_media')
