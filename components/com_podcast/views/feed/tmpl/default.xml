@@ -5,4 +5,16 @@
 			<![CDATA[COM_PODCAST_FEED_VIEW_DEFAULT_DESC]]>
 		</message>
 	</layout>
+
+	<fields name="request">
+		<fieldset name="request"
+			addfieldpath="/administrator/components/com_podcast/models/fields">
+
+			<field name="feed_id" type="feed"
+				label="COM_PODCAST_FIELD_FEED"
+				required="true"
+				description="COM_PODCAST_FIELD_FEED_DESC"
+			/>
+		</fieldset>
+	</fields>
 </metadata>
