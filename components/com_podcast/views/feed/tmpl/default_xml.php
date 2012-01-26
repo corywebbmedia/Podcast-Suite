@@ -52,7 +52,6 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 			<itunes:subtitle><?php echo $this->escape($item->item_subtitle) ?></itunes:subtitle>
 			<itunes:summary><?php echo $this->escape($item->item_summary) ?></itunes:summary>
 			<description><?php echo $this->escape($item->item_summary) ?></description>
-			<itunes:image href="<?php echo $this->escape($item->item_summary) ?>"/>
 			<enclosure url="<?php echo $this->escape($item->item_enclosure_url) ?>" length="<?php echo $this->escape($item->item_enclosure_length) ?>" type="<?php echo $this->escape($item->item_enclosure_type) ?>"/>
 			<guid><?php echo $this->escape($item->item_guid) ?></guid>
 			<pubDate><?php echo date('r', strtotime($item->item_pubDate)) ?></pubDate>
@@ -62,7 +61,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 			<itunes:isClosedCaptioned>yes</itunes:isClosedCaptioned>
 <?php endif ?>
 <?php if ($item->item_image): ?>
-			<itunes:image href="<?php echo $this->escape($this->image->item_image) ?>"/>
+			<itunes:image href="<?php echo $this->escape($item->item_image) ?>"/>
 <?php endif ?>
 <?php if ($item->item_block): ?>
 			<itunes:block>yes</itunes:block>
