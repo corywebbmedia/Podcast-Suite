@@ -17,7 +17,11 @@ class PodcastModelFeed extends JModelList
 			->where("feed_id = '{$feed_id}'");
 
 		$db->setQuery($query);
-		return $db->loadObject();
+		$feed = $db->loadObject();
+
+		$this->_seedCategories($feed);
+
+		return $feed;
 	}
 
 	protected function getListQuery()
@@ -32,5 +36,35 @@ class PodcastModelFeed extends JModelList
 			->where("published = 1");
 
 		return $query;
+	}
+
+	protected function _seedCategories(&$feed)
+	{
+		$categories = array();
+
+		if (strlen($feed->feed_category1)) {
+			$categories[] = $this->_getCategoryArray($feed->feed_category1);
+		}
+
+		if (strlen($feed->feed_category2)) {
+			$categories[] = $this->_getCategoryArray($feed->feed_category2);
+		}
+
+		if (strlen($feed->feed_category3)) {
+			$categories[] = $this->_getCategoryArray($feed->feed_category3);
+		}
+
+		$feed->categories = $categories;
+	}
+
+	public function _getCategoryArray($string)
+	{
+		$pieces = explode(' > ', $string);
+
+		if (count($pieces) > 1) {
+			return array($pieces[0] => $pieces[1]);
+		}
+
+		return array($pieces[0] => array());
 	}
 }

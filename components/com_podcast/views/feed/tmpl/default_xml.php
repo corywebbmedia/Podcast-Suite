@@ -5,6 +5,9 @@ $document = JFactory::getDocument();
 $document->setMimeEncoding('application/xml');
 
 echo '<?xml version="1.0" encoding="UTF-8"?>';
+
+// Pardon the formatting of the markup. PHP's if() and foreach() blocks end up
+// adding extra whitespace, which throws off the formatting of the raw source.
 ?>
 
 <rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">
@@ -21,6 +24,17 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 			<itunes:name><?php echo $this->escape($this->feed->feed_owner_name) ?></itunes:name>
 			<itunes:email><?php echo $this->escape($this->feed->feed_owner_email) ?></itunes:email>
 		</itunes:owner>
+<?php foreach ($this->feed->categories as $category): ?>
+<?php foreach ($category as $first => $second): ?>
+<?php if (count($second)): ?>
+		<itunes:category text="<?php echo $this->escape($first) ?>">
+			<itunes:category text="<?php echo $this->escape($second) ?>" />
+		</itunes:category>
+<?php else: ?>
+		<itunes:category text="<?php echo $this->escape($first) ?>" />
+<?php endif ?>
+<?php endforeach ?>
+<?php endforeach ?>
 <?php if ($this->feed->feed_new_feed_url): ?>
 		<itunes:new-feed-url><?php echo $this->escape($this->feed->feed_new_feed_url) ?></itunes:new-feed-url>
 <?php endif ?>
