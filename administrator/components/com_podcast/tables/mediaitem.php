@@ -20,6 +20,11 @@ class PodcastTableMediaitem extends JTable
 			$this->alias = JFactory::getDate()->format('Y-m-d-H-i-s');
 		}
 
+		// Backfill the GUID on new records
+		if (!$this->media_id) {
+			$this->item_guid = sha1(time() . JURI::root() . $this->item_enclosure_url);
+		}
+
 		return true;
 	}
 }

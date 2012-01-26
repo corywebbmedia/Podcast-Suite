@@ -103,7 +103,7 @@
 			type="text"
 			class="readonly"
 			label="COM_PODCAST_MEDIA_ITEM_GUID"
-			size="10"
+			size="42"
 			default="0"
 			readonly="true" />
 
