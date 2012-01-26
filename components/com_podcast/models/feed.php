@@ -49,6 +49,19 @@ class PodcastModelFeed extends JModelList
 		return $query;
 	}
 
+	public function getItems()
+	{
+		$items = parent::getItems();
+
+		foreach ($items as &$item) {
+			if (strpos($item->item_enclosure_url, 'http') !== 0) {
+				$item->item_enclosure_url = JURI::root() . $item->item_enclosure_url;
+			}
+		}
+
+		return $items;
+	}
+
 	protected function _seedCategories(&$feed)
 	{
 		$categories = array();
