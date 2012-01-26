@@ -24,6 +24,10 @@ class PodcastModelMediaitems extends JModelList
 			if ($item->item_pubDate == '0000-00-00') {
 				$item->item_pubDate = null;
 			}
+
+			if (strpos($item->item_enclosure_url, 'http') !== 0) {
+				$item->item_enclosure_url = '../' . $item->item_enclosure_url;
+			}
 		}
 
 		return $items;
