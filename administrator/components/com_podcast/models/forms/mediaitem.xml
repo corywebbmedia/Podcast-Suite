@@ -59,8 +59,8 @@
 			label="JSTATUS"
 			required="true"
 			default="0">
-			<option value="0">JENABLED</option>
-			<option value="1">JDISABLED</option>
+			<option value="0">JDISABLED</option>
+			<option value="1">JENABLED</option>
 		</field>
 
 		<field name="item_pubDate"
