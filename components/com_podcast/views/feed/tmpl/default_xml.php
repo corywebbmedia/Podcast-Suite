@@ -53,7 +53,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 			<itunes:summary><?php echo $this->escape($item->item_summary) ?></itunes:summary>
 			<description><?php echo $this->escape($item->item_summary) ?></description>
 			<enclosure url="<?php echo $this->escape($item->item_enclosure_url) ?>" length="<?php echo $this->escape($item->item_enclosure_length) ?>" type="<?php echo $this->escape($item->item_enclosure_type) ?>"/>
-			<guid><?php echo $this->escape($item->item_guid) ?></guid>
+			<guid isPermaLink="false"><?php echo $this->escape($item->item_guid) ?></guid>
 			<pubDate><?php echo date('r', strtotime($item->item_pubDate)) ?></pubDate>
 			<itunes:duration><?php echo $this->escape($item->item_duration) ?></itunes:duration>
 			<itunes:keywords><?php echo $this->escape($item->item_keywords) ?></itunes:keywords>
