@@ -3,7 +3,7 @@ defined( '_JEXEC' ) or die;
 
 jimport( 'joomla.application.component.view');
 
-class PodcastViewMediaitems extends JView
+class PodcastViewFeeditems extends JView
 {
 	protected $items;
 	protected $state;
@@ -24,17 +24,17 @@ class PodcastViewMediaitems extends JView
 	{
 		JToolBarHelper::title(JText::_('COM_PODCAST_FEED_ITEMS_MANAGER'));
 
-		JToolBarHelper::publish('mediaitems.publish');
-		JToolBarHelper::unpublish('mediaitems.unpublish');
+		JToolBarHelper::publish('feeditems.publish');
+		JToolBarHelper::unpublish('feeditems.unpublish');
 
 		JToolBarHelper::divider();
 
-		JToolBarHelper::deleteList('', 'mediaitems.delete');
+		JToolBarHelper::deleteList('', 'feeditems.delete');
 
 		JToolBarHelper::divider();
 
-		JToolBarHelper::editList('mediaitem.edit');
-		JToolBarHelper::addNew('mediaitem.add');
+		JToolBarHelper::editList('feeditem.edit');
+		JToolBarHelper::addNew('feeditem.add');
 
 		JToolBarHelper::divider();
 

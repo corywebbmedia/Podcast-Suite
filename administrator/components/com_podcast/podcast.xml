@@ -34,8 +34,8 @@
 		<submenu>
 			<menu link="option=com_podcast&amp;view=feeds"
 				alt="COM_PODCAST_FEEDS">COM_PODCAST_FEEDS</menu>
-			<menu link="option=com_podcast&amp;view=mediaitems"
-				alt="COM_PODCAST_MEDIAITEMS">COM_PODCAST_MEDIAITEMS</menu>
+			<menu link="option=com_podcast&amp;view=feeditems"
+				alt="COM_PODCAST_FEEDITEMS">COM_PODCAST_FEEDITEMS</menu>
 		</submenu>
 		<files folder="administrator/components/com_podcast">
 			<filename>podcast.php</filename>

@@ -1,11 +1,11 @@
 <?php defined( '_JEXEC' ) or die; ?>
 
-<form action="index.php?option=com_podcast&amp;media_id=<?php echo $this->item->media_id ?>"
+<form action="index.php?option=com_podcast&amp;feed_item_id=<?php echo $this->item->feed_item_id ?>"
 	method="post" name="adminForm" class="form-validate">
 
 	<div class="width-60 fltlft">
 		<fieldset class="adminform">
-			<legend><?php echo JText::_('COM_PODCAST_MEDIA_ITEM_BASIC'); ?></legend>
+			<legend><?php echo JText::_('COM_PODCAST_FEED_ITEM_BASIC'); ?></legend>
 			<ul class="adminformlist">
 				<?php foreach ($this->form->getFieldset('top-col-1') as $field): ?>
 					<li><?php echo $field->label; ?>
@@ -37,7 +37,7 @@
 
 	<div class="width-40 fltrt">
 		<fieldset class="adminform">
-			<legend><?php echo JText::_('COM_PODCAST_MEDIA_ITEM_EXTENDED'); ?></legend>
+			<legend><?php echo JText::_('COM_PODCAST_FEED_ITEM_EXTENDED'); ?></legend>
 
 			<ul class="adminformlist">
 				<?php foreach ($this->form->getFieldset('right') as $field): ?>

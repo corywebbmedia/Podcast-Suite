@@ -3,7 +3,7 @@ defined( '_JEXEC' ) or die;
 
 jimport('joomla.application.component.controllerform');
 
-class PodcastControllerMediaitem extends JControllerForm
+class PodcastControllerFeeditem extends JControllerForm
 {
-	protected $list_view = 'mediaitems';
+	protected $list_view = 'feeditems';
 }

@@ -1,11 +1,11 @@
 <?php
 defined( '_JEXEC' ) or die;
 
-class PodcastTableMediaitem extends JTable
+class PodcastTableFeeditem extends JTable
 {
 	public function __construct(&$db)
 	{
-		parent::__construct('#__podcast_media', 'media_id', $db);
+		parent::__construct('#__podcast_feed_items', 'feed_item_id', $db);
 	}
 
 	public function check()
@@ -21,7 +21,7 @@ class PodcastTableMediaitem extends JTable
 		}
 
 		// Backfill the GUID on new records
-		if (!$this->media_id) {
+		if (!$this->feed_item_id) {
 			$this->item_guid = sha1(time() . JURI::root() . $this->item_enclosure_url);
 		}
 

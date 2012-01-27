@@ -10,10 +10,10 @@
 		<fieldset name="request"
 			addfieldpath="/administrator/components/com_podcast/models/fields">
 
-			<field name="media_id" type="media"
-				label="COM_PODCAST_FIELD_MEDIA_ITEM"
+			<field name="feed_item_id" type="feeditem"
+				label="COM_PODCAST_FIELD_FEED_ITEM"
 				required="true"
-				description="COM_PODCAST_FIELD_MEDIA_ITEM_DESC"
+				description="COM_PODCAST_FIELD_FEED_ITEM_DESC"
 			/>
 		</fieldset>
 	</fields>

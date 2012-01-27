@@ -33,10 +33,10 @@ VALUES
 	(1,1,'Harris Creek Baptist Church - November','november','http://www.harriscreek.org','en-GB','(c) 2011, Harris Creek Baptist Church','Weekly Sermons from Harris Creek Baptist Church','Harris Creek Baptist Church',0,0,'church, sermon, baptist, harris creek','Harris Creek Baptist Church Podcast','Drew Greenway','dgreenway@harriscreek.org','http://www.harriscreek.org/images/logo-podcast.jpg','Religion & Spirituality > Christianity','Religion & Spirituality','Society & Culture',NULL,0,'2012-01-26 14:42:53',1),
 	(2,0,'Harris Creek Baptist Church - December','december','http://www.harriscreek.org','en-GB','(c) 2011, Harris Creek Baptist Church','Weekly Sermons from Harris Creek Baptist Church','Harris Creek Baptist Church',0,0,'church, sermon, baptist, harris creek','Harris Creek Baptist Church Podcast','Drew Greenway','dgreenway@harriscreek.org','http://www.harriscreek.org/images/logo-podcast.jpg','Religion & Spirituality > Christianity','Religion & Spirituality','Society & Culture',NULL,0,'2012-01-26 14:42:53',1);
 
-DROP TABLE IF EXISTS `#__podcast_media`;
+DROP TABLE IF EXISTS `#__podcast_feed_items`;
 
-CREATE TABLE `#__podcast_media` (
-  `media_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `#__podcast_feed_items` (
+  `feed_item_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `feed_id` int(11) DEFAULT NULL,
   `item_title` varchar(255) DEFAULT NULL,
   `alias` varchar(255) DEFAULT NULL,
@@ -55,12 +55,12 @@ CREATE TABLE `#__podcast_media` (
   `item_image` varchar(511) DEFAULT NULL,
   `item_block` tinyint(1) DEFAULT NULL,
   `published` tinyint(1) DEFAULT '0',
-  PRIMARY KEY (`media_id`),
+  PRIMARY KEY (`feed_item_id`),
   KEY `feed_id` (`feed_id`),
   KEY `item_alias` (`alias`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-INSERT INTO `#__podcast_media` (`media_id`, `feed_id`, `item_title`, `alias`, `item_author`, `item_subtitle`, `item_summary`, `item_enclosure_url`, `item_enclosure_length`, `item_enclosure_type`, `item_guid`, `item_pubDate`, `item_duration`, `item_keywords`, `item_isClosedCaptioned`, `item_created`, `item_image`, `item_block`, `published`)
+INSERT INTO `#__podcast_feed_items` (`feed_item_id`, `feed_id`, `item_title`, `alias`, `item_author`, `item_subtitle`, `item_summary`, `item_enclosure_url`, `item_enclosure_length`, `item_enclosure_type`, `item_guid`, `item_pubDate`, `item_duration`, `item_keywords`, `item_isClosedCaptioned`, `item_created`, `item_image`, `item_block`, `published`)
 VALUES
 	(1,1,'Submission // Uncommon Disciplines','submission-uncommon-disciplines','Drew Greenway','Drew Greenway\'s Album','11.06.11 Brady Herbert preaching \"Submission,\" from our series \"Uncommon Disciplines.\"','media/podcasts/11-6-11.mp3','15722706','audio/mpeg','9f819489cdc7ed3c1d1d8f46a9b6bc623e293b81','2011-11-06','32:45',NULL,0,'2012-01-26 15:26:00','',0,1),
 	(2,1,'Simplicity // Uncommon Disciplines','simplicity-uncommon-disciplines','Drew Greenway','Drew Greenway\'s Album','11.13.11 Brady Herbert preaching \"Simplicity,\" the last sermon from our series \"Uncommon Disciplines.\"','media/podcasts/11-13-11.mp3','14506027','audio/mpeg','4d997dc8d6dd74854460c3ae6d7f4bb2e8f1d25c','2011-11-13','30:13',NULL,0,'2012-01-26 15:27:06','',0,1),

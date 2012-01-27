@@ -26,8 +26,8 @@ CREATE TABLE IF NOT EXISTS `#__podcast_feeds` (
 	KEY `alias` (`alias`)
 );
 
-CREATE TABLE IF NOT EXISTS `#__podcast_media` (
-	`media_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `#__podcast_feed_items` (
+	`feed_item_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
 	`feed_id` int(11) DEFAULT NULL,
 	`item_title` varchar(255) DEFAULT NULL,
 	`alias` varchar(255) DEFAULT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `#__podcast_media` (
 	`item_image` varchar(511) DEFAULT NULL,
 	`item_block` tinyint(1) DEFAULT NULL,
 	`published` tinyint(1) DEFAULT '0',
-	PRIMARY KEY (`media_id`),
+	PRIMARY KEY (`feed_item_id`),
 	KEY `feed_id` (`feed_id`),
 	KEY `item_alias` (`alias`)
 );

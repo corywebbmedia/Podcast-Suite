@@ -42,7 +42,7 @@ class PodcastModelFeed extends JModelList
 		$feed_id = $this->getFeed()->feed_id;
 
 		$query->select('*')
-			->from('#__podcast_media')
+			->from('#__podcast_feed_items')
 			->where("feed_id = '{$feed_id}'")
 			->where("published = 1");
 
