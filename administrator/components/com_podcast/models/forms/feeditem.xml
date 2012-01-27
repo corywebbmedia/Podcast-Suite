@@ -29,7 +29,7 @@
 	<fieldset name="top-col-2">
 		<field name="item_enclosure_url"
 			type="text"
-			label="COM_PODCAST_MEDIA"
+			label="COM_PODCAST_FEED_ITEM_MEDIA"
 			required="true"
 			default="" />
 
