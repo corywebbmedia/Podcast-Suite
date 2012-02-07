@@ -43,6 +43,8 @@ class PodcastViewFeeds extends JView
 		JToolBarHelper::divider();
 
 		JToolBarHelper::preferences('com_podcast');
-		JToolBarHelper::help('replace with custom button');
+		$bar = JToolBar::getInstance('toolbar');
+        $html = '<a class="toolbar" href="http://podcastsuite.com/support" target="_blank"><span class="icon-32-help"></span>'.JText::_('JTOOLBAR_HELP').'</a>';
+        $bar->appendButton('Custom', $html, 'help');
 	}
 }
