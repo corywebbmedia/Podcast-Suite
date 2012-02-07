@@ -22,7 +22,7 @@ class PodcastViewFeeds extends JView
 
 	public function addToolbar()
 	{
-		JToolBarHelper::title(JText::_('COM_PODCAST_PODCAST_FEEDS_MANAGER'));
+		JToolBarHelper::title(JText::_('COM_PODCAST_PODCAST_FEEDS_MANAGER'), 'feeds');
 
 		JToolBarHelper::makeDefault('feeds.setDefault', 'COM_PODCAST_SET_DEFAULT_FEED');
 

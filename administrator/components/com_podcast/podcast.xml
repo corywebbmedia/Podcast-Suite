@@ -30,14 +30,11 @@
 			<language tag="en-GB">en-GB.com_podcast.sys.ini</language>
 			<language tag="en-GB">en-GB.com_podcast.ini</language>
 		</languages>
-		<menu link="option=com_podcast">COM_PODCAST</menu>
+		<menu link="option=com_podcast" img="../media/com_podcast/images/icons/podcast-16.png">COM_PODCAST</menu>
 		<submenu>
-			<menu link="option=com_podcast&amp;view=feeds"
-				alt="COM_PODCAST_FEEDS">COM_PODCAST_FEEDS</menu>
-			<menu link="option=com_podcast&amp;view=episodes"
-				alt="COM_PODCAST_FEEDITEMS">COM_PODCAST_FEEDITEMS</menu>
-			<menu link="option=com_podcast&amp;view=media"
-				alt="COM_PODCAST_MEDIA">COM_PODCAST_MEDIA</menu>
+			<menu link="option=com_podcast&amp;view=episodes" alt="COM_PODCAST_EPISODES" img="../media/com_podcast/images/icons/podcast-16.png">COM_PODCAST_EPISODES</menu>
+            <menu link="option=com_podcast&amp;view=feeds" alt="COM_PODCAST_FEEDS" img="../media/com_podcast/images/icons/feeds-16.png">COM_PODCAST_FEEDS</menu>
+			<menu link="option=com_podcast&amp;view=media" alt="COM_PODCAST_MEDIA" img="../media/com_podcast/images/icons/media-16.png">COM_PODCAST_MEDIA</menu>
 		</submenu>
 		<files folder="administrator/components/com_podcast">
 			<filename>podcast.php</filename>

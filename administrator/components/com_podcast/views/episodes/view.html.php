@@ -22,7 +22,7 @@ class PodcastViewEpisodes extends JView
 
 	public function addToolbar()
 	{
-		JToolBarHelper::title(JText::_('COM_PODCAST_EPISODES_MANAGER'));
+		JToolBarHelper::title(JText::_('COM_PODCAST_EPISODES_MANAGER'), 'podcasts');
 
 		JToolBarHelper::publish('episodes.publish');
 		JToolBarHelper::unpublish('episodes.unpublish');
