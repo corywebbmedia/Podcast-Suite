@@ -6,15 +6,15 @@ jimport('joomla.form.formfield');
 jimport('joomla.form.helper');
 JFormHelper::loadFieldClass('list');
 
-class JFormFieldFeeditem extends JFormFieldList
+class JFormFieldEpisode extends JFormFieldList
 {
 	protected function _getItems()
 	{
 		$db = JFactory::getDBO();
 		$query = $db->getQuery(true);
 
-		$query->select('feed_item_id AS `value`, item_title AS `text`')
-			->from('#__podcast_feed_items');
+		$query->select('episode_id AS `value`, item_title AS `text`')
+			->from('#__podcast_episodes');
 
 		$db->setQuery($query);
 		return $db->loadObjectList();
@@ -24,7 +24,7 @@ class JFormFieldFeeditem extends JFormFieldList
 	{
 		$feeds = $this->_getItems();
 
-		array_unshift($feeds, JHtml::_('select.option', '', '- Select Feed Item -'));
+		array_unshift($feeds, JHtml::_('select.option', '', '- Select Episode -'));
 
 		return $feeds;
 	}

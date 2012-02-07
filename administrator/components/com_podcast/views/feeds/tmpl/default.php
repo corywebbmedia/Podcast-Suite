@@ -46,7 +46,7 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 				</th>
 
 				<th>
-					<?php echo JHtml::_('grid.sort', 'COM_PODCAST_FEED_ITEM_COUNT', 'item_count', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_PODCAST_EPISODE_COUNT', 'item_count', $listDirn, $listOrder); ?>
 				</th>
 
 				<th>

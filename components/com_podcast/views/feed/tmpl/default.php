@@ -1,6 +1,6 @@
 <?php defined( '_JEXEC' ) or die; ?>
 <?php foreach ($this->items as $item): ?>
-	<h3><a href="<?php echo JRoute::_('index.php?option=com_podcast&view=item&feed_item_id=' . $item->feed_item_id) ?>"><?php echo $this->escape($item->item_title) ?></a></h3>
+	<h3><a href="<?php echo JRoute::_('index.php?option=com_podcast&view=item&episode_id=' . $item->episode_id) ?>"><?php echo $this->escape($item->item_title) ?></a></h3>
 
 	<dl>
 		<dt><strong>subtitle</strong></dt>

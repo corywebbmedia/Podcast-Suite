@@ -11,7 +11,7 @@ class PodcastModelFeeds extends JModelList
 
 		$query->select('pf.*, count(pm.feed_id) as item_count')
 			->from('#__podcast_feeds AS pf')
-			->join('LEFT', '#__podcast_feed_items AS pm USING(feed_id)')
+			->join('LEFT', '#__podcast_episodes AS pm USING(feed_id)')
 			->group('feed_id');
 
 		return $query;

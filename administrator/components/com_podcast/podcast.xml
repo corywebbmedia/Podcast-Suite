@@ -34,7 +34,7 @@
 		<submenu>
 			<menu link="option=com_podcast&amp;view=feeds"
 				alt="COM_PODCAST_FEEDS">COM_PODCAST_FEEDS</menu>
-			<menu link="option=com_podcast&amp;view=feeditems"
+			<menu link="option=com_podcast&amp;view=episodes"
 				alt="COM_PODCAST_FEEDITEMS">COM_PODCAST_FEEDITEMS</menu>
 			<menu link="option=com_podcast&amp;view=media"
 				alt="COM_PODCAST_MEDIA">COM_PODCAST_MEDIA</menu>

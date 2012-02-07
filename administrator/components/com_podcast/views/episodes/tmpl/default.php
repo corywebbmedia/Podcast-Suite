@@ -5,11 +5,11 @@ $listOrder	= $this->escape($this->state->get('list.ordering'));
 $listDirn	= $this->escape($this->state->get('list.direction'));
 
 ?>
-<form action="<?php echo JRoute::_('index.php?option=com_podcast&view=feeditems'); ?>" method="post" name="adminForm" id="adminForm">
+<form action="<?php echo JRoute::_('index.php?option=com_podcast&view=episodes'); ?>" method="post" name="adminForm" id="adminForm">
 	<fieldset id="filter-bar">
 		<div class="filter-search fltlft">
 			<label class="filter-search-lbl" for="filter_search"><?php echo JText::_('JSEARCH_FILTER_LABEL'); ?></label>
-			<input type="text" name="filter_search" id="filter_search" value="<?php echo $this->escape($this->state->get('filter.search')); ?>" title="<?php echo JText::_('COM_PODCAST_SEARCH_FEED_ITEMS'); ?>" />
+			<input type="text" name="filter_search" id="filter_search" value="<?php echo $this->escape($this->state->get('filter.search')); ?>" title="<?php echo JText::_('COM_PODCAST_SEARCH_EPISODES'); ?>" />
 			<button type="submit"><?php echo JText::_('JSEARCH_FILTER_SUBMIT'); ?></button>
 			<button type="button" onclick="document.id('filter_search').value='';this.form.submit();"><?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?></button>
 		</div>
@@ -28,7 +28,7 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 					<input type="checkbox" name="checkall-toggle" value="" title="<?php echo JText::_('JGLOBAL_CHECK_ALL'); ?>" onclick="Joomla.checkAll(this)" />
 				</th>
 				<th class="title">
-					<?php echo JHtml::_('grid.sort', 'COM_PODCAST_FEED_ITEM_TITLE', 'item_title', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_PODCAST_EPISODE_TITLE', 'item_title', $listDirn, $listOrder); ?>
 				</th>
 				<th>
 					<?php echo JHtml::_('grid.sort', 'COM_PODCAST_LOCATION', 'item_enclosure_url', $listDirn, $listOrder); ?>
@@ -58,10 +58,10 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 		<?php foreach ($this->items as $i => $item): ?>
 			<tr class="row<?php echo $i % 2; ?>">
 				<td class="center">
-					<?php echo JHtml::_('grid.id', $i, $item->feed_item_id); ?>
+					<?php echo JHtml::_('grid.id', $i, $item->episode_id); ?>
 				</td>
 				<td>
-					<a href="<?php echo JRoute::_('index.php?option=com_podcast&task=feeditem.edit&feed_item_id='. $item->feed_item_id); ?>"><?php echo $this->escape($item->item_title) ?></a>
+					<a href="<?php echo JRoute::_('index.php?option=com_podcast&task=episode.edit&episode_id='. $item->episode_id); ?>"><?php echo $this->escape($item->item_title) ?></a>
 				</td>
 				<td>
 					<a href="<?php echo $item->item_enclosure_url ?>"><?php echo $this->escape($item->item_enclosure_url) ?></a>
@@ -72,7 +72,7 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 				</td>
 
 				<td class="center">
-					<?php echo JHtml::_('jgrid.published', $item->published, $i, 'feeditems.'); ?>
+					<?php echo JHtml::_('jgrid.published', $item->published, $i, 'episodes.'); ?>
 				</td>
 
 				<td>

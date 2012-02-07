@@ -5,5 +5,5 @@ jimport('joomla.application.component.controller');
 
 class PodcastController extends JController
 {
-	protected $default_view = 'feeditems';
+	protected $default_view = 'episodes';
 }

@@ -3,14 +3,14 @@ defined( '_JEXEC' ) or die;
 
 jimport('joomla.application.component.modellist');
 
-class PodcastModelFeeditems extends JModelList
+class PodcastModelEpisodes extends JModelList
 {
 	protected function getListQuery()
 	{
 		$query = parent::getListQuery();
 
 		$query->select('pm.*, pf.feed_title')
-			->from('#__podcast_feed_items AS pm')
+			->from('#__podcast_episodes AS pm')
 			->join('LEFT', '#__podcast_feeds AS pf USING(feed_id)');
 
 		return $query;

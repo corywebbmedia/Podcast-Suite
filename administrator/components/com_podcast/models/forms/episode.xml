@@ -3,7 +3,7 @@
 	<fieldset name="top-col-1">
 		<field name="item_title"
 			type="text"
-			label="COM_PODCAST_FEED_ITEM_TITLE"
+			label="COM_PODCAST_EPISODE_TITLE"
 			required="true"
 			default="" />
 
@@ -14,7 +14,7 @@
 
 		<field name="item_subtitle"
 			type="text"
-			label="COM_PODCAST_FEED_ITEM_SUBTITLE"
+			label="COM_PODCAST_EPISODE_SUBTITLE"
 			required="true"
 			default="" />
 
@@ -29,25 +29,25 @@
 	<fieldset name="top-col-2">
 		<field name="item_enclosure_url"
 			type="text"
-			label="COM_PODCAST_FEED_ITEM_MEDIA"
+			label="COM_PODCAST_EPISODE_MEDIA"
 			required="true"
 			default="" />
 
 		<field name="item_enclosure_length"
 			type="text"
-			label="COM_PODCAST_FEED_ITEM_LENGTH"
+			label="COM_PODCAST_EPISODE_LENGTH"
 			required="true"
 			default="" />
 
 		<field name="item_duration"
 			type="text"
-			label="COM_PODCAST_FEED_ITEM_DURATION"
+			label="COM_PODCAST_EPISODE_DURATION"
 			required="true"
 			default="" />
 
 		<field name="item_enclosure_type"
 			type="text"
-			label="COM_PODCAST_FEED_ITEM_TYPE"
+			label="COM_PODCAST_EPISODE_TYPE"
 			required="true"
 			default="" />
 
@@ -65,22 +65,22 @@
 
 		<field name="item_pubDate"
 			type="calendar"
-			label="COM_PODCAST_FEED_ITEM_PUBLISHED_DATE"
+			label="COM_PODCAST_EPISODE_PUBLISHED_DATE"
 			default="" />
 
 		<field name="item_created"
 			type="calendar"
-			label="COM_PODCAST_FEED_ITEM_CREATED_DATE"
+			label="COM_PODCAST_EPISODE_CREATED_DATE"
 			default="" />
 
 		<field name="item_author"
 			type="text"
-			label="COM_PODCAST_FEED_ITEM_AUTHOR"
+			label="COM_PODCAST_EPISODE_AUTHOR"
 			default="" />
 
 		<field name="item_isClosedCaptioned"
 			type="radio"
-			label="COM_PODCAST_FEED_ITEM_CLOSED_CAPTION"
+			label="COM_PODCAST_EPISODE_CLOSED_CAPTION"
 			default="0">
 			<option value="0">JNO</option>
 			<option value="1">JYES</option>
@@ -102,12 +102,12 @@
 		<field name="item_guid"
 			type="text"
 			class="readonly"
-			label="COM_PODCAST_FEED_ITEM_GUID"
+			label="COM_PODCAST_EPISODE_GUID"
 			size="42"
 			default="0"
 			readonly="true" />
 
-		<field name="feed_item_id"
+		<field name="episode_id"
 			type="hidden"
 			class="readonly"
 			readonly="true" />
@@ -118,7 +118,7 @@
 
 		<field name="item_summary"
 			type="textarea"
-			label="COM_PODCAST_FEED_ITEM_SUMMARY"
+			label="COM_PODCAST_EPISODE_SUMMARY"
 			rows="8"
 			default="" />
 

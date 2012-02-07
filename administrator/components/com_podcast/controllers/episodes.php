@@ -3,9 +3,9 @@ defined( '_JEXEC' ) or die;
 
 jimport('joomla.application.component.controlleradmin');
 
-class PodcastControllerFeeditems extends JControllerAdmin
+class PodcastControllerEpisodes extends JControllerAdmin
 {
-	public function getModel($name = 'Feeditem', $prefix = 'PodcastModel', $config = array('ignore_request' => true))
+	public function getModel($name = 'Episode', $prefix = 'PodcastModel', $config = array('ignore_request' => true))
 	{
 		$model = parent::getModel($name, $prefix, $config);
 
