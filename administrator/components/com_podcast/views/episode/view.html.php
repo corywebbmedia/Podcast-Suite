@@ -14,6 +14,8 @@ class PodcastViewEpisode extends JView
 		$this->form = $this->get('Form');
 
 		$this->addToolbar();
+        
+        JRequest::setVar('hidemainmenu', true);
 
 		parent::display($tpl);
 	}

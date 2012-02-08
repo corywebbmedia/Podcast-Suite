@@ -10,6 +10,8 @@ class PodcastViewMedia extends JView
 
         JToolbarHelper::title(JText::_('COM_PODCAST_MEDIA'), 'media');
         
+        JRequest::setVar('hidemainmenu', true);
+        
 		parent::display($tpl);
 	}
 }

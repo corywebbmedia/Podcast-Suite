@@ -14,6 +14,8 @@ class PodcastViewFeed extends JView
 		$this->item = $this->get('Item');
 
 		$this->addToolbar();
+        
+        JRequest::setVar('hidemainmenu', true);
 
 		parent::display($tpl);
 	}
