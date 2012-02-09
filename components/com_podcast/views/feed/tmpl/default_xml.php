@@ -57,7 +57,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 			<pubDate><?php echo date('r', strtotime($item->item_pubDate)) ?></pubDate>
 			<itunes:duration><?php echo $this->escape($item->item_duration) ?></itunes:duration>
 			<itunes:keywords><?php echo $this->escape($item->item_keywords) ?></itunes:keywords>
-<?php if ($item->item_isClosedCaptioned): ?>
+<?php if ($item->item_closed_caption): ?>
 			<itunes:isClosedCaptioned>yes</itunes:isClosedCaptioned>
 <?php endif ?>
 <?php if ($item->item_image): ?>

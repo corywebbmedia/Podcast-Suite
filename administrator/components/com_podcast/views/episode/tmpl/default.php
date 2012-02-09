@@ -46,9 +46,17 @@
 				<?php endforeach ?>
 			</ul>
 
-
 		</fieldset>
 
+        <fieldset class="adminform">
+            <legend><?php echo JText::_('COM_PODCAST_EPISODE_ADDITIONAL_ASSETS'); ?></legend>
+            [attach media here]
+            <ul class="adminformlist">
+                <?php foreach ($this->assets as $asset) : if (!$asset->default) : ?>
+                <li><?php echo $asset->asset_enclosure_url; ?></li>
+                <?php endif; endforeach; ?>
+            </ul>
+        </fieldset>
 	</div>
 
 	<input type="hidden" name="task" value="" />

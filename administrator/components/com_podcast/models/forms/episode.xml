@@ -78,7 +78,7 @@
 			label="COM_PODCAST_EPISODE_AUTHOR"
 			default="" />
 
-		<field name="item_isClosedCaptioned"
+		<field name="item_closed_caption"
 			type="radio"
 			label="COM_PODCAST_EPISODE_CLOSED_CAPTION"
 			default="0">

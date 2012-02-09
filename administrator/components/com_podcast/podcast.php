@@ -2,7 +2,7 @@
 defined( '_JEXEC' ) or die;
 
 $document = JFactory::getDocument();
-$document->addStyleSheet(JURI::base() . 'components/com_podcast/podcast.css');
+$document->addStyleSheet(JURI::root() . '/media/com_podcast/css/admin.css');
 
 jimport('joomla.application.component.controller');
 

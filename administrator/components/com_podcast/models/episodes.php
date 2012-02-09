@@ -9,8 +9,9 @@ class PodcastModelEpisodes extends JModelList
 	{
 		$query = parent::getListQuery();
 
-		$query->select('pm.*, pf.feed_title')
+		$query->select('pm.*, pf.feed_title, pa.*')
 			->from('#__podcast_episodes AS pm')
+            ->join('LEFT', '#__podcast_assets AS pa USING(episode_id)')
 			->join('LEFT', '#__podcast_feeds AS pf USING(feed_id)');
 
 		return $query;
@@ -25,9 +26,9 @@ class PodcastModelEpisodes extends JModelList
 				$item->item_pubDate = null;
 			}
 
-			if (strpos($item->item_enclosure_url, 'http') !== 0) {
-				$item->item_enclosure_url = '../' . $item->item_enclosure_url;
-			}
+			//if (strpos($item->item_enclosure_url, 'http') !== 0) {
+			//	$item->item_enclosure_url = '../' . $item->item_enclosure_url;
+			//}
 		}
 
 		return $items;

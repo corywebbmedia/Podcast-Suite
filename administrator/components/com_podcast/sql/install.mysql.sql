@@ -1,0 +1,61 @@
+CREATE TABLE IF NOT EXISTS `#__podcast_assets` (
+  `asset_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `episode_id` int(11) NOT NULL,
+  `asset_enclosure_url` varchar(500) NOT NULL,
+  `asset_enclosure_length` varchar(31) NOT NULL,
+  `asset_enclosure_type` varchar(255) NOT NULL,
+  `asset_duration` varchar(31) NOT NULL,
+  `asset_closed_caption` int(1) NOT NULL DEFAULT '0',
+  `enabled` int(1) NOT NULL DEFAULT '1',
+  `default` int(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`asset_id`),
+  KEY `episode_id` (`episode_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ;
+
+CREATE TABLE IF NOT EXISTS `#__podcast_feeds` (
+	`feed_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+	`feed_default` tinyint(1) DEFAULT '0',
+	`feed_title` varchar(255) DEFAULT NULL,
+	`alias` varchar(255) DEFAULT NULL,
+	`feed_link` varchar(255) DEFAULT NULL,
+	`feed_language` varchar(255) DEFAULT NULL,
+	`feed_copyright` varchar(255) DEFAULT NULL,
+	`feed_subtitle` varchar(255) DEFAULT NULL,
+	`feed_author` varchar(255) DEFAULT NULL,
+	`feed_block` tinyint(1) DEFAULT '0',
+	`feed_explicit` tinyint(1) DEFAULT '0',
+	`feed_keywords` varchar(255) DEFAULT NULL,
+	`feed_summary` text,
+	`feed_owner_name` varchar(255) DEFAULT NULL,
+	`feed_owner_email` varchar(255) DEFAULT NULL,
+	`feed_image` varchar(511) DEFAULT NULL,
+	`feed_category1` varchar(255) DEFAULT NULL,
+	`feed_category2` varchar(255) DEFAULT NULL,
+	`feed_category3` varchar(255) DEFAULT NULL,
+	`feed_new_feed_url` varchar(511) DEFAULT NULL,
+	`feed_complete` tinyint(1) DEFAULT '0',
+	`feed_created` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+	`published` tinyint(1) DEFAULT '0',
+	PRIMARY KEY (`feed_id`),
+	KEY `alias` (`alias`)
+);
+
+CREATE TABLE IF NOT EXISTS `#__podcast_episodes` (
+  `episode_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `feed_id` int(11) DEFAULT NULL,
+  `item_title` varchar(255) DEFAULT NULL,
+  `alias` varchar(255) DEFAULT NULL,
+  `item_author` varchar(255) DEFAULT NULL,
+  `item_subtitle` varchar(255) DEFAULT NULL,
+  `item_summary` text,
+  `item_guid` varchar(255) DEFAULT NULL,
+  `item_pubDate` date DEFAULT NULL,
+  `item_keywords` varchar(255) DEFAULT NULL,
+  `item_created` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `item_image` varchar(511) DEFAULT NULL,
+  `item_block` tinyint(1) DEFAULT NULL,
+  `published` tinyint(1) DEFAULT '0',
+  PRIMARY KEY (`episode_id`),
+  KEY `feed_id` (`feed_id`),
+  KEY `item_alias` (`alias`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ;

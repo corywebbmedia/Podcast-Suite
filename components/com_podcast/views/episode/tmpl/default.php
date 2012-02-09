@@ -33,7 +33,7 @@
 	<dd><?php echo $this->escape($this->item->item_keywords) ?></dd>
 
 	<dt><strong>closed captioned</strong></dt>
-	<?php if ($this->item->item_isClosedCaptioned): ?>
+	<?php if ($this->item->item_closed_caption): ?>
 		<dd>yes</dd>
 	<?php else: ?>
 		<dd>no</dd>

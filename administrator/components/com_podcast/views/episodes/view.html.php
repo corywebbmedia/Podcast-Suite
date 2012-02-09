@@ -37,6 +37,10 @@ class PodcastViewEpisodes extends JView
 		JToolBarHelper::addNew('episodes.add');
 
 		JToolBarHelper::divider();
+        
+        JToolBarHelper::preferences('com_podcast');
+        
+        JToolBarHelper::divider();
 
 		$bar = JToolBar::getInstance('toolbar');
         $html = '<a class="toolbar" href="http://podcastsuite.com/support" target="_blank"><span class="icon-32-help"></span>'.JText::_('JTOOLBAR_HELP').'</a>';

@@ -30,9 +30,9 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 				<th class="title">
 					<?php echo JHtml::_('grid.sort', 'COM_PODCAST_EPISODE_TITLE', 'item_title', $listDirn, $listOrder); ?>
 				</th>
-				<th>
+			<?php /*	<th>
 					<?php echo JHtml::_('grid.sort', 'COM_PODCAST_LOCATION', 'item_enclosure_url', $listDirn, $listOrder); ?>
-				</th>
+				</th> */ ?>
 
 				<th>
 					<?php echo JHtml::_('grid.sort', 'COM_PODCAST_FEED', 'feed_title', $listDirn, $listOrder); ?>
@@ -63,9 +63,10 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 				<td>
 					<a href="<?php echo JRoute::_('index.php?option=com_podcast&task=episode.edit&episode_id='. $item->episode_id); ?>"><?php echo $this->escape($item->item_title) ?></a>
 				</td>
+                <?php /*
 				<td>
-					<a href="<?php echo $item->item_enclosure_url ?>"><?php echo $this->escape($item->item_enclosure_url) ?></a>
-				</td>
+					<a href="<?php //echo $item->item_enclosure_url ?>"><?php //echo $this->escape($item->item_enclosure_url) ?></a>
+				</td>*/ ?>
 
 				<td>
 					<a href="<?php echo JRoute::_('index.php?option=com_podcast&task=feed.edit&feed_id='. $item->feed_id); ?>"><?php echo $this->escape($item->feed_title) ?></a>
