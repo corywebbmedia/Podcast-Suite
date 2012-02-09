@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="2.5" client="site" method="upgrade">
+	<name>mod_podcast</name>
+	<author></author>
+	<creationDate></creationDate>
+	<copyright></copyright>
+	<license></license>
+	<authorEmail></authorEmail>
+	<authorUrl></authorUrl>
+	<version>2.5.0</version>
+	<description></description>
+	<files>
+		<filename module="mod_podcast">mod_podcast.php</filename>
+		<folder>tmpl</folder>
+		<filename>helper.php</filename>
+		<filename>index.html</filename>
+		<filename>mod_podcast.xml</filename>
+	</files>
+	<languages>
+		<language tag="en-GB">en-GB.mod_podcast.ini</language>
+		<language tag="en-GB">en-GB.mod_podcast.sys.ini</language>
+	</languages>
+	
+</extension>
