@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
 
-    <fieldset name="options" label="Options" description="Options">
-        
+    <fieldset name="options" label="Options" description="Options" addfieldpath="/administrator/components/com_podcast/models/fields">
+        <field type="storage" default="default" label="Storage Engine" />
 	</fieldset>
     
     <fieldset name="permissions" label="JCONFIG_PERMISSIONS_LABEL" description="JCONFIG_PERMISSIONS_DESC">
-		<field name="rules" type="rules" label="JCONFIG_PERMISSIONS_LABEL" filter="rules" validate="rules" component="com_newsfeeds" section="component" />
+		<field name="rules" type="rules" label="JCONFIG_PERMISSIONS_LABEL" filter="rules" validate="rules" component="com_podcast" section="component" />
 	</fieldset>
     
 </config>

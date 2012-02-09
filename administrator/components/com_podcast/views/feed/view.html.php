@@ -23,9 +23,9 @@ class PodcastViewFeed extends JView
 	public function addToolbar()
 	{
 		if ($this->item->feed_id) {
-			JToolBarHelper::title(JText::_('COM_PODCAST_EPISODE_EDIT'), 'feeds');
+			JToolBarHelper::title(JText::_('COM_PODCAST_FEED_EDIT'), 'feeds');
 		} else {
-			JToolBarHelper::title(JText::_('COM_PODCAST_EPISODE_ADD'), 'feeds');
+			JToolBarHelper::title(JText::_('COM_PODCAST_FEED_ADD'), 'feeds');
 		}
 
 		JToolBarHelper::apply('feed.apply');
