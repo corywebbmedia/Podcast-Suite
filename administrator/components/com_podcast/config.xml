@@ -2,7 +2,7 @@
 <config>
 
     <fieldset name="options" label="Options" description="Options" addfieldpath="/administrator/components/com_podcast/models/fields">
-        <field type="storage" default="default" label="Storage Engine" />
+        <field type="storage" name="storage" default="default" label="Storage Engine" />
 	</fieldset>
     
     <fieldset name="permissions" label="JCONFIG_PERMISSIONS_LABEL" description="JCONFIG_PERMISSIONS_DESC">

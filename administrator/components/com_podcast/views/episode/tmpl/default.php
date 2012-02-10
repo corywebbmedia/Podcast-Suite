@@ -49,12 +49,12 @@
 
         <fieldset class="adminform">
             <legend><?php echo JText::_('COM_PODCAST_EPISODE_ADDITIONAL_ASSETS'); ?></legend>
-            [attach media here]
-            <ul class="adminformlist">
-                <?php foreach ($this->assets as $asset) : if (!$asset->default) : ?>
-                <li><?php echo $asset->asset_enclosure_url; ?></li>
-                <?php endif; endforeach; ?>
-            </ul>
+                <?php echo JHtml::_('tabs.start'); ?>
+                <?php echo JHtml::_('tabs.panel', 'Files', 'files'); ?>
+                <?php echo $this->loadTemplate('directory'); ?>
+                <?php echo JHtml::_('tabs.panel', 'Upload', 'upload'); ?>
+                <?php echo $this->loadTemplate('uploader'); ?>
+                <?php echo JHtml::_('tabs.end'); ?>
         </fieldset>
 	</div>
 

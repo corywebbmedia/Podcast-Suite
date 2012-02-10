@@ -5,3 +5,8 @@
 .icon-48-podcasts { background-image: url(../images/icons/podcast-48.png); }
 .icon-48-feeds { background-image: url(../images/icons/feeds-48.png); }
 .icon-48-media { background-image: url(../images/icons/media-48.png); }
+
+/* Assets */
+#file_list {}
+#file_pagination li { width: 15px; float: left; cursor: pointer; text-align: center; }
+#file_pagination li:hover { background-color: #f4f4f4; }

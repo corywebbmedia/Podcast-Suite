@@ -41,16 +41,27 @@ class PodcastModelEpisode extends JModelAdmin
     
     public function getAssets($pk = null)
     {
-        $pk = (!empty($pk)) ? $pk : (int) $this->getState($this->getName() . '.id');
-
         $db = JFactory::getDBO();
         $query = $db->getQuery(true);
         $query->select('tbl.*')
-                ->from('#__podcast_assets AS tbl')
-                ->where('tbl.episode_id = '.$pk);
+                ->from('#__podcast_assets AS tbl');
         $db->setQuery($query);
         
         return $db->loadObjectList();
+    }
+    
+    public function getStorage()
+    {
+        $options = JComponentHelper::getParams('com_podcast');
+        
+        $type = $options->get('storage', 'default');
+        
+        JPluginHelper::importPlugin('podcast', $type);
+        
+        $class = 'PlgPodcast'.ucfirst($type);
+        $plugin = new $class();
+        
+        return $plugin;
     }
 
 	protected function loadFormData()
