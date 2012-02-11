@@ -27,29 +27,20 @@ $upload_mb = min($max_upload, $max_post, $memory_limit);
 
 <script type="text/javascript">
 
-function $(id) {
-	return document.getElementById(id);	
-}
-
 var uploader = new plupload.Uploader({
 	runtimes : 'gears,html5,flash,silverlight,browserplus',
 	browse_button : 'pickfiles',
 	container: 'upload',
-	ax_file_size : '<?php echo $upload_mb; ?>mb',
-	url : 'index.php?option=com_podcast&task=media.upload&<?php echo JUtility::getToken() ?>=1',
+	ax_file_size : '20mb',
+	url : 'index.php?option=com_podcast&task=asset.upload&<?php echo JUtility::getToken() ?>=1',
 	flash_swf_url : '<?php echo JURI::root()?>media/com_podcast/js/plupload/plupload.flash.swf',
-	silverlight_xap_url : '<?php echo JURI::root() ?>media/com_podcast/js/plupload/plupload.silverlight.xap',
-	filters : [
-		{title : "Image files", extensions : "jpg,gif,png"},
-		{title : "Zip files", extensions : "zip"}
-	]
+	silverlight_xap_url : '<?php echo JURI::root() ?>media/com_podcast/js/plupload/plupload.silverlight.xap'
 });
 
 uploader.bind('FilesAdded', function(up, files) {
-    console.info(files);
-	for (var i in files) {
-		$('filelist').innerHTML += '<div id="' + files[i].id + '">' + files[i].name + ' (' + plupload.formatSize(files[i].size) + ') <b></b></div>';
-	}
+    for (i = 0; i < files.length; i++) {
+        $('filelist').innerHTML += '<div id="' + files[i].id + '">' + files[i].name + ' (' + plupload.formatSize(files[i].size) + ') <b></b></div>';
+    }
 });
 
 uploader.bind('UploadProgress', function(up, file) {

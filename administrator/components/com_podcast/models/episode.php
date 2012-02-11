@@ -59,7 +59,7 @@ class PodcastModelEpisode extends JModelAdmin
         JPluginHelper::importPlugin('podcast', $type);
         
         $class = 'PlgPodcast'.ucfirst($type);
-        $plugin = new $class();
+        $plugin = new $class($this);
         
         return $plugin;
     }

@@ -16,6 +16,7 @@
 	<config>
 		<fields name="params">
 			<fieldset name="basic">
+                <field name="folder" type="text" value="media/podcasts/" label="Default Folder" />
 			</fieldset>
 		</fields>
 	</config>

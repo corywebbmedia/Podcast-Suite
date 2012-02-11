@@ -1,6 +1,6 @@
 <?php defined('_JEXEC') or die; ?>
 
-<label>Search</label><input type="text" id="file_search" value="" /> <input type="hidden" id="file_limitstart" value="0" /> <input type="hidden" id="file_limit" value="2" />
+<label>Search</label><input type="text" id="file_search" value="" /> <input type="hidden" id="file_limitstart" value="0" /> <input type="hidden" id="file_limit" value="5" />
 
 <div class="clr"></div>
 
@@ -15,7 +15,7 @@
 <script type="text/javascript">
 window.addEvent('domready', function() {
     loadFilelist();
-    $('file_search').addEvent('keypress', function() {
+    $('file_search').addEvent('keyup', function() {
         loadFilelist();
     });
 });

@@ -5,7 +5,7 @@ defined('_JEXEC') or die;
 jimport('joomla.application.component.modellist');
 
 class PodcastModelAssets extends JModelList
-{
+{    
     protected function getListQuery()
 	{
 		$db = JFactory::getDBO();

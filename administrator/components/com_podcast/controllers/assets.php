@@ -12,14 +12,9 @@ class PodcastControllerAssets extends JController
         $assets = $model->getItems();
         $total = $model->getTotal();
         $pagination = $model->getPagination();
-        
-        
-        
+
         if ($ajax)
         {
-            // Rename some properties
-            $pagination->pages_current = $pagination->get('pages.current');
-            
             $response = new stdClass();
             $response->list = $assets;
             $response->pagination = $pagination;
