@@ -7,7 +7,11 @@
 .icon-48-media { background-image: url(../images/icons/media-48.png); }
 
 /* Assets */
-#extra_assets { float: left; }
+#extra_assets { float: left; padding-left: 20px; }
+#extra_assets li { list-style: decimal; }
+
 #file_list {}
+#file_list img { float: none; margin: 0; }
+
 #file_pagination li { width: 15px; float: left; cursor: pointer; text-align: center; }
 #file_pagination li:hover { background-color: #f4f4f4; }

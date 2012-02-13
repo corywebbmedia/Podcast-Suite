@@ -14,7 +14,7 @@ class JFormFieldExtraassets extends JFormField
         $assets = explode(',', $this->value);
         
         $html = array();
-        $html[] = '<ul id="extra_assets">';
+        $html[] = '<ol id="extra_assets">';
         
         if (count($assets) > 1)
         {
@@ -37,7 +37,7 @@ class JFormFieldExtraassets extends JFormField
             }
         }
         
-        $html[] = '</ul>';
+        $html[] = '</ol>';
         $html[] = '<input type="hidden" name="'.$this->name.'" value="['.$this->value.']" id="'.$this->id.'" />';
         
         return implode(PHP_EOL, $html);

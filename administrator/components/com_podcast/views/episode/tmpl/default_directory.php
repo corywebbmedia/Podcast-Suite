@@ -21,11 +21,22 @@ window.addEvent('domready', function() {
 });
 
 function setDefault(item) {
-    console.info(item);
     $('jform_item_enclosure_url').set('value', item.get('data-url'));
     $('jform_item_enclosure_length').set('value', item.get('data-length'));
     $('jform_item_duration').set('value', item.get('data-duration'));
     $('jform_item_enclosure_type').set('value', item.get('data-type'));
+}
+
+function setExtraAsset(item) {
+    var assets = JSON.decode($('jform_item_assets').get('value'));
+    var li = new Element('li');
+    li.set('html', 'File: '+item.get('data-url')+'<br />Media Length: '+item.get('data-length')+'<br />Media Duration: '+item.get('data-duration')+'<br />Media Type: '+item.get('data-type'));
+    li.set('data-id', item.get('data-id'));
+    $('extra_assets').adopt(li);
+    
+    assets.push(item.get('data-id'));
+    assets = JSON.encode(assets);
+    $('jform_item_assets').set('value', assets.replace(/\"/g, ''));
 }
 
 function changePage(page) {
@@ -46,14 +57,17 @@ function loadFilelist() {
             // Load list of items
             json.list.each(function(item) {
                 var li = new Element('li');
-                li.set('text', item.asset_enclosure_url);
+                li.set('html', '<img src="<?php echo JURI::root(); ?>media/com_podcast/images/icons/default-16.png" title="Set as default" class="asset_default" /> <img src="<?php echo JURI::root(); ?>media/com_podcast/images/icons/add-16.png" title="Add to assets" class="asset_add" /> ' + item.asset_enclosure_url);
                 li.set('data-length', item.asset_enclosure_length);
                 li.set('data-type', item.asset_enclosure_type);
                 li.set('data-duration', item.asset_duration);
                 li.set('data-url', item.asset_enclosure_url);
                 li.set('data-id', item.asset_id);
-                li.addEvent('click', function() {
-                    setDefault(this);
+                li.getElement('.asset_default').addEvent('click', function() {
+                    setDefault(this.getParent());
+                });
+                li.getElement('.asset_add').addEvent('click', function() {
+                    setExtraAsset(this.getParent());
                 });
                 $('file_list').adopt(li);
             });

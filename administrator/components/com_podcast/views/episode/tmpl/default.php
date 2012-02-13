@@ -88,11 +88,7 @@ $doc->addScriptDeclaration("Episode.url_root = '" . JURI::root() . "';");
 
         <fieldset class="adminform">
             <legend><?php echo JText::_('COM_PODCAST_EPISODE_ASSETS'); ?></legend>
-                <?php echo JHtml::_('tabs.start'); ?>
-                <?php echo JHtml::_('tabs.panel', 'Files', 'files'); ?>
-                <?php echo $this->loadTemplate('directory'); ?>
-                <?php echo JHtml::_('tabs.panel', 'Upload', 'upload'); ?>
-                <?php echo JHtml::_('tabs.end'); ?>
+            <?php echo $this->loadTemplate('directory'); ?>
         </fieldset>
 	</div>
 

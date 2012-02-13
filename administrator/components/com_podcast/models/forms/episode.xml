@@ -5,17 +5,20 @@
 			type="text"
 			label="COM_PODCAST_EPISODE_TITLE"
 			required="true"
+            size="50"
 			default="" />
 
 		<field name="alias"
 			type="text"
 			label="JFIELD_ALIAS_LABEL"
+            size="50"
 			default=""/>
 
 		<field name="item_subtitle"
 			type="text"
 			label="COM_PODCAST_EPISODE_SUBTITLE"
 			required="true"
+            size="50"
 			default="" />
 
 		<field name="feed_id"
@@ -31,24 +34,28 @@
 			type="text"
 			label="COM_PODCAST_EPISODE_MEDIA"
 			required="true"
+            size="50"
 			default="" />
 
 		<field name="item_enclosure_length"
 			type="text"
 			label="COM_PODCAST_EPISODE_LENGTH"
 			required="true"
+            size="50"
 			default="" />
 
 		<field name="item_duration"
 			type="text"
 			label="COM_PODCAST_EPISODE_DURATION"
 			required="true"
+            size="50"
 			default="" />
 
 		<field name="item_enclosure_type"
 			type="text"
 			label="COM_PODCAST_EPISODE_TYPE"
 			required="true"
+            size="50"
 			default="" />
 
 	</fieldset>
@@ -112,7 +119,7 @@
 			class="readonly"
 			readonly="true" />
             
-        <field name="item_extra_assets"
+        <field name="item_assets"
             type="extraassets"
             label="COM_PODCAST_EPISODE_EXTRA_ASSETS" />
 
