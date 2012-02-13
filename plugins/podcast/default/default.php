@@ -181,5 +181,18 @@ class PlgPodcastDefault extends JPlugin
 
         return $result;
     }
+    
+    public function onFolderList($base = false)
+    {
+        if (!$base)
+        {
+            $base = $this->params->get('folder', '/media/podcasts/');
+        }
+        $base = JPATH_ROOT.$base;
+        
+        $folders = JFolder::folders($base, '.', true, true);
+        
+        return $folders;
+    }
 
 }

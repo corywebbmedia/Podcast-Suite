@@ -32,10 +32,12 @@ class PodcastModelAssets extends JModelList
 		return $query;
 	}
     
-    public function getFolders($root = null)
+    public function getFolders()
     {
-        if (is_null($root)) $root = JPATH_ROOT.'/media/podcasts/';
-        return JFolder::folders($root);
+        $base = JRequest::getVar('filter_folder', false);
+        $plugin = $this->getStorage();
+        $folders = array_shift($plugin->trigger('onFolderList', $base));
+        return $folders;
     }
     
     protected function populateState($ordering = null, $direction = null)
@@ -56,7 +58,7 @@ class PodcastModelAssets extends JModelList
 	}
     
     public function getStorage()
-    {
+    {   
         $options = JComponentHelper::getParams('com_podcast');
         $type = $options->get('storage', 'default');
         
