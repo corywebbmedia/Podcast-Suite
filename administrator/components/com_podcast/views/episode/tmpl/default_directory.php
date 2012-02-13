@@ -1,6 +1,6 @@
 <?php defined('_JEXEC') or die; ?>
 
-<label>Search</label><input type="text" id="file_search" value="" /> <input type="hidden" id="file_limitstart" value="0" /> <input type="hidden" id="file_limit" value="5" />
+<label>Search</label><input type="text" id="file_search" value="" /> <input type="hidden" id="file_limitstart" value="0" /> <input type="hidden" id="file_limit" value="20" />
 
 <div class="clr"></div>
 

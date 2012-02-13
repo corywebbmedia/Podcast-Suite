@@ -48,13 +48,8 @@
 		</fieldset>
 
         <fieldset class="adminform">
-            <legend><?php echo JText::_('COM_PODCAST_EPISODE_ADDITIONAL_ASSETS'); ?></legend>
-                <?php echo JHtml::_('tabs.start'); ?>
-                <?php echo JHtml::_('tabs.panel', 'Files', 'files'); ?>
+            <legend><?php echo JText::_('COM_PODCAST_EPISODE_ASSETS'); ?></legend>
                 <?php echo $this->loadTemplate('directory'); ?>
-                <?php echo JHtml::_('tabs.panel', 'Upload', 'upload'); ?>
-                <?php echo $this->loadTemplate('uploader'); ?>
-                <?php echo JHtml::_('tabs.end'); ?>
         </fieldset>
 	</div>
 

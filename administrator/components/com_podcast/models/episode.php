@@ -28,14 +28,16 @@ class PodcastModelEpisode extends JModelAdmin
             a.asset_enclosure_length AS item_enclosure_length, 
             a.asset_duration AS item_duration,
             a.asset_enclosure_type AS item_enclosure_type,
-            a.asset_closed_caption AS item_closed_caption')
+            a.asset_closed_caption AS item_closed_caption,
+            GROUP_CONCAT(a.asset_id separator ",") AS item_extra_assets')
                 ->from('#__podcast_episodes AS tbl')
                 ->join('LEFT', '#__podcast_assets AS a ON tbl.episode_id = a.episode_id')
-                ->where('a.default = 1')
+                ->order('a.default')
                 ->where('tbl.episode_id = '.$pk)
+                ->group('tbl.episode_id')
                 ->limit(1);
         $db->setQuery($query);
-        
+                
         return $db->loadObject();
     }
     

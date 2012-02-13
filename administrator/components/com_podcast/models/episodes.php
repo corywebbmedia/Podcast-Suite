@@ -12,7 +12,8 @@ class PodcastModelEpisodes extends JModelList
 		$query->select('pm.*, pf.feed_title, pa.*')
 			->from('#__podcast_episodes AS pm')
             ->join('LEFT', '#__podcast_assets AS pa USING(episode_id)')
-			->join('LEFT', '#__podcast_feeds AS pf USING(feed_id)');
+			->join('LEFT', '#__podcast_feeds AS pf USING(feed_id)')
+            ->group('pm.episode_id');
 
 		return $query;
 	}

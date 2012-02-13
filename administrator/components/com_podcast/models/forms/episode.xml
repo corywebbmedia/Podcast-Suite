@@ -111,6 +111,10 @@
 			type="hidden"
 			class="readonly"
 			readonly="true" />
+            
+        <field name="item_extra_assets"
+            type="extraassets"
+            label="COM_PODCAST_EPISODE_EXTRA_ASSETS" />
 
 	</fieldset>
 
