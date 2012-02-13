@@ -292,3 +292,12 @@
 /web.config.txt
 /.htaccess
 /htaccess.txt
+/plugins/user/
+/plugins/system/
+/plugins/search/
+/plugins/quickicon/
+/plugins/index.html
+/plugins/finder/
+/plugins/extension/
+/plugins/editors/
+/plugins/editors-xtd/
