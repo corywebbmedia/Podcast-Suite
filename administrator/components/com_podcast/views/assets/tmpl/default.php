@@ -27,6 +27,7 @@ JHtml::_('behavior.mootools');
 				<th width="1%">
 					<input type="checkbox" name="checkall-toggle" value="" title="<?php echo JText::_('JGLOBAL_CHECK_ALL'); ?>" onclick="Joomla.checkAll(this)" />
 				</th>
+                <th width="1%"></th>
                 <th class="title">
 					<?php echo JHtml::_('grid.sort', 'COM_PODCAST_ASSET_PATH', 'asset_enclosure_url', $listDirn, $listOrder); ?>
 				</th>
@@ -46,16 +47,23 @@ JHtml::_('behavior.mootools');
 		</tfoot>
 		<tbody>
         
-		<?php foreach ($this->items as $i => $item): ?>
+		<?php foreach ($this->items as $i => $item) : $info = pathinfo($item->asset_enclosure_url); ?>
 			<tr class="row<?php echo $i % 2; ?>">
 				<td class="center">
 					<?php echo JHtml::_('grid.id', $i, $item->asset_id); ?>
 				</td>
                 <td>
-                    <?php echo dirname($item->asset_enclosure_url); ?>
+                    <?php if (is_file(JPATH_ROOT.'/media/com_podcast/images/filetypes/'.$info['extension'].'.png')) : ?>
+                    <img src="<?php echo JURI::root() ?>media/com_podcast/images/filetypes/<?php echo $info['extension'] ?>.png" />
+                    <?php else : ?>
+                    <img src="<?php echo JURI::root() ?>media/com_podcast/images/filetypes/blank.png" />
+                    <?php endif; ?>
+                </td>
+                <td>
+                    <?php echo $info['dirname']; ?>
                 </td>
 				<td>
-					<?php echo basename($item->asset_enclosure_url); ?>
+					<?php echo $info['filename']; ?>
 				</td>
                 <td>
                     <?php echo $item->episodes; ?>
