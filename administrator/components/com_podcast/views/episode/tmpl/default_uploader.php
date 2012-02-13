@@ -2,12 +2,10 @@
 defined('_JEXEC') or die;
 
 $doc = JFactory::getDocument();
-$doc->addScript('http://bp.yahooapis.com/2.4.21/browserplus-min.js');
 $doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.js');
 $doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.gears.js');
 $doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.silverlight.js');
 $doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.flash.js');
-$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.browserplus.js');
 $doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.html4.js');
 $doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.html5.js');
 
@@ -28,7 +26,7 @@ $upload_mb = min($max_upload, $max_post, $memory_limit);
 <script type="text/javascript">
 
 var uploader = new plupload.Uploader({
-	runtimes : 'gears,html5,flash,silverlight,browserplus',
+	runtimes : 'gears,html5,flash,silverlight',
 	browse_button : 'pickfiles',
 	container: 'upload',
 	ax_file_size : '20mb',
