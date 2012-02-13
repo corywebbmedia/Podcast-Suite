@@ -51,20 +51,6 @@ class PodcastModelEpisode extends JModelAdmin
         
         return $db->loadObjectList();
     }
-    
-    public function getStorage()
-    {
-        $options = JComponentHelper::getParams('com_podcast');
-        
-        $type = $options->get('storage', 'default');
-        
-        JPluginHelper::importPlugin('podcast', $type);
-        
-        $class = 'PlgPodcast'.ucfirst($type);
-        $plugin = new $class($this);
-        
-        return $plugin;
-    }
 
 	protected function loadFormData()
 	{

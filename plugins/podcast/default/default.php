@@ -11,6 +11,12 @@ class PlgPodcastDefault extends JPlugin
     {
         
     }
+    
+    public function onFileVerify($file)
+    {
+        if (file_exists(JPATH_ROOT.$file)) return true;
+        else return false;
+    }
 
     public function onFileStore()
     {

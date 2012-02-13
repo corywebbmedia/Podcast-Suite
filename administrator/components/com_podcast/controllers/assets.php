@@ -2,10 +2,17 @@
 
 defined('_JEXEC') or die;
 
-jimport('joomla.application.component.controller');
+jimport('joomla.application.component.controlleradmin');
 
-class PodcastControllerAssets extends JController
+class PodcastControllerAssets extends JControllerAdmin
 {
+    public function getModel($name = 'Asset', $prefix = 'PodcastModel', $config = array('ignore_request' => true))
+	{
+		$model = parent::getModel($name, $prefix, $config);
+
+		return $model;
+	}
+
     public function getAssets($ajax = true)
     {
         $model = $this->getModel('assets');
