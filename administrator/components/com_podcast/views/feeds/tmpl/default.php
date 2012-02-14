@@ -15,7 +15,10 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 		</div>
 
 		<div class="filter-select fltrt">
-			[add filters here]
+			<select name="filter_state" class="inputbox" onchange="this.form.submit()">
+                <option value=""><?php echo JText::_('JOPTION_SELECT_PUBLISHED');?></option>
+                <?php echo JHtml::_('select.options', JHtml::_('jgrid.publishedOptions', array('archived' => false, 'trash' => false, 'all' => false)), 'value', 'text', $this->state->get('filter.state'), true);?>
+            </select>
 		</div>
 
 	</fieldset>

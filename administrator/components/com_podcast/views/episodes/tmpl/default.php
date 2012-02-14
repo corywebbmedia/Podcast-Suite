@@ -3,7 +3,7 @@ defined( '_JEXEC' ) or die;
 
 $listOrder	= $this->escape($this->state->get('list.ordering'));
 $listDirn	= $this->escape($this->state->get('list.direction'));
-
+$feeds = array();
 ?>
 <form action="<?php echo JRoute::_('index.php?option=com_podcast&view=episodes'); ?>" method="post" name="adminForm" id="adminForm">
 	<fieldset id="filter-bar">
@@ -15,7 +15,17 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 		</div>
 
 		<div class="filter-select fltrt">
-			[add filters here]
+			<select name="filter_feed" class="inputbox" onchange="this.form.submit()">
+				<option value=""><?php echo JText::_(' - Select Feed - ');?></option>
+                <?php foreach ($this->filter_feeds as $feed) {
+                    $feeds[] = JHtml::_('select.option', (string) $feed->feed_id, (string) $feed->feed_title);
+                } ?>
+                <?php echo JHtml::_('select.options', $feeds, 'value', 'text', $this->state->get('filter.feed'), true);?>
+			</select>
+            <select name="filter_state" class="inputbox" onchange="this.form.submit()">
+                <option value=""><?php echo JText::_('JOPTION_SELECT_PUBLISHED');?></option>
+                <?php echo JHtml::_('select.options', JHtml::_('jgrid.publishedOptions', array('archived' => false, 'trash' => false, 'all' => false)), 'value', 'text', $this->state->get('filter.state'), true);?>
+            </select>
 		</div>
 
 	</fieldset>
@@ -30,18 +40,15 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 				<th class="title">
 					<?php echo JHtml::_('grid.sort', 'COM_PODCAST_EPISODE_TITLE', 'item_title', $listDirn, $listOrder); ?>
 				</th>
-			<?php /*	<th>
+                <th>
 					<?php echo JHtml::_('grid.sort', 'COM_PODCAST_LOCATION', 'item_enclosure_url', $listDirn, $listOrder); ?>
-				</th> */ ?>
-
+				</th>
 				<th>
 					<?php echo JHtml::_('grid.sort', 'COM_PODCAST_FEED', 'feed_title', $listDirn, $listOrder); ?>
 				</th>
-
 				<th width="5%">
 					<?php echo JHtml::_('grid.sort', 'JENABLED', 'published', $listDirn, $listOrder); ?>
 				</th>
-
 				<th>
 					<?php echo JHtml::_('grid.sort', 'COM_PODCAST_PUBLISHED_DATE', 'item_pubDate', $listDirn, $listOrder); ?>
 				</th>
@@ -63,19 +70,15 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 				<td>
 					<a href="<?php echo JRoute::_('index.php?option=com_podcast&task=episode.edit&episode_id='. $item->episode_id); ?>"><?php echo $this->escape($item->item_title) ?></a>
 				</td>
-                <?php /*
 				<td>
-					<a href="<?php //echo $item->item_enclosure_url ?>"><?php //echo $this->escape($item->item_enclosure_url) ?></a>
-				</td>*/ ?>
-
+					<a href="<?php echo $item->item_enclosure_url ?>"><?php echo $this->escape($item->item_enclosure_url) ?></a>
+				</td>
 				<td>
 					<a href="<?php echo JRoute::_('index.php?option=com_podcast&task=feed.edit&feed_id='. $item->feed_id); ?>"><?php echo $this->escape($item->feed_title) ?></a>
 				</td>
-
 				<td class="center">
 					<?php echo JHtml::_('jgrid.published', $item->published, $i, 'episodes.'); ?>
 				</td>
-
 				<td>
 					<?php echo JHTML::_('date', $item->item_pubDate) ?>
 				</td>

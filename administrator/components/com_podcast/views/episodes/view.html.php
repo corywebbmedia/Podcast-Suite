@@ -14,6 +14,9 @@ class PodcastViewEpisodes extends JView
 		$this->items = $this->get('Items');
 		$this->state = $this->get('State');
 		$this->pagination = $this->get('Pagination');
+        
+        $feed_model = JModel::getInstance('Feeds', 'PodcastModel');
+        $this->filter_feeds = $feed_model->getItems();
 
 		$this->addToolbar();
 
