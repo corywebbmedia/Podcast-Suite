@@ -9,17 +9,18 @@ class PodcastModelEpisodes extends JModelList
 	{
 		$query = parent::getListQuery();
 
-		$query->select('pm.*, 
-            pf.feed_title,
-            pa.asset_enclosure_url AS item_enclosure_url, 
-            pa.asset_enclosure_length AS item_enclosure_length, 
-            pa.asset_duration AS item_duration,
-            pa.asset_enclosure_type AS item_enclosure_type,
-            pa.asset_closed_caption AS item_closed_caption')
-			->from('#__podcast_episodes AS pm')
-            ->join('LEFT', '#__podcast_assets AS pa USING(episode_id)')
-			->join('LEFT', '#__podcast_feeds AS pf USING(feed_id)')
-            ->group('pm.episode_id');
+		$query->select('tbl.*, 
+            f.feed_title,
+            a.asset_enclosure_url AS item_enclosure_url, 
+            a.asset_enclosure_length AS item_enclosure_length, 
+            a.asset_duration AS item_duration,
+            a.asset_enclosure_type AS item_enclosure_type,
+            a.asset_closed_caption AS item_closed_caption')
+                ->from('#__podcast_episodes AS tbl')
+                ->join('LEFT', '#__podcast_assets_map AS m ON tbl.episode_id = m.episode_id')
+                ->join('LEFT', '#__podcast_assets AS a ON a.asset_id = m.asset_id')
+                ->join('LEFT', '#__podcast_feeds AS f USING(feed_id)')
+                ->group('tbl.episode_id');
         
         // Filter by search
 		$search = $this->getState('filter.search');

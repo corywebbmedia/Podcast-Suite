@@ -18,6 +18,10 @@ window.addEvent('domready', function() {
     $('file_search').addEvent('keyup', function() {
         loadFilelist();
     });
+    $$('.asset_remove').addEvent('click', function() {
+        console.info(this);
+        removeExtraAsset(this.getParent());
+    });
 });
 
 function setDefault(item) {
@@ -25,13 +29,31 @@ function setDefault(item) {
     $('jform_item_enclosure_length').set('value', item.get('data-length'));
     $('jform_item_duration').set('value', item.get('data-duration'));
     $('jform_item_enclosure_type').set('value', item.get('data-type'));
+    var assets = JSON.decode($('jform_item_assets').get('value'));
+    assets.shift();
+    assets.unshift(item.get('data-id'));
+    assets = JSON.encode(assets);
+    $('jform_item_assets').set('value', assets.replace(/\"/g, ''));
+}
+
+function removeExtraAsset(asset)
+{
+    var assets = JSON.decode($('jform_item_assets').get('value'));
+    var id = asset.get('data-id').toInt();
+    assets.erase(id);
+    assets = JSON.encode(assets);
+    $('jform_item_assets').set('value', assets.replace(/\"/g, ''));
+    asset.destroy();
 }
 
 function setExtraAsset(item) {
     var assets = JSON.decode($('jform_item_assets').get('value'));
     var li = new Element('li');
-    li.set('html', 'File: '+item.get('data-url')+'<br />Media Length: '+item.get('data-length')+'<br />Media Duration: '+item.get('data-duration')+'<br />Media Type: '+item.get('data-type'));
+    li.set('html', '<img src="<?php echo JURI::root(); ?>media/com_podcast/images/icons/delete-16.png" title="Remove Asset" class="asset_remove" /> File: '+item.get('data-url')+'<br />Media Length: '+item.get('data-length')+'<br />Media Duration: '+item.get('data-duration')+'<br />Media Type: '+item.get('data-type'));
     li.set('data-id', item.get('data-id'));
+    li.getElement('.asset_remove').addEvent('click', function() {
+        removeExtraAsset(this.getParent());
+    });
     $('extra_assets').adopt(li);
     
     assets.push(item.get('data-id'));

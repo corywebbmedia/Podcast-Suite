@@ -28,6 +28,7 @@ class JFormFieldExtraassets extends JFormField
                 $record = $db->loadObject();
                 if ($record) {
                     $html[] = '<li data-id="'.$asset.'">';
+                    $html[] = '<img src="'.JURI::root().'media/com_podcast/images/icons/delete-16.png" title="Remove Asset" class="asset_remove" />';
                     $html[] = 'File: '.$record->asset_enclosure_url.'<br />';
                     $html[] = 'Media Length: '.$record->asset_enclosure_length.'<br />';
                     $html[] = 'Media Duration: '.$record->asset_duration.'<br />';

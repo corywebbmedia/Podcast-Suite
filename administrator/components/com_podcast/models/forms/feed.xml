@@ -5,22 +5,26 @@
 			type="text"
 			label="COM_PODCAST_FEED_TITLE"
 			required="true"
+            size="50"
 			default="" />
 
 		<field name="alias"
 			type="text"
 			label="JFIELD_ALIAS_LABEL"
+            size="50"
 			default=""/>
 
 		<field name="feed_subtitle"
 			type="text"
 			label="COM_PODCAST_FEED_SUBTITLE"
+            size="50"
 			required="true"
 			default="" />
 
 		<field name="feed_image"
 			type="text"
 			label="COM_PODCAST_FEED_IMAGE"
+            size="50"
 			required="true"
 			default="" />
 	</fieldset>
@@ -68,42 +72,49 @@
 		<field name="feed_link"
 			type="text"
 			label="COM_PODCAST_FEED_LINK"
+            size="50"
 			required="true"
 			default=""/>
 
 		<field name="feed_copyright"
 			type="text"
 			label="COM_PODCAST_FEED_COPYRIGHT"
+            size="50"
 			required="true"
 			default=""/>
 
 		<field name="feed_author"
 			type="text"
 			label="COM_PODCAST_FEED_AUTHOR"
+            size="50"
 			required="true"
 			default=""/>
 
 		<field name="feed_keywords"
 			type="text"
 			label="COM_PODCAST_FEED_KEYWORDS"
+            size="50"
 			required="true"
 			default=""/>
 
 		<field name="feed_owner_name"
 			type="text"
 			label="COM_PODCAST_FEED_OWNER_NAME"
+            size="50"
 			required="true"
 			default=""/>
 
 		<field name="feed_owner_email"
 			type="text"
 			label="COM_PODCAST_FEED_OWNER_EMAIL"
+            size="50"
 			required="true"
 			default=""/>
 
 		<field name="feed_new_feed_url"
 			type="text"
 			label="COM_PODCAST_FEED_NEW_URL"
+            size="50"
 			default=""/>
 
 		<field name="feed_block"

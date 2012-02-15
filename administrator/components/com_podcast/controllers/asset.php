@@ -24,16 +24,21 @@ class PodcastControllerAsset extends JController
             $result = array_shift($result);
         }
         
-        if ($result->result) {
-            if ($model->store($result))
+        if ($result->result)
+        {
+            $asset = $model->store($result);
+            if (!$asset)
             {
-                print json_encode($result);
+                $result->result = false;
+                $result->message = 'Could not store in assets table';
             }
             else
             {
-                // Couldn't save to database, but was uploaded
+                $result->asset_id = $asset;
             }
         }
+        
+        print json_encode($result);
         
         JFactory::getApplication()->close();
     }

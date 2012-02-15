@@ -11,9 +11,10 @@ class PodcastModelAssets extends JModelList
 		$db = JFactory::getDBO();
         $query = $db->getQuery(true);
 
-		$query->select('tbl.*, COUNT(tbl.asset_id) AS episodes')
-			->from('#__podcast_assets AS tbl')
-            ->group('tbl.asset_enclosure_url');
+		$query->select('tbl.*, COUNT(m.asset_id) AS episodes')
+                ->from('#__podcast_assets AS tbl')
+                ->join('LEFT', '#__podcast_assets_map AS m ON tbl.asset_id = m.asset_id')
+                ->group('tbl.asset_enclosure_url');
         
         // Filter by search
 		$search = $this->getState('filter.search');

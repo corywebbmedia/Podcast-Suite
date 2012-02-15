@@ -172,11 +172,17 @@ class PlgPodcastDefault extends JPlugin
             // Strip the temp .part suffix off 
             rename("{$filePath}.part", $filePath);
             
+            require_once(JPATH_ROOT.'/administrator/components/com_podcast/helpers/getid3/getid3.php');
+            $getid3 = new getID3;
+            $info = $getid3->analyze($filePath);
+            
             $result->result = true;
             $result->message = 'Ok';
-            $result->enclosure_url = str_replace(JPATH_ROOT, '', $filePath);
-            $result->enclosure_length = filesize($filePath);
-            $result->enclosure_type = mime_content_type($filePath);
+            $result->enclosure_length = $info['filesize'];
+            $result->enclosure_type = $info['mime_type'];
+            $result->enclosure_duration = $info['playtime_string'];
+            $filePath = str_replace('\\', '/', $filePath);
+            $result->enclosure_url = $this->params->get('folder', JPATH_ROOT . '/media/podcasts').'/'.basename($filePath);
         }
 
         return $result;
