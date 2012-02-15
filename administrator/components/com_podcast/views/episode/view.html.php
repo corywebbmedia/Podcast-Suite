@@ -22,7 +22,7 @@ class PodcastViewEpisode extends JView
 
 	public function addToolbar()
 	{
-		if ($this->item->episode_id) {
+		if (isset($this->item->episode_id)) {
 			JToolBarHelper::title(JText::_('COM_PODCAST_EPISODE_EDIT'), 'podcasts');
 		} else {
 			JToolBarHelper::title(JText::_('COM_PODCAST_EPISODE_ADD'), 'podcasts');

@@ -19,14 +19,14 @@
 		<folder>views</folder>
 	</files>
 
-	<install folder="sql">
+	<install>
 		<sql>
-			<file charset="utf8" driver="mysql">install.mysql.sql</file>
+			<file charset="utf8" driver="mysql">sql/install.mysql.sql</file>
 		</sql>
 	</install>
-    <uninstall folder="sql">
+    <uninstall>
 		<sql>
-			<file charset="utf8" driver="mysql">install.mysql.sql</file>
+			<file charset="utf8" driver="mysql">sql/uninstall.mysql.sql</file>
 		</sql>
 	</uninstall>
 

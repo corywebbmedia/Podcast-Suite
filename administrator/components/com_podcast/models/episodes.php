@@ -26,19 +26,19 @@ class PodcastModelEpisodes extends JModelList
 		$search = $this->getState('filter.search');
 		if (!empty($search)) {
 			$search = $db->Quote('%'.$db->escape($search, true).'%');
-			$query->where('pm.item_title LIKE '.$search);
+			$query->where('tbl.item_title LIKE '.$search);
 		}
         
         // Filter by folder
 		$feed = $this->getState('filter.feed');
 		if (!empty($feed)) {
-			$query->where('pf.feed_id = '.$feed);
+			$query->where('f.feed_id = '.$feed);
 		}
         
         // Filter by published state
 		$state = $this->getState('filter.state');
 		if (!empty($state)) {
-			$query->where('pm.published = ' . (int) $state);
+			$query->where('tbl.published = ' . (int) $state);
 		}
 
 		return $query;

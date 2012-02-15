@@ -36,8 +36,8 @@ class PodcastViewEpisodes extends JView
 
 		JToolBarHelper::divider();
 
-		JToolBarHelper::editList('episodes.edit');
-		JToolBarHelper::addNew('episodes.add');
+		JToolBarHelper::editList('episode.edit');
+		JToolBarHelper::addNew('episode.add');
 
 		JToolBarHelper::divider();
         

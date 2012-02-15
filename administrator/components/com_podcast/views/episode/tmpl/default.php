@@ -18,7 +18,7 @@ $doc->addScriptDeclaration("Episode.url_root = '" . JURI::root() . "';");
 
 ?>
 
-<form action="index.php?option=com_podcast&amp;episode_id=<?php echo $this->item->episode_id ?>" method="post" name="adminForm" class="form-validate">
+<form action="index.php?option=com_podcast&amp;episode_id=<?php if (isset($this->item->episode_id)) echo (int) $this->item->episode_id ?>" method="post" name="adminForm" class="form-validate">
 
 	<div class="width-60 fltlft">
 		<fieldset class="adminform">
