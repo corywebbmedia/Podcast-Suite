@@ -4,6 +4,7 @@
 		<field name="feed_title"
 			type="text"
 			label="COM_PODCAST_FEED_TITLE"
+			description="COM_PODCAST_FEED_TITLE_DESC"
 			required="true"
             size="50"
 			default="" />
@@ -11,12 +12,14 @@
 		<field name="alias"
 			type="text"
 			label="JFIELD_ALIAS_LABEL"
+			description="JFIELD_ALIAS_DESC"
             size="50"
 			default=""/>
 
 		<field name="feed_subtitle"
 			type="text"
 			label="COM_PODCAST_FEED_SUBTITLE"
+			description="COM_PODCAST_FEED_SUBTITLE_DESC"
             size="50"
 			required="true"
 			default="" />
@@ -24,6 +27,7 @@
 		<field name="feed_image"
 			type="text"
 			label="COM_PODCAST_FEED_IMAGE"
+			description="COM_PODCAST_FEED_IMAGE_DESC"
             size="50"
 			required="true"
 			default="" />
@@ -32,17 +36,20 @@
 	<fieldset name="top-col-2">
 		<field name="feed_category1"
 			type="itunescategory"
-			label="iTunes Category 1"
+			label="COM_PODCAST_FEED_ITUNES_CATEGORY_1"
+			description="COM_PODCAST_FEED_ITUNES_CATEGORY_DESC"
 			default="">
 		</field>
 		<field name="feed_category2"
 			type="itunescategory"
-			label="iTunes Category 2"
+			label="COM_PODCAST_FEED_ITUNES_CATEGORY_2"
+			description="COM_PODCAST_FEED_ITUNES_CATEGORY_DESC"
 			default="">
 		</field>
 		<field name="feed_category3"
 			type="itunescategory"
-			label="iTunes Category 3"
+			label="COM_PODCAST_FEED_ITUNES_CATEGORY_3"
+			description="COM_PODCAST_FEED_ITUNES_CATEGORY_DESC"
 			default="">
 		</field>
 	</fieldset>
@@ -51,6 +58,7 @@
 		<field name="published"
 			type="radio"
 			label="JSTATUS"
+			description="JFIELD_PUBLISHED_DESC"
 			default="0">
 			<option value="0">JENABLED</option>
 			<option value="1">JDISABLED</option>
@@ -59,6 +67,7 @@
 		<field name="feed_default"
 			type="radio"
 			label="COM_PODCAST_FEED_DEFAULT"
+			description="COM_PODCAST_FEED_DEFAULT_DESC"
 			default="0">
 			<option value="0">JNO</option>
 			<option value="1">JYES</option>
@@ -67,11 +76,13 @@
 		<field name="feed_created"
 			type="calendar"
 			label="COM_PODCAST_FEED_CREATED"
+			description="COM_PODCAST_FEED_CREATED_DESC"
 			default="" />
 
 		<field name="feed_link"
 			type="text"
 			label="COM_PODCAST_FEED_LINK"
+			description="COM_PODCAST_FEED_LINK_DESC"
             size="50"
 			required="true"
 			default=""/>
@@ -79,6 +90,7 @@
 		<field name="feed_copyright"
 			type="text"
 			label="COM_PODCAST_FEED_COPYRIGHT"
+			description="COM_PODCAST_FEED_COPYRIGHT_DESC"
             size="50"
 			required="true"
 			default=""/>
@@ -86,6 +98,7 @@
 		<field name="feed_author"
 			type="text"
 			label="COM_PODCAST_FEED_AUTHOR"
+			description="COM_PODCAST_FEED_AUTHOR_DESC"
             size="50"
 			required="true"
 			default=""/>
@@ -93,6 +106,7 @@
 		<field name="feed_keywords"
 			type="text"
 			label="COM_PODCAST_FEED_KEYWORDS"
+			description="COM_PODCAST_FEED_KEYWORDS_DESC"
             size="50"
 			required="true"
 			default=""/>
@@ -100,6 +114,7 @@
 		<field name="feed_owner_name"
 			type="text"
 			label="COM_PODCAST_FEED_OWNER_NAME"
+			description="COM_PODCAST_FEED_OWNER_NAME_DESC"
             size="50"
 			required="true"
 			default=""/>
@@ -107,6 +122,7 @@
 		<field name="feed_owner_email"
 			type="text"
 			label="COM_PODCAST_FEED_OWNER_EMAIL"
+			description="COM_PODCAST_FEED_OWNER_EMAIL_DESC"
             size="50"
 			required="true"
 			default=""/>
@@ -114,12 +130,14 @@
 		<field name="feed_new_feed_url"
 			type="text"
 			label="COM_PODCAST_FEED_NEW_URL"
+			description="COM_PODCAST_FEED_NEW_URL_DESC"
             size="50"
 			default=""/>
 
 		<field name="feed_block"
 			type="radio"
 			label="COM_PODCAST_FEED_BLOCK"
+			description="COM_PODCAST_FEED_BLOCK_DESC"
 			default="0">
 			<option value="0">JNO</option>
 			<option value="1">JYES</option>
@@ -128,6 +146,7 @@
 		<field name="feed_explicit"
 			type="radio"
 			label="COM_PODCAST_FEED_EXPLICIT"
+			description="COM_PODCAST_FEED_EXPLICIT_DESC"
 			default="0">
 			<option value="0">JNO</option>
 			<option value="1">JYES</option>
@@ -136,6 +155,7 @@
 		<field name="feed_complete"
 			type="radio"
 			label="COM_PODCAST_FEED_COMPLETE"
+			description="COM_PODCAST_FEED_COMPLETE_DESC"
 			default="0">
 			<option value="0">JNO</option>
 			<option value="1">JYES</option>
@@ -146,6 +166,7 @@
 		<field name="feed_summary"
 			type="textarea"
 			label="COM_PODCAST_FEED_SUMMARY"
+			description="COM_PODCAST_FEED_SUMMARY_DESC"
 			rows="8"
 			default="" />
 
