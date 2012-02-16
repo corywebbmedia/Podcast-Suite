@@ -16,16 +16,16 @@ class PodcastModelEpisode extends JModelAdmin
 
 		return $form;
 	}
-    
+
     public function getItem($pk = null)
     {
         $pk = (!empty($pk)) ? $pk : (int) $this->getState($this->getName() . '.id');
 
         $db = JFactory::getDBO();
         $query = $db->getQuery(true);
-        $query->select('tbl.*, 
-            a.asset_enclosure_url AS item_enclosure_url, 
-            a.asset_enclosure_length AS item_enclosure_length, 
+        $query->select('tbl.*,
+            a.asset_enclosure_url AS item_enclosure_url,
+            a.asset_enclosure_length AS item_enclosure_length,
             a.asset_duration AS item_duration,
             a.asset_enclosure_type AS item_enclosure_type,
             a.asset_closed_caption AS item_closed_caption,
@@ -38,21 +38,27 @@ class PodcastModelEpisode extends JModelAdmin
                 ->group('tbl.episode_id')
                 ->limit(1);
         $db->setQuery($query);
-                
+
         return $db->loadObject();
     }
-    
+
     public function getAssets()
     {
-        $db = JFactory::getDBO();
-        $query = $db->getQuery(true);
-        $query->select('tbl.*, m.*')
-                ->from('#__podcast_assets AS tbl')
-                ->join('LEFT', '#__podcast_assets_map AS m ON tbl.asset_id = m.asset_id');
-        $query->where('m.episode_id = '.$this->getItem()->episode_id);
-        $db->setQuery($query);
-        
-        return $db->loadObjectList();
+		$item = $this->getItem();
+
+		if ($item) {
+			$db = JFactory::getDBO();
+	        $query = $db->getQuery(true);
+	        $query->select('tbl.*, m.*')
+	                ->from('#__podcast_assets AS tbl')
+	                ->join('LEFT', '#__podcast_assets_map AS m ON tbl.asset_id = m.asset_id');
+	        $query->where('m.episode_id = '.$item->episode_id);
+	        $db->setQuery($query);
+
+	        return $db->loadObjectList();
+		}
+
+		return array();
     }
 
 	protected function loadFormData()
