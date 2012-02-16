@@ -24,7 +24,7 @@ class JFormFieldEpisode extends JFormFieldList
 	{
 		$feeds = $this->_getItems();
 
-		array_unshift($feeds, JHtml::_('select.option', '', '- Select Episode -'));
+		array_unshift($feeds, JHtml::_('select.option', '', JText::_('COM_PODCAST_SELECT_EPISODE')));
 
 		return $feeds;
 	}

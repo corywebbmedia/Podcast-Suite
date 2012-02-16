@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
 
-    <fieldset name="options" label="Options" description="Options" addfieldpath="/administrator/components/com_podcast/models/fields">
-        <field type="storage" name="storage" default="default" label="Storage Engine" />
+    <fieldset name="options" label="COM_PODCAST_SETTINGS" addfieldpath="/administrator/components/com_podcast/models/fields">
+        <field type="storage" name="storage" default="default" label="COM_PODCAST_STORAGE_ENGINE" description="COM_PODCAST_STORAGE_ENGINE_DESC" />
 	</fieldset>
     
     <fieldset name="permissions" label="JCONFIG_PERMISSIONS_LABEL" description="JCONFIG_PERMISSIONS_DESC">

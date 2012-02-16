@@ -24,7 +24,7 @@ class JFormFieldFeed extends JFormFieldList
 	{
 		$feeds = $this->_getFeeds();
 
-		array_unshift($feeds, JHtml::_('select.option', '', '- Select Feed -'));
+		array_unshift($feeds, JHtml::_('select.option', '', JText::_('COM_PODCAST_SELECT_FEED')));
 
 		return $feeds;
 	}
