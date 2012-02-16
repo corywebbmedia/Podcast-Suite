@@ -9,10 +9,10 @@ class PodcastModelEpisodes extends JModelList
 	{
 		$query = parent::getListQuery();
 
-		$query->select('tbl.*, 
+		$query->select('tbl.*,
             f.feed_title,
-            a.asset_enclosure_url AS item_enclosure_url, 
-            a.asset_enclosure_length AS item_enclosure_length, 
+            a.asset_enclosure_url AS item_enclosure_url,
+            a.asset_enclosure_length AS item_enclosure_length,
             a.asset_duration AS item_duration,
             a.asset_enclosure_type AS item_enclosure_type,
             a.asset_closed_caption AS item_closed_caption')
@@ -21,23 +21,24 @@ class PodcastModelEpisodes extends JModelList
                 ->join('LEFT', '#__podcast_assets AS a ON a.asset_id = m.asset_id')
                 ->join('LEFT', '#__podcast_feeds AS f USING(feed_id)')
                 ->group('tbl.episode_id');
-        
+
         // Filter by search
 		$search = $this->getState('filter.search');
 		if (!empty($search)) {
+			$db = $this->getDbo();
 			$search = $db->Quote('%'.$db->escape($search, true).'%');
 			$query->where('tbl.item_title LIKE '.$search);
 		}
-        
+
         // Filter by folder
 		$feed = $this->getState('filter.feed');
 		if (!empty($feed)) {
 			$query->where('f.feed_id = '.$feed);
 		}
-        
+
         // Filter by published state
 		$state = $this->getState('filter.state');
-		if (!empty($state)) {
+		if ($state != '') {
 			$query->where('tbl.published = ' . (int) $state);
 		}
 
@@ -56,17 +57,17 @@ class PodcastModelEpisodes extends JModelList
 
 		return $items;
 	}
-    
+
     protected function populateState($ordering = null, $direction = null)
 	{
 		// Load the filter search.
-		$search = $this->getUserStateFromRequest($this->context.'.filter.search', 'search');
+		$search = $this->getUserStateFromRequest($this->context.'.filter.search', 'filter_search');
 		$this->setState('filter.search', $search);
-        
+
         // Load the filter folder
         $feed = $this->getUserStateFromRequest($this->context.'.filter.feed', 'filter_feed');
         $this->setState('filter.feed', $feed);
-        
+
         // Load the filter state
         $state = $this->getUserStateFromRequest($this->context.'.filter.state', 'filter_state');
 		$this->setState('filter.state', $state);
