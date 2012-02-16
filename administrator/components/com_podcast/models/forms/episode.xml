@@ -4,6 +4,7 @@
 		<field name="item_title"
 			type="text"
 			label="COM_PODCAST_EPISODE_TITLE"
+			description="COM_PODCAST_EPISODE_TITLE_DESC"
 			required="true"
             size="50"
 			default="" />
@@ -11,12 +12,14 @@
 		<field name="alias"
 			type="text"
 			label="JFIELD_ALIAS_LABEL"
+			description="JFIELD_ALIAS_DESC"
             size="50"
 			default=""/>
 
 		<field name="item_subtitle"
 			type="text"
 			label="COM_PODCAST_EPISODE_SUBTITLE"
+			description="COM_PODCAST_EPISODE_SUBTITLE_DESC"
 			required="true"
             size="50"
 			default="" />
@@ -24,12 +27,14 @@
 		<field name="feed_id"
 			type="feed"
 			label="COM_PODCAST_FEED"
+			description="COM_PODCAST_EPISODE_FEED_DESC"
 			required="true"
 			default="" />
-            
-        <field name="item_summary"
+
+		<field name="item_summary"
 			type="textarea"
 			label="COM_PODCAST_EPISODE_SUMMARY"
+			description="COM_PODCAST_EPISODE_SUMMARY_DESC"
 			rows="8"
 			default="" />
 
@@ -70,6 +75,7 @@
 		<field name="published"
 			type="radio"
 			label="JSTATUS"
+			description="JFIELD_PUBLISHED_DESC"
 			required="true"
 			default="0">
 			<option value="0">JDISABLED</option>
@@ -79,21 +85,34 @@
 		<field name="item_pubDate"
 			type="calendar"
 			label="COM_PODCAST_EPISODE_PUBLISHED_DATE"
+			description="COM_PODCAST_EPISODE_PUBLISHED_DATE_DESC"
 			default="" />
 
 		<field name="item_created"
 			type="calendar"
 			label="COM_PODCAST_EPISODE_CREATED_DATE"
+			description="COM_PODCAST_EPISODE_CREATED_DATE_DESC"
 			default="" />
 
 		<field name="item_author"
 			type="text"
 			label="COM_PODCAST_EPISODE_AUTHOR"
+			description="COM_PODCAST_EPISODE_AUTHOR_DESC"
 			default="" />
+
+		<field name="item_closed_caption"
+			type="radio"
+			label="COM_PODCAST_EPISODE_CLOSED_CAPTION"
+			description="COM_PODCAST_EPISODE_CLOSED_CAPTION_DESC"
+			default="0">
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
 
 		<field name="item_block"
 			type="radio"
 			label="COM_PODCAST_ITEM_BLOCK"
+			description="COM_PODCAST_ITEM_BLOCK_DESC"
 			default="0">
 			<option value="0">JNO</option>
 			<option value="1">JYES</option>
@@ -102,12 +121,14 @@
 		<field name="item_image"
 			type="media"
 			label="COM_PODCAST_ITEM_IMAGE"
+			description="COM_PODCAST_ITEM_IMAGE_DESC"
 			default="" />
 
 		<field name="item_guid"
 			type="text"
 			class="readonly"
 			label="COM_PODCAST_EPISODE_GUID"
+			description="COM_PODCAST_EPISODE_GUID_DESC"
 			size="42"
 			default="0"
 			readonly="true" />
@@ -116,10 +137,11 @@
 			type="hidden"
 			class="readonly"
 			readonly="true" />
-            
+
         <field name="item_assets"
-            type="hidden" />
+            type="extraassets"
+            label="COM_PODCAST_EPISODE_EXTRA_ASSETS"
+			/>
 
 	</fieldset>
-
 </form>
