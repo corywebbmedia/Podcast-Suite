@@ -90,7 +90,7 @@ class JFormFieldItunescategory extends JFormFieldList
 			$object_categories[] = $object;
 		}
 
-		array_unshift($object_categories, JHtml::_('select.option', '', '- Select Category -'));
+		array_unshift($object_categories, JHtml::_('select.option', '', JText::_('COM_PODCAST_SELECT_CATEGORY')));
 
 		return $object_categories;
 	}

@@ -23,7 +23,7 @@ class PodcastModelFeeds extends JModelList
         
         // Filter by published state
 		$state = $this->getState('filter.state');
-		if (!empty($state)) {
+		if (is_numeric($state)) {
 			$query->where('pf.published = ' . (int) $state);
 		}
 

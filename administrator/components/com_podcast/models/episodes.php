@@ -37,8 +37,8 @@ class PodcastModelEpisodes extends JModelList
         
         // Filter by published state
 		$state = $this->getState('filter.state');
-		if (!empty($state)) {
-			$query->where('tbl.published = ' . (int) $state);
+		if (is_numeric($state)) {
+			$query->where('tbl.published = "' . (int) $state.'"');
 		}
 
 		return $query;

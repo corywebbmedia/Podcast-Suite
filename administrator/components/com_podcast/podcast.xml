@@ -8,7 +8,7 @@
 	<authorEmail>joe@corywebbmedia.com</authorEmail>
 	<authorUrl>podcastsuite.com</authorUrl>
 	<version>2.0</version>
-	<description>A complete suite of tools you can use to publish a podcast.</description>
+	<description>COM_PODCAST_DESC</description>
 
 	<files folder="components/com_podcast">
 		<filename>podcast.php</filename>

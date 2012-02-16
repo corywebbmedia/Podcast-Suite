@@ -16,7 +16,7 @@ $feeds = array();
 
 		<div class="filter-select fltrt">
 			<select name="filter_feed" class="inputbox" onchange="this.form.submit()">
-				<option value=""><?php echo JText::_(' - Select Feed - ');?></option>
+				<option value=""><?php echo JText::_('COM_PODCAST_SELECT_FEED');?></option>
                 <?php foreach ($this->filter_feeds as $feed) {
                     $feeds[] = JHtml::_('select.option', (string) $feed->feed_id, (string) $feed->feed_title);
                 } ?>
