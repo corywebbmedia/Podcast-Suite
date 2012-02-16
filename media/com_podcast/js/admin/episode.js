@@ -69,5 +69,5 @@ window.addEvent('domready', function () {
 		availableSlide.toggle();
 	});
 
-	Episode.init();
+	// Episode.init();
 });
