@@ -42,12 +42,14 @@ class PodcastModelEpisode extends JModelAdmin
         return $db->loadObject();
     }
     
-    public function getAssets($pk = null)
+    public function getAssets()
     {
         $db = JFactory::getDBO();
         $query = $db->getQuery(true);
-        $query->select('tbl.*')
-                ->from('#__podcast_assets AS tbl');
+        $query->select('tbl.*, m.*')
+                ->from('#__podcast_assets AS tbl')
+                ->join('LEFT', '#__podcast_assets_map AS m ON tbl.asset_id = m.asset_id');
+        $query->where('m.episode_id = '.$this->getItem()->episode_id);
         $db->setQuery($query);
         
         return $db->loadObjectList();

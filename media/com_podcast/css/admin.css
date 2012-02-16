@@ -6,6 +6,10 @@
 .icon-48-feeds { background-image: url(../images/icons/feeds-48.png); }
 .icon-48-media { background-image: url(../images/icons/media-48.png); }
 
+/* Episode Edit */
+#antiadminform { background: none; border: 0; padding: 0; }
+#antiadminform legend { padding-left: 27px; cursor: pointer; }
+
 /* Assets */
 #extra_assets { float: left; padding-left: 20px; }
 #extra_assets li { list-style: decimal; }

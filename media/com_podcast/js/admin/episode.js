@@ -62,5 +62,10 @@ Episode.init = function () {
 };
 
 window.addEvent('domready', function () {
-	Episode.init();
+	var availableSlide = new Fx.Slide('available');
+    availableSlide.hide();
+    $('available_toggle').addEvent('click', function() {
+        availableSlide.toggle();
+    })
+    Episode.init();
 });

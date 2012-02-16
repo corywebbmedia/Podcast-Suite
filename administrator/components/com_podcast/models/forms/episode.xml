@@ -26,6 +26,12 @@
 			label="COM_PODCAST_FEED"
 			required="true"
 			default="" />
+            
+        <field name="item_summary"
+			type="textarea"
+			label="COM_PODCAST_EPISODE_SUMMARY"
+			rows="8"
+			default="" />
 
 	</fieldset>
 
@@ -85,14 +91,6 @@
 			label="COM_PODCAST_EPISODE_AUTHOR"
 			default="" />
 
-		<field name="item_closed_caption"
-			type="radio"
-			label="COM_PODCAST_EPISODE_CLOSED_CAPTION"
-			default="0">
-			<option value="0">JNO</option>
-			<option value="1">JYES</option>
-		</field>
-
 		<field name="item_block"
 			type="radio"
 			label="COM_PODCAST_ITEM_BLOCK"
@@ -120,18 +118,8 @@
 			readonly="true" />
             
         <field name="item_assets"
-            type="extraassets"
-            label="COM_PODCAST_EPISODE_EXTRA_ASSETS" />
+            type="hidden" />
 
 	</fieldset>
 
-	<fieldset name="bottom">
-
-		<field name="item_summary"
-			type="textarea"
-			label="COM_PODCAST_EPISODE_SUMMARY"
-			rows="8"
-			default="" />
-
-	</fieldset>
 </form>
