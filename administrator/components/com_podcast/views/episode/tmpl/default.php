@@ -12,9 +12,10 @@ $doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.flash.js');
 $doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.html4.js');
 $doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.html5.js');
 
+$doc->addScript(JURI::root().'media/com_podcast/js/admin/upload.js');
 $doc->addScript(JURI::root().'media/com_podcast/js/admin/episode.js');
-$doc->addScriptDeclaration("Episode.token = '" . JUtility::getToken() . "';");
-$doc->addScriptDeclaration("Episode.url_root = '" . JURI::root() . "';");
+$doc->addScriptDeclaration("Upload.token = '" . JUtility::getToken() . "';");
+$doc->addScriptDeclaration("Upload.url_root = '" . JURI::root() . "';");
 
 ?>
 
@@ -43,9 +44,9 @@ $doc->addScriptDeclaration("Episode.url_root = '" . JURI::root() . "';");
 			</ul>
 		</fieldset>
 	</div>
-    
+
     <div class="clr"></div>
-    
+
     <div class="width-100">
         <fieldset class="adminform">
 			<legend><?php echo JText::_('*Episode Media'); ?></legend>
@@ -101,10 +102,10 @@ $doc->addScriptDeclaration("Episode.url_root = '" . JURI::root() . "';");
                 </tbody>
             </table>
 		</fieldset>
-    
+
         <fieldset id="antiadminform">
             <legend id="available_toggle"><?php echo JText::_('COM_PODCAST_EPISODE_ASSETS'); ?></legend>
-            
+
             <fieldset class="adminform" id="available">
                 <table class="adminlist">
                     <thead>
@@ -131,7 +132,7 @@ $doc->addScriptDeclaration("Episode.url_root = '" . JURI::root() . "';");
                     </thead>
                     <tfoot></tfoot>
                     <tbody id="available_items">
-                        
+
                     </tbody>
                 </table>
             </fieldset>
