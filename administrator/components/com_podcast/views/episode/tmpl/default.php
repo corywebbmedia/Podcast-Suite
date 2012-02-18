@@ -50,15 +50,9 @@ $doc->addScriptDeclaration("Upload.url_root = '" . JURI::root() . "';");
     <div class="width-100">
         <fieldset class="adminform">
 			<legend><?php echo JText::_('*Episode Media'); ?></legend>
-            <div class="media-toolbar">
-                [*Default button] [*Remove button] [*Upload button]
-            </div>
             <table class="adminlist">
                 <thead>
                     <tr>
-                        <th width="1%">
-                            <input type="checkbox" name="checkall-toggle" value="" title="<?php echo JText::_('JGLOBAL_CHECK_ALL'); ?>" onclick="Joomla.checkAll(this)" />
-                        </th>
                         <th class="title">
                             <?php echo JText::_('*Default'); ?>
                         </th>
@@ -66,77 +60,81 @@ $doc->addScriptDeclaration("Upload.url_root = '" . JURI::root() . "';");
                             <?php echo JText::_('*File'); ?>
                         </th>
                         <th class="title">
-                            <?php echo JText::_('*Length'); ?>
-                        </th>
-                        <th class="title">
                             <?php echo JText::_('*Duration'); ?>
                         </th>
                         <th class="title">
-                            <?php echo JText::_('*Type'); ?>
+                            <?php echo JText::_('*Remove'); ?>
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($this->assets as $i => $asset) : ?>
                     <tr class="row<?php echo $i % 2; ?>">
-                        <td>
-                            <?php echo JHtml::_('grid.id', $i, $asset->asset_id); ?>
-                        </td>
-                        <td>
-                            <?php echo $asset->default; ?>
+                        <td align="center">
+							<?php if ($asset->default): ?>
+								<span class="media-default media-button">&nbsp;</span>
+							<?php else: ?>
+								<span class="media-not-default media-button">&nbsp;</span>
+							<?php endif ?>
                         </td>
                         <td>
                             <?php echo $asset->asset_enclosure_url; ?>
                         </td>
                         <td>
-                            <?php echo $asset->asset_enclosure_length; ?>
-                        </td>
-                        <td>
                             <?php echo $asset->asset_duration; ?>
                         </td>
-                        <td>
-                            <?php echo $asset->asset_enclosure_type; ?>
-                        </td>
+						<td align="center">
+							<span class="media-delete media-button">&nbsp;</span>
+						</td>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
+            <div class="media-toolbar">
+				<input type="button" name="upload_media" value="Upload" id="upload_media" class="button" />
+				<input type="button" name="add_custom" value="Add Custom" id="add_custom" class="button" />
+				<input type="button" name="browse_available" value="Browse Available" id="browse_available" class="button" />
+            </div>
 		</fieldset>
 
-        <fieldset id="antiadminform">
-            <legend id="available_toggle"><?php echo JText::_('COM_PODCAST_EPISODE_ASSETS'); ?></legend>
+		<fieldset class="adminform" id="available">
+			<legend><?php echo JText::_('COM_PODCAST_EPISODE_ASSETS'); ?></legend>
+			<table class="adminlist">
+			    <thead>
+			        <tr>
+			            <th width="1%">
+			                <input type="checkbox" name="checkall-toggle" value="" title="<?php echo JText::_('JGLOBAL_CHECK_ALL'); ?>" onclick="Joomla.checkAll(this)" />
+			            </th>
+			            <th class="title">
+			                <?php echo JText::_('*Default'); ?>
+			            </th>
+			            <th class="title">
+			                <?php echo JText::_('*File'); ?>
+			            </th>
+			            <th class="title">
+			                <?php echo JText::_('*Length'); ?>
+			            </th>
+			            <th class="title">
+			                <?php echo JText::_('*Duration'); ?>
+			            </th>
+			            <th class="title">
+			                <?php echo JText::_('*Type'); ?>
+			            </th>
+			        </tr>
+			    </thead>
+			    <tfoot></tfoot>
+			    <tbody id="available_items">
 
-            <fieldset class="adminform" id="available">
-                <table class="adminlist">
-                    <thead>
-                        <tr>
-                            <th width="1%">
-                                <input type="checkbox" name="checkall-toggle" value="" title="<?php echo JText::_('JGLOBAL_CHECK_ALL'); ?>" onclick="Joomla.checkAll(this)" />
-                            </th>
-                            <th class="title">
-                                <?php echo JText::_('*Default'); ?>
-                            </th>
-                            <th class="title">
-                                <?php echo JText::_('*File'); ?>
-                            </th>
-                            <th class="title">
-                                <?php echo JText::_('*Length'); ?>
-                            </th>
-                            <th class="title">
-                                <?php echo JText::_('*Duration'); ?>
-                            </th>
-                            <th class="title">
-                                <?php echo JText::_('*Type'); ?>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tfoot></tfoot>
-                    <tbody id="available_items">
+			    </tbody>
+			</table>
+		</fieldset>
 
-                    </tbody>
-                </table>
-            </fieldset>
-        </fieldset>
+		<fieldset class="adminform" id="custom_media">
+			<legend>Custom Media</legend>
+
+
+		</fieldset>
+
     </div>
 
 	<input type="hidden" name="task" value="" />

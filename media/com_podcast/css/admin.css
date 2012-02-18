@@ -7,9 +7,11 @@
 .icon-48-feeds { background-image: url(../images/icons/feeds-48.png); }
 .icon-48-media { background-image: url(../images/icons/media-48.png); }
 
-/* Episode Edit */
-#antiadminform { background: none; border: 0; padding: 0; }
-#antiadminform legend { padding-left: 27px; cursor: pointer; }
+/* Episode */
+.media-button { height: 16px; width: 16px; display: block;}
+.media-default { background-image: url(../images/icons/default-16.png); }
+.media-not-default { background-image: url(../images/icons/not-default-16.png); }
+.media-delete { background-image: url(../images/icons/delete-16.png); }
 
 /* Assets */
 #extra_assets { float: left; padding-left: 20px; }

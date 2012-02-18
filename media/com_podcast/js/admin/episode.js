@@ -2,7 +2,16 @@ window.addEvent('domready', function () {
 	var availableSlide = new Fx.Slide('available');
 	availableSlide.hide();
 
-	$('available_toggle').addEvent('click', function() {
+	var customSlide = new Fx.Slide('custom_media');
+	customSlide.hide();
+
+	$('browse_available').addEvent('click', function() {
+		customSlide.hide();
 		availableSlide.toggle();
+	});
+	
+	$('add_custom').addEvent('click', function () {
+		availableSlide.hide();
+		customSlide.toggle();
 	});
 });
