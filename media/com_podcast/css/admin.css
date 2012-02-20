@@ -9,8 +9,6 @@
 
 /* Episode */
 .media-button { height: 16px; width: 16px; display: block;}
-.media-default { background-image: url(../images/icons/default-16.png); }
-.media-not-default { background-image: url(../images/icons/not-default-16.png); }
 .media-delete { background-image: url(../images/icons/delete-16.png); }
 
 /* Assets */

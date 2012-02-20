@@ -76,7 +76,7 @@ $doc->addScriptDeclaration("EpisodeMedia.episode_id = '" . $this->item->episode_
 				<script type="text/html" id="episode_asset">
 					<tr rel="{{asset_id}}">
 						<td align="center">
-							<span class="{{media_default}} media-button">&nbsp;</span>
+							<span class="jgrid"><span class="{{media_default}} media-button">&nbsp;</span></span>
 						</td>
 						<td>{{asset_enclosure_url}}</td>
 						<td>{{asset_duration}}</td>

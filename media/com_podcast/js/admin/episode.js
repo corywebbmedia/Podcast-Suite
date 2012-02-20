@@ -18,9 +18,9 @@ EpisodeMedia.add_item = function (asset) {
 	// set data
 	asset.media_default = function  () {
 		if (asset.asset_default === "1") {
-			return 'media-default';
+			return 'default';
 		} else {
-			return 'media-not-default';
+			return 'notdefault';
 		}
 	};
 
