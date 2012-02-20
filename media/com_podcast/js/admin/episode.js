@@ -32,10 +32,12 @@ EpisodeMedia.add_item = function (asset) {
 	EpisodeMedia.asset_ids.push(parseInt(asset.asset_id, 10));
 	EpisodeMedia.update_asset_id_list();
 	
-	// assign event
-	$$('#' + EpisodeMedia.asset_list + ' .media-delete').addEvent('click', function () {
+	// assign events
+	$$('#' + EpisodeMedia.asset_list + ' .trash').addEvent('click', function () {
 		EpisodeMedia.destroy(parseInt(this.get('rel'), 10));
 	});
+	
+	
 };
 
 EpisodeMedia.destroy = function (asset_id) {
