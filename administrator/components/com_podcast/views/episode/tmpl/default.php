@@ -81,7 +81,7 @@ $doc->addScriptDeclaration("EpisodeMedia.episode_id = '" . $this->item->episode_
 						<td>{{asset_enclosure_url}}</td>
 						<td>{{asset_duration}}</td>
 						<td align="center">
-							<span class="media-delete media-button" rel="{{asset_id}}">&nbsp;</span>
+							<span class="jgrid"><span class="trash media-button" rel="{{asset_id}}">&nbsp;</span></span>
 						</td>
 					</tr>
 				</script>
