@@ -40,8 +40,8 @@ EpisodeMedia.add_item = function (asset) {
 	});
 	
 	$$('#' + EpisodeMedia.asset_list + ' .default-toggle').addEvent('click', function () {
-		EpisodeMedia.make_default(parseInt(this.get('rel'), 10));
-	});	
+		EpisodeMedia.change_default(parseInt(this.get('rel'), 10));
+	});
 };
 
 EpisodeMedia.destroy = function (asset_id) {
@@ -63,7 +63,7 @@ EpisodeMedia.update_asset_id_list = function  () {
 	$(EpisodeMedia.asset_id_list).value = EpisodeMedia.asset_ids.join(',');
 };
 
-EpisodeMedia.make_default = function  (asset_id) {
+EpisodeMedia.change_default = function  (asset_id) {
 	$$('#' + EpisodeMedia.asset_list + ' tr[rel=' + EpisodeMedia.asset_default + '] span.default')
 		.removeClass('default')
 		.addClass('notdefault');
@@ -72,7 +72,12 @@ EpisodeMedia.make_default = function  (asset_id) {
 		.removeClass('notdefault')
 		.addClass('default');
 
+	EpisodeMedia.set_default(asset_id);
+};
+
+EpisodeMedia.set_default = function  (asset_id) {
 	EpisodeMedia.asset_default = asset_id;
+	$(EpisodeMedia.asset_default_input).value = asset_id;
 };
 
 EpisodeMedia.add_from_form = function () {
@@ -89,7 +94,7 @@ EpisodeMedia.init = function () {
 				var asset = EpisodeMedia.assets[i];
 
 				if (asset.asset_default === "1") {
-					EpisodeMedia.asset_default = parseInt(asset.asset_default, 10);
+					EpisodeMedia.set_default(parseInt(asset.asset_default, 10));
 				}
 			}
 			
