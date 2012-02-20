@@ -76,7 +76,7 @@ $doc->addScriptDeclaration("EpisodeMedia.episode_id = '" . $this->item->episode_
 				<script type="text/html" id="episode_asset">
 					<tr rel="{{asset_id}}">
 						<td align="center">
-							<span class="jgrid"><span class="{{media_default}} media-button">&nbsp;</span></span>
+							<span class="jgrid"><span class="{{media_default}} media-button default-toggle" rel="{{asset_id}}">&nbsp;</span></span>
 						</td>
 						<td>{{asset_enclosure_url}}</td>
 						<td>{{asset_duration}}</td>
@@ -133,6 +133,7 @@ $doc->addScriptDeclaration("EpisodeMedia.episode_id = '" . $this->item->episode_
 
     </div>
 
+	<input type="hidden" name="asset_default" value="" id="asset_default" />
 	<input type="hidden" name="asset_ids" value="" id="asset_ids" />
 	<input type="hidden" name="task" value="" />
 	<?php echo JHtml::_('form.token'); ?>

@@ -1,9 +1,11 @@
 var EpisodeMedia = {
 	assets: null,
 	asset_ids: [],
+	asset_default: null,
 	episode_id: null,
 	asset_list: 'episode_asset_list',
 	asset_id_list: 'asset_ids',
+	asset_default_input: 'asset_default',
 	asset_template: 'episode_asset',
 	asset_template_html: null
 };
@@ -37,7 +39,9 @@ EpisodeMedia.add_item = function (asset) {
 		EpisodeMedia.destroy(parseInt(this.get('rel'), 10));
 	});
 	
-	
+	$$('#' + EpisodeMedia.asset_list + ' .default-toggle').addEvent('click', function () {
+		EpisodeMedia.make_default(parseInt(this.get('rel'), 10));
+	});	
 };
 
 EpisodeMedia.destroy = function (asset_id) {
@@ -59,6 +63,18 @@ EpisodeMedia.update_asset_id_list = function  () {
 	$(EpisodeMedia.asset_id_list).value = EpisodeMedia.asset_ids.join(',');
 };
 
+EpisodeMedia.make_default = function  (asset_id) {
+	$$('#' + EpisodeMedia.asset_list + ' tr[rel=' + EpisodeMedia.asset_default + '] span.default')
+		.removeClass('default')
+		.addClass('notdefault');
+
+	$$('#' + EpisodeMedia.asset_list + ' tr[rel=' + asset_id + '] span.notdefault')
+		.removeClass('notdefault')
+		.addClass('default');
+
+	EpisodeMedia.asset_default = asset_id;
+};
+
 EpisodeMedia.add_from_form = function () {
 	
 };
@@ -68,6 +84,15 @@ EpisodeMedia.init = function () {
 		url: 'index.php',
 		onSuccess: function  (results) {
 			EpisodeMedia.assets = results;
+			
+			for (var i=0; i < EpisodeMedia.assets.length; i++) {
+				var asset = EpisodeMedia.assets[i];
+
+				if (asset.asset_default === "1") {
+					EpisodeMedia.asset_default = parseInt(asset.asset_default, 10);
+				}
+			}
+			
 			EpisodeMedia.render();
 		}
 	}).get({
