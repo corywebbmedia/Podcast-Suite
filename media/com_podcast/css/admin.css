@@ -8,7 +8,7 @@
 .icon-48-media { background-image: url(../images/icons/media-48.png); }
 
 /* Episode */
-.media-button { height: 16px; width: 16px; display: block;}
+.media-button { height: 16px; width: 16px; display: block; cursor: pointer;}
 .media-delete { background-image: url(../images/icons/delete-16.png); }
 
 /* Assets */
