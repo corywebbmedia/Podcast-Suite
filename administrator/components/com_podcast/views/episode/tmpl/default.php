@@ -12,10 +12,14 @@ $doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.flash.js');
 $doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.html4.js');
 $doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.html5.js');
 
+$doc->addScript(JURI::root().'media/com_podcast/js/admin/mustache.js');
+
 $doc->addScript(JURI::root().'media/com_podcast/js/admin/upload.js');
-$doc->addScript(JURI::root().'media/com_podcast/js/admin/episode.js');
 $doc->addScriptDeclaration("Upload.token = '" . JUtility::getToken() . "';");
 $doc->addScriptDeclaration("Upload.url_root = '" . JURI::root() . "';");
+
+$doc->addScript(JURI::root().'media/com_podcast/js/admin/episode.js');
+$doc->addScriptDeclaration("EpisodeMedia.episode_id = '" . $this->item->episode_id . "';");
 
 ?>
 
@@ -67,28 +71,20 @@ $doc->addScriptDeclaration("Upload.url_root = '" . JURI::root() . "';");
                         </th>
                     </tr>
                 </thead>
-                <tbody>
-                    <?php foreach ($this->assets as $i => $asset) : ?>
-                    <tr class="row<?php echo $i % 2; ?>">
-                        <td align="center">
-							<?php if ($asset->default): ?>
-								<span class="media-default media-button">&nbsp;</span>
-							<?php else: ?>
-								<span class="media-not-default media-button">&nbsp;</span>
-							<?php endif ?>
-                        </td>
-                        <td>
-                            <?php echo $asset->asset_enclosure_url; ?>
-                        </td>
-                        <td>
-                            <?php echo $asset->asset_duration; ?>
-                        </td>
-						<td align="center">
-							<span class="media-delete media-button">&nbsp;</span>
-						</td>
-                    </tr>
-                    <?php endforeach; ?>
+                <tbody id="episode_asset_list">
                 </tbody>
+				<script type="text/html" id="episode_asset">
+					<tr rel="{{asset_id}}">
+						<td align="center">
+							<span class="{{media_default}} media-button">&nbsp;</span>
+						</td>
+						<td>{{asset_enclosure_url}}</td>
+						<td>{{asset_duration}}</td>
+						<td align="center">
+							<span class="media-delete media-button" rel="{{asset_id}}">&nbsp;</span>
+						</td>
+					</tr>
+				</script>
             </table>
             <div class="media-toolbar">
 				<input type="button" name="upload_media" value="Upload" id="upload_media" class="button" />
@@ -137,6 +133,7 @@ $doc->addScriptDeclaration("Upload.url_root = '" . JURI::root() . "';");
 
     </div>
 
+	<input type="hidden" name="asset_ids" value="" id="asset_ids" />
 	<input type="hidden" name="task" value="" />
 	<?php echo JHtml::_('form.token'); ?>
 </form>

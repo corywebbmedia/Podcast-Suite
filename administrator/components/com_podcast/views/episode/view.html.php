@@ -12,10 +12,9 @@ class PodcastViewEpisode extends JView
 	{
 		$this->item = $this->get('Item');
 		$this->form = $this->get('Form');
-        $this->assets = $this->get('Assets');
 
 		$this->addToolbar();
-        
+
         JRequest::setVar('hidemainmenu', true);
 
 		parent::display($tpl);
