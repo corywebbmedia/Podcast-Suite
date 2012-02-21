@@ -234,7 +234,16 @@
 /index.php
 /joomla.xml
 /language
-/libraries
+/libraries/cms
+/libraries/joomla
+/libraries/phpmailer
+/libraries/phputf8
+/libraries/simplepie
+/libraries/cms.php
+/libraries/import.php
+/libraries/loader.php
+/libraries/platform.php
+/libraries/index.html
 /logs
 /media/cms
 /media/com_finder

@@ -14,26 +14,29 @@ $doc->addScript('http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js')
 $doc->addScript(JURI::root().'media/com_podcast/js/jplayer/jquery.jplayer.min.js');
 $doc->addStyleSheet(JURI::root().'media/com_podcast/js/jplayer/skins/blue.monday/jplayer.blue.monday.css');
 
+$extension = $this->storage->getAssetExtension($this->asset->asset_enclosure_url);
+
 $doc->addScriptDeclaration('
 jQuery.noConflict();
 jQuery(document).ready(function(){
-    jQuery("#jquery_jplayer_1").jPlayer({
-    ready: function () {
-        jQuery(this).jPlayer("setMedia", {
-        m4v: "'.$this->storage->getAssetUrl($this->asset->asset_enclosure_url).'"
-        });
-    },
-    swfPath: "/js",
-    supplied: "m4a, oga"
+      jQuery("#jquery_jplayer_'.$this->item->episode_id.'").jPlayer({
+        ready: function () {
+          jQuery(this).jPlayer("setMedia", {
+            '.$extension.': "'.$this->storage->getAssetUrl($this->asset->asset_enclosure_url).'",
+            poster: "'.JURI::root().$this->item->item_image.'"
+          });
+        },
+        swfPath: "'.JURI::root().'media/com_podcast/js/jplayer",
+        supplied: "'.$extension.'"
+      });
     });
-});    
 ');
 
 ?>
 
 <div id="jp_container_1" class="jp-video ">
     <div class="jp-type-single">
-      <div id="jquery_jplayer_1" class="jp-jplayer"></div>
+      <div id="jquery_jplayer_<?php echo $this->item->episode_id; ?>" class="jp-jplayer"></div>
       <div class="jp-gui">
         <div class="jp-video-play">
           <a href="javascript:;" class="jp-video-play-icon" tabindex="1">play</a>
