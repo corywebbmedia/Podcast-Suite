@@ -1,45 +1,24 @@
-<?php defined( '_JEXEC' ) or die; ?>
-<?php foreach ($this->items as $item): ?>
-	<h3><a href="<?php echo JRoute::_('index.php?option=com_podcast&view=episode&episode_id=' . $item->episode_id) ?>"><?php echo $this->escape($item->item_title) ?></a></h3>
+<?php 
+defined( '_JEXEC' ) or die; 
 
-	<dl>
-		<dt><strong>subtitle</strong></dt>
-		<dd><?php echo $this->escape($item->item_author) ?></dd>
+$doc = JFactory::getDocument();
+$doc->addStyleSheet(JURI::root().'media/com_podcast/css/podcast.css');
 
-		<dt><strong>summary</strong></dt>
-		<dd><?php echo $this->escape($item->item_summary) ?></dd>
+?>
 
-		<dt><strong>enclosure url</strong></dt>
-		<dd><?php echo $this->escape($item->item_enclosure_url) ?></dd>
+<div class="podcast_feed_left">
+    <h3 class="podcast_title"><?php echo $this->escape($this->feed->feed_title); ?></h3>
+    <h5 class="podcast_subtitle"><?php echo $this->escape($this->feed->feed_subtitle); ?></h5>
+    <?php echo $this->escape($this->feed->feed_summary); ?>
+</div>
 
-		<dt><strong>enclosure length</strong></dt>
-		<dd><?php echo $this->escape($item->item_enclosure_length) ?></dd>
+<div class="podcast_feed_right">
+    <span class="podcast_subscribe"><a href="<?php echo JRoute::_('index.php?option=com_podcast&view=feed&format=raw&feed_id='.$this->feed->feed_id) ?>">Subscribe</a></span>
+    <img src="<?php echo $this->feed->feed_image; ?>" />
+    <span class="podcast_feed_episodes">Episodes: <?php echo $this->escape($this->feed->episodes); ?></span>
+    <span class="podcast_author"><?php echo JText::_('COM_PODCAST_AUTHOR'); ?>: <?php echo $this->escape($this->feed->feed_author) ?></span>
+    <span class="podcast_date">Keywords: <?php echo $this->escape($this->feed->feed_keywords) ?></span>
+    <span class="podcast_duration">Copyright: <?php echo $this->escape($this->feed->feed_copyright) ?></span>
+</div>
 
-		<dt><strong>enclosure type</strong></dt>
-		<dd><?php echo $this->escape($item->item_enclosure_type) ?></dd>
-
-		<dt><strong>guid</strong></dt>
-		<dd><?php echo $this->escape($item->item_guid) ?></dd>
-
-		<dt><strong>published date</strong></dt>
-		<dd><?php echo $this->escape($item->item_pubDate) ?></dd>
-
-		<dt><strong>item duration</strong></dt>
-		<dd><?php echo $this->escape($item->item_duration) ?></dd>
-
-		<dt><strong>item keywords</strong></dt>
-		<dd><?php echo $this->escape($item->item_keywords) ?></dd>
-
-		<dt><strong>closed captioned</strong></dt>
-		<?php if ($item->item_closed_caption): ?>
-			<dd>yes</dd>
-		<?php else: ?>
-			<dd>no</dd>
-		<?php endif ?>
-
-		<dt><strong>created</strong></dt>
-		<dd><?php echo $this->escape($item->item_created) ?></dd>
-
-
-	</dl>
-<?php endforeach ?>
+<div class="clear"></div>

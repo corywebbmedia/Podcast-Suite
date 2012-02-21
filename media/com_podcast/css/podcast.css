@@ -1,0 +1,36 @@
+/* Episodes */
+.podcast_keywords, .podcast_feed, .podcast_author, .podcast_date, .podcast_duration {
+    display: block;
+}
+.podcast_header_title {
+    float: left;
+    width: 70%;
+}
+.podcast_header_meta {
+    float: right;
+    width: 30%;
+}
+
+/* Feed */
+.podcast_feed_left {
+    width: 48%;
+    float: left;
+}
+.podcast_feed_right {
+    width: 48%;
+    float: right;
+}
+
+/* General */
+.clear { clear: both; }
+.podcast_subscribe {
+    background: url(../images/icons/feeds-16.png) no-repeat #eee left center;
+    border-radius: 3px;
+    padding: 5px 5px 5px 20px;
+    display: inline-block;
+    float: right;
+}
+.podcast_subscribe a {
+    font-size: 1.2em;
+    line-height: 1.2em;
+}

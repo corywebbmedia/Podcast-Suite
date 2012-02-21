@@ -1,45 +1,38 @@
-<?php defined( '_JEXEC' ) or die; ?>
-<h3><?php echo $this->escape($this->item->item_title) ?></h3>
+<?php 
+defined( '_JEXEC' ) or die; 
 
-<dl>
-	<dt><strong>author</strong></dt>
-	<dd><?php echo $this->escape($this->item->item_author) ?></dd>
+$doc = JFactory::getDocument();
+$doc->addStyleSheet(JURI::root().'media/com_podcast/css/podcast.css');
 
-	<dt><strong>subtitle</strong></dt>
-	<dd><?php echo $this->escape($this->item->item_author) ?></dd>
+$this->asset = $this->assets[0];
 
-	<dt><strong>summary</strong></dt>
-	<dd><?php echo $this->escape($this->item->item_summary) ?></dd>
+?>
 
-	<dt><strong>enclosure url</strong></dt>
-	<dd><?php echo $this->escape($this->item->item_enclosure_url) ?></dd>
+<div class="podcast_header_title">
+    <h3 class="podcast_title"><?php echo $this->escape($this->item->item_title) ?></h3>
+    <h5 class="podcast_subtitle"><?php echo $this->escape($this->item->item_subtitle) ?></h5>
+    <span class="podcast_keywords"><?php echo $this->escape($this->item->item_keywords) ?></span>
+</div>
 
-	<dt><strong>enclosure length</strong></dt>
-	<dd><?php echo $this->escape($this->item->item_enclosure_length) ?></dd>
+<div class="podcast_header_meta">
+    <span class="podcast_feed">Series: <?php echo $this->escape($this->item->feed_title); ?></span>
+    <span class="podcast_author"><?php echo JText::_('COM_PODCAST_AUTHOR'); ?>: <?php echo $this->escape($this->item->item_author) ?></span>
+    <span class="podcast_date">Date: <?php echo $this->escape($this->item->item_pubDate) ?></span>
+    <span class="podcast_duration">Duration: <?php echo $this->escape($this->asset->asset_duration) ?></span>
+</div>
 
-	<dt><strong>enclosure type</strong></dt>
-	<dd><?php echo $this->escape($this->item->item_enclosure_type) ?></dd>
+<div class="clear"></div>
 
-	<dt><strong>guid</strong></dt>
-	<dd><?php echo $this->escape($this->item->item_guid) ?></dd>
+<div class="podcast_media">
+    <?php echo $this->loadTemplate($this->storage->getAssetType($this->asset->asset_enclosure_type)); ?>
+</div>
 
-	<dt><strong>published date</strong></dt>
-	<dd><?php echo $this->escape($this->item->item_pubDate) ?></dd>
+<div class="podcast_summary">
+    <?php echo $this->escape($this->item->item_summary) ?>
+</div>
 
-	<dt><strong>item duration</strong></dt>
-	<dd><?php echo $this->escape($this->item->item_duration) ?></dd>
-
-	<dt><strong>item keywords</strong></dt>
-	<dd><?php echo $this->escape($this->item->item_keywords) ?></dd>
-
-	<dt><strong>closed captioned</strong></dt>
-	<?php if ($this->item->item_closed_caption): ?>
-		<dd>yes</dd>
-	<?php else: ?>
-		<dd>no</dd>
-	<?php endif ?>
-
-	<dt><strong>created</strong></dt>
-	<dd><?php echo $this->escape($this->item->item_created) ?></dd>
-
-</dl>
+<?php if (count($this->assets) > 1) : ?>
+<div class="podcast_assets">
+    
+</div>
+<?php endif; ?>

@@ -10,19 +10,15 @@ class PodcastModelFeed extends JModelList
 	public function getFeed()
 	{
 		if (!isset($this->feed)) {
-			$feed_id = JRequest::getInt('feed_id', 0);
+			$feed_id = JRequest::getInt('feed_id', 1);
 
 			$db = $this->getDbo();
 			$query = $db->getQuery(true);
 
-			$query->select('*')
-				->from('#__podcast_feeds');
-
-			if ($feed_id) {
-				$query->where("feed_id = '{$feed_id}'");
-			} else {
-				$query->where("feed_default = '1'");
-			}
+			$query->select('*, COUNT(e.episode_id) AS episodes')
+                    ->from('#__podcast_feeds')
+                    ->join('LEFT', '#__podcast_episodes AS e USING (feed_id)')
+                    ->where("feed_id = '{$feed_id}'");
 
 			$db->setQuery($query);
 			$feed = $db->loadObject();

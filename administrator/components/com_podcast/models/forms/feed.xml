@@ -25,7 +25,7 @@
 			default="" />
 
 		<field name="feed_image"
-			type="text"
+			type="media"
 			label="COM_PODCAST_FEED_IMAGE"
 			description="COM_PODCAST_FEED_IMAGE_DESC"
             size="50"

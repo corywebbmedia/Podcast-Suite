@@ -12,6 +12,11 @@ class PlgPodcastDefault extends JPlugin
         
     }
     
+    public function getFileUrl($file)
+    {
+        return JURI::root().$file;
+    }
+    
     public function onFileVerify($file)
     {
         if (file_exists(JPATH_ROOT.$file)) return true;

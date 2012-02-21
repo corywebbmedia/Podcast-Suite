@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
-	<layout title="COM_PODCAST_FEED_VIEW_DEFAULT_TITLE">
+	<layout title="COM_PODCAST_EPISODES_VIEW_DEFAULT_TITLE">
 		<message>
-			<![CDATA[COM_PODCAST_FEED_VIEW_DEFAULT_DESC]]>
+			<![CDATA[COM_PODCAST_EPISODES_VIEW_DEFAULT_DESC]]>
 		</message>
 	</layout>
 
@@ -11,8 +11,9 @@
 			addfieldpath="/administrator/components/com_podcast/models/fields">
 
 			<field name="feed_id" type="feed"
-				label="COM_PODCAST_FIELD_FEED"
-				description="COM_PODCAST_FIELD_FEED_DESC"
+				label="COM_PODCAST_FIELD_EPISODE"
+				required="true"
+				description="COM_PODCAST_FIELD_EPISODE_DESC"
 			/>
 		</fieldset>
 	</fields>
