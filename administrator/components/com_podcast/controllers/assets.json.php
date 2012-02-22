@@ -12,7 +12,7 @@ class PodcastControllerAssets extends JController
 		$db = JFactory::getDBO();
 		$query = $db->getQuery(true);
 
-		$query->select('asset_id, asset_enclosure_url, asset_duration, `default` AS asset_default')
+		$query->select('asset_id, asset_enclosure_url, asset_duration, `default` AS asset_default, asset_enclosure_type, asset_enclosure_length')
 			->from('#__podcast_assets_map')
 			->join('LEFT', '#__podcast_assets USING(asset_id)')
 			->where("enabled = '1'")
@@ -25,6 +25,7 @@ class PodcastControllerAssets extends JController
     public function list_available_assets()
     {
         $page = JRequest::getInt('page', 0);
+        $search = JRequest::getString('search', '');
         
 		$db = JFactory::getDBO();
 		$query = $db->getQuery(true);
@@ -32,6 +33,8 @@ class PodcastControllerAssets extends JController
 		$query->select('SQL_CALC_FOUND_ROWS *')
 			->from('#__podcast_assets')
 			->where("enabled = '1'");
+        
+        if ($search) $query->where('asset_enclosure_url LIKE "%'.$search.'%"');
 
 		$db->setQuery($query, $page * 10, 10);
         $db->query();

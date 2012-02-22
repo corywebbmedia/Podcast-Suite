@@ -163,6 +163,7 @@ var AvailableAssets = {
     loaded: false,
     assets: null,
     pagination: null,
+    search_string: '',
     asset_ids: [],
 	asset_list: 'available_asset_list',
     asset_template: 'available_asset',
@@ -176,7 +177,12 @@ var AvailableAssets = {
 AvailableAssets.init = function() {
     if (!this.loaded) {
         AvailableAssets.page(1);
-    }
+        $('search_assets').addEvent('keyup', function() {
+            AvailableAssets.search_string = this.get('value');
+            AvailableAssets.page(AvailableAssets.pagination.current);
+        });
+    }  
+    
     this.loaded = true;
 };
 
@@ -198,7 +204,7 @@ AvailableAssets.render = function() {
 	});
     
     AvailableAssets.setup_pagination();
-}
+};
 
 AvailableAssets.add_item = function (asset) {
 	// render markup
@@ -213,16 +219,18 @@ AvailableAssets.page = function(page) {
             AvailableAssets.assets = results.items;
             AvailableAssets.pagination = results.pagination;
             AvailableAssets.render();
+            $('available_asset_list').setStyle('height', 'auto');
         }
     }).get({
         option: 'com_podcast',
         page: page - 1,
+        search: AvailableAssets.search_string,
         format: 'json',
         task: 'assets.list_available_assets'
     });
     AvailableAssets.asset_template_html = $(AvailableAssets.asset_template).innerHTML;
     AvailableAssets.pagination_template_html = $(AvailableAssets.pagination_template).innerHTML;
-}
+};
 
 // Setup pagination
 AvailableAssets.setup_pagination = function() {
@@ -248,4 +256,4 @@ AvailableAssets.setup_pagination = function() {
         $('page_last').getElement('div').set('html', '<span>'+$('page_last').getElement('a').get('text'));
         $('page_next').getElement('div').set('html', '<span>'+$('page_next').getElement('a').get('text'));
     }
-}
+};

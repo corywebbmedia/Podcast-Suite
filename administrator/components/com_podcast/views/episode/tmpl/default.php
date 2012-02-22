@@ -65,7 +65,13 @@ $doc->addScriptDeclaration("EpisodeMedia.token = '" . JUtility::getToken() . "';
                             <?php echo JText::_('*File'); ?>
                         </th>
                         <th class="title">
+                            <?php echo JText::_('*Length'); ?>
+                        </th>
+                        <th class="title">
                             <?php echo JText::_('*Duration'); ?>
+                        </th>
+                        <th class="title">
+                            <?php echo JText::_('*Type'); ?>
                         </th>
                         <th class="title">
                             <?php echo JText::_('*Remove'); ?>
@@ -79,8 +85,10 @@ $doc->addScriptDeclaration("EpisodeMedia.token = '" . JUtility::getToken() . "';
 						<td align="center" width="1%">
 							<span class="jgrid"><span class="{{media_default}} media-button default-toggle" rel="{{asset_id}}">&nbsp;</span></span>
 						</td>
-						<td width="69%">{{asset_enclosure_url}}</td>
-						<td width="29%">{{asset_duration}}</td>
+						<td class="url">{{asset_enclosure_url}}</td>
+                        <td class="length">{{asset_enclosure_length}}</td>
+						<td class="duration">{{asset_duration}}</td>
+                        <td class="type">{{asset_enclosure_type}}</td>
 						<td align="center" width="1%">
 							<span class="jgrid"><span class="trash media-button" rel="{{asset_id}}">&nbsp;</span></span>
 						</td>
@@ -97,6 +105,7 @@ $doc->addScriptDeclaration("EpisodeMedia.token = '" . JUtility::getToken() . "';
 		<fieldset class="adminform" id="available">
             <a name="assets"></a>
 			<legend><?php echo JText::_('COM_PODCAST_EPISODE_ASSETS'); ?></legend>
+            <label>*Search: </label><input type="text" value="" id="search_assets" size="30" />
 			<table class="adminlist">
 			    <thead>
 			        <tr>
@@ -122,12 +131,12 @@ $doc->addScriptDeclaration("EpisodeMedia.token = '" . JUtility::getToken() . "';
 					<tr>
 						<td align="center" colspan="20">
                             <div class="pagination">
-                                <div class="button2-right" id="page_start"><div class="start"><a onclick="AvailableAssets.page(0);" title="Start" href="#assets">Start</a></div></div>
-                                <div class="button2-right" id="page_prev"><div class="prev"><a onclick="AvailableAssets.page({{previous}});" title="Prev" href="#assets">Prev</a></div></div>
+                                <div class="button2-right" id="page_start"><div class="start"><a onclick="AvailableAssets.page(0);" title="Start" href="#assets">*Start</a></div></div>
+                                <div class="button2-right" id="page_prev"><div class="prev"><a onclick="AvailableAssets.page({{previous}});" title="Prev" href="#assets">*Prev</a></div></div>
                                 <div class="button2-left" id="page_pages"><div class="page"></div></div>
-                                <div class="button2-left" id="page_next"><div class="next"><a onclick="AvailableAssets.page({{next}});" title="Next" href="#">Next</a></div></div>
-                                <div class="button2-left" id="page_last"><div class="end"><a onclick="AvailableAssets.page({{total}});" title="End" href="#">End</a></div></div>
-                                <div class="limit">Page {{current}} of {{total}}</div>
+                                <div class="button2-left" id="page_next"><div class="next"><a onclick="AvailableAssets.page({{next}});" title="Next" href="#assets">*Next</a></div></div>
+                                <div class="button2-left" id="page_last"><div class="end"><a onclick="AvailableAssets.page({{total}});" title="End" href="#assets">*End</a></div></div>
+                                <div class="limit">*Page {{current}} of {{total}}</div>
                             </div>
 						</td>
 					</tr>

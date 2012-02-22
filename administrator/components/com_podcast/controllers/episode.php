@@ -23,6 +23,8 @@ class PodcastControllerEpisode extends JControllerForm
         $db->setQuery($query);
         $db->query();
         
+        $assets = array_unique($assets);
+        
         foreach ($assets as $asset)
         {
             $row = null;
