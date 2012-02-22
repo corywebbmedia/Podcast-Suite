@@ -26,7 +26,7 @@ EpisodeMedia.add_item = function (asset) {
 			return 'notdefault';
 		}
 	};
-
+    
 	// render markup
 	var asset_html = Mustache.to_html(EpisodeMedia.asset_template_html, asset);
 	$(EpisodeMedia.asset_list).innerHTML += asset_html;
@@ -141,17 +141,27 @@ window.addEvent('domready', function () {
 	customSlide.hide();
 
 	$('browse_available').addEvent('click', function() {
-		customSlide.hide();
+		if (customSlide.open) {
+            customSlide.slideOut().chain(function() {
+                availableSlide.toggle();
+            });
+        } else {
+            availableSlide.toggle();
+        }
         // Load assets if we are opening the slider
         if (!availableSlide.open) {
             AvailableAssets.init();
         }
-        availableSlide.toggle();
 	});
 	
 	$('add_custom').addEvent('click', function () {
-		availableSlide.hide();
-		customSlide.toggle();
+        if (availableSlide.open) {
+            availableSlide.slideOut().chain(function() {
+                customSlide.toggle();
+            });
+        } else {
+            customSlide.toggle();
+        }
 	});
 
 	EpisodeMedia.init();
