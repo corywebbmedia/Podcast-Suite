@@ -27,6 +27,8 @@ EpisodeMedia.add_item = function (asset) {
 		}
 	};
     
+    asset.asset_enclosure_length = EpisodeMedia.convertLength(asset.asset_enclosure_length);
+    
 	// render markup
 	var asset_html = Mustache.to_html(EpisodeMedia.asset_template_html, asset);
 	$(EpisodeMedia.asset_list).innerHTML += asset_html;
@@ -105,6 +107,27 @@ EpisodeMedia.add_from_form = function (callback) {
 		url: 'index.php',
 		onSuccess: callback
 	}).post(req);
+};
+
+EpisodeMedia.convertLength = function(bytes) {
+    if (!bytes) bytes = 0;
+    var kilobyte = 1024;
+    var megabyte = kilobyte * 1024;
+    var gigabyte = megabyte * 1024;
+    var terabyte = gigabyte * 1024;
+    var precision = 2;
+
+    if ((bytes >= 0) && (bytes < kilobyte)) {
+        return bytes + ' B';
+    } else if ((bytes >= kilobyte) && (bytes < megabyte)) {
+        return (bytes / kilobyte).toFixed(precision) + ' KB';
+    } else if ((bytes >= megabyte) && (bytes < gigabyte)) {
+        return (bytes / megabyte).toFixed(precision) + ' MB';
+    } else if ((bytes >= gigabyte) && (bytes < terabyte)) {
+        return (bytes / gigabyte).toFixed(precision) + ' GB';
+    } else {
+        return bytes + ' B';
+    }
 };
 
 EpisodeMedia.init = function () {
@@ -218,6 +241,8 @@ AvailableAssets.render = function() {
 
 AvailableAssets.add_item = function (asset) {
 	// render markup
+    asset.asset_enclosure_length = EpisodeMedia.convertLength(asset.asset_enclosure_length);
+    
 	var asset_html = Mustache.to_html(AvailableAssets.asset_template_html, asset);
 	$(AvailableAssets.asset_list).innerHTML += asset_html;
 };
