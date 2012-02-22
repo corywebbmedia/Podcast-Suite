@@ -5,7 +5,7 @@ JHTML::_('behavior.mootools');
 
 $doc = JFactory::getDocument();
 
-$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.js');
+$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.full.js');
 $doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.gears.js');
 $doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.silverlight.js');
 $doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.flash.js');
@@ -75,12 +75,12 @@ $doc->addScriptDeclaration("EpisodeMedia.episode_id = '" . $this->item->episode_
                 </tbody>
 				<script type="text/html" id="episode_asset">
 					<tr rel="{{asset_id}}">
-						<td align="center">
+						<td align="center" width="1%">
 							<span class="jgrid"><span class="{{media_default}} media-button default-toggle" rel="{{asset_id}}">&nbsp;</span></span>
 						</td>
-						<td>{{asset_enclosure_url}}</td>
-						<td>{{asset_duration}}</td>
-						<td align="center">
+						<td width="69%">{{asset_enclosure_url}}</td>
+						<td width="29%">{{asset_duration}}</td>
+						<td align="center" width="1%">
 							<span class="jgrid"><span class="trash media-button" rel="{{asset_id}}">&nbsp;</span></span>
 						</td>
 					</tr>
@@ -154,7 +154,7 @@ $doc->addScriptDeclaration("EpisodeMedia.episode_id = '" . $this->item->episode_
 
 		<fieldset class="adminform" id="custom_media">
 			<legend>Custom Media</legend>
-
+            
 
 		</fieldset>
 

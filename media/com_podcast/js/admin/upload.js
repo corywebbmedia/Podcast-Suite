@@ -28,9 +28,9 @@ Upload.new_uploader = function () {
 		browse_button : config.browse_button,
 		container: config.container,
 		max_file_size : '1gb',
-		url : 'index.php?option=com_podcast&task=asset.upload&' + Episode.token + '=1',
-		flash_swf_url : Episode.url_root +' media/com_podcast/js/plupload/plupload.flash.swf',
-		silverlight_xap_url : Episode.url_root + 'media/com_podcast/js/plupload/plupload.silverlight.xap'
+		url : 'index.php?option=com_podcast&task=asset.upload&' + Upload.token + '=1',
+		flash_swf_url : Upload.url_root +' media/com_podcast/js/plupload/plupload.flash.swf',
+		silverlight_xap_url : Upload.url_root + 'media/com_podcast/js/plupload/plupload.silverlight.xap'
 	});
 
 	uploader.bind('FilesAdded', function(up, files) {
