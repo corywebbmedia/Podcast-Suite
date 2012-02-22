@@ -13,7 +13,8 @@ class PodcastControllerEpisode extends JControllerForm
         
         $form = JRequest::getVar('jform');
         
-        $assets = json_decode($form['item_assets']);
+        $assets = explode(',', JRequest::getString('asset_ids'));
+        $default = JRequest::getInt('asset_default');
         $episode_id = $form['episode_id'];
         $removes = array();
         $matches = array();
@@ -24,6 +25,7 @@ class PodcastControllerEpisode extends JControllerForm
         $db->setQuery($query);
         $records = $db->loadObjectList();
         
+        // Figure out if we have records already stored
         if (count($records))
         {
             foreach ($records as $record)

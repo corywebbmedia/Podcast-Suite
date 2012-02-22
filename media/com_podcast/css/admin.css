@@ -11,6 +11,8 @@
 .media-button { height: 16px; width: 16px; display: block; cursor: pointer;}
 .media-delete { background-image: url(../images/icons/delete-16.png); }
 
+.jgrid span { width: 16px; height: 16px; display: block; cursor: pointer; }
+
 /* Assets */
 #extra_assets { float: left; padding-left: 20px; }
 #extra_assets li { list-style: decimal; }

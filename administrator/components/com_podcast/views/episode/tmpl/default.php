@@ -102,9 +102,6 @@ $doc->addScriptDeclaration("EpisodeMedia.episode_id = '" . $this->item->episode_
 			                <input type="checkbox" name="checkall-toggle" value="" title="<?php echo JText::_('JGLOBAL_CHECK_ALL'); ?>" onclick="Joomla.checkAll(this)" />
 			            </th>
 			            <th class="title">
-			                <?php echo JText::_('*Default'); ?>
-			            </th>
-			            <th class="title">
 			                <?php echo JText::_('*File'); ?>
 			            </th>
 			            <th class="title">
@@ -119,9 +116,24 @@ $doc->addScriptDeclaration("EpisodeMedia.episode_id = '" . $this->item->episode_
 			        </tr>
 			    </thead>
 			    <tfoot></tfoot>
-			    <tbody id="available_items">
-
+			    <tbody id="available_asset_list" style="height: 350px;">
+                    <?php for ($i=0; $i<12; $i++) : ?>
+                    <tr>
+                        <td>Blank</td><td>Blank</td><td>Blank</td><td>Blank</td><td>Blank</td>
+                    </tr>
+                    <?php endfor; ?>
 			    </tbody>
+                <script type="text/html" id="available_asset">
+					<tr rel="{{asset_id}}">
+						<td align="center">
+							<span class="jgrid"><span class="publish add_asset" rel="{{asset_id}}">&nbsp;</span></span>
+						</td>
+						<td class="url">{{asset_enclosure_url}}</td>
+                        <td class="length">{{asset_enclosure_length}}</td>
+						<td class="duration">{{asset_duration}}</td>
+                        <td class="type">{{asset_enclosure_type}}</td>
+					</tr>
+				</script>
 			</table>
 		</fieldset>
 

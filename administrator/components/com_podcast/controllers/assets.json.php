@@ -21,4 +21,19 @@ class PodcastControllerAssets extends JController
 		$db->setQuery($query);
 		echo json_encode($db->loadObjectList());
 	}
+    
+    public function list_available_assets()
+    {
+        $page = JRequest::getInt('page', 0);
+        
+		$db = JFactory::getDBO();
+		$query = $db->getQuery(true);
+
+		$query->select('*')
+			->from('#__podcast_assets')
+			->where("enabled = '1'");
+
+		$db->setQuery($query, $page * 10, 10);
+		echo json_encode($db->loadObjectList());
+    }
 }

@@ -11,11 +11,11 @@ $this->asset = $this->assets[0];
 <div class="podcast_header_title">
     <h3 class="podcast_title"><?php echo $this->escape($this->item->item_title) ?></h3>
     <h5 class="podcast_subtitle"><?php echo $this->escape($this->item->item_subtitle) ?></h5>
-    <span class="podcast_keywords"><?php echo $this->escape($this->item->item_keywords) ?></span>
+    <h5 class="podcast_feed">Series: <?php echo $this->escape($this->item->feed_title); ?></h5>
 </div>
 
 <div class="podcast_header_meta">
-    <span class="podcast_feed">Series: <?php echo $this->escape($this->item->feed_title); ?></span>
+    <span class="podcast_keywords"><?php echo $this->escape($this->item->item_keywords) ?></span>
     <span class="podcast_author"><?php echo JText::_('COM_PODCAST_AUTHOR'); ?>: <?php echo $this->escape($this->item->item_author) ?></span>
     <span class="podcast_date">Date: <?php echo $this->escape($this->item->item_pubDate) ?></span>
     <span class="podcast_duration">Duration: <?php echo $this->escape($this->asset->asset_duration) ?></span>

@@ -5,10 +5,22 @@
 .podcast_header_title {
     float: left;
     width: 70%;
+    margin-bottom: 10px;
 }
 .podcast_header_meta {
     float: right;
     width: 30%;
+}
+h3.podcast_title {
+    margin-bottom: 5px;
+    font-size: 22px;
+}
+h5.podcast_subtitle, h5.podcast_feed { 
+    margin-bottom: 0px; 
+    font-size: 12px; 
+}
+.podcast_media {
+    margin-bottom: 20px;
 }
 
 /* Feed */

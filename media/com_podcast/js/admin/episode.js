@@ -119,7 +119,11 @@ window.addEvent('domready', function () {
 
 	$('browse_available').addEvent('click', function() {
 		customSlide.hide();
-		availableSlide.toggle();
+        // Load assets if we are opening the slider
+        if (!availableSlide.open) {
+            AvailableAssets.init();
+        }
+        availableSlide.toggle();
 	});
 	
 	$('add_custom').addEvent('click', function () {
@@ -129,3 +133,66 @@ window.addEvent('domready', function () {
 
 	EpisodeMedia.init();
 });
+
+
+// Jeremy's Additions
+var AvailableAssets = {
+    loaded: false,
+    assets: null,
+    asset_ids: [],
+	asset_list: 'available_asset_list',
+    asset_template: 'available_asset',
+	asset_template_html: null
+};
+
+// Loads the assets
+AvailableAssets.init = function() {
+    if (!this.loaded) {
+        new Request.JSON({
+            url: 'index.php',
+            onSuccess: function  (results) {
+                AvailableAssets.assets = results;
+                AvailableAssets.render();
+            }
+        }).get({
+            option: 'com_podcast',
+            format: 'json',
+            task: 'assets.list_available_assets'
+        });
+        AvailableAssets.asset_template_html = $(AvailableAssets.asset_template).innerHTML;
+    }
+    this.loaded = true;
+};
+
+AvailableAssets.render = function() {
+    $(AvailableAssets.asset_list).empty();
+    for (var i=0; i < AvailableAssets.assets.length; i++) {
+		AvailableAssets.add_item(AvailableAssets.assets[i]);
+	}
+    
+    $$('#' + AvailableAssets.asset_list + ' .add_asset').addEvent('click', function () {
+        console.info(this);
+        var item = {
+            asset_id: this.get('rel'),
+            asset_enclosure_url: this.getParent('tr').getElement('td.url').get('text'),
+            asset_duration: this.getParent('tr').getElement('td.duration').get('text')
+        }
+		EpisodeMedia.add_item(item);
+	});
+}
+
+AvailableAssets.add_item = function (asset) {
+	// render markup
+	var asset_html = Mustache.to_html(AvailableAssets.asset_template_html, asset);
+	$(AvailableAssets.asset_list).innerHTML += asset_html;
+
+/*
+	// assign events
+	$$('#' + EpisodeMedia.asset_list + ' .trash').addEvent('click', function () {
+		EpisodeMedia.destroy(parseInt(this.get('rel'), 10));
+	});
+	
+	$$('#' + EpisodeMedia.asset_list + ' .default-toggle').addEvent('click', function () {
+		EpisodeMedia.change_default(parseInt(this.get('rel'), 10));
+	}); */
+};
