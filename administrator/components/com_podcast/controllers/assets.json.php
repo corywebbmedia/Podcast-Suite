@@ -29,11 +29,29 @@ class PodcastControllerAssets extends JController
 		$db = JFactory::getDBO();
 		$query = $db->getQuery(true);
 
-		$query->select('*')
+		$query->select('SQL_CALC_FOUND_ROWS *')
 			->from('#__podcast_assets')
 			->where("enabled = '1'");
 
 		$db->setQuery($query, $page * 10, 10);
-		echo json_encode($db->loadObjectList());
+        $db->query();
+        
+        $response = new stdClass();
+
+        $response->items = $db->loadObjectList();
+        
+        $db->setQuery('SELECT FOUND_ROWS();');
+        
+        jimport('joomla.html.pagination');
+        
+        $pagination = new JPagination( $db->loadResult(), $page * 10, 10);
+        $response->pagination->total = $pagination->{'pages.total'};
+        $response->pagination->current = $pagination->{'pages.current'};
+        $response->pagination->start = $pagination->{'pages.start'};
+        $response->pagination->stop = $pagination->{'pages.stop'};
+        $response->pagination->previous = ($pagination->{'pages.current'} > 1) ? $pagination->{'pages.current'} - 1 : 1;
+        $response->pagination->next = ($pagination->{'pages.current'} < $pagination->{'pages.total'} - 1) ? $pagination->{'pages.current'} + 1 : $pagination->{'pages.total'};
+
+		echo json_encode($response);
     }
 }

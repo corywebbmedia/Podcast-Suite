@@ -94,6 +94,7 @@ $doc->addScriptDeclaration("EpisodeMedia.episode_id = '" . $this->item->episode_
 		</fieldset>
 
 		<fieldset class="adminform" id="available">
+            <a name="assets"></a>
 			<legend><?php echo JText::_('COM_PODCAST_EPISODE_ASSETS'); ?></legend>
 			<table class="adminlist">
 			    <thead>
@@ -101,23 +102,37 @@ $doc->addScriptDeclaration("EpisodeMedia.episode_id = '" . $this->item->episode_
 			            <th width="1%">
 			                <input type="checkbox" name="checkall-toggle" value="" title="<?php echo JText::_('JGLOBAL_CHECK_ALL'); ?>" onclick="Joomla.checkAll(this)" />
 			            </th>
-			            <th class="title">
+			            <th class="title" width="70%">
 			                <?php echo JText::_('*File'); ?>
 			            </th>
-			            <th class="title">
+			            <th class="title" width="10%">
 			                <?php echo JText::_('*Length'); ?>
 			            </th>
-			            <th class="title">
+			            <th class="title" width="10%">
 			                <?php echo JText::_('*Duration'); ?>
 			            </th>
-			            <th class="title">
+			            <th class="title" width="10%">
 			                <?php echo JText::_('*Type'); ?>
 			            </th>
 			        </tr>
 			    </thead>
-			    <tfoot></tfoot>
+			    <tfoot id="available_asset_pagination"></tfoot>
+                <script type="text/html" id="asset_pagination">
+					<tr>
+						<td align="center" colspan="20">
+                            <div class="pagination">
+                                <div class="button2-right" id="page_start"><div class="start"><a onclick="AvailableAssets.page(0);" title="Start" href="#assets">Start</a></div></div>
+                                <div class="button2-right" id="page_prev"><div class="prev"><a onclick="AvailableAssets.page({{previous}});" title="Prev" href="#assets">Prev</a></div></div>
+                                <div class="button2-left" id="page_pages"><div class="page"></div></div>
+                                <div class="button2-left" id="page_next"><div class="next"><a onclick="AvailableAssets.page({{next}});" title="Next" href="#">Next</a></div></div>
+                                <div class="button2-left" id="page_last"><div class="end"><a onclick="AvailableAssets.page({{total}});" title="End" href="#">End</a></div></div>
+                                <div class="limit">Page {{current}} of {{total}}</div>
+                            </div>
+						</td>
+					</tr>
+				</script>
 			    <tbody id="available_asset_list" style="height: 350px;">
-                    <?php for ($i=0; $i<12; $i++) : ?>
+                    <?php for ($i=0; $i<15; $i++) : ?>
                     <tr>
                         <td>Blank</td><td>Blank</td><td>Blank</td><td>Blank</td><td>Blank</td>
                     </tr>

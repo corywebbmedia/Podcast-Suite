@@ -139,27 +139,20 @@ window.addEvent('domready', function () {
 var AvailableAssets = {
     loaded: false,
     assets: null,
+    pagination: null,
     asset_ids: [],
 	asset_list: 'available_asset_list',
     asset_template: 'available_asset',
-	asset_template_html: null
+	asset_template_html: null,
+    pagination_holder: 'available_asset_pagination',
+    pagination_template: 'asset_pagination',
+    pagination_template_html: null
 };
 
 // Loads the assets
 AvailableAssets.init = function() {
     if (!this.loaded) {
-        new Request.JSON({
-            url: 'index.php',
-            onSuccess: function  (results) {
-                AvailableAssets.assets = results;
-                AvailableAssets.render();
-            }
-        }).get({
-            option: 'com_podcast',
-            format: 'json',
-            task: 'assets.list_available_assets'
-        });
-        AvailableAssets.asset_template_html = $(AvailableAssets.asset_template).innerHTML;
+        AvailableAssets.page(1);
     }
     this.loaded = true;
 };
@@ -177,22 +170,59 @@ AvailableAssets.render = function() {
             asset_enclosure_url: this.getParent('tr').getElement('td.url').get('text'),
             asset_duration: this.getParent('tr').getElement('td.duration').get('text')
         }
+        if (EpisodeMedia.asset_ids.length == 0) item.asset_default = '1';
 		EpisodeMedia.add_item(item);
 	});
+    
+    AvailableAssets.setup_pagination();
 }
 
 AvailableAssets.add_item = function (asset) {
 	// render markup
 	var asset_html = Mustache.to_html(AvailableAssets.asset_template_html, asset);
 	$(AvailableAssets.asset_list).innerHTML += asset_html;
-
-/*
-	// assign events
-	$$('#' + EpisodeMedia.asset_list + ' .trash').addEvent('click', function () {
-		EpisodeMedia.destroy(parseInt(this.get('rel'), 10));
-	});
-	
-	$$('#' + EpisodeMedia.asset_list + ' .default-toggle').addEvent('click', function () {
-		EpisodeMedia.change_default(parseInt(this.get('rel'), 10));
-	}); */
 };
+
+AvailableAssets.page = function(page) {
+    new Request.JSON({
+        url: 'index.php',
+        onSuccess: function  (results) {
+            AvailableAssets.assets = results.items;
+            AvailableAssets.pagination = results.pagination;
+            AvailableAssets.render();
+        }
+    }).get({
+        option: 'com_podcast',
+        page: page - 1,
+        format: 'json',
+        task: 'assets.list_available_assets'
+    });
+    AvailableAssets.asset_template_html = $(AvailableAssets.asset_template).innerHTML;
+    AvailableAssets.pagination_template_html = $(AvailableAssets.pagination_template).innerHTML;
+}
+
+// Setup pagination
+AvailableAssets.setup_pagination = function() {
+    $(AvailableAssets.pagination_holder).innerHTML = Mustache.to_html(AvailableAssets.pagination_template_html, AvailableAssets.pagination);
+    
+    var pages = AvailableAssets.pagination;
+    
+    if (pages.current == '1') {
+        $('page_start').getElement('div').set('html', '<span>'+$('page_start').getElement('a').get('text'));
+        $('page_prev').getElement('div').set('html', '<span>'+$('page_prev').getElement('a').get('text'));
+    }
+    
+    for (i = 1; i <= pages.total; i++) {
+        if (i == pages.current) {
+            $('page_pages').getElement('div').innerHTML += '<span>'+i+'</span>';
+        }
+        else {
+            $('page_pages').getElement('div').innerHTML += '<a href="#assets" onclick="AvailableAssets.page('+i+');" title="'+i+'">'+i+'</a>';
+        }
+    }
+    
+    if (pages.current == pages.total) {
+        $('page_last').getElement('div').set('html', '<span>'+$('page_last').getElement('a').get('text'));
+        $('page_next').getElement('div').set('html', '<span>'+$('page_next').getElement('a').get('text'));
+    }
+}

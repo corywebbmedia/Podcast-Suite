@@ -1,6 +1,10 @@
 <?php
 defined( '_JEXEC' ) or die;
 
+if (!JFactory::getUser()->authorise('core.manage', 'com_content')) {
+	return JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR'));
+}
+
 $document = JFactory::getDocument();
 $document->addStyleSheet(JURI::root() . '/media/com_podcast/css/admin.css');
 
