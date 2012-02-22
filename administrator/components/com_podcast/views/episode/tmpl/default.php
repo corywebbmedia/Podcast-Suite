@@ -20,6 +20,7 @@ $doc->addScriptDeclaration("Upload.url_root = '" . JURI::root() . "';");
 
 $doc->addScript(JURI::root().'media/com_podcast/js/admin/episode.js');
 $doc->addScriptDeclaration("EpisodeMedia.episode_id = '" . $this->item->episode_id . "';");
+$doc->addScriptDeclaration("EpisodeMedia.token = '" . JUtility::getToken() . "';");
 
 ?>
 
@@ -154,7 +155,15 @@ $doc->addScriptDeclaration("EpisodeMedia.episode_id = '" . $this->item->episode_
 
 		<fieldset class="adminform" id="custom_media">
 			<legend>Custom Media</legend>
-            
+
+			<label for="asset_enclosure_url">URL</label><input type="text" name="asset_enclosure_url" value="" id="asset_enclosure_url">
+			<label for="asset_enclosure_length">Enclosure Length</label><input type="text" name="asset_enclosure_length" value="" id="asset_enclosure_length">
+			<label for="asset_enclosure_type">Enclosure Type</label><input type="text" name="asset_enclosure_type" value="" id="asset_enclosure_type">
+			<label for="asset_duration">Duration</label><input type="text" name="asset_duration" value="" id="asset_duration">
+			<label for="asset_closed_caption">Closed Captioned</label><select name="asset_closed_caption" id="asset_closed_caption">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+			</select>
 
 		</fieldset>
 

@@ -7,7 +7,8 @@ var EpisodeMedia = {
 	asset_id_list: 'asset_ids',
 	asset_default_input: 'asset_default',
 	asset_template: 'episode_asset',
-	asset_template_html: null
+	asset_template_html: null,
+	token: null
 };
 
 EpisodeMedia.render = function () {
@@ -80,8 +81,30 @@ EpisodeMedia.set_default = function  (asset_id) {
 	$(EpisodeMedia.asset_default_input).value = asset_id;
 };
 
-EpisodeMedia.add_from_form = function () {
-	
+EpisodeMedia.add_custom = function () {
+	EpisodeMedia.add_from_form(EpisodeMedia.add_item);
+};
+
+EpisodeMedia.add_from_form = function (callback) {
+	var asset = {
+		asset_enclosure_url: $('asset_enclosure_url').value,
+		asset_enclosure_length: $('asset_enclosure_length').value,
+		asset_enclosure_type: $('asset_enclosure_type').value,
+		asset_duration: $('asset_duration').value,
+		asset_closed_caption: $('asset_closed_caption').value
+	};
+
+	var req = asset;
+	req.option = 'com_podcast';
+	req.format = 'json';
+	req.task = 'assets.save';  
+
+	req[EpisodeMedia.token] = 1;
+
+	new Request.JSON({
+		url: 'index.php',
+		onSuccess: callback
+	}).post(req);
 };
 
 EpisodeMedia.init = function () {
