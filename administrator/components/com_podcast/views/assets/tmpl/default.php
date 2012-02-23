@@ -1,22 +1,39 @@
 <?php 
 defined( '_JEXEC' ) or die;
-$listOrder	= $this->escape($this->state->get('list.ordering'));
-$listDirn	= $this->escape($this->state->get('list.direction'));
-JHtml::_('behavior.mootools');
+
+JHTML::_('behavior.mootools');
+
+$doc = JFactory::getDocument();
+
+$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.full.js');
+$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.gears.js');
+$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.silverlight.js');
+$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.flash.js');
+$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.html4.js');
+$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.html5.js');
+
+$doc->addScript(JURI::root().'media/com_podcast/js/admin/mustache.js');
+
+$doc->addScript(JURI::root().'media/com_podcast/js/admin/upload.js');
+$doc->addScriptDeclaration("Upload.token = '" . JUtility::getToken() . "';");
+$doc->addScriptDeclaration("Upload.url_root = '" . JURI::root() . "';");
+
+$doc->addScript(JURI::root().'media/com_podcast/js/admin/assets.js');
+$doc->addScriptDeclaration("Asset.token = '" . JUtility::getToken() . "';");
+
 ?>
 
-<div class="width-30 fltlft">
-    <?php echo $this->loadTemplate('bins'); ?>
+<div class="width-30 fltlft" id="folders">
+    
 </div>
 
-<div class="width-70 fltrt">
-<form action="<?php echo JRoute::_('index.php?option=com_podcast&view=assets'); ?>" method="post" name="adminForm" id="adminForm">
+<div class="width-70 fltrt" id="files">
+
 	<fieldset id="filter-bar">
 		<div class="filter-search fltlft">
 			<label class="filter-search-lbl" for="filter_search"><?php echo JText::_('JSEARCH_FILTER_LABEL'); ?></label>
-			<input type="text" name="filter_search" id="filter_search" value="<?php echo $this->escape($this->state->get('filter.search')); ?>" title="<?php echo JText::_('COM_PODCAST_SEARCH_EPISODES'); ?>" />
-			<button type="submit"><?php echo JText::_('JSEARCH_FILTER_SUBMIT'); ?></button>
-			<button type="button" onclick="document.id('filter_search').value='';this.form.submit();"><?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?></button>
+			<input type="text" name="filter_search" id="search_assets" value="<?php echo $this->escape($this->state->get('filter.search')); ?>" title="<?php echo JText::_('COM_PODCAST_SEARCH_EPISODES'); ?>" />
+			<button type="button" id="search_clear"><?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?></button>
 		</div>
 	</fieldset>
 	<div class="clr"> </div>
@@ -29,70 +46,50 @@ JHtml::_('behavior.mootools');
 				</th>
                 <th width="1%"></th>
                 <th class="title">
-					<?php echo JHtml::_('grid.sort', 'COM_PODCAST_ASSET_PATH', 'asset_enclosure_url', $listDirn, $listOrder); ?>
+					*Path
 				</th>
 				<th class="title">
-					<?php echo JHtml::_('grid.sort', 'COM_PODCAST_ASSET_FILE', 'asset_enclosure_url', $listDirn, $listOrder); ?>
+					*File
 				</th>
-                <th>Uses</th>
-                <th>Status</th>
+                <th>*Uses</th>
+                <th>*Status</th>
 			</tr>
 		</thead>
-		<tfoot>
-			<tr>
-				<td colspan="6">
-					<?php echo $this->pagination->getListFooter(); ?>
-				</td>
-			</tr>
+		<tfoot id="media_pagination">
 		</tfoot>
-		<tbody>
-        
-		<?php foreach ($this->items as $i => $item) : $info = pathinfo($item->asset_enclosure_url); ?>
-			<tr class="row<?php echo $i % 2; ?>">
-				<td class="center">
-					<?php echo JHtml::_('grid.id', $i, $item->asset_id); ?>
-				</td>
-                <td>
-                    <?php if (is_file(JPATH_ROOT.'/media/com_podcast/images/filetypes/'.$info['extension'].'.png')) : ?>
-                    <img src="<?php echo JURI::root() ?>media/com_podcast/images/filetypes/<?php echo $info['extension'] ?>.png" />
-                    <?php else : ?>
-                    <img src="<?php echo JURI::root() ?>media/com_podcast/images/filetypes/blank.png" />
-                    <?php endif; ?>
+        <script type="text/html" id="pagination_template">
+            <tr>
+                <td align="center" colspan="20">
+                    <div class="pagination">
+                        <div class="button2-right" id="page_start"><div class="start"><a onclick="AvailableAssets.page(0);" title="Start" href="#assets">*Start</a></div></div>
+                        <div class="button2-right" id="page_prev"><div class="prev"><a onclick="AvailableAssets.page({{previous}});" title="Prev" href="#assets">*Prev</a></div></div>
+                        <div class="button2-left" id="page_pages"><div class="page"></div></div>
+                        <div class="button2-left" id="page_next"><div class="next"><a onclick="AvailableAssets.page({{next}});" title="Next" href="#assets">*Next</a></div></div>
+                        <div class="button2-left" id="page_last"><div class="end"><a onclick="AvailableAssets.page({{total}});" title="End" href="#assets">*End</a></div></div>
+                        <div class="limit">*Page {{current}} of {{total}}</div>
+                    </div>
                 </td>
-                <td>
-                    <?php echo $info['dirname']; ?>
-                </td>
-				<td>
-					<?php echo $info['filename']; ?>
-				</td>
-                <td>
-                    <?php echo $item->episodes; ?>
-                </td>
-                <td class="jgrid">
-                    <?php $state = array_shift($this->plugin->trigger('onFileVerify', $item->asset_enclosure_url)); ?>
-                    <?php if ($state) : ?>
-                    <span class="state publish"></span>
-                    <?php else : ?>
-                    <span class="state unpublish"></span>
-                    <?php endif; ?>
-                </td>
-			</tr>
-			<?php endforeach; ?>
+            </tr>
+        </script>
+		<tbody id="media_list">
            
-		</tbody> 
-        <?php if (empty($this->items)) : ?>
-        <tr><td>No files</td></tr>
-        <?php endif; ?>
+		</tbody>
+        <script type="text/html" id="asset_template">
+            <tr rel="{{asset_id}}">
+                <td align="center" width="1%">
+                    <span class="jgrid"><span class="{{media_default}} media-button default-toggle" rel="{{asset_id}}">&nbsp;</span></span>
+                </td>
+                <td class="url">{{asset_enclosure_url}}</td>
+                <td class="length">{{asset_enclosure_length}}</td>
+                <td class="duration">{{asset_duration}}</td>
+                <td class="type">{{asset_enclosure_type}}</td>
+                <td align="center" width="1%">
+                    <span class="jgrid"><span class="trash media-button" rel="{{asset_id}}">&nbsp;</span></span>
+                </td>
+            </tr>
+        </script>
 	</table>
 
-	<div>
-		<input type="hidden" name="task" value="" />
-		<input type="hidden" name="boxchecked" value="0" />
-		<input type="hidden" name="filter_order" value="<?php echo $listOrder; ?>" />
-		<input type="hidden" name="filter_order_Dir" value="<?php echo $listDirn; ?>" />
-		<?php echo JHtml::_('form.token'); ?>
-	</div>
-</form>
 </div>
 
 <div class="clr"></div>
