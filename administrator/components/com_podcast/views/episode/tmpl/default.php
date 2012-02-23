@@ -173,6 +173,8 @@ $doc->addScriptDeclaration("EpisodeMedia.token = '" . JUtility::getToken() . "';
 				<option value="0">No</option>
 				<option value="1">Yes</option>
 			</select>
+            <div class="clr"></div>
+            <input type="button" value="*Add Custom Media" class="button" id="add_custom_media" />
 
 		</fieldset>
 

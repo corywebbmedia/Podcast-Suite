@@ -186,6 +186,10 @@ window.addEvent('domready', function () {
             customSlide.toggle();
         }
 	});
+    
+    $('add_custom_media').addEvent('click', function() {
+        CustomAsset.add();
+    });
 
 	EpisodeMedia.init();
 });
@@ -226,7 +230,6 @@ AvailableAssets.render = function() {
 	}
     
     $$('#' + AvailableAssets.asset_list + ' .add_asset').addEvent('click', function () {
-        console.info(this);
         var item = {
             asset_id: this.get('rel'),
             asset_enclosure_url: this.getParent('tr').getElement('td.url').get('text'),
@@ -290,5 +293,35 @@ AvailableAssets.setup_pagination = function() {
     if (pages.current == pages.total) {
         $('page_last').getElement('div').set('html', '<span>'+$('page_last').getElement('a').get('text'));
         $('page_next').getElement('div').set('html', '<span>'+$('page_next').getElement('a').get('text'));
+    }
+};
+
+CustomAsset = {
+    add: function() {
+        var asset = {
+            asset_enclosure_url: $('asset_enclosure_url').get('value'),
+            asset_enclosure_length: $('asset_enclosure_length').get('value'),
+            asset_enclosure_type: $('asset_enclosure_type').get('value'),
+            asset_duration: $('asset_duration').get('value'),
+            asset_closed_caption: $('asset_closed_caption').get('value')
+        }
+        
+        new Request({
+            url: 'index.php',
+            data: {
+                option: 'com_podcast',
+                view: 'assets',
+                asset: asset,
+                episode_id: EpisodeMedia.episode_id,
+                format: 'json',
+                task: 'assets.add_custom_asset'
+            },
+            onSuccess: function(response) {
+                if (response > 0) {
+                    asset.asset_id = response;
+                    EpisodeMedia.add_item(asset);
+                }
+            }
+        }).send();
     }
 };
