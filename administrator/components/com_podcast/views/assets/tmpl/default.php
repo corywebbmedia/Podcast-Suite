@@ -1,30 +1,30 @@
-<?php 
+<?php
 defined( '_JEXEC' ) or die;
 
 JHTML::_('behavior.mootools');
 
 $doc = JFactory::getDocument();
 
-$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.full.js');
-$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.gears.js');
-$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.silverlight.js');
-$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.flash.js');
-$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.html4.js');
-$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.html5.js');
-
 $doc->addScript(JURI::root().'media/com_podcast/js/admin/mustache.js');
 
+$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.js');
+$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.flash.js');
+$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.html5.js');
+
 $doc->addScript(JURI::root().'media/com_podcast/js/admin/upload.js');
-$doc->addScriptDeclaration("Upload.token = '" . JUtility::getToken() . "';");
-$doc->addScriptDeclaration("Upload.url_root = '" . JURI::root() . "';");
+$doc->addScriptDeclaration("Upload.config.token = '" . JUtility::getToken() . "';");
 
 $doc->addScript(JURI::root().'media/com_podcast/js/admin/assets.js');
 $doc->addScriptDeclaration("Asset.token = '" . JUtility::getToken() . "';");
 
 ?>
 
+<div id="uploader_container">
+	<ul id="upload_file_list"></ul>
+</div>
+
 <div class="width-30 fltlft" id="folders">
-    
+
 </div>
 
 <div class="width-70 fltrt" id="files">
@@ -72,7 +72,7 @@ $doc->addScriptDeclaration("Asset.token = '" . JUtility::getToken() . "';");
             </tr>
         </script>
 		<tbody id="media_list">
-           
+
 		</tbody>
         <script type="text/html" id="asset_template">
             <tr rel="{{asset_id}}">

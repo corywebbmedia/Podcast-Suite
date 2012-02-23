@@ -1,5 +1,46 @@
+// requires uploader
+
 window.addEvent('domready', function () {
     Assets.init();
+
+	var uploader = Upload.new_uploader({
+		browse_button_id: 'upload_toolbar_button',
+		container_id: 'uploader_container'
+	});
+	
+	uploader.bind('FilesAdded', function  () {
+		uploader.start();
+	});
+	
+	uploader.bind('FilesAdded', function(up, files) {
+		for (i = 0; i < files.length; i++) {
+			$('upload_file_list').innerHTML += '<li id="' + files[i].id + '">' + files[i].name + ' (' + plupload.formatSize(files[i].size) + ') <b></b></li>';
+		}
+	});
+
+	uploader.bind('UploadProgress', function(up, file) {
+		$(file.id).getElementsByTagName('b')[0].innerHTML = '<span>' + file.percent + "%</span>";
+	});
+    
+    uploader.bind('FileUploaded', function(up, file, info) {
+        if (info.status == 200) {
+            var json = JSON.decode(info.response);
+			alert('file uploaded');
+			console.log(json);
+            // var replace = confirm('Would you like to set '+json.enclosure_url+' as the default media item?');
+            // if (replace) {
+            //     $('jform_item_enclosure_url').set('value', json.enclosure_url);
+            //     $('jform_item_enclosure_type').set('value', json.enclosure_type);
+            //     $('jform_item_duration').set('value', json.enclosure_duration);
+            //     $('jform_item_enclosure_length').set('value', json.enclosure_length);
+            //     var assets = JSON.decode($('jform_item_assets').get('value'));
+            //     assets.shift();
+            //     assets.unshift(json.asset_id);
+            //     assets = JSON.encode(assets);
+            //     $('jform_item_assets').set('value', assets.replace(/\"/g, ''));
+            // }
+        }
+    });
 });
 
 

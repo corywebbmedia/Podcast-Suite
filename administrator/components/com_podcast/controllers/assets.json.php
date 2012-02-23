@@ -2,6 +2,7 @@
 defined( '_JEXEC' ) or die;
 
 jimport('joomla.application.component.controller');
+jimport('joomla.event.dispatcher');
 
 class PodcastControllerAssets extends JController
 {
@@ -21,32 +22,32 @@ class PodcastControllerAssets extends JController
 		$db->setQuery($query);
 		echo json_encode($db->loadObjectList());
 	}
-    
+
     public function list_available_assets()
     {
         $page = JRequest::getInt('page', 0);
         $search = JRequest::getString('search', '');
-        
+
 		$db = JFactory::getDBO();
 		$query = $db->getQuery(true);
 
 		$query->select('SQL_CALC_FOUND_ROWS *')
 			->from('#__podcast_assets')
 			->where("enabled = '1'");
-        
+
         if ($search) $query->where('asset_enclosure_url LIKE "%'.$search.'%"');
 
 		$db->setQuery($query, $page * 10, 10);
         $db->query();
-        
+
         $response = new stdClass();
 
         $response->items = $db->loadObjectList();
-        
+
         $db->setQuery('SELECT FOUND_ROWS();');
-        
+
         jimport('joomla.html.pagination');
-        
+
         $pagination = new JPagination( $db->loadResult(), $page * 10, 10);
         $response->pagination->total = $pagination->{'pages.total'};
         $response->pagination->current = $pagination->{'pages.current'};
@@ -57,22 +58,53 @@ class PodcastControllerAssets extends JController
 
 		echo json_encode($response);
     }
-    
+
     public function add_custom_asset()
     {
         $asset = JRequest::getVar('asset', '{}');
 
         $db = JFactory::getDBO();
-        
+
         $db->setQuery(
                 $db->getQuery(true)
                 ->insert('#__podcast_assets')
                 ->columns('asset_enclosure_url', 'asset_enclosure_length', 'asset_enclosure_type', 'asset_duration', 'asset_closed_captioned')
                 ->values($db->quote($asset['asset_enclosure_url']), $db->quote($asset['asset_enclosure_length']), $db->quote($asset['asset_enclosure_type']), $db->quote($asset['asset_duration']), $db->quote($asset['asset_closed_caption']))
         )->query();
-        
+
         $result = $db->insertid();
-        
+
         print $result;
     }
+
+	public function upload() {
+		JRequest::checkToken('get') or die;
+
+		$model = $this->getModel('asset');
+
+		$options = JComponentHelper::getParams('com_podcast');
+		$type = $options->get('storage', 'default');
+
+		JPluginHelper::importPlugin('podcast', $type);
+		$dispatcher =& JDispatcher::getInstance();
+
+		$result = $dispatcher->trigger('onFileStore');
+
+		if (is_array($result)) {
+			$result = array_shift($result);
+		}
+
+		if ($result->result) {
+			$asset = $model->store($result);
+
+			if (!$asset) {
+				$result->result = false;
+				$result->message = 'Could not store in assets table';
+			} else {
+				$result->asset_id = $asset;
+			}
+		}
+
+		echo json_encode($result);
+	}
 }
