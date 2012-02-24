@@ -156,45 +156,6 @@ EpisodeMedia.init = function () {
 	EpisodeMedia.asset_template_html = $(EpisodeMedia.asset_template).innerHTML;
 };
 
-window.addEvent('domready', function () {
-	var availableSlide = new Fx.Slide('available');
-	availableSlide.hide();
-
-	var customSlide = new Fx.Slide('custom_media');
-	customSlide.hide();
-
-	$('browse_available').addEvent('click', function() {
-		if (customSlide.open) {
-            customSlide.slideOut().chain(function() {
-                availableSlide.toggle();
-            });
-        } else {
-            availableSlide.toggle();
-        }
-        // Load assets if we are opening the slider
-        if (!availableSlide.open) {
-            AvailableAssets.init();
-        }
-	});
-	
-	$('add_custom').addEvent('click', function () {
-        if (availableSlide.open) {
-            availableSlide.slideOut().chain(function() {
-                customSlide.toggle();
-            });
-        } else {
-            customSlide.toggle();
-        }
-	});
-    
-    $('add_custom_media').addEvent('click', function() {
-        CustomAsset.add();
-    });
-
-	EpisodeMedia.init();
-});
-
-
 // Jeremy's Additions
 var AvailableAssets = {
     loaded: false,
@@ -325,3 +286,41 @@ CustomAsset = {
         }).send();
     }
 };
+
+window.addEvent('domready', function () {
+	var availableSlide = new Fx.Slide('available');
+	availableSlide.hide();
+
+	var customSlide = new Fx.Slide('custom_media');
+	customSlide.hide();
+
+	$('browse_available').addEvent('click', function() {
+		if (customSlide.open) {
+            customSlide.slideOut().chain(function() {
+                availableSlide.toggle();
+            });
+        } else {
+            availableSlide.toggle();
+        }
+        // Load assets if we are opening the slider
+        if (!availableSlide.open) {
+            AvailableAssets.init();
+        }
+	});
+	
+	$('add_custom').addEvent('click', function () {
+        if (availableSlide.open) {
+            availableSlide.slideOut().chain(function() {
+                customSlide.toggle();
+            });
+        } else {
+            customSlide.toggle();
+        }
+	});
+    
+    $('add_custom_media').addEvent('click', function() {
+        CustomAsset.add();
+    });
+
+	EpisodeMedia.init();
+});
