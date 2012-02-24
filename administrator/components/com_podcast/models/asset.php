@@ -32,6 +32,6 @@ class PodcastModelAsset extends JModel
 
 		$asset->store();
 
-		return $asset->asset_id;
+		return $asset->podcast_asset_id;
     }
 }

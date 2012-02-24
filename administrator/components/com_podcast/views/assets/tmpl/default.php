@@ -75,16 +75,16 @@ $doc->addScriptDeclaration("Asset.token = '" . JUtility::getToken() . "';");
 
 		</tbody>
         <script type="text/html" id="asset_template">
-            <tr rel="{{asset_id}}">
+            <tr rel="{{podcast_asset_id}}">
                 <td align="center" width="1%">
-                    <span class="jgrid"><span class="{{media_default}} media-button default-toggle" rel="{{asset_id}}">&nbsp;</span></span>
+                    <span class="jgrid"><span class="{{media_default}} media-button default-toggle" rel="{{podcast_asset_id}}">&nbsp;</span></span>
                 </td>
                 <td class="url">{{asset_enclosure_url}}</td>
                 <td class="length">{{asset_enclosure_length}}</td>
                 <td class="duration">{{asset_duration}}</td>
                 <td class="type">{{asset_enclosure_type}}</td>
                 <td align="center" width="1%">
-                    <span class="jgrid"><span class="trash media-button" rel="{{asset_id}}">&nbsp;</span></span>
+                    <span class="jgrid"><span class="trash media-button" rel="{{podcast_asset_id}}">&nbsp;</span></span>
                 </td>
             </tr>
         </script>

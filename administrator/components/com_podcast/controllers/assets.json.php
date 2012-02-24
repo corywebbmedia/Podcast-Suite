@@ -13,9 +13,9 @@ class PodcastControllerAssets extends JController
 		$db = JFactory::getDBO();
 		$query = $db->getQuery(true);
 
-		$query->select('asset_id, asset_enclosure_url, asset_duration, `default` AS asset_default, asset_enclosure_type, asset_enclosure_length')
+		$query->select('podcast_asset_id, asset_enclosure_url, asset_duration, `default` AS asset_default, asset_enclosure_type, asset_enclosure_length')
 			->from('#__podcast_assets_map')
-			->join('LEFT', '#__podcast_assets USING(asset_id)')
+			->join('LEFT', '#__podcast_assets USING(podcast_asset_id)')
 			->where("enabled = '1'")
 			->where("episode_id = '{$episode_id}'");
 
@@ -101,7 +101,7 @@ class PodcastControllerAssets extends JController
 				$result->result = false;
 				$result->message = 'Could not store in assets table';
 			} else {
-				$result->asset_id = $asset;
+				$result->podcast_asset_id = $asset;
 			}
 		}
 

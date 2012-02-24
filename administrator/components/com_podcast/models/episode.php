@@ -29,10 +29,10 @@ class PodcastModelEpisode extends JModelAdmin
             a.asset_duration AS item_duration,
             a.asset_enclosure_type AS item_enclosure_type,
             a.asset_closed_caption AS item_closed_caption,
-            GROUP_CONCAT(m.asset_id separator ",") AS item_assets')
+            GROUP_CONCAT(m.podcast_asset_id separator ",") AS item_assets')
                 ->from('#__podcast_episodes AS tbl')
                 ->join('LEFT', '#__podcast_assets_map AS m ON tbl.episode_id = m.episode_id')
-                ->join('LEFT', '#__podcast_assets AS a ON m.asset_id = a.asset_id')
+                ->join('LEFT', '#__podcast_assets AS a ON m.podcast_asset_id = a.podcast_asset_id')
                 ->order('m.default')
                 ->where('tbl.episode_id = '.$pk)
                 ->group('tbl.episode_id')
@@ -51,7 +51,7 @@ class PodcastModelEpisode extends JModelAdmin
 	        $query = $db->getQuery(true);
 	        $query->select('tbl.*, m.*')
 	                ->from('#__podcast_assets AS tbl')
-	                ->join('LEFT', '#__podcast_assets_map AS m ON tbl.asset_id = m.asset_id');
+	                ->join('LEFT', '#__podcast_assets_map AS m ON tbl.podcast_asset_id = m.podcast_asset_id');
 	        $query->where('m.episode_id = '.$item->episode_id);
 	        $db->setQuery($query);
 

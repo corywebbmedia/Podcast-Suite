@@ -45,7 +45,7 @@ class PodcastModelFeed extends JModelList
             a.asset_closed_caption AS item_closed_caption')
             ->from('#__podcast_episodes AS tbl')
 			->join('LEFT', '#__podcast_assets_map AS m USING(episode_id)')
-            ->join('LEFT', '#__podcast_assets AS a USING(asset_id)')
+            ->join('LEFT', '#__podcast_assets AS a USING(podcast_asset_id)')
             ->where('m.default = 1')
 			->where("tbl.feed_id = '{$feed_id}'")
 			->where("tbl.published = 1");

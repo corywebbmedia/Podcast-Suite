@@ -34,7 +34,7 @@ EpisodeMedia.add_item = function (asset) {
 	$(EpisodeMedia.asset_list).innerHTML += asset_html;
 
 	// update ids
-	EpisodeMedia.asset_ids.push(parseInt(asset.asset_id, 10));
+	EpisodeMedia.asset_ids.push(parseInt(asset.podcast_asset_id, 10));
 	EpisodeMedia.update_asset_id_list();
 	
 	// assign events
@@ -47,16 +47,16 @@ EpisodeMedia.add_item = function (asset) {
 	});
 };
 
-EpisodeMedia.destroy = function (asset_id) {
+EpisodeMedia.destroy = function (podcast_asset_id) {
 	var new_ids = [];
 
 	for (var i=0; i < EpisodeMedia.asset_ids.length; i++) {
-		if (EpisodeMedia.asset_ids[i] !== asset_id) {
+		if (EpisodeMedia.asset_ids[i] !== podcast_asset_id) {
 			new_ids.push(EpisodeMedia.asset_ids[i]);
 		}
 	}
 
-	$$('#' + EpisodeMedia.asset_list + ' tr[rel=' + asset_id + ']').destroy();
+	$$('#' + EpisodeMedia.asset_list + ' tr[rel=' + podcast_asset_id + ']').destroy();
 
 	EpisodeMedia.asset_ids = new_ids;
 	EpisodeMedia.update_asset_id_list();
@@ -66,21 +66,21 @@ EpisodeMedia.update_asset_id_list = function  () {
 	$(EpisodeMedia.asset_id_list).value = EpisodeMedia.asset_ids.join(',');
 };
 
-EpisodeMedia.change_default = function  (asset_id) {
+EpisodeMedia.change_default = function  (podcast_asset_id) {
 	$$('#' + EpisodeMedia.asset_list + ' tr[rel=' + EpisodeMedia.asset_default + '] span.default')
 		.removeClass('default')
 		.addClass('notdefault');
 
-	$$('#' + EpisodeMedia.asset_list + ' tr[rel=' + asset_id + '] span.notdefault')
+	$$('#' + EpisodeMedia.asset_list + ' tr[rel=' + podcast_asset_id + '] span.notdefault')
 		.removeClass('notdefault')
 		.addClass('default');
 
-	EpisodeMedia.set_default(asset_id);
+	EpisodeMedia.set_default(podcast_asset_id);
 };
 
-EpisodeMedia.set_default = function  (asset_id) {
-	EpisodeMedia.asset_default = asset_id;
-	$(EpisodeMedia.asset_default_input).value = asset_id;
+EpisodeMedia.set_default = function  (podcast_asset_id) {
+	EpisodeMedia.asset_default = podcast_asset_id;
+	$(EpisodeMedia.asset_default_input).value = podcast_asset_id;
 };
 
 EpisodeMedia.add_custom = function () {
@@ -231,7 +231,7 @@ AvailableAssets.render = function() {
     
     $$('#' + AvailableAssets.asset_list + ' .add_asset').addEvent('click', function () {
         var item = {
-            asset_id: this.get('rel'),
+            podcast_asset_id: this.get('rel'),
             asset_enclosure_url: this.getParent('tr').getElement('td.url').get('text'),
             asset_duration: this.getParent('tr').getElement('td.duration').get('text')
         }
@@ -318,7 +318,7 @@ CustomAsset = {
             },
             onSuccess: function(response) {
                 if (response > 0) {
-                    asset.asset_id = response;
+                    asset.podcast_asset_id = response;
                     EpisodeMedia.add_item(asset);
                 }
             }

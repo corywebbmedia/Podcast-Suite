@@ -35,7 +35,7 @@ window.addEvent('domready', function () {
             //     $('jform_item_enclosure_length').set('value', json.enclosure_length);
             //     var assets = JSON.decode($('jform_item_assets').get('value'));
             //     assets.shift();
-            //     assets.unshift(json.asset_id);
+            //     assets.unshift(json.podcast_asset_id);
             //     assets = JSON.encode(assets);
             //     $('jform_item_assets').set('value', assets.replace(/\"/g, ''));
             // }

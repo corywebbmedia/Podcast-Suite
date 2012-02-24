@@ -1,16 +1,16 @@
 CREATE TABLE IF NOT EXISTS `#__podcast_assets` (
-  `asset_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `podcast_asset_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `asset_enclosure_url` varchar(500) NOT NULL,
   `asset_enclosure_length` varchar(31) NOT NULL,
   `asset_enclosure_type` varchar(255) NOT NULL,
   `asset_duration` varchar(31) NOT NULL,
   `asset_closed_caption` int(1) NOT NULL DEFAULT '0',
   `enabled` int(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`asset_id`)
+  PRIMARY KEY (`podcast_asset_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `#__podcast_assets_map` (
-  `asset_id` int(11) NOT NULL,
+  `podcast_asset_id` int(11) NOT NULL,
   `episode_id` int(11) NOT NULL,
   `default` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `#__podcast_feeds` (
   `feed_category2` varchar(255) DEFAULT NULL,
   `feed_category3` varchar(255) DEFAULT NULL,
   `feed_new_feed_url` varchar(511) DEFAULT NULL,
-	`feed_complete` tinyint(1) DEFAULT '0',
+  `feed_complete` tinyint(1) DEFAULT '0',
   `feed_created` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `published` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`feed_id`),

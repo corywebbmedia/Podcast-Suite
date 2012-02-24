@@ -28,7 +28,7 @@ class PodcastControllerEpisode extends JControllerForm
         foreach ($assets as $asset)
         {
             $row = null;
-            $row->asset_id = $asset;
+            $row->podcast_asset_id = $asset;
             $row->episode_id = $episode_id;
             $row->default = ($asset == $default) ? 1 : 0;
             $db->insertObject('#__podcast_assets_map', $row);
