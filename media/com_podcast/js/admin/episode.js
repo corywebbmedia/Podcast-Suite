@@ -18,6 +18,13 @@ EpisodeMedia.render = function () {
 };
 
 EpisodeMedia.add_item = function (asset) {
+
+	var podcast_asset_id = parseInt(asset.podcast_asset_id, 10);
+
+	if (EpisodeMedia.asset_ids.indexOf(podcast_asset_id) != -1) {
+		return false;
+	}
+
 	// set data
 	asset.media_default = function  () {
 		if (asset.asset_default === "1") {
@@ -26,22 +33,22 @@ EpisodeMedia.add_item = function (asset) {
 			return 'notdefault';
 		}
 	};
-    
+
     asset.asset_enclosure_length = EpisodeMedia.convertLength(asset.asset_enclosure_length);
-    
+
 	// render markup
 	var asset_html = Mustache.to_html(EpisodeMedia.asset_template_html, asset);
 	$(EpisodeMedia.asset_list).innerHTML += asset_html;
 
 	// update ids
-	EpisodeMedia.asset_ids.push(parseInt(asset.podcast_asset_id, 10));
+	EpisodeMedia.asset_ids.push(podcast_asset_id);
 	EpisodeMedia.update_asset_id_list();
-	
+
 	// assign events
 	$$('#' + EpisodeMedia.asset_list + ' .trash').addEvent('click', function () {
 		EpisodeMedia.destroy(parseInt(this.get('rel'), 10));
 	});
-	
+
 	$$('#' + EpisodeMedia.asset_list + ' .default-toggle').addEvent('click', function () {
 		EpisodeMedia.change_default(parseInt(this.get('rel'), 10));
 	});
@@ -193,7 +200,6 @@ EpisodeMediaUploader.init = function () {
 	this.uploader.bind('FileUploaded', function(up, file, info) {
 		if (info.status == 200) {
 			var json = JSON.decode(info.response);
-			console.log(json);
 			
 			var asset = {
 				podcast_asset_id: json.podcast_asset_id,
