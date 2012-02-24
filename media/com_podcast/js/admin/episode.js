@@ -281,7 +281,7 @@ AvailableAssets.setup_pagination = function() {
         $('page_prev').getElement('div').set('html', '<span>'+$('page_prev').getElement('a').get('text'));
     }
     
-    for (i = 1; i <= pages.total; i++) {
+    for (var i = 1; i <= pages.total; i++) {
         if (i == pages.current) {
             $('page_pages').getElement('div').innerHTML += '<span>'+i+'</span>';
         }
@@ -304,9 +304,9 @@ CustomAsset = {
             asset_enclosure_type: $('asset_enclosure_type').get('value'),
             asset_duration: $('asset_duration').get('value'),
             asset_closed_caption: $('asset_closed_caption').get('value')
-        }
+        };
         
-        new Request({
+        var req = new Request({
             url: 'index.php',
             data: {
                 option: 'com_podcast',
