@@ -5,15 +5,12 @@ JHTML::_('behavior.mootools');
 
 $doc = JFactory::getDocument();
 
-$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.full.js');
-$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.gears.js');
-$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.silverlight.js');
-$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.flash.js');
-$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.html4.js');
-$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.html5.js');
 
 $doc->addScript(JURI::root().'media/com_podcast/js/admin/mustache.js');
 
+$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.js');
+$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.flash.js');
+$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.html5.js');
 $doc->addScript(JURI::root().'media/com_podcast/js/admin/upload.js');
 $doc->addScriptDeclaration("Upload.token = '" . JUtility::getToken() . "';");
 $doc->addScriptDeclaration("Upload.url_root = '" . JURI::root() . "';");
@@ -100,6 +97,11 @@ $doc->addScriptDeclaration("EpisodeMedia.token = '" . JUtility::getToken() . "';
 				<input type="button" name="add_custom" value="Add Custom" id="add_custom" class="button" />
 				<input type="button" name="browse_available" value="Browse Available" id="browse_available" class="button" />
             </div>
+
+			<div id="uploader_container">
+				<ul id="upload_file_list"></ul>
+			</div>
+
 		</fieldset>
 
 		<fieldset class="adminform" id="available">

@@ -156,6 +156,59 @@ EpisodeMedia.init = function () {
 	EpisodeMedia.asset_template_html = $(EpisodeMedia.asset_template).innerHTML;
 };
 
+
+var EpisodeMediaUploader = {
+	uploader: null,
+	config: {
+		browse_button_id: null,
+		container_id: null,
+		token: null
+	}
+};
+
+EpisodeMediaUploader.init = function () {
+
+	if (this.config.token === null) {
+		this.config.token = EpisodeMedia.token;
+	}
+
+	if (this.uploader === null) {
+		this.uploader = Upload.new_uploader(this.config);
+	}
+
+	this.uploader.bind('FilesAdded', function  () {
+		EpisodeMediaUploader.uploader.start();
+	});
+
+	this.uploader.bind('FilesAdded', function(up, files) {
+		for (var i = 0; i < files.length; i++) {
+			$('upload_file_list').innerHTML += '<li id="' + files[i].id + '">' + files[i].name + ' (' + plupload.formatSize(files[i].size) + ') <b></b></li>';
+		}
+	});
+
+	this.uploader.bind('UploadProgress', function(up, file) {
+		$(file.id).getElementsByTagName('b')[0].innerHTML = '<span>' + file.percent + "%</span>";
+	});
+	
+	this.uploader.bind('FileUploaded', function(up, file, info) {
+		if (info.status == 200) {
+			var json = JSON.decode(info.response);
+			console.log(json);
+			
+			var asset = {
+				podcast_asset_id: json.podcast_asset_id,
+				asset_enclosure_url: json.enclosure_url,
+	            asset_enclosure_length: json.enclosure_length,
+	            asset_enclosure_type: json.enclosure_type,
+	            asset_duration: json.enclosure_duration
+			};
+
+			EpisodeMedia.add_item(asset);
+		}
+	});
+    
+};
+
 // Jeremy's Additions
 var AvailableAssets = {
     loaded: false,
@@ -195,7 +248,8 @@ AvailableAssets.render = function() {
             podcast_asset_id: this.get('rel'),
             asset_enclosure_url: this.getParent('tr').getElement('td.url').get('text'),
             asset_duration: this.getParent('tr').getElement('td.duration').get('text')
-        }
+        };
+
         if (EpisodeMedia.asset_ids.length == 0) item.asset_default = '1';
 		EpisodeMedia.add_item(item);
 	});
@@ -323,4 +377,9 @@ window.addEvent('domready', function () {
     });
 
 	EpisodeMedia.init();
+
+	EpisodeMediaUploader.config.browse_button_id = 'upload_media';
+	EpisodeMediaUploader.config.container_id = 'uploader_container';
+
+	EpisodeMediaUploader.init();
 });
