@@ -22,39 +22,37 @@ window.addEvent('domready', function () {
 		$(file.id).getElementsByTagName('b')[0].innerHTML = '<span>' + file.percent + "%</span>";
 	});
     
-    uploader.bind('FileUploaded', function(up, file, info) {
-        if (info.status == 200) {
-            var json = JSON.decode(info.response);
-			alert('file uploaded');
-			console.log(json);
-            // var replace = confirm('Would you like to set '+json.enclosure_url+' as the default media item?');
-            // if (replace) {
-            //     $('jform_item_enclosure_url').set('value', json.enclosure_url);
-            //     $('jform_item_enclosure_type').set('value', json.enclosure_type);
-            //     $('jform_item_duration').set('value', json.enclosure_duration);
-            //     $('jform_item_enclosure_length').set('value', json.enclosure_length);
-            //     var assets = JSON.decode($('jform_item_assets').get('value'));
-            //     assets.shift();
-            //     assets.unshift(json.podcast_asset_id);
-            //     assets = JSON.encode(assets);
-            //     $('jform_item_assets').set('value', assets.replace(/\"/g, ''));
-            // }
-        }
-    });
+	uploader.bind('FileUploaded', function(up, file, info) {
+		if (info.status == 200) {
+			var json = JSON.decode(info.response);
+			// var replace = confirm('Would you like to set '+json.enclosure_url+' as the default media item?');
+			// if (replace) {
+			//     $('jform_item_enclosure_url').set('value', json.enclosure_url);
+			//     $('jform_item_enclosure_type').set('value', json.enclosure_type);
+			//     $('jform_item_duration').set('value', json.enclosure_duration);
+			//     $('jform_item_enclosure_length').set('value', json.enclosure_length);
+			//     var assets = JSON.decode($('jform_item_assets').get('value'));
+			//     assets.shift();
+			//     assets.unshift(json.podcast_asset_id);
+			//     assets = JSON.encode(assets);
+			//     $('jform_item_assets').set('value', assets.replace(/\"/g, ''));
+			// }
+		}
+	});
 });
 
 var Assets = {
-    assets: null,
-    token: null,
-    folders: [],
-    pagination: null,
-    search_string: '',
+	assets: null,
+	token: null,
+	folders: [],
+	pagination: null,
+	search_string: '',
 	asset_list: 'media_list',
-    asset_template: 'asset_template',
+	asset_template: 'asset_template',
 	asset_template_html: null,
-    pagination_holder: 'media_pagination',
-    pagination_template: 'pagination_template',
-    pagination_template_html: null
+	pagination_holder: 'media_pagination',
+	pagination_template: 'pagination_template',
+	pagination_template_html: null
 };
 
 // Loads the assets
