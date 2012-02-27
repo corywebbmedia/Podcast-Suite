@@ -22,6 +22,7 @@ abstract class PodcastStorage
     protected $audio_mime_types = array();
 
     abstract public function getAssetUrl($path);
+    abstract public function getFolders($path = '');
 
     public function getAssetExtension($file)
     {

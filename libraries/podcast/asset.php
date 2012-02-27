@@ -13,13 +13,22 @@ defined('_JEXEC') or die;
 class PodcastAsset
 {
     protected static $storage = null;
+    protected static $options = null;
+    
+    static protected function getOptions()
+    {
+        if (!self::$options) 
+        {
+            self::$options = JComponentHelper::getParams('com_podcast');
+        }
+        return self::$options;
+    }
     
     static public function getStorage()
     {
         if (!self::$storage) 
         {
-            $options = JComponentHelper::getParams('com_podcast');
-            $type = $options->get('storage', 'local');
+            $type = self::getOptions()->get('storage', 'local');
             jimport('podcast.storage.'.$type);
             $class = 'PodcastStorage'.ucfirst($type);
             self::$storage = new $class();

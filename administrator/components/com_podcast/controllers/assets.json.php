@@ -2,6 +2,7 @@
 defined( '_JEXEC' ) or die;
 
 jimport('joomla.application.component.controller');
+jimport('podcast.asset');
 
 class PodcastControllerAssets extends JController
 {
@@ -57,7 +58,7 @@ class PodcastControllerAssets extends JController
 
 		echo json_encode($response);
     }
-    
+        
     public function add_custom_asset()
     {
         $asset = JRequest::getVar('asset', '{}');

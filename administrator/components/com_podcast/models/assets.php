@@ -3,6 +3,7 @@
 defined('_JEXEC') or die;
 
 jimport('joomla.application.component.modellist');
+jimport('podcast.asset');
 
 class PodcastModelAssets extends JModelList
 {
@@ -35,9 +36,10 @@ class PodcastModelAssets extends JModelList
 
     public function getFolders()
     {
-        $base = JRequest::getVar('filter_folder', false);
-        $plugin = $this->getStorage();
-        $folders = array_shift($plugin->trigger('onFolderList', $base));
+        $path = JRequest::getVar('path', JPATH_ROOT.'/media/podcasts/');
+        
+        $folders = PodcastAsset::getStorage()->getFolders($path);
+        
         return $folders;
     }
 

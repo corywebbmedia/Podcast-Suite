@@ -2,15 +2,12 @@ window.addEvent('domready', function () {
     Assets.init();
 });
 
-
-// Jeremy's Additions
 var Assets = {
-    loaded: false,
     assets: null,
     token: null,
+    folders: [],
     pagination: null,
     search_string: '',
-    asset_ids: [],
 	asset_list: 'media_list',
     asset_template: 'asset_template',
 	asset_template_html: null,
@@ -29,6 +26,7 @@ Assets.init = function() {
     });
 };
 
+// Render the assets returned from the server
 Assets.render = function() {
     $(Assets.asset_list).empty();
     for (var i=0; i < Assets.assets.length; i++) {
@@ -38,6 +36,7 @@ Assets.render = function() {
     Assets.setup_pagination();
 };
 
+// Adds an asset item to the table
 Assets.add_item = function (asset) {
 	// render markup
     asset.asset_enclosure_length = Assets.convertLength(asset.asset_enclosure_length);
@@ -46,6 +45,7 @@ Assets.add_item = function (asset) {
 	$(Assets.asset_list).innerHTML += asset_html;
 };
 
+// Requests a new page
 Assets.page = function(page) {
     new Request.JSON({
         url: 'index.php',
@@ -91,6 +91,7 @@ Assets.setup_pagination = function() {
     }
 };
 
+// Function to change length to human readable values
 Assets.convertLength = function(bytes) {
     if (!bytes) bytes = 0;
     var kilobyte = 1024;

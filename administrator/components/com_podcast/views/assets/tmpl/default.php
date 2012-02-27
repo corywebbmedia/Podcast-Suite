@@ -1,7 +1,8 @@
 <?php 
 defined( '_JEXEC' ) or die;
 
-JHTML::_('behavior.mootools');
+JHtml::_('behavior.mootools');
+JHtml::_('behavior.tree', 'folders_tree', array('div' => 'folders'));
 
 $doc = JFactory::getDocument();
 
@@ -23,8 +24,14 @@ $doc->addScriptDeclaration("Asset.token = '" . JUtility::getToken() . "';");
 
 ?>
 
-<div class="width-30 fltlft" id="folders">
-    
+<div class="width-30 fltlft">
+    <fieldset>
+        <legend>*Folders</legend>
+        <div id="folders"></div>
+        <ul id="folders_tree">
+        <?php $this->setupFolders($this->folders); ?>
+        </ul>
+    </fieldset>
 </div>
 
 <div class="width-70 fltrt" id="files">
