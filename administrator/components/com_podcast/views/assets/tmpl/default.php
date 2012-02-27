@@ -28,6 +28,13 @@ $doc->addScriptDeclaration("Asset.token = '" . JUtility::getToken() . "';");
         <?php $this->setupFolders($this->folders); ?>
         </ul>
     </fieldset>
+	<fieldset>
+		<legend>*Uploaded Files</legend>
+
+		<div id="uploader_container">
+			<ul id="upload_file_list"></ul>
+		</div>
+	</fieldset>
 </div>
 
 <div class="width-70 fltrt" id="files">
