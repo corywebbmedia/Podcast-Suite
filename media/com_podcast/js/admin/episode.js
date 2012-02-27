@@ -112,7 +112,10 @@ EpisodeMedia.add_from_form = function (callback) {
 
 	new Request.JSON({
 		url: 'index.php',
-		onSuccess: callback
+		onSuccess: function (response) {
+			if (EpisodeMedia.asset_ids.length === 0) response.asset_default = '1';
+			callback(response);
+		}
 	}).post(req);
 };
 
@@ -147,7 +150,7 @@ EpisodeMedia.init = function () {
 				var asset = EpisodeMedia.assets[i];
 
 				if (asset.asset_default === "1") {
-					EpisodeMedia.set_default(parseInt(asset.asset_default, 10));
+					EpisodeMedia.set_default(parseInt(asset.podcast_asset_id, 10));
 				}
 			}
 			
@@ -209,6 +212,8 @@ EpisodeMediaUploader.init = function () {
 	            asset_duration: json.enclosure_duration
 			};
 
+			if (EpisodeMedia.asset_ids.length === 0) asset.asset_default = '1';
+
 			EpisodeMedia.add_item(asset);
 		}
 	});
@@ -256,7 +261,7 @@ AvailableAssets.render = function() {
             asset_duration: this.getParent('tr').getElement('td.duration').get('text')
         };
 
-        if (EpisodeMedia.asset_ids.length == 0) item.asset_default = '1';
+        if (EpisodeMedia.asset_ids.length === 0) item.asset_default = '1';
 		EpisodeMedia.add_item(item);
 	});
     
@@ -340,6 +345,9 @@ CustomAsset = {
             onSuccess: function(response) {
                 if (response > 0) {
                     asset.podcast_asset_id = response;
+
+					if (EpisodeMedia.asset_ids.length === 0) asset.asset_default = '1';
+
                     EpisodeMedia.add_item(asset);
                 }
             }
