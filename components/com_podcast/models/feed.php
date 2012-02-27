@@ -50,6 +50,14 @@ class PodcastModelFeed extends JModelList
 			->where("tbl.feed_id = '{$feed_id}'")
 			->where("tbl.published = 1");
 
+		$media = JRequest::getVar('media', '');
+
+		if ($media) {
+			$db = $this->getDbo();
+			$media = $db->getEscaped($media);
+			$query->where("a.asset_enclosure_type = '$media'");
+		}
+
 		return $query;
 	}
 
