@@ -7,8 +7,7 @@ var Upload = {
 		token: null,
 		url_root: 'index.php?option=com_podcast&task=assets.upload&format=json',
 		browse_button_id: null,
-		container_id: null, 
-		file_list: null,
+		container_id: null,
 		chunk_size: '1mb'
 	}
 };
