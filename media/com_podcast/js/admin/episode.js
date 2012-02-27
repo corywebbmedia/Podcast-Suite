@@ -18,6 +18,13 @@ EpisodeMedia.render = function () {
 };
 
 EpisodeMedia.add_item = function (asset) {
+
+	var podcast_asset_id = parseInt(asset.podcast_asset_id, 10);
+
+	if (EpisodeMedia.asset_ids.indexOf(podcast_asset_id) != -1) {
+		return false;
+	}
+
 	// set data
 	asset.media_default = function  () {
 		if (asset.asset_default === "1") {
@@ -26,37 +33,37 @@ EpisodeMedia.add_item = function (asset) {
 			return 'notdefault';
 		}
 	};
-    
+
     asset.asset_enclosure_length = EpisodeMedia.convertLength(asset.asset_enclosure_length);
-    
+
 	// render markup
 	var asset_html = Mustache.to_html(EpisodeMedia.asset_template_html, asset);
 	$(EpisodeMedia.asset_list).innerHTML += asset_html;
 
 	// update ids
-	EpisodeMedia.asset_ids.push(parseInt(asset.asset_id, 10));
+	EpisodeMedia.asset_ids.push(podcast_asset_id);
 	EpisodeMedia.update_asset_id_list();
-	
+
 	// assign events
 	$$('#' + EpisodeMedia.asset_list + ' .trash').addEvent('click', function () {
 		EpisodeMedia.destroy(parseInt(this.get('rel'), 10));
 	});
-	
+
 	$$('#' + EpisodeMedia.asset_list + ' .default-toggle').addEvent('click', function () {
 		EpisodeMedia.change_default(parseInt(this.get('rel'), 10));
 	});
 };
 
-EpisodeMedia.destroy = function (asset_id) {
+EpisodeMedia.destroy = function (podcast_asset_id) {
 	var new_ids = [];
 
 	for (var i=0; i < EpisodeMedia.asset_ids.length; i++) {
-		if (EpisodeMedia.asset_ids[i] !== asset_id) {
+		if (EpisodeMedia.asset_ids[i] !== podcast_asset_id) {
 			new_ids.push(EpisodeMedia.asset_ids[i]);
 		}
 	}
 
-	$$('#' + EpisodeMedia.asset_list + ' tr[rel=' + asset_id + ']').destroy();
+	$$('#' + EpisodeMedia.asset_list + ' tr[rel=' + podcast_asset_id + ']').destroy();
 
 	EpisodeMedia.asset_ids = new_ids;
 	EpisodeMedia.update_asset_id_list();
@@ -66,21 +73,21 @@ EpisodeMedia.update_asset_id_list = function  () {
 	$(EpisodeMedia.asset_id_list).value = EpisodeMedia.asset_ids.join(',');
 };
 
-EpisodeMedia.change_default = function  (asset_id) {
+EpisodeMedia.change_default = function  (podcast_asset_id) {
 	$$('#' + EpisodeMedia.asset_list + ' tr[rel=' + EpisodeMedia.asset_default + '] span.default')
 		.removeClass('default')
 		.addClass('notdefault');
 
-	$$('#' + EpisodeMedia.asset_list + ' tr[rel=' + asset_id + '] span.notdefault')
+	$$('#' + EpisodeMedia.asset_list + ' tr[rel=' + podcast_asset_id + '] span.notdefault')
 		.removeClass('notdefault')
 		.addClass('default');
 
-	EpisodeMedia.set_default(asset_id);
+	EpisodeMedia.set_default(podcast_asset_id);
 };
 
-EpisodeMedia.set_default = function  (asset_id) {
-	EpisodeMedia.asset_default = asset_id;
-	$(EpisodeMedia.asset_default_input).value = asset_id;
+EpisodeMedia.set_default = function  (podcast_asset_id) {
+	EpisodeMedia.asset_default = podcast_asset_id;
+	$(EpisodeMedia.asset_default_input).value = podcast_asset_id;
 };
 
 EpisodeMedia.add_custom = function () {
@@ -156,44 +163,57 @@ EpisodeMedia.init = function () {
 	EpisodeMedia.asset_template_html = $(EpisodeMedia.asset_template).innerHTML;
 };
 
-window.addEvent('domready', function () {
-	var availableSlide = new Fx.Slide('available');
-	availableSlide.hide();
 
-	var customSlide = new Fx.Slide('custom_media');
-	customSlide.hide();
+var EpisodeMediaUploader = {
+	uploader: null,
+	config: {
+		browse_button_id: null,
+		container_id: null,
+		token: null
+	}
+};
 
-	$('browse_available').addEvent('click', function() {
-		if (customSlide.open) {
-            customSlide.slideOut().chain(function() {
-                availableSlide.toggle();
-            });
-        } else {
-            availableSlide.toggle();
-        }
-        // Load assets if we are opening the slider
-        if (!availableSlide.open) {
-            AvailableAssets.init();
-        }
+EpisodeMediaUploader.init = function () {
+
+	if (this.config.token === null) {
+		this.config.token = EpisodeMedia.token;
+	}
+
+	if (this.uploader === null) {
+		this.uploader = Upload.new_uploader(this.config);
+	}
+
+	this.uploader.bind('FilesAdded', function  () {
+		EpisodeMediaUploader.uploader.start();
+	});
+
+	this.uploader.bind('FilesAdded', function(up, files) {
+		for (var i = 0; i < files.length; i++) {
+			$('upload_file_list').innerHTML += '<li id="' + files[i].id + '">' + files[i].name + ' (' + plupload.formatSize(files[i].size) + ') <b></b></li>';
+		}
+	});
+
+	this.uploader.bind('UploadProgress', function(up, file) {
+		$(file.id).getElementsByTagName('b')[0].innerHTML = '<span>' + file.percent + "%</span>";
 	});
 	
-	$('add_custom').addEvent('click', function () {
-        if (availableSlide.open) {
-            availableSlide.slideOut().chain(function() {
-                customSlide.toggle();
-            });
-        } else {
-            customSlide.toggle();
-        }
+	this.uploader.bind('FileUploaded', function(up, file, info) {
+		if (info.status == 200) {
+			var json = JSON.decode(info.response);
+			
+			var asset = {
+				podcast_asset_id: json.podcast_asset_id,
+				asset_enclosure_url: json.enclosure_url,
+	            asset_enclosure_length: json.enclosure_length,
+	            asset_enclosure_type: json.enclosure_type,
+	            asset_duration: json.enclosure_duration
+			};
+
+			EpisodeMedia.add_item(asset);
+		}
 	});
     
-    $('add_custom_media').addEvent('click', function() {
-        CustomAsset.add();
-    });
-
-	EpisodeMedia.init();
-});
-
+};
 
 // Jeremy's Additions
 var AvailableAssets = {
@@ -231,10 +251,11 @@ AvailableAssets.render = function() {
     
     $$('#' + AvailableAssets.asset_list + ' .add_asset').addEvent('click', function () {
         var item = {
-            asset_id: this.get('rel'),
+            podcast_asset_id: this.get('rel'),
             asset_enclosure_url: this.getParent('tr').getElement('td.url').get('text'),
             asset_duration: this.getParent('tr').getElement('td.duration').get('text')
-        }
+        };
+
         if (EpisodeMedia.asset_ids.length == 0) item.asset_default = '1';
 		EpisodeMedia.add_item(item);
 	});
@@ -281,7 +302,7 @@ AvailableAssets.setup_pagination = function() {
         $('page_prev').getElement('div').set('html', '<span>'+$('page_prev').getElement('a').get('text'));
     }
     
-    for (i = 1; i <= pages.total; i++) {
+    for (var i = 1; i <= pages.total; i++) {
         if (i == pages.current) {
             $('page_pages').getElement('div').innerHTML += '<span>'+i+'</span>';
         }
@@ -304,9 +325,9 @@ CustomAsset = {
             asset_enclosure_type: $('asset_enclosure_type').get('value'),
             asset_duration: $('asset_duration').get('value'),
             asset_closed_caption: $('asset_closed_caption').get('value')
-        }
+        };
         
-        new Request({
+        var req = new Request({
             url: 'index.php',
             data: {
                 option: 'com_podcast',
@@ -318,10 +339,53 @@ CustomAsset = {
             },
             onSuccess: function(response) {
                 if (response > 0) {
-                    asset.asset_id = response;
+                    asset.podcast_asset_id = response;
                     EpisodeMedia.add_item(asset);
                 }
             }
         }).send();
     }
 };
+
+window.addEvent('domready', function () {
+	var availableSlide = new Fx.Slide('available');
+	availableSlide.hide();
+
+	var customSlide = new Fx.Slide('custom_media');
+	customSlide.hide();
+
+	$('browse_available').addEvent('click', function() {
+		if (customSlide.open) {
+            customSlide.slideOut().chain(function() {
+                availableSlide.toggle();
+            });
+        } else {
+            availableSlide.toggle();
+        }
+        // Load assets if we are opening the slider
+        if (!availableSlide.open) {
+            AvailableAssets.init();
+        }
+	});
+	
+	$('add_custom').addEvent('click', function () {
+        if (availableSlide.open) {
+            availableSlide.slideOut().chain(function() {
+                customSlide.toggle();
+            });
+        } else {
+            customSlide.toggle();
+        }
+	});
+    
+    $('add_custom_media').addEvent('click', function() {
+        CustomAsset.add();
+    });
+
+	EpisodeMedia.init();
+
+	EpisodeMediaUploader.config.browse_button_id = 'upload_media';
+	EpisodeMediaUploader.config.container_id = 'uploader_container';
+
+	EpisodeMediaUploader.init();
+});

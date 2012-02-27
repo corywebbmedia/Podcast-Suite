@@ -5,7 +5,7 @@ class PodcastTableAsset extends JTable
 {
 	public function __construct(&$db)
 	{
-		parent::__construct('#__podcast_assets', 'asset_id', $db);
+		parent::__construct('#__podcast_assets', 'podcast_asset_id', $db);
 	}
 
 }

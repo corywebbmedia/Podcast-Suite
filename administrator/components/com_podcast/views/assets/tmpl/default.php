@@ -1,4 +1,4 @@
-<?php 
+<?php
 defined( '_JEXEC' ) or die;
 
 JHtml::_('behavior.mootools');
@@ -6,18 +6,14 @@ JHtml::_('behavior.tree', 'folders_tree', array('div' => 'folders'));
 
 $doc = JFactory::getDocument();
 
-$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.full.js');
-$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.gears.js');
-$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.silverlight.js');
-$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.flash.js');
-$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.html4.js');
-$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.html5.js');
-
 $doc->addScript(JURI::root().'media/com_podcast/js/admin/mustache.js');
 
+$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.js');
+$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.flash.js');
+$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.html5.js');
+
 $doc->addScript(JURI::root().'media/com_podcast/js/admin/upload.js');
-$doc->addScriptDeclaration("Upload.token = '" . JUtility::getToken() . "';");
-$doc->addScriptDeclaration("Upload.url_root = '" . JURI::root() . "';");
+$doc->addScriptDeclaration("Upload.config.token = '" . JUtility::getToken() . "';");
 
 $doc->addScript(JURI::root().'media/com_podcast/js/admin/assets.js');
 $doc->addScriptDeclaration("Asset.token = '" . JUtility::getToken() . "';");
@@ -79,19 +75,19 @@ $doc->addScriptDeclaration("Asset.token = '" . JUtility::getToken() . "';");
             </tr>
         </script>
 		<tbody id="media_list">
-           
+
 		</tbody>
         <script type="text/html" id="asset_template">
-            <tr rel="{{asset_id}}">
+            <tr rel="{{podcast_asset_id}}">
                 <td align="center" width="1%">
-                    <span class="jgrid"><span class="{{media_default}} media-button default-toggle" rel="{{asset_id}}">&nbsp;</span></span>
+                    <span class="jgrid"><span class="{{media_default}} media-button default-toggle" rel="{{podcast_asset_id}}">&nbsp;</span></span>
                 </td>
                 <td class="url">{{asset_enclosure_url}}</td>
                 <td class="length">{{asset_enclosure_length}}</td>
                 <td class="duration">{{asset_duration}}</td>
                 <td class="type">{{asset_enclosure_type}}</td>
                 <td align="center" width="1%">
-                    <span class="jgrid"><span class="trash media-button" rel="{{asset_id}}">&nbsp;</span></span>
+                    <span class="jgrid"><span class="trash media-button" rel="{{podcast_asset_id}}">&nbsp;</span></span>
                 </td>
             </tr>
         </script>

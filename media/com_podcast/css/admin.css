@@ -22,3 +22,7 @@
 
 #file_pagination li { width: 15px; float: left; cursor: pointer; text-align: center; }
 #file_pagination li:hover { background-color: #f4f4f4; }
+
+/* Uploader */
+
+#uploader_container { display: block; clear: both; }

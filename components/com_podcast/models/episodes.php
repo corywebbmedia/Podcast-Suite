@@ -32,7 +32,7 @@ class PodcastModelEpisodes extends JModelList
         $query = $db->getQuery(true);
         $query->select('tbl.*, m.episode_id, m.default')
                 ->from('#__podcast_assets AS tbl')
-                ->join('LEFT', '#__podcast_assets_map AS m USING (asset_id)')
+                ->join('LEFT', '#__podcast_assets_map AS m USING (podcast_asset_id)')
                 ->where('m.episode_id IN ('.implode(',', $ids).')');
         $db->setQuery($query);
 

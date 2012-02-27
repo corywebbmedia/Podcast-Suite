@@ -5,15 +5,12 @@ JHTML::_('behavior.mootools');
 
 $doc = JFactory::getDocument();
 
-$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.full.js');
-$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.gears.js');
-$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.silverlight.js');
-$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.flash.js');
-$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.html4.js');
-$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.html5.js');
 
 $doc->addScript(JURI::root().'media/com_podcast/js/admin/mustache.js');
 
+$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.js');
+$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.flash.js');
+$doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.html5.js');
 $doc->addScript(JURI::root().'media/com_podcast/js/admin/upload.js');
 $doc->addScriptDeclaration("Upload.token = '" . JUtility::getToken() . "';");
 $doc->addScriptDeclaration("Upload.url_root = '" . JURI::root() . "';");
@@ -81,16 +78,16 @@ $doc->addScriptDeclaration("EpisodeMedia.token = '" . JUtility::getToken() . "';
                 <tbody id="episode_asset_list">
                 </tbody>
 				<script type="text/html" id="episode_asset">
-					<tr rel="{{asset_id}}">
+					<tr rel="{{podcast_asset_id}}">
 						<td align="center" width="1%">
-							<span class="jgrid"><span class="{{media_default}} media-button default-toggle" rel="{{asset_id}}">&nbsp;</span></span>
+							<span class="jgrid"><span class="{{media_default}} media-button default-toggle" rel="{{podcast_asset_id}}">&nbsp;</span></span>
 						</td>
 						<td class="url">{{asset_enclosure_url}}</td>
                         <td class="length">{{asset_enclosure_length}}</td>
 						<td class="duration">{{asset_duration}}</td>
                         <td class="type">{{asset_enclosure_type}}</td>
 						<td align="center" width="1%">
-							<span class="jgrid"><span class="trash media-button" rel="{{asset_id}}">&nbsp;</span></span>
+							<span class="jgrid"><span class="trash media-button" rel="{{podcast_asset_id}}">&nbsp;</span></span>
 						</td>
 					</tr>
 				</script>
@@ -100,6 +97,11 @@ $doc->addScriptDeclaration("EpisodeMedia.token = '" . JUtility::getToken() . "';
 				<input type="button" name="add_custom" value="Add Custom" id="add_custom" class="button" />
 				<input type="button" name="browse_available" value="Browse Available" id="browse_available" class="button" />
             </div>
+
+			<div id="uploader_container">
+				<ul id="upload_file_list"></ul>
+			</div>
+
 		</fieldset>
 
 		<fieldset class="adminform" id="available">
@@ -149,9 +151,9 @@ $doc->addScriptDeclaration("EpisodeMedia.token = '" . JUtility::getToken() . "';
                     <?php endfor; ?>
 			    </tbody>
                 <script type="text/html" id="available_asset">
-					<tr rel="{{asset_id}}">
+					<tr rel="{{podcast_asset_id}}">
 						<td align="center">
-							<span class="jgrid"><span class="publish add_asset" rel="{{asset_id}}">&nbsp;</span></span>
+							<span class="jgrid"><span class="publish add_asset" rel="{{podcast_asset_id}}">&nbsp;</span></span>
 						</td>
 						<td class="url">{{asset_enclosure_url}}</td>
                         <td class="length">{{asset_enclosure_length}}</td>

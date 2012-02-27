@@ -18,7 +18,7 @@ class PodcastModelEpisodes extends JModelList
             a.asset_closed_caption AS item_closed_caption')
                 ->from('#__podcast_episodes AS tbl')
                 ->join('LEFT', '#__podcast_assets_map AS m ON tbl.episode_id = m.episode_id')
-                ->join('LEFT', '#__podcast_assets AS a ON a.asset_id = m.asset_id')
+                ->join('LEFT', '#__podcast_assets AS a ON a.podcast_asset_id = m.podcast_asset_id')
                 ->join('LEFT', '#__podcast_feeds AS f USING(feed_id)')
                 ->group('tbl.episode_id');
 
