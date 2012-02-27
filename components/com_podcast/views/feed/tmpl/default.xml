@@ -14,6 +14,11 @@
 				label="COM_PODCAST_FIELD_FEED"
 				description="COM_PODCAST_FIELD_FEED_DESC"
 			/>
+
+			<field name="media" type="media"
+				label="COM_PODCAST_FIELD_MEDIA"
+				description="COM_PODCAST_FIELD_MEDIA_DESC"
+			/>
 		</fieldset>
 	</fields>
 </metadata>
