@@ -59,15 +59,4 @@ class PodcastModelAssets extends JModelList
 		// List state information.
 		parent::populateState('tbl.asset_enclosure_url', 'asc');
 	}
-
-    public function getStorage()
-    {
-        $options = JComponentHelper::getParams('com_podcast');
-        $type = $options->get('storage', 'default');
-
-        JPluginHelper::importPlugin('podcast', $type);
-        $dispatcher =& JDispatcher::getInstance();
-
-        return $dispatcher;
-    }
 }
