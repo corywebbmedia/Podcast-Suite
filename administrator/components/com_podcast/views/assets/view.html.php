@@ -8,10 +8,6 @@ class PodcastViewAssets extends JView
 	public function display($tpl = null)
 	{
         $this->folders = $this->get('Folders');
-        $this->items = $this->get('Items');
-        $this->state = $this->get('State');
-		$this->pagination = $this->get('Pagination');
-        $this->plugin = $this->get('Storage');
 
         JToolbarHelper::title(JText::_('COM_PODCAST_MEDIA'), 'media');
 
@@ -39,7 +35,7 @@ class PodcastViewAssets extends JView
         $bar->appendButton('Custom', $button, 'help');
 	}
     
-    public function setupFolders($folders, $root = true)
+    protected function setupFolders($folders, $root = true)
     {
         foreach ($folders as $node => $children)
         {
