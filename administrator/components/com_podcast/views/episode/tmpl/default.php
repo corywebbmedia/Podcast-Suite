@@ -133,7 +133,7 @@ $doc->addScriptDeclaration("EpisodeMedia.token = '" . JUtility::getToken() . "';
 					<tr>
 						<td align="center" colspan="20">
                             <div class="pagination">
-                                <div class="button2-right" id="page_start"><div class="start"><a onclick="AvailableAssets.page(0);" title="Start" href="#assets">*Start</a></div></div>
+                                <div class="button2-right" id="page_start"><div class="start"><a onclick="AvailableAssets.page(1);" title="Start" href="#assets">*Start</a></div></div>
                                 <div class="button2-right" id="page_prev"><div class="prev"><a onclick="AvailableAssets.page({{previous}});" title="Prev" href="#assets">*Prev</a></div></div>
                                 <div class="button2-left" id="page_pages"><div class="page"></div></div>
                                 <div class="button2-left" id="page_next"><div class="next"><a onclick="AvailableAssets.page({{next}});" title="Next" href="#assets">*Next</a></div></div>
