@@ -16,7 +16,7 @@ $doc->addScript(JURI::root().'media/com_podcast/js/admin/upload.js');
 $doc->addScriptDeclaration("Upload.config.token = '" . JUtility::getToken() . "';");
 
 $doc->addScript(JURI::root().'media/com_podcast/js/admin/assets.js');
-$doc->addScriptDeclaration("Asset.token = '" . JUtility::getToken() . "';");
+$doc->addScriptDeclaration("Assets.token = '" . JUtility::getToken() . "';");
 
 ?>
 
