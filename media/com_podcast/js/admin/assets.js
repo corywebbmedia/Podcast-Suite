@@ -63,6 +63,11 @@ Assets.init = function() {
         Assets.search_string = this.get('value');
         Assets.page(Assets.pagination.current);
     });
+    $('search_clear').addEvent('click', function() {
+        Assets.search_string = '';
+        $('search_assets').set('value', '');
+        Assets.page(1);
+    })
 };
 
 // Render the assets returned from the server

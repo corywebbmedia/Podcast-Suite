@@ -1,8 +1,28 @@
 <?php
 defined( '_JEXEC' ) or die;
 
+jimport('podcast.asset');
+
 JHtml::_('behavior.mootools');
-JHtml::_('behavior.tree', 'folders_tree', array('div' => 'folders'));
+JHtml::_('behavior.tree', 'folders_tree', array('div' => 'folders', 'onClick' => 'function(node, state) {
+    var filter = "/"+node.text;
+    var current = node;
+    console.info(current);
+    if (current.last === true) {
+    filter = "";
+} else {
+    while (current.parent.last === false)
+    {
+        console.info(current);
+        filter = "/"+current.parent.text+filter;
+        current = current.parent;
+    } 
+    filter = "'.PodcastAsset::getOptions()->get('root', '/media/podcasts').'"+filter;
+        }
+    $("search_assets").set("value", filter);
+    Assets.search_string = filter;
+    Assets.page(1);
+}'));
 
 $doc = JFactory::getDocument();
 
@@ -39,14 +59,13 @@ $doc->addScriptDeclaration("Assets.token = '" . JUtility::getToken() . "';");
 
 <div class="width-70 fltrt" id="files">
 
-	<fieldset id="filter-bar">
+	<fieldset>
+        <legend>*Media Assets</legend>
 		<div class="filter-search fltlft">
 			<label class="filter-search-lbl" for="filter_search"><?php echo JText::_('JSEARCH_FILTER_LABEL'); ?></label>
-			<input type="text" name="filter_search" id="search_assets" value="" title="<?php echo JText::_('COM_PODCAST_SEARCH_EPISODES'); ?>" />
+			<input type="text" name="filter_search" id="search_assets" value="" title="<?php echo JText::_('COM_PODCAST_SEARCH_EPISODES'); ?>" size="50" />
 			<button type="button" id="search_clear"><?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?></button>
 		</div>
-	</fieldset>
-	<div class="clr"> </div>
 
 	<table class="adminlist">
 		<thead>
@@ -99,7 +118,7 @@ $doc->addScriptDeclaration("Assets.token = '" . JUtility::getToken() . "';");
             </tr>
         </script>
 	</table>
-
+    </fieldset>
 </div>
 
 <div class="clr"></div>

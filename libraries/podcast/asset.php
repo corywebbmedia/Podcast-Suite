@@ -15,7 +15,7 @@ class PodcastAsset
     protected static $storage = null;
     protected static $options = null;
     
-    static protected function getOptions()
+    static public function getOptions()
     {
         if (!self::$options) 
         {
