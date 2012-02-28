@@ -15,7 +15,7 @@
 				description="COM_PODCAST_FIELD_FEED_DESC"
 			/>
 
-			<field name="media" type="media"
+			<field name="media" type="mediatypes"
 				label="COM_PODCAST_FIELD_MEDIA"
 				description="COM_PODCAST_FIELD_MEDIA_DESC"
 			/>
