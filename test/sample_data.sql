@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS `#__podcast_assets` (
   PRIMARY KEY (`asset_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
-INSERT INTO `#__podcast_assets` (`asset_id`, `asset_enclosure_url`, `asset_enclosure_length`, `asset_enclosure_type`, `asset_duration`, `asset_closed_caption`, `enabled`) VALUES
+INSERT INTO `#__podcast_assets` (`podcast_asset_id`, `asset_enclosure_url`, `asset_enclosure_length`, `asset_enclosure_type`, `asset_duration`, `asset_closed_caption`, `enabled`) VALUES
 (1, '/media/podcasts/french_lesson_1.mp3', '15722706', 'audio/mpeg', '32:45', 0, 1),
 (2, '/media/podcasts/french_lesson_2.mp3', '14506027', 'audio/mpeg', '30:13', 0, 1),
 (3, '/media/podcasts/french_lesson_3.mp3', '11678533', 'audio/mpeg', '24:19', 0, 1),
@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `#__podcast_assets_map` (
   `default` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `#__podcast_assets_map` (`asset_id`, `episode_id`, `default`) VALUES
+INSERT INTO `#__podcast_assets_map` (`podcast_asset_id`, `episode_id`, `default`) VALUES
 (1, 1, 1),
 (2, 2, 1),
 (3, 3, 1),
