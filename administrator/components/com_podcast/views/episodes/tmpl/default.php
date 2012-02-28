@@ -71,7 +71,7 @@ $feeds = array();
 					<a href="<?php echo JRoute::_('index.php?option=com_podcast&task=episode.edit&episode_id='. $item->episode_id); ?>"><?php echo $this->escape($item->item_title) ?></a>
 				</td>
 				<td>
-					<a href="<?php echo $item->item_enclosure_url ?>"><?php echo $this->escape($item->item_enclosure_url) ?></a>
+					<a href="<?php echo $item->asset_enclosure_url ?>"><?php echo $this->escape($item->asset_enclosure_url) ?></a>
 				</td>
 				<td>
 					<a href="<?php echo JRoute::_('index.php?option=com_podcast&task=feed.edit&feed_id='. $item->feed_id); ?>"><?php echo $this->escape($item->feed_title) ?></a>
