@@ -6,9 +6,9 @@ jimport('joomla.form.formfield');
 jimport('joomla.form.helper');
 JFormHelper::loadFieldClass('list');
 
-class JFormFieldMedia extends JFormFieldList
+class JFormFieldMediaTypes extends JFormFieldList
 {
-	protected $type = 'media';
+	protected $type = 'mediatypes';
 
 	public function _getMediaTypes()
 	{
