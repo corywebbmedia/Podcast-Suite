@@ -39,7 +39,7 @@
 		<submenu>
 			<menu link="option=com_podcast&amp;view=episodes" alt="COM_PODCAST_EPISODES" img="../media/com_podcast/images/icons/podcast-16.png">COM_PODCAST_EPISODES</menu>
             <menu link="option=com_podcast&amp;view=feeds" alt="COM_PODCAST_FEEDS" img="../media/com_podcast/images/icons/feeds-16.png">COM_PODCAST_FEEDS</menu>
-			<menu link="option=com_podcast&amp;view=media" alt="COM_PODCAST_MEDIA" img="../media/com_podcast/images/icons/media-16.png">COM_PODCAST_MEDIA</menu>
+			<menu link="option=com_podcast&amp;view=assets" alt="COM_PODCAST_MEDIA" img="../media/com_podcast/images/icons/media-16.png">COM_PODCAST_MEDIA</menu>
 		</submenu>
 		<files folder="administrator/components/com_podcast">
 			<filename>podcast.php</filename>
@@ -53,5 +53,5 @@
 			<folder>views</folder>
 		</files>
 	</administration>
-    
+
 </extension>
