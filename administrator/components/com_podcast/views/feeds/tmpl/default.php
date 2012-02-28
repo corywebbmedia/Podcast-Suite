@@ -91,7 +91,7 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 				</td>
 
 				<td class="center">
-					<?php echo $this->escape($item->item_count) ?>
+					<a href="<?php echo JRoute::_('index.php?option=com_podcast&view=episodes&filter_feed='.$item->feed_id); ?>"><?php echo $this->escape($item->item_count) ?> <?php echo JText::_('View'); ?>&raquo;</a>
 				</td>
 
 				<td>
