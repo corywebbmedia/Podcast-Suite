@@ -14,15 +14,15 @@ $asset = $this->assets[$item->episode_id][0];
 ?>
 
 <div class="podcast_header_title">
-    <h3 class="podcast_title"><a href="<?php echo JRoute::_('index.php?option=com_podcast&view=episode&episode_id='.$item->episode_id) ?>"><?php echo $this->escape($item->item_title) ?></a></h3>
-    <h5 class="podcast_subtitle"><?php echo $this->escape($item->item_subtitle) ?></h5>
-    <span class="podcast_keywords"><?php echo $this->escape($item->item_keywords) ?></span>
+	<h3 class="podcast_title"><a href="<?php echo JRoute::_('index.php?option=com_podcast&view=episode&episode_id='.$item->episode_id) ?>"><?php echo $this->escape($item->item_title) ?></a></h3>
+	<h5 class="podcast_subtitle"><?php echo $this->escape($item->item_subtitle) ?></h5>
+	<span class="podcast_keywords"><?php echo $this->escape($item->item_keywords) ?></span>
 </div>
 
 <div class="podcast_header_meta">
-    <span class="podcast_author"><?php echo JText::_('COM_PODCAST_EPISODES_AUTHOR'); ?>: <?php echo $this->escape($item->item_author) ?></span>
-    <span class="podcast_date"><?php echo JText::_('COM_PODCAST_EPISODES_DATE') ?>: <?php echo $this->escape($item->item_pubDate) ?></span>
-    <span class="podcast_duration"><?php echo JText::_('COM_PODCAST_EPISODES_DURATION') ?>: <?php echo $this->escape($asset->asset_duration) ?></span>
+	<span class="podcast_author"><?php echo JText::_('COM_PODCAST_EPISODES_AUTHOR'); ?>: <?php echo $this->escape($item->item_author) ?></span>
+	<span class="podcast_date"><?php echo JText::_('COM_PODCAST_EPISODES_DATE') ?>: <?php echo $this->escape($item->item_pubDate) ?></span>
+	<span class="podcast_duration"><?php echo JText::_('COM_PODCAST_EPISODES_DURATION') ?>: <?php echo $this->escape($asset->asset_duration) ?></span>
 </div>
 
 <div class="clear"></div>

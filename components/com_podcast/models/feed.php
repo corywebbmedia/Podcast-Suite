@@ -16,9 +16,9 @@ class PodcastModelFeed extends JModelList
 			$query = $db->getQuery(true);
 
 			$query->select('*, COUNT(e.episode_id) AS episodes')
-                    ->from('#__podcast_feeds')
-                    ->join('LEFT', '#__podcast_episodes AS e USING (feed_id)')
-                    ->where("feed_id = '{$feed_id}'");
+					->from('#__podcast_feeds')
+					->join('LEFT', '#__podcast_episodes AS e USING (feed_id)')
+					->where("feed_id = '{$feed_id}'");
 
 			$db->setQuery($query);
 			$feed = $db->loadObject();
@@ -40,10 +40,10 @@ class PodcastModelFeed extends JModelList
 		$query->select('tbl.*, a.asset_enclosure_url')
 			->select('a.asset_enclosure_length, a.asset_duration')
 			->select('a.asset_enclosure_type, a.asset_closed_caption')
-            ->from('#__podcast_episodes AS tbl')
+			->from('#__podcast_episodes AS tbl')
 			->join('LEFT', '#__podcast_assets_map AS m USING(episode_id)')
-            ->join('LEFT', '#__podcast_assets AS a USING(podcast_asset_id)')
-            ->where('m.default = 1')
+			->join('LEFT', '#__podcast_assets AS a USING(podcast_asset_id)')
+			->where('m.default = 1')
 			->where("tbl.feed_id = '{$feed_id}'")
 			->where("tbl.published = 1");
 

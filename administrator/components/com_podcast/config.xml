@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
 
-    <fieldset name="options" label="COM_PODCAST_SETTINGS" addfieldpath="/administrator/components/com_podcast/models/fields">
-        <field type="storage" name="storage" default="default" label="COM_PODCAST_STORAGE_ENGINE" description="COM_PODCAST_STORAGE_ENGINE_DESC" />
+	<fieldset name="options" label="COM_PODCAST_SETTINGS" addfieldpath="/administrator/components/com_podcast/models/fields">
+		<field type="storage" name="storage" default="default" label="COM_PODCAST_STORAGE_ENGINE" description="COM_PODCAST_STORAGE_ENGINE_DESC" />
 	</fieldset>
-    
-    <fieldset name="permissions" label="JCONFIG_PERMISSIONS_LABEL" description="JCONFIG_PERMISSIONS_DESC">
+	
+	<fieldset name="permissions" label="JCONFIG_PERMISSIONS_LABEL" description="JCONFIG_PERMISSIONS_DESC">
 		<field name="rules" type="rules" label="JCONFIG_PERMISSIONS_LABEL" filter="rules" validate="rules" component="com_podcast" section="component" />
 	</fieldset>
-    
+	
 </config>
