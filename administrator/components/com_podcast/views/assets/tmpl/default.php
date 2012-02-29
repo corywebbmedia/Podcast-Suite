@@ -54,11 +54,12 @@ $doc->addScriptDeclaration("Assets.folder_root = '" . PodcastAsset::getOptions()
 		<thead>
 			<tr>
 				<th width="1%">
-					<input type="checkbox" name="checkall-toggle" value="" title="<?php echo JText::_('JGLOBAL_CHECK_ALL'); ?>" onclick="Joomla.checkAll(this)" />
+					<input type="checkbox" name="checkall-toggle" value="" title="<?php echo JText::_('JGLOBAL_CHECK_ALL'); ?>" id="check_all" />
 				</th>
-                <th width="1%"></th>
                 <th class="title">
-					<?php echo JText::_('COM_PODCAST_MEDIA_PATH') ?>
+                	<?php echo JText::_('COM_PODCAST_MEDIA_PATH') ?>
+                </th>
+                <th>
 				</th>
 				<th class="title">
 					<?php echo JText::_('COM_PODCAST_MEDIA_FILE') ?>
@@ -89,7 +90,7 @@ $doc->addScriptDeclaration("Assets.folder_root = '" . PodcastAsset::getOptions()
         <script type="text/html" id="asset_template">
             <tr rel="{{podcast_asset_id}}">
                 <td align="center" width="1%">
-                    <span class="jgrid"><span class="{{media_default}} media-button default-toggle" rel="{{podcast_asset_id}}">&nbsp;</span></span>
+					<input type="checkbox" name="cid[]" value="{{podcast_asset_id}}" class="asset_checkbox" />
                 </td>
                 <td class="url">{{asset_enclosure_url}}</td>
                 <td class="length">{{asset_enclosure_length}}</td>

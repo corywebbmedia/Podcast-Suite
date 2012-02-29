@@ -43,6 +43,8 @@ window.addEvent('domready', function () {
 			// }
 		}
 	});
+
+	$('check_all').addEvent('click', Assets.toggle_checks);
 });
 
 var Assets = {
@@ -189,4 +191,17 @@ Assets.recrusive_file_path = function (node, path) {
 	}
 	
 	return path + Assets.recrusive_file_path(node.parent, '') + '/' + node.text;
+};
+
+Assets.toggle_checks = function  (check_all) {
+
+	if (check_all.target.checked === true) {
+		$$('.asset_checkbox').each(function (item) {
+			item.checked = true;
+		});	
+	} else {
+		$$('.asset_checkbox').each(function (item) {
+			item.checked = false;
+		});				
+	}
 };
