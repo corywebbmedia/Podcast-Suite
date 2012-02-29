@@ -90,11 +90,11 @@ $doc->addScriptDeclaration("Assets.token = '" . JUtility::getToken() . "';");
             <tr>
                 <td align="center" colspan="20">
                     <div class="pagination">
-                        <div class="button2-right" id="page_start"><div class="start"><a onclick="AvailableAssets.page(0);" title="Start" href="#assets"><?php echo JText::_('JLIB_HTML_START') ?></a></div></div>
-                        <div class="button2-right" id="page_prev"><div class="prev"><a onclick="AvailableAssets.page({{previous}});" title="Prev" href="#assets"><?php echo JText::_('JPREV') ?></a></div></div>
+                        <div class="button2-right" id="page_start"><div class="start"><a onclick="Assets.page(1);" title="Start" href="#assets"><?php echo JText::_('JLIB_HTML_START') ?></a></div></div>
+                        <div class="button2-right" id="page_prev"><div class="prev"><a onclick="Assets.page({{previous}});" title="Prev" href="#assets"><?php echo JText::_('JPREV') ?></a></div></div>
                         <div class="button2-left" id="page_pages"><div class="page"></div></div>
-                        <div class="button2-left" id="page_next"><div class="next"><a onclick="AvailableAssets.page({{next}});" title="Next" href="#assets"><?php echo JText::_('JNEXT') ?></a></div></div>
-                        <div class="button2-left" id="page_last"><div class="end"><a onclick="AvailableAssets.page({{total}});" title="End" href="#assets"><?php echo JText::_('JLIB_HTML_END') ?></a></div></div>
+                        <div class="button2-left" id="page_next"><div class="next"><a onclick="Assets.page({{next}});" title="Next" href="#assets"><?php echo JText::_('JNEXT') ?></a></div></div>
+                        <div class="button2-left" id="page_last"><div class="end"><a onclick="Assets.page({{total}});" title="End" href="#assets"><?php echo JText::_('JLIB_HTML_END') ?></a></div></div>
                         <div class="limit"><?php echo JText::sprintf('JLIB_HTML_PAGE_CURRENT_OF_TOTAL', '{{current}}', '{{total}}') ?></div>
                     </div>
                 </td>
