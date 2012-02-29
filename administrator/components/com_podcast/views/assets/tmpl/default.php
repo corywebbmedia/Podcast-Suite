@@ -60,12 +60,12 @@ $doc->addScriptDeclaration("Assets.folder_root = '" . PodcastAsset::getOptions()
                 	<?php echo JText::_('COM_PODCAST_MEDIA_PATH') ?>
                 </th>
                 <th>
+					<?php echo JText::_('COM_PODCAST_MEDIA_FILESIZE') ?>
 				</th>
 				<th class="title">
-					<?php echo JText::_('COM_PODCAST_MEDIA_FILE') ?>
+					<?php echo JText::_('COM_PODCAST_MEDIA_DURATION') ?>
 				</th>
-                <th><?php echo JText::_('COM_PODCAST_MEDIA_USES') ?></th>
-                <th><?php echo JText::_('COM_PODCAST_MEDIA_STATUS') ?></th>
+                <th><?php echo JText::_('COM_PODCAST_MEDIA_TYPE') ?></th>
 			</tr>
 		</thead>
 		<tfoot id="media_pagination">
@@ -96,9 +96,6 @@ $doc->addScriptDeclaration("Assets.folder_root = '" . PodcastAsset::getOptions()
                 <td class="length">{{asset_enclosure_length}}</td>
                 <td class="duration">{{asset_duration}}</td>
                 <td class="type">{{asset_enclosure_type}}</td>
-                <td align="center" width="1%">
-                    <span class="jgrid"><span class="trash media-button" rel="{{podcast_asset_id}}">&nbsp;</span></span>
-                </td>
             </tr>
         </script>
 	</table>
