@@ -3,6 +3,7 @@
 defined('_JEXEC') or die;
 
 jimport('joomla.plugin.plugin');
+jimport('joomla.filesystem.path');
 
 class PlgPodcastDefault extends JPlugin
 {
@@ -37,7 +38,14 @@ class PlgPodcastDefault extends JPlugin
         header("Pragma: no-cache");
 
         // Settings
-        $targetDir        = realpath(JPATH_ROOT.$this->params->get('folder', JPATH_ROOT . '/media/podcasts'));
+
+		$folder = JRequest::getVar('folder', '');
+
+		if (!$folder) {
+			$folder = $this->params->get('folder', '/media/podcasts');
+		}
+
+        $targetDir        = JPath::clean(JPATH_ROOT . $folder);
         $cleanupTargetDir = true; // Remove old files
         $maxFileAge       = 5 * 3600; // Temp file age in seconds
         // 5 minutes execution time
@@ -188,7 +196,7 @@ class PlgPodcastDefault extends JPlugin
             $result->enclosure_type = $info['mime_type'];
             $result->enclosure_duration = $info['playtime_string'];
             $filePath = str_replace('\\', '/', $filePath);
-            $result->enclosure_url = $this->params->get('folder', JPATH_ROOT . '/media/podcasts').'/'.basename($filePath);
+            $result->enclosure_url = $folder.'/'.basename($filePath);
         }
 
         return $result;

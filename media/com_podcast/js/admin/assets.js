@@ -8,10 +8,14 @@ window.addEvent('domready', function () {
 		container_id: 'uploader_container'
 	});
 	
-	uploader.bind('FilesAdded', function  () {
+	uploader.bind('FilesAdded', function () {
 		uploader.start();
 	});
-	
+
+	uploader.bind('BeforeUpload', function  (up) {
+		up.settings.url = Upload.config.url_root + '&' + Upload.config.token + '=1' + '&folder=' + Assets.folder_current;
+	});
+
 	uploader.bind('FilesAdded', function(up, files) {
 		for (i = 0; i < files.length; i++) {
 			$('upload_file_list').innerHTML += '<li id="' + files[i].id + '">' + files[i].name + ' (' + plupload.formatSize(files[i].size) + ') <b></b></li>';
