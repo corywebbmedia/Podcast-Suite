@@ -52,7 +52,9 @@ var Assets = {
 	asset_template_html: null,
 	pagination_holder: 'media_pagination',
 	pagination_template: 'pagination_template',
-	pagination_template_html: null
+	pagination_template_html: null,
+	folder_root: null,
+	folder_current: null
 };
 
 // Loads the assets
@@ -63,11 +65,14 @@ Assets.init = function() {
         Assets.search_string = this.get('value');
         Assets.page(Assets.pagination.current);
     });
+
     $('search_clear').addEvent('click', function() {
         Assets.search_string = '';
         $('search_assets').set('value', '');
         Assets.page(1);
-    })
+    });
+
+	Assets.folder_current = Assets.folder_root;
 };
 
 // Render the assets returned from the server
@@ -155,4 +160,29 @@ Assets.convertLength = function(bytes) {
     } else {
         return bytes + ' B';
     }
+};
+
+Assets.file_tree = function(node, state) {
+	var filter = "/" + node.text;
+	var current = node;
+
+	filter = Assets.recrusive_file_path(current, Assets.folder_root);
+
+	if (filter === Assets.folder_root) {
+		filter = '';
+	}
+
+	$("search_assets").set("value", filter);
+	Assets.folder_current = filter;
+
+	Assets.search_string = filter;
+	Assets.page(1);
+};
+
+Assets.recrusive_file_path = function (node, path) {
+	if (node.parent === null) {
+		return path; 
+	}
+	
+	return path + Assets.recrusive_file_path(node.parent, '') + '/' + node.text;
 };

@@ -4,25 +4,7 @@ defined( '_JEXEC' ) or die;
 jimport('podcast.asset');
 
 JHtml::_('behavior.mootools');
-JHtml::_('behavior.tree', 'folders_tree', array('div' => 'folders', 'onClick' => 'function(node, state) {
-    var filter = "/"+node.text;
-    var current = node;
-    console.info(current);
-    if (current.last === true) {
-    filter = "";
-} else {
-    while (current.parent.last === false)
-    {
-        console.info(current);
-        filter = "/"+current.parent.text+filter;
-        current = current.parent;
-    }
-    filter = "'.PodcastAsset::getOptions()->get('root', '/media/podcasts').'"+filter;
-        }
-    $("search_assets").set("value", filter);
-    Assets.search_string = filter;
-    Assets.page(1);
-}'));
+JHtml::_('behavior.tree', 'folders_tree', array('div' => 'folders', 'onClick' => 'Assets.file_tree'));
 
 $doc = JFactory::getDocument();
 
@@ -37,6 +19,7 @@ $doc->addScriptDeclaration("Upload.config.token = '" . JUtility::getToken() . "'
 
 $doc->addScript(JURI::root().'media/com_podcast/js/admin/assets.js');
 $doc->addScriptDeclaration("Assets.token = '" . JUtility::getToken() . "';");
+$doc->addScriptDeclaration("Assets.folder_root = '" . PodcastAsset::getOptions()->get('root', '/media/podcasts') . "';");
 
 ?>
 
