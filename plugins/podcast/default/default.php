@@ -9,14 +9,14 @@ class PlgPodcastDefault extends JPlugin
 
     public function index()
     {
-        
+
     }
-    
+
     public function getFileUrl($file)
     {
         return JURI::root().$file;
     }
-    
+
     public function onFileVerify($file)
     {
         if (file_exists(JPATH_ROOT.$file)) return true;
@@ -71,7 +71,7 @@ class PlgPodcastDefault extends JPlugin
         if (!file_exists($targetDir))
             @mkdir($targetDir);
 
-        // Remove old temp files	
+        // Remove old temp files
         if ($cleanupTargetDir && is_dir($targetDir) && ($dir = opendir($targetDir)))
         {
             while (($file = readdir($dir)) !== false)
@@ -174,13 +174,14 @@ class PlgPodcastDefault extends JPlugin
         // Check if file has been uploaded
         if (!$chunks || $chunk == $chunks - 1)
         {
-            // Strip the temp .part suffix off 
+            // Strip the temp .part suffix off
             rename("{$filePath}.part", $filePath);
-            
-            require_once(JPATH_ROOT.'/administrator/components/com_podcast/helpers/getid3/getid3.php');
+
+			jimport('getid3.getid3');
+
             $getid3 = new getID3;
             $info = $getid3->analyze($filePath);
-            
+
             $result->result = true;
             $result->message = 'Ok';
             $result->enclosure_length = $info['filesize'];
@@ -192,7 +193,7 @@ class PlgPodcastDefault extends JPlugin
 
         return $result;
     }
-    
+
     public function onFolderList($base = false)
     {
         if (!$base)
@@ -200,9 +201,9 @@ class PlgPodcastDefault extends JPlugin
             $base = $this->params->get('folder', '/media/podcasts/');
         }
         $base = JPATH_ROOT.$base;
-        
+
         $folders = JFolder::folders($base, '.', true, true);
-        
+
         return $folders;
     }
 
