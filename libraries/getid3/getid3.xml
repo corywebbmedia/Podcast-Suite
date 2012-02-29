@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="library" method="upgrade" version="1.7.0">
+	<name>getID3</name>
+	<libraryname>getid3</libraryname>
+	<author>James Heinrich (packaged by Joseph LeBlanc)</author>
+	<creationDate>February 2012</creationDate>
+	<copyright></copyright>
+	<license>GPLv2</license>
+	<authorEmail>joe@corywebbmedia.com</authorEmail>
+	<authorUrl>corywebbmedia.com</authorUrl>
+	<version>1.9.3</version>
+	<description>Reads and parses metadata from media files (such as the ID3 tags from MP3s)</description>
+
+	<files>
+		<folder>getID3</folder>
+	</files>
+</extension>

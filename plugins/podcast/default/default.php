@@ -177,7 +177,7 @@ class PlgPodcastDefault extends JPlugin
             // Strip the temp .part suffix off
             rename("{$filePath}.part", $filePath);
 
-			jimport('getid3.getid3');
+			jimport('getid3.getid3.getid3');
 
             $getid3 = new getID3;
             $info = $getid3->analyze($filePath);
