@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="library" method="upgrade" version="1.7.0">
+	<name>Podcast</name>
+	<libraryname>Podcast</libraryname>
+	<author>Podcast Suite</author>
+	<creationDate>February 2012</creationDate>
+	<copyright></copyright>
+	<license>GPLv2</license>
+	<authorEmail>joe@corywebbmedia.com</authorEmail>
+	<authorUrl>podcastsuite.com</authorUrl>
+	<version>2.0</version>
+	<description>Provides support for different asset storage engines</description>
+
+	<files>
+		<file>asset.php</file>
+		<folder>storage</folder>
+		<file>storage.php</file>
+	</files>
+</extension>
