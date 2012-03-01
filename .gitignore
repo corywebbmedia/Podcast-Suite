@@ -216,6 +216,7 @@
 /administrator/manifests
 /administrator/modules
 /administrator/templates
+/build
 /cache
 /cli
 /components/com_banners
