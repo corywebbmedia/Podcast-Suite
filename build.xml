@@ -34,10 +34,15 @@
 		<include name="libraries/getid3/**" />
 	</fileset>
 
+	<fileset dir="${srcdir}" id="podcast_library">
+		<include name="libraries/podcast/**" />
+	</fileset>
+
 	<fileset dir="${srcdir}" id="full_package">
 		<include name="build/com_podcast.zip" />
 		<include name="build/plg_default_podcast.zip" />
 		<include name="build/getid3.zip" />
+		<include name="build/podcast.zip" />
 		<include name="pkg_podcast.xml" />
 	</fileset>
 
@@ -60,6 +65,11 @@
 		<delete file="build/getid3.zip" quiet="true" />
 		<zip destfile="build/getid3.zip">
 			<fileset refid="getid3_library" />
+		</zip>
+
+		<delete file="build/podcast.zip" quiet="true" />
+		<zip destfile="build/podcast.zip">
+			<fileset refid="podcast_library" />
 		</zip>
 
 		<delete file="build/PodcastSuite.zip" quiet="true" />

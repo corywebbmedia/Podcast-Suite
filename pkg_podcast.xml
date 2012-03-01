@@ -13,6 +13,7 @@
 
 	<files folder="build">
 		<file type="library" id="getid3">getid3.zip</file>
+		<file type="library" id="podcast">podcast.zip</file>
 		<file type="plugin" id="default" group="podcast">plg_default_podcast.zip</file>
 		<file type="component" id="com_podcast">com_podcast.zip</file>
 	</files>
