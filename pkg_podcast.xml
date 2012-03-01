@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="package" method="upgrade" version="2.5.0">
+	<name>pkg_podcast</name>
+	<packagename>podcast</packagename>
+	<author>Podcast Suite</author>
+	<creationDate>February 2012</creationDate>
+	<copyright>Copyright (C) 2011-2012</copyright>
+	<license>GNU General Public License version 2</license>
+	<authorEmail>joe@corywebbmedia.com</authorEmail>
+	<authorUrl>podcastsuite.com</authorUrl>
+	<version>2.0</version>
+	<description>COM_PODCAST_DESC</description>
+
+	<files folder="build">
+		<file type="library" id="getid3">getid3.zip</file>
+		<file type="library" id="podcast">podcast.zip</file>
+		<file type="plugin" id="default" group="podcast">plg_default_podcast.zip</file>
+		<file type="component" id="com_podcast">com_podcast.zip</file>
+	</files>
+</extension>

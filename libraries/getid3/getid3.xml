@@ -12,6 +12,6 @@
 	<description>Reads and parses metadata from media files (such as the ID3 tags from MP3s)</description>
 
 	<files>
-		<folder>getID3</folder>
+		<folder>getid3</folder>
 	</files>
 </extension>

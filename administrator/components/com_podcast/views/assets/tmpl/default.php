@@ -43,11 +43,11 @@ $doc->addScriptDeclaration("Assets.storage_engine = '".PodcastAsset::getStorage(
 
 <div class="width-70 fltrt" id="files">
 
-	<form action="index.php?option=com_podcast" method="post" accept-charset="utf-8" name="adminForm">
+	<form action="<?php echo JRoute::_('index.php?option=com_podcast') ?>" method="post" accept-charset="utf-8" name="adminForm" id="adminForm">
 		<fieldset>
 			<legend><?php echo JText::_('COM_PODCAST_MEDIA_ASSETS') ?></legend>
 			<div class="filter-search fltlft">
-				<label class="filter-search-lbl" for="filter_search"><?php echo JText::_('JSEARCH_FILTER_LABEL'); ?></label>
+				<label class="filter-search-lbl" for="filter_search"><?php echo JText::_('JSEARCH_FILTER_LABEL'); ?>&nbsp;</label>
 				<input type="text" name="filter_search" id="search_assets" value="" title="<?php echo JText::_('COM_PODCAST_SEARCH_EPISODES'); ?>" size="50" />
 				<button type="button" id="search_clear"><?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?></button>
 			</div>
