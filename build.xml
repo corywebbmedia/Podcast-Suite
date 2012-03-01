@@ -1,54 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="Podcast Suite" basedir="." default="copy">
 
-    <property name="testdir" value="tmp" override="true" />
-    <property name="srcdir" value="${project.basedir}" override="true" />
+	<property name="srcdir" value="${project.basedir}" override="true" />
 	<property name="component" value="com_podcast" override="true" />
 
-    <fileset dir="${srcdir}" id="front_component_files">
-        <include name="components/${component}/**" />
+	<fileset dir="${srcdir}" id="front_component_files">
+		<include name="components/${component}/**" />
 		<include name="language/en-GB/en-GB.${component}*" />
-    </fileset>
+	</fileset>
 
-    <fileset dir="${srcdir}" id="admin_component_files">
-        <include name="administrator/components/${component}/**" />
-        <include name="administrator/language/en-GB/en-GB.${component}*" />
-    </fileset>
+	<fileset dir="${srcdir}" id="admin_component_files">
+		<include name="administrator/components/${component}/**" />
+		<include name="administrator/language/en-GB/en-GB.${component}*" />
+	</fileset>
 
-    <fileset dir="${srcdir}/administrator/components/${component}/" id="component_manifest">
-        <include name="podcast.xml" />
-    </fileset>
+	<fileset dir="${srcdir}/administrator/components/${component}/" id="component_manifest">
+		<include name="podcast.xml" />
+	</fileset>
 
-    <fileset dir="${srcdir}" id="default_podcast_plugin">
-        <include name="plugins/podcast/default/**" />
-    </fileset>
+	<fileset dir="${srcdir}/plugins/podcast/default/" id="default_podcast_plugin">
+		<include name="**" />
+	</fileset>
 
-    <fileset dir="${srcdir}" id="podcast_module">
-        <include name="modules/mod_podcast/**" />
-    </fileset>
+	<fileset dir="${srcdir}" id="podcast_module">
+		<include name="modules/mod_podcast/**" />
+	</fileset>
 
-    <fileset dir="${srcdir}" id="podcast_media">
-        <include name="media/com_podcast/**" />
-    </fileset>
+	<fileset dir="${srcdir}" id="podcast_media">
+		<include name="media/com_podcast/**" />
+	</fileset>
 
 	<fileset dir="${srcdir}" id="getid3_library">
-        <include name="libraries/getid3/**" />
-    </fileset>
+		<include name="libraries/getid3/**" />
+	</fileset>
 
-    <target name="copy" description="copy target">
-        <echo msg="Creating component archive..." />
-        <delete file="tmp/PodcastSuite.zip" quiet="true" />
-        <zip destfile="tmp/PodcastSuite.zip">
-            <fileset refid="front_component_files" />
-            <fileset refid="admin_component_files" />
-            <fileset refid="component_manifest" />
-			<fileset refid="default_podcast_plugin" />
-			<fileset refid="podcast_module" />
+	<fileset dir="${srcdir}" id="full_package">
+		<include name="build/com_podcast.zip" />
+		<include name="build/plg_default_podcast.zip" />
+		<include name="build/getid3.zip" />
+		<include name="pkg_podcast.xml" />
+	</fileset>
+
+	<target name="copy" description="copy target">
+		<echo msg="Creating component archive..." />
+
+		<delete file="build/com_podcast.zip" quiet="true" />
+		<zip destfile="build/com_podcast.zip">
+			<fileset refid="front_component_files" />
+			<fileset refid="admin_component_files" />
+			<fileset refid="component_manifest" />
 			<fileset refid="podcast_media" />
-			<fileset refid="getid3_library" />
-        </zip>
-        <echo msg="Files copied and archive file created OK!" />
+		</zip>
 
-      </target>
+		<delete file="build/plg_default_podcast.zip" quiet="true" />
+		<zip destfile="build/plg_default_podcast.zip">
+			<fileset refid="default_podcast_plugin" />
+		</zip>
+
+		<delete file="build/getid3.zip" quiet="true" />
+		<zip destfile="build/getid3.zip">
+			<fileset refid="getid3_library" />
+		</zip>
+
+		<delete file="build/PodcastSuite.zip" quiet="true" />
+		<zip destfile="build/PodcastSuite.zip">
+			<fileset refid="full_package" />
+		</zip>
+
+		<echo msg="Files copied and installable archives created OK!" />
+
+	  </target>
 
 </project>
