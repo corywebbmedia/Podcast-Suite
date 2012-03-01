@@ -11,13 +11,23 @@
 	<description>COM_PODCAST_DESC</description>
 
 	<files folder="components/com_podcast">
-		<filename>podcast.php</filename>
-		<filename>router.php</filename>
 		<filename>controller.php</filename>
 		<filename>index.html</filename>
 		<folder>models</folder>
+		<filename>podcast.php</filename>
 		<folder>views</folder>
 	</files>
+
+	<media destination="com_podcast" folder="media/com_podcast">
+		<folder>css</folder>
+		<folder>images</folder>
+		<folder>js</folder>
+		<filename>index.html</filename>
+	</media>
+
+	<languages folder="language/en-GB">
+		<language tag="en-GB">en-GB.com_podcast.ini</language>
+	</languages>
 
 	<install>
 		<sql>
@@ -42,12 +52,14 @@
 			<menu link="option=com_podcast&amp;view=assets" alt="COM_PODCAST_MEDIA" img="../media/com_podcast/images/icons/media-16.png">COM_PODCAST_MEDIA</menu>
 		</submenu>
 		<files folder="administrator/components/com_podcast">
-			<filename>podcast.php</filename>
-			<filename>index.html</filename>
-			<filename>manifest.xml</filename>
-			<filename>install.mysql.sql</filename>
+			<filename>access.xml</filename>
+			<filename>config.xml</filename>
+			<filename>controller.php</filename>
 			<folder>controllers</folder>
+			<filename>index.html</filename>
 			<folder>models</folder>
+			<filename>podcast.php</filename>
+			<filename>podcast.xml</filename>
 			<folder>sql</folder>
 			<folder>tables</folder>
 			<folder>views</folder>

@@ -7,6 +7,7 @@
 
     <fileset dir="${srcdir}" id="front_component_files">
         <include name="components/${component}/**" />
+		<include name="language/en-GB/en-GB.${component}*" />
     </fileset>
 
     <fileset dir="${srcdir}" id="admin_component_files">
@@ -18,13 +19,33 @@
         <include name="podcast.xml" />
     </fileset>
 
+    <fileset dir="${srcdir}" id="default_podcast_plugin">
+        <include name="plugins/podcast/default/**" />
+    </fileset>
+
+    <fileset dir="${srcdir}" id="podcast_module">
+        <include name="modules/mod_podcast/**" />
+    </fileset>
+
+    <fileset dir="${srcdir}" id="podcast_media">
+        <include name="media/com_podcast/**" />
+    </fileset>
+
+	<fileset dir="${srcdir}" id="getid3_library">
+        <include name="libraries/getid3/**" />
+    </fileset>
+
     <target name="copy" description="copy target">
         <echo msg="Creating component archive..." />
-        <delete file="tmp/${component}.zip" quiet="true" />
-        <zip destfile="tmp/${component}.zip">
+        <delete file="tmp/PodcastSuite.zip" quiet="true" />
+        <zip destfile="tmp/PodcastSuite.zip">
             <fileset refid="front_component_files" />
             <fileset refid="admin_component_files" />
             <fileset refid="component_manifest" />
+			<fileset refid="default_podcast_plugin" />
+			<fileset refid="podcast_module" />
+			<fileset refid="podcast_media" />
+			<fileset refid="getid3_library" />
         </zip>
         <echo msg="Files copied and archive file created OK!" />
 
