@@ -87,7 +87,10 @@ Assets.render = function() {
 	for (var i=0; i < Assets.assets.length; i++) {
 		Assets.add_item(Assets.assets[i]);
 	}
-	
+
+	// Add click events to the freshly rendered checkboxes
+	$$('.asset_checkbox').addEvent('click', Assets.toggle_check);
+
 	Assets.setup_pagination();
 };
 
@@ -199,9 +202,25 @@ Assets.toggle_checks = function	 (check_all) {
 		$$('.asset_checkbox').each(function (item) {
 			item.checked = true;
 		}); 
+		
+		$('boxchecked').set('value', $$('.asset_checkbox').length);
 	} else {
 		$$('.asset_checkbox').each(function (item) {
 			item.checked = false;
-		});				
+		});
+		
+		$('boxchecked').set('value', '0');
 	}
+};
+
+Assets.toggle_check = function  (check) {
+	var checked = parseInt($('boxchecked').get('value'), 10);
+
+	if (check.target.checked === true) {
+		checked++;
+	} else {
+		checked--;
+	}
+
+	$('boxchecked').set('value', checked);
 };

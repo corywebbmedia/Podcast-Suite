@@ -27,14 +27,14 @@ class PodcastViewAssets extends JView
 
 		JToolBarHelper::divider();
 
-		JToolBarHelper::deleteList('', 'assets.delete');
+		JToolBarHelper::deleteList('', 'assets.remove');
 
 		JToolBarHelper::divider();
 
 		$button = '<a class="toolbar" href="http://podcastsuite.com/support" target="_blank"><span class="icon-32-help"></span>'.JText::_('JTOOLBAR_HELP').'</a>';
 		$bar->appendButton('Custom', $button, 'help');
 	}
-	
+
 	protected function setupFolders($folders, $root = true)
 	{
 		foreach ($folders as $node => $children)

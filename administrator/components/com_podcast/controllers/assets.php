@@ -25,9 +25,9 @@ class PodcastControllerAssets extends JControllerAdmin
 			$response = new stdClass();
 			$response->list = $assets;
 			$response->pagination = $pagination;
-			
+
 			echo json_encode($response);
-			
+
 			JFactory::getApplication()->close();
 		}
 	}
