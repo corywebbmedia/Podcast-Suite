@@ -30,12 +30,12 @@
 		<include name="media/com_podcast/**" />
 	</fileset>
 
-	<fileset dir="${srcdir}" id="getid3_library">
-		<include name="libraries/getid3/**" />
+	<fileset dir="${srcdir}/libraries/getid3/" id="getid3_library">
+		<include name="**" />
 	</fileset>
 
-	<fileset dir="${srcdir}" id="podcast_library">
-		<include name="libraries/podcast/**" />
+	<fileset dir="${srcdir}/libraries/podcast/" id="podcast_library">
+		<include name="**" />
 	</fileset>
 
 	<fileset dir="${srcdir}" id="full_package">
