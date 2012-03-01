@@ -29,18 +29,7 @@ window.addEvent('domready', function () {
 	uploader.bind('FileUploaded', function(up, file, info) {
 		if (info.status == 200) {
 			var json = JSON.decode(info.response);
-			// var replace = confirm('Would you like to set '+json.enclosure_url+' as the default media item?');
-			// if (replace) {
-			//	   $('jform_item_enclosure_url').set('value', json.enclosure_url);
-			//	   $('jform_item_enclosure_type').set('value', json.enclosure_type);
-			//	   $('jform_item_duration').set('value', json.enclosure_duration);
-			//	   $('jform_item_enclosure_length').set('value', json.enclosure_length);
-			//	   var assets = JSON.decode($('jform_item_assets').get('value'));
-			//	   assets.shift();
-			//	   assets.unshift(json.podcast_asset_id);
-			//	   assets = JSON.encode(assets);
-			//	   $('jform_item_assets').set('value', assets.replace(/\"/g, ''));
-			// }
+			Assets.page(Assets.pagination.current);
 		}
 	});
 
@@ -60,7 +49,8 @@ var Assets = {
 	pagination_template: 'pagination_template',
 	pagination_template_html: null,
 	folder_root: null,
-	folder_current: null
+	folder_current: null,
+	storage_engine: null
 };
 
 // Loads the assets
@@ -175,17 +165,28 @@ Assets.file_tree = function(node, state) {
 	var filter = "/" + node.text;
 	var current = node;
 
-	filter = Assets.recrusive_file_path(current, Assets.folder_root);
+	if (Assets.storage_engine == 'amazons3') {
+		filter = Assets.filterS3(node);
+		Assets.folder_current = node.text;
+	} else {
+		filter = Assets.recrusive_file_path(current, Assets.folder_root);
+		Assets.folder_current = filter;
+	}
 
 	if (filter === Assets.folder_root) {
 		filter = '';
 	}
-
+	
 	$("search_assets").set("value", filter);
-	Assets.folder_current = filter;
+	
 
 	Assets.search_string = filter;
 	Assets.page(1);
+};
+
+Assets.filterS3 = function(node) {
+	var filter = Assets.folder_root;
+	return filter.replace("bucket", node.text);
 };
 
 Assets.recrusive_file_path = function (node, path) {

@@ -10,14 +10,14 @@ CREATE TABLE IF NOT EXISTS `#__podcast_assets` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 INSERT INTO `#__podcast_assets` (`podcast_asset_id`, `asset_enclosure_url`, `asset_enclosure_length`, `asset_enclosure_type`, `asset_duration`, `asset_closed_caption`, `enabled`) VALUES
-(1, '/media/podcasts/french_lesson_1.mp3', '15722706', 'audio/mpeg', '32:45', 0, 1),
-(2, '/media/podcasts/french_lesson_2.mp3', '14506027', 'audio/mpeg', '30:13', 0, 1),
-(3, '/media/podcasts/french_lesson_3.mp3', '11678533', 'audio/mpeg', '24:19', 0, 1),
-(4, '/media/podcasts/french_lesson_4.mp3', '14580006', 'audio/mpeg', '30:22', 0, 1),
-(5, '/media/podcasts/french_lesson_5.mp3', '17880420', 'audio/mpeg', '37:15', 0, 1),
-(6, '/media/podcasts/german_lesson_1.mp3', '15238918', 'audio/mpeg', '31:44', 0, 1),
-(7, '/media/podcasts/german_lesson_2.mp3', '13769583', 'audio/mpeg', '28:41', 0, 1),
-(8, '/media/podcasts/german_lesson_3.mp3', '15208198', 'audio/mpeg', '31:41', 0, 1);
+(1, '/media/podcasts/french_lesson_1.mp3', '15722706', 'audio/mpeg', '32:45', 0, 'local', 1),
+(2, '/media/podcasts/french_lesson_2.mp3', '14506027', 'audio/mpeg', '30:13', 0, 'local', 1),
+(3, '/media/podcasts/french_lesson_3.mp3', '11678533', 'audio/mpeg', '24:19', 0, 'local', 1),
+(4, '/media/podcasts/french_lesson_4.mp3', '14580006', 'audio/mpeg', '30:22', 0, 'local', 1),
+(5, '/media/podcasts/french_lesson_5.mp3', '17880420', 'audio/mpeg', '37:15', 0, 'local', 1),
+(6, '/media/podcasts/german_lesson_1.mp3', '15238918', 'audio/mpeg', '31:44', 0, 'local', 1),
+(7, '/media/podcasts/german_lesson_2.mp3', '13769583', 'audio/mpeg', '28:41', 0, 'local', 1),
+(8, '/media/podcasts/german_lesson_3.mp3', '15208198', 'audio/mpeg', '31:41', 0, 'local', 1);
 
 CREATE TABLE IF NOT EXISTS `#__podcast_assets_map` (
   `asset_id` int(11) NOT NULL,

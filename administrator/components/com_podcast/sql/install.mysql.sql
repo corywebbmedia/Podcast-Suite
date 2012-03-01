@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS `#__podcast_assets` (
   `asset_enclosure_type` varchar(255) NOT NULL,
   `asset_duration` varchar(31) NOT NULL,
   `asset_closed_caption` int(1) NOT NULL DEFAULT '0',
+  `storage_engine` varchar(30) NOT NULL,
   `enabled` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`podcast_asset_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;

@@ -2,7 +2,7 @@
 <config>
 
     <fieldset name="options" label="COM_PODCAST_SETTINGS" addfieldpath="/administrator/components/com_podcast/models/fields">
-        <field type="storage" name="storage" default="local" label="COM_PODCAST_STORAGE_ENGINE" description="COM_PODCAST_STORAGE_ENGINE_DESC">
+        <field type="list" name="storage" default="local" label="COM_PODCAST_STORAGE_ENGINE" description="COM_PODCAST_STORAGE_ENGINE_DESC">
             <option value="local">COM_PODCAST_STORAGE_LOCAL</option>
             <option value="amazons3">COM_PODCAST_STORAGE_AMAZONS3</option>
         </field>

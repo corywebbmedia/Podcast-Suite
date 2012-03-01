@@ -2,7 +2,7 @@
 defined( '_JEXEC' ) or die;
 
 jimport('joomla.application.component.controller');
-jimport('joomla.event.dispatcher');
+jimport('podcast.asset');
 
 class PodcastControllerAssets extends JController
 {
@@ -68,8 +68,8 @@ class PodcastControllerAssets extends JController
 		$db->setQuery(
 				$db->getQuery(true)
 				->insert('#__podcast_assets')
-				->columns('asset_enclosure_url', 'asset_enclosure_length', 'asset_enclosure_type', 'asset_duration', 'asset_closed_captioned')
-				->values($db->quote($asset['asset_enclosure_url']), $db->quote($asset['asset_enclosure_length']), $db->quote($asset['asset_enclosure_type']), $db->quote($asset['asset_duration']), $db->quote($asset['asset_closed_caption']))
+				->columns('asset_enclosure_url', 'asset_enclosure_length', 'asset_enclosure_type', 'asset_duration', 'asset_closed_captioned', 'storage_engine')
+				->values($db->quote($asset['asset_enclosure_url']), $db->quote($asset['asset_enclosure_length']), $db->quote($asset['asset_enclosure_type']), $db->quote($asset['asset_duration']), $db->quote($asset['asset_closed_caption'], 'custom'))
 		)->query();
 
 		$result = $db->insertid();
@@ -81,14 +81,11 @@ class PodcastControllerAssets extends JController
 		JRequest::checkToken('get') or die;
 
 		$model = $this->getModel('asset');
-
-		$options = JComponentHelper::getParams('com_podcast');
-		$type = $options->get('storage', 'default');
-
-		JPluginHelper::importPlugin('podcast', $type);
-		$dispatcher =& JDispatcher::getInstance();
-
-		$result = $dispatcher->trigger('onFileStore');
+		
+		$storage = PodcastAsset::getStorage();
+		
+		$folder = JRequest::getVar('folder', PodcastAsset::getOptions()->get('folder', '/media/podcasts/'));
+		$result = $storage->putFile($folder);
 
 		if (is_array($result)) {
 			$result = array_shift($result);

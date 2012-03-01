@@ -23,6 +23,7 @@ abstract class PodcastStorage
 
     abstract public function getAssetUrl($path);
     abstract public function getFolders($path = '');
+	abstract public function getRoot();
 
     public function getAssetExtension($file)
     {
@@ -36,7 +37,7 @@ abstract class PodcastStorage
         if (strpos($type, 'audio') !== false || in_array($type, $this->audio_mime_types)) return 'audio';
         else return 'attachment';
     }
-    
+	
     public function getSize($size)
     {
         if (!empty($size))

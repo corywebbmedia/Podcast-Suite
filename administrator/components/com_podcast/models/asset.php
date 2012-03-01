@@ -3,6 +3,7 @@
 defined('_JEXEC') or die;
 
 jimport('joomla.application.component.model');
+jimport('podcast.asset');
 
 class PodcastModelAsset extends JModel
 {
@@ -27,7 +28,8 @@ class PodcastModelAsset extends JModel
 			'asset_enclosure_length' => $file->enclosure_length,
 			'asset_enclosure_type' => $file->enclosure_type,
 			'asset_duration' => $file->enclosure_duration,
-			'asset_enclosure_url' => $file->enclosure_url
+			'asset_enclosure_url' => $file->enclosure_url,
+			'storage_engine' => PodcastAsset::getOptions()->get('storage')
 		));
 
 		$asset->store();
