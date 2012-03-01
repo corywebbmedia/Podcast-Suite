@@ -2,7 +2,23 @@
 <config>
 
     <fieldset name="options" label="COM_PODCAST_SETTINGS" addfieldpath="/administrator/components/com_podcast/models/fields">
-        <field type="storage" name="storage" default="default" label="COM_PODCAST_STORAGE_ENGINE" description="COM_PODCAST_STORAGE_ENGINE_DESC" />
+        <field type="storage" name="storage" default="local" label="COM_PODCAST_STORAGE_ENGINE" description="COM_PODCAST_STORAGE_ENGINE_DESC">
+            <option value="local">COM_PODCAST_STORAGE_LOCAL</option>
+            <option value="amazons3">COM_PODCAST_STORAGE_AMAZONS3</option>
+        </field>
+	</fieldset>
+    
+    <fieldset name="local_options" label="COM_PODCAST_STORAGE_LOCAL" addfieldpath="/administrator/components/com_podcast/models/fields">
+        <field type="text" name="local_root" default="/media/podcasts" label="*Root" description="*Root" />
+	</fieldset>
+    
+    <fieldset name="amazons3_options" label="COM_PODCAST_STORAGE_AMAZONS3" addfieldpath="/administrator/components/com_podcast/models/fields">
+        <field type="text" name="amazons3_key" default="" label="COM_PODCAST_STORAGE_AMAZONS3_KEY" description="*Web Services Key" />
+        <field type="text" name="amazons3_secret" default="" label="COM_PODCAST_STORAGE_AMAZONS3_SECRET" description="*Web Services Secret Key" />
+        <field type="list" name="amazons3_ssl" default="0" label="*Use SSL">
+            <option value="0">JDISABLED</option>
+            <option value="1">JENABLED</option>
+        </field>
 	</fieldset>
     
     <fieldset name="permissions" label="JCONFIG_PERMISSIONS_LABEL" description="JCONFIG_PERMISSIONS_DESC">

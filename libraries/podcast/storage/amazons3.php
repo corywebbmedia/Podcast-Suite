@@ -12,11 +12,20 @@ defined('_JEXEC') or die;
 
 jimport('podcast.storage');
 jimport('joomla.filesystem.folder');
+jimport('podcast.storage.amazons3.s3');
 
-class PodcastStorageLocal extends PodcastStorage
+class PodcastStorageAmazons3 extends PodcastStorage
 {
-    protected $type = 'local';
+    protected $type = 'amazons3';
     protected $tree = array();
+    protected $s3;
+    
+    public function __construct()
+    {
+        $options = PodcastAsset::getOptions();
+        $this->s3 = new S3($options->get('amazons3_key'), $options->get('amazons3_secret'), false);
+        var_dump(get_class_methods($this->s3));
+    }
     
     public function getAssetUrl($path)
     {
@@ -28,11 +37,11 @@ class PodcastStorageLocal extends PodcastStorage
     
     public function getFolders($path = '', $tree = true)
     {
-        if ($path == '') {
-            $path = self::getOptions()->get('root', JPATH_ROOT.'/media/podcasts/');
-        }
+        $folders = $this->s3->listBuckets();
         
-        $folders = $this->retrieveTree($path);
+        var_dump($folders);
+        
+        //$folders = $this->retrieveTree($path);
         
         return $folders;
     }
