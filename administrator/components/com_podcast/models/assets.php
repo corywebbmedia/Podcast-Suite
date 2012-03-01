@@ -37,9 +37,9 @@ class PodcastModelAssets extends JModelList
     public function getFolders()
     {
         $path = JRequest::getVar('path', JPATH_ROOT.'/media/podcasts/');
-        
+
         $folders = PodcastAsset::getStorage()->getFolders($path);
-        
+
         return $folders;
     }
 

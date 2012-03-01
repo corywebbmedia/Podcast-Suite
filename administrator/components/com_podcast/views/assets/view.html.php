@@ -27,7 +27,7 @@ class PodcastViewAssets extends JView
 
 		JToolBarHelper::divider();
 
-		JToolBarHelper::deleteList('', 'assets.remove');
+		JToolBarHelper::deleteList('', 'assets.delete');
 
 		JToolBarHelper::divider();
 

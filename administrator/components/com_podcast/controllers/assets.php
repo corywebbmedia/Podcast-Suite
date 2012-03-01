@@ -6,6 +6,8 @@ jimport('joomla.application.component.controlleradmin');
 
 class PodcastControllerAssets extends JControllerAdmin
 {
+	protected $text_prefix = 'COM_PODCAST_ASSETS';
+
 	public function getModel($name = 'Asset', $prefix = 'PodcastModel', $config = array('ignore_request' => true))
 	{
 		$model = parent::getModel($name, $prefix, $config);

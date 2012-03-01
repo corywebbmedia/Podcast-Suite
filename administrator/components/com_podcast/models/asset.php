@@ -2,10 +2,23 @@
 
 defined('_JEXEC') or die;
 
-jimport('joomla.application.component.model');
+jimport('joomla.application.component.modeladmin');
 
-class PodcastModelAsset extends JModel
+class PodcastModelAsset extends JModelAdmin
 {
+	public function getTable($type = 'Asset', $prefix = 'PodcastTable', $config = array())
+	{
+		return JTable::getInstance($type, $prefix, $config);
+	}
+
+	/**
+	 * We currently do not use JForm for assets; this is a stub.
+	 */
+	public function getForm($data = array(), $loadData = true)
+	{
+		return false;
+	}
+
 	public function getPlugin()
 	{
 		$options = JComponentHelper::getParams('com_podcast');
