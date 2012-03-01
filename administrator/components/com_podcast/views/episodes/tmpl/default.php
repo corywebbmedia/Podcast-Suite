@@ -17,15 +17,15 @@ $feeds = array();
 		<div class="filter-select fltrt">
 			<select name="filter_feed" class="inputbox" onchange="this.form.submit()">
 				<option value=""><?php echo JText::_('COM_PODCAST_SELECT_FEED');?></option>
-                <?php foreach ($this->filter_feeds as $feed) {
-                    $feeds[] = JHtml::_('select.option', (string) $feed->feed_id, (string) $feed->feed_title);
-                } ?>
-                <?php echo JHtml::_('select.options', $feeds, 'value', 'text', $this->state->get('filter.feed'), true);?>
+				<?php foreach ($this->filter_feeds as $feed) {
+					$feeds[] = JHtml::_('select.option', (string) $feed->feed_id, (string) $feed->feed_title);
+				} ?>
+				<?php echo JHtml::_('select.options', $feeds, 'value', 'text', $this->state->get('filter.feed'), true);?>
 			</select>
-            <select name="filter_state" class="inputbox" onchange="this.form.submit()">
-                <option value=""><?php echo JText::_('JOPTION_SELECT_PUBLISHED');?></option>
-                <?php echo JHtml::_('select.options', JHtml::_('jgrid.publishedOptions', array('archived' => false, 'trash' => false, 'all' => false)), 'value', 'text', $this->state->get('filter.state'), true);?>
-            </select>
+			<select name="filter_state" class="inputbox" onchange="this.form.submit()">
+				<option value=""><?php echo JText::_('JOPTION_SELECT_PUBLISHED');?></option>
+				<?php echo JHtml::_('select.options', JHtml::_('jgrid.publishedOptions', array('archived' => false, 'trash' => false, 'all' => false)), 'value', 'text', $this->state->get('filter.state'), true);?>
+			</select>
 		</div>
 
 	</fieldset>
@@ -40,7 +40,7 @@ $feeds = array();
 				<th class="title">
 					<?php echo JHtml::_('grid.sort', 'COM_PODCAST_EPISODE_TITLE', 'item_title', $listDirn, $listOrder); ?>
 				</th>
-                <th>
+				<th>
 					<?php echo JHtml::_('grid.sort', 'COM_PODCAST_LOCATION', 'item_enclosure_url', $listDirn, $listOrder); ?>
 				</th>
 				<th>

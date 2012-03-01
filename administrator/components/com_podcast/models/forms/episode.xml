@@ -80,8 +80,8 @@
 
 		<field name="item_block"
 			type="radio"
-			label="COM_PODCAST_ITEM_BLOCK"
-			description="COM_PODCAST_ITEM_BLOCK_DESC"
+			label="COM_PODCAST_EPISODE_BLOCK"
+			description="COM_PODCAST_EPISODE_BLOCK_DESC"
 			default="0">
 			<option value="0">JNO</option>
 			<option value="1">JYES</option>
@@ -89,8 +89,8 @@
 
 		<field name="item_image"
 			type="media"
-			label="COM_PODCAST_ITEM_IMAGE"
-			description="COM_PODCAST_ITEM_IMAGE_DESC"
+			label="COM_PODCAST_EPISODE_IMAGE"
+			description="COM_PODCAST_EPISODE_IMAGE_DESC"
 			default="" />
 
 		<field name="item_guid"

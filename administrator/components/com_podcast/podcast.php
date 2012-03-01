@@ -15,6 +15,6 @@ JSubMenuHelper::addEntry(JText::_('COM_PODCAST_EPISODES'), 'index.php?option=com
 JSubMenuHelper::addEntry(JText::_('COM_PODCAST_FEEDS'), 'index.php?option=com_podcast&view=feeds', ($view == 'feeds') ? true : false);
 JSubMenuHelper::addEntry(JText::_('COM_PODCAST_MEDIA'), 'index.php?option=com_podcast&view=assets', ($view == 'assets') ? true : false);
 
-$controller	= JController::getInstance('Podcast');
+$controller = JController::getInstance('Podcast');
 $controller->execute(JRequest::getCmd('task'));
 $controller->redirect();

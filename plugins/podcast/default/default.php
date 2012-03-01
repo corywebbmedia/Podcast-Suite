@@ -3,20 +3,21 @@
 defined('_JEXEC') or die;
 
 jimport('joomla.plugin.plugin');
+jimport('joomla.filesystem.path');
 
 class PlgPodcastDefault extends JPlugin
 {
 
     public function index()
     {
-        
+
     }
-    
+
     public function getFileUrl($file)
     {
         return JURI::root().$file;
     }
-    
+
     public function onFileVerify($file)
     {
         if (file_exists(JPATH_ROOT.$file)) return true;
@@ -37,7 +38,14 @@ class PlgPodcastDefault extends JPlugin
         header("Pragma: no-cache");
 
         // Settings
-        $targetDir        = realpath(JPATH_ROOT.$this->params->get('folder', JPATH_ROOT . '/media/podcasts'));
+
+		$folder = JRequest::getVar('folder', '');
+
+		if (!$folder) {
+			$folder = $this->params->get('folder', '/media/podcasts');
+		}
+
+        $targetDir        = JPath::clean(JPATH_ROOT . $folder);
         $cleanupTargetDir = true; // Remove old files
         $maxFileAge       = 5 * 3600; // Temp file age in seconds
         // 5 minutes execution time
@@ -71,7 +79,7 @@ class PlgPodcastDefault extends JPlugin
         if (!file_exists($targetDir))
             @mkdir($targetDir);
 
-        // Remove old temp files	
+        // Remove old temp files
         if ($cleanupTargetDir && is_dir($targetDir) && ($dir = opendir($targetDir)))
         {
             while (($file = readdir($dir)) !== false)
@@ -174,25 +182,26 @@ class PlgPodcastDefault extends JPlugin
         // Check if file has been uploaded
         if (!$chunks || $chunk == $chunks - 1)
         {
-            // Strip the temp .part suffix off 
+            // Strip the temp .part suffix off
             rename("{$filePath}.part", $filePath);
-            
-            require_once(JPATH_ROOT.'/administrator/components/com_podcast/helpers/getid3/getid3.php');
+
+			jimport('getid3.getid3.getid3');
+
             $getid3 = new getID3;
             $info = $getid3->analyze($filePath);
-            
+
             $result->result = true;
             $result->message = 'Ok';
             $result->enclosure_length = $info['filesize'];
             $result->enclosure_type = $info['mime_type'];
             $result->enclosure_duration = $info['playtime_string'];
             $filePath = str_replace('\\', '/', $filePath);
-            $result->enclosure_url = $this->params->get('folder', JPATH_ROOT . '/media/podcasts').'/'.basename($filePath);
+            $result->enclosure_url = $folder.'/'.basename($filePath);
         }
 
         return $result;
     }
-    
+
     public function onFolderList($base = false)
     {
         if (!$base)
@@ -200,9 +209,9 @@ class PlgPodcastDefault extends JPlugin
             $base = $this->params->get('folder', '/media/podcasts/');
         }
         $base = JPATH_ROOT.$base;
-        
+
         $folders = JFolder::folders($base, '.', true, true);
-        
+
         return $folders;
     }
 

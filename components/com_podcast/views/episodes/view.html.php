@@ -11,8 +11,8 @@ class PodcastViewEpisodes extends JView
 	public function display($tpl = null)
 	{
 		$this->items = $this->get('Items');
-        $this->assets = $this->get('Assets');
-        $this->storage = PodcastAsset::getStorage();
+		$this->assets = $this->get('Assets');
+		$this->storage = PodcastAsset::getStorage();
 
 		parent::display($tpl);
 	}
