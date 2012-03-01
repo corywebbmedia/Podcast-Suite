@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="library" method="upgrade" version="1.7.0">
 	<name>Podcast</name>
-	<libraryname>Podcast</libraryname>
+	<libraryname>podcast</libraryname>
 	<author>Podcast Suite</author>
 	<creationDate>February 2012</creationDate>
 	<copyright></copyright>
