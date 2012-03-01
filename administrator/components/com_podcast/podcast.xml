@@ -2,8 +2,8 @@
 <extension type="component" method="upgrade" version="2.5.0">
 	<name>com_podcast</name>
 	<author>Podcast Suite</author>
-	<creationDate>November 2011</creationDate>
-	<copyright>Copyright (C) 2011</copyright>
+	<creationDate>February 2012</creationDate>
+	<copyright>Copyright (C) 2011-2012</copyright>
 	<license>GNU General Public License version 2</license>
 	<authorEmail>joe@corywebbmedia.com</authorEmail>
 	<authorUrl>podcastsuite.com</authorUrl>
