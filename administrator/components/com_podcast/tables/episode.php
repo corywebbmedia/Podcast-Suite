@@ -25,6 +25,16 @@ class PodcastTableEpisode extends JTable
 			$this->item_guid = sha1(time() . JURI::root() . $this->item_enclosure_url);
 		}
 
+		// backfill creation date on new records to today
+		if (!$this->item_created) {
+			$this->item_created = JFactory::getDate()->toSql();
+		}
+
+		// backfill publish date on new records to today
+		if (!$this->item_pubDate) {
+			$this->item_pubDate = JFactory::getDate()->toSql();
+		}
+
 		return true;
 	}
 }

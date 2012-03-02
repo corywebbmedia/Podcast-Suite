@@ -20,8 +20,9 @@ class PodcastTableFeed extends JTable
 			$this->alias = JFactory::getDate()->format('Y-m-d-H-i-s');
 		}
 
-		if (!$this->feed_id) {
-			$this->feed_created = date('Y-m-d H:i:s');
+		// backfill creation date on new records to today
+		if (!$this->feed_created) {
+			$this->feed_created = JFactory::getDate()->toSql();
 		}
 
 		return true;
