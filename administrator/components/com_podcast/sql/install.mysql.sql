@@ -19,21 +19,21 @@ CREATE TABLE IF NOT EXISTS `#__podcast_assets_map` (
 CREATE TABLE IF NOT EXISTS `#__podcast_episodes` (
   `episode_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `feed_id` int(11) DEFAULT NULL,
-  `item_title` varchar(255) DEFAULT NULL,
+  `episode_title` varchar(255) DEFAULT NULL,
   `alias` varchar(255) DEFAULT NULL,
-  `item_author` varchar(255) DEFAULT NULL,
-  `item_subtitle` varchar(255) DEFAULT NULL,
-  `item_summary` text,
-  `item_guid` varchar(255) DEFAULT NULL,
-  `item_pubDate` date DEFAULT NULL,
-  `item_keywords` varchar(255) DEFAULT NULL,
-  `item_created` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `item_image` varchar(511) DEFAULT NULL,
-  `item_block` tinyint(1) DEFAULT NULL,
+  `episode_author` varchar(255) DEFAULT NULL,
+  `episode_subtitle` varchar(255) DEFAULT NULL,
+  `episode_summary` text,
+  `episode_guid` varchar(255) DEFAULT NULL,
+  `episode_pubDate` date DEFAULT NULL,
+  `episode_keywords` varchar(255) DEFAULT NULL,
+  `episode_created` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `episode_image` varchar(511) DEFAULT NULL,
+  `episode_block` tinyint(1) DEFAULT NULL,
   `published` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`episode_id`),
   KEY `feed_id` (`feed_id`),
-  KEY `item_alias` (`alias`)
+  KEY `episode_alias` (`alias`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `#__podcast_feeds` (

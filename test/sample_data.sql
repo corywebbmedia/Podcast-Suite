@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS `#__podcast_assets` (
   PRIMARY KEY (`asset_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
-INSERT INTO `#__podcast_assets` (`podcast_asset_id`, `asset_enclosure_url`, `asset_enclosure_length`, `asset_enclosure_type`, `asset_duration`, `asset_closed_caption`, `enabled`) VALUES
+INSERT INTO `#__podcast_assets` (`podcast_asset_id`, `asset_enclosure_url`, `asset_enclosure_length`, `asset_enclosure_type`, `asset_duration`, `asset_closed_caption`, `storage_engine`, `enabled`) VALUES
 (1, '/media/podcasts/french_lesson_1.mp3', '15722706', 'audio/mpeg', '32:45', 0, 'local', 1),
 (2, '/media/podcasts/french_lesson_2.mp3', '14506027', 'audio/mpeg', '30:13', 0, 'local', 1),
 (3, '/media/podcasts/french_lesson_3.mp3', '11678533', 'audio/mpeg', '24:19', 0, 'local', 1),
@@ -40,24 +40,24 @@ INSERT INTO `#__podcast_assets_map` (`podcast_asset_id`, `episode_id`, `default`
 CREATE TABLE IF NOT EXISTS `#__podcast_episodes` (
   `episode_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `feed_id` int(11) DEFAULT NULL,
-  `item_title` varchar(255) DEFAULT NULL,
+  `episode_title` varchar(255) DEFAULT NULL,
   `alias` varchar(255) DEFAULT NULL,
-  `item_author` varchar(255) DEFAULT NULL,
-  `item_subtitle` varchar(255) DEFAULT NULL,
-  `item_summary` text,
-  `item_guid` varchar(255) DEFAULT NULL,
-  `item_pubDate` date DEFAULT NULL,
-  `item_keywords` varchar(255) DEFAULT NULL,
-  `item_created` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `item_image` varchar(511) DEFAULT NULL,
-  `item_block` tinyint(1) DEFAULT NULL,
+  `episode_author` varchar(255) DEFAULT NULL,
+  `episode_subtitle` varchar(255) DEFAULT NULL,
+  `episode_summary` text,
+  `episode_guid` varchar(255) DEFAULT NULL,
+  `episode_pubDate` date DEFAULT NULL,
+  `episode_keywords` varchar(255) DEFAULT NULL,
+  `episode_created` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `episode_image` varchar(511) DEFAULT NULL,
+  `episode_block` tinyint(1) DEFAULT NULL,
   `published` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`episode_id`),
   KEY `feed_id` (`feed_id`),
-  KEY `item_alias` (`alias`)
+  KEY `episode_alias` (`alias`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
-INSERT INTO `#__podcast_episodes` (`episode_id`, `feed_id`, `item_title`, `alias`, `item_author`, `item_subtitle`, `item_summary`, `item_guid`, `item_pubDate`, `item_keywords`, `item_created`, `item_image`, `item_block`, `published`) VALUES
+INSERT INTO `#__podcast_episodes` (`episode_id`, `feed_id`, `episode_title`, `alias`, `episode_author`, `episode_subtitle`, `episode_summary`, `episode_guid`, `episode_pubDate`, `episode_keywords`, `episode_created`, `episode_image`, `episode_block`, `published`) VALUES
 (1, 1, 'Submission // Uncommon Disciplines', 'submission-uncommon-disciplines', 'Drew Greenway', 'Drew Greenway''s Album', '11.06.11 Brady Herbert preaching "Submission," from our series "Uncommon Disciplines."', '9f819489cdc7ed3c1d1d8f46a9b6bc623e293b81', '2011-11-06', NULL, '2012-01-26 21:26:00', '', 0, 1),
 (2, 1, 'Simplicity // Uncommon Disciplines', 'simplicity-uncommon-disciplines', 'Drew Greenway', 'Drew Greenway''s Album', '11.13.11 Brady Herbert preaching "Simplicity," the last sermon from our series "Uncommon Disciplines."', '4d997dc8d6dd74854460c3ae6d7f4bb2e8f1d25c', '2011-11-13', NULL, '2012-01-26 21:27:06', '', 0, 1),
 (3, 1, 'Giving Up to Gain More', 'giving-up-to-gain-more', 'Drew Greenway', 'Drew Greenway''s Album', '11.20.11 Landon Collins preaching the standalone message "Giving Up to Gain More."', 'b5c731c9ef9461a645b97e77f9070319d3cdd675', '2011-11-20', NULL, '2012-01-26 21:27:14', '', 0, 1),

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
 	<fieldset name="top-col-1">
-		<field name="item_title"
+		<field name="episode_title"
 			type="text"
 			label="COM_PODCAST_EPISODE_TITLE"
 			description="COM_PODCAST_EPISODE_TITLE_DESC"
@@ -16,7 +16,7 @@
             size="50"
 			default=""/>
 
-		<field name="item_subtitle"
+		<field name="episode_subtitle"
 			type="text"
 			label="COM_PODCAST_EPISODE_SUBTITLE"
 			description="COM_PODCAST_EPISODE_SUBTITLE_DESC"
@@ -31,7 +31,7 @@
 			required="true"
 			default="" />
 
-		<field name="item_summary"
+		<field name="episode_summary"
 			type="textarea"
 			label="COM_PODCAST_EPISODE_SUMMARY"
 			description="COM_PODCAST_EPISODE_SUMMARY_DESC"
@@ -51,25 +51,25 @@
 			<option value="1">JENABLED</option>
 		</field>
 
-		<field name="item_pubDate"
+		<field name="episode_pubDate"
 			type="calendar"
 			label="COM_PODCAST_EPISODE_PUBLISHED_DATE"
 			description="COM_PODCAST_EPISODE_PUBLISHED_DATE_DESC"
 			default="" />
 
-		<field name="item_created"
+		<field name="episode_created"
 			type="calendar"
 			label="COM_PODCAST_EPISODE_CREATED_DATE"
 			description="COM_PODCAST_EPISODE_CREATED_DATE_DESC"
 			default="" />
 
-		<field name="item_author"
+		<field name="episode_author"
 			type="text"
 			label="COM_PODCAST_EPISODE_AUTHOR"
 			description="COM_PODCAST_EPISODE_AUTHOR_DESC"
 			default="" />
 
-		<field name="item_closed_caption"
+		<field name="episode_closed_caption"
 			type="radio"
 			label="COM_PODCAST_EPISODE_CLOSED_CAPTION"
 			description="COM_PODCAST_EPISODE_CLOSED_CAPTION_DESC"
@@ -78,7 +78,7 @@
 			<option value="1">JYES</option>
 		</field>
 
-		<field name="item_block"
+		<field name="episode_block"
 			type="radio"
 			label="COM_PODCAST_EPISODE_BLOCK"
 			description="COM_PODCAST_EPISODE_BLOCK_DESC"
@@ -87,13 +87,13 @@
 			<option value="1">JYES</option>
 		</field>
 
-		<field name="item_image"
+		<field name="episode_image"
 			type="media"
 			label="COM_PODCAST_EPISODE_IMAGE"
 			description="COM_PODCAST_EPISODE_IMAGE_DESC"
 			default="" />
 
-		<field name="item_guid"
+		<field name="episode_guid"
 			type="text"
 			class="readonly"
 			label="COM_PODCAST_EPISODE_GUID"

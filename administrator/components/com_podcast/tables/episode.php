@@ -11,7 +11,7 @@ class PodcastTableEpisode extends JTable
 	public function check()
 	{
 		if (trim($this->alias) == '') {
-			$this->alias = $this->item_title;
+			$this->alias = $this->episode_title;
 		}
 
 		$this->alias = JApplication::stringURLSafe($this->alias);
@@ -22,17 +22,17 @@ class PodcastTableEpisode extends JTable
 
 		// Backfill the GUID on new records
 		if (!$this->episode_id) {
-			$this->item_guid = sha1(time() . JURI::root() . $this->item_enclosure_url);
+			$this->episode_guid = sha1(time() . JURI::root() . $this->episode_enclosure_url);
 		}
 
 		// backfill creation date on new records to today
-		if (!$this->item_created) {
-			$this->item_created = JFactory::getDate()->toSql();
+		if (!$this->episode_created) {
+			$this->episode_created = JFactory::getDate()->toSql();
 		}
 
 		// backfill publish date on new records to today
-		if (!$this->item_pubDate) {
-			$this->item_pubDate = JFactory::getDate()->toSql();
+		if (!$this->episode_pubDate) {
+			$this->episode_pubDate = JFactory::getDate()->toSql();
 		}
 
 		return true;

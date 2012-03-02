@@ -13,7 +13,7 @@ class JFormFieldEpisode extends JFormFieldList
 		$db = JFactory::getDBO();
 		$query = $db->getQuery(true);
 
-		$query->select('episode_id AS `value`, item_title AS `text`')
+		$query->select('episode_id AS `value`, episode_title AS `text`')
 			->from('#__podcast_episodes');
 
 		$db->setQuery($query);
