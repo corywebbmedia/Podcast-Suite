@@ -4,6 +4,8 @@ defined( '_JEXEC' ) or die;
 jimport( 'joomla.application.component.view');
 jimport('podcast.asset');
 
+require JPATH_COMPONENT . '/helper.php';
+
 class PodcastViewEpisode extends JView
 {
 	protected $item;
@@ -13,7 +15,7 @@ class PodcastViewEpisode extends JView
 		$this->item = $this->get('Item');
 		$this->assets = $this->get('Assets');
 		$this->storage = PodcastAsset::getStorage();
-		
+
 		if (!count($this->assets)) {
 			print 'Error, no assets attached to this episode!';
 		}
