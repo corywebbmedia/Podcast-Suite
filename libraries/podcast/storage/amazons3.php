@@ -66,7 +66,7 @@ class PodcastStorageAmazons3 extends PodcastStorage
 		{			
 			if ($this->s3->putObjectFile(JPATH_ROOT.$result->enclosure_url, $folder, JFile::getName($result->enclosure_url), S3::ACL_PUBLIC_READ))
 			{
-				$result->enclosure_url = 'https://'.$folder.'.s3.amazonaws.com/'.JFile::getName($result->enclosure_url);
+				$result->enclosure_url = 'http'.(PodcastAsset::getOptions()->get('amazons3_ssl') ? 's' : '').'://'.$folder.'.s3.amazonaws.com/'.JFile::getName($result->enclosure_url);
 				$result->storage_engine = 'amazons3';
 			}
 			else

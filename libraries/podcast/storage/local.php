@@ -29,7 +29,7 @@ class PodcastStorageLocal extends PodcastStorage
     public function getFolders($path = '', $tree = true)
     {
         if ($path == '') {
-            $path = self::getOptions()->get('root', JPATH_ROOT.'/media/podcasts/');
+            $path = PodcastAsset::getOptions()->get('root', JPATH_ROOT.'/media/podcasts/');
         }
         
         $folders = $this->retrieveTree($path);
@@ -39,7 +39,7 @@ class PodcastStorageLocal extends PodcastStorage
 	
 	public function getRoot()
 	{
-		return self::getOptions()->get('root', JPATH_ROOT.'/media/podcasts/');
+		return PodcastAsset::getOptions()->get('root', JPATH_ROOT.'/media/podcasts/');
 	}
 	
 	public function putFile($folder)
