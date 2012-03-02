@@ -22,7 +22,7 @@ jQuery(document).ready(function(){
 		ready: function () {
 		  jQuery(this).jPlayer("setMedia", {
 			' . $extension . ': "' . $this->storage->getAssetUrl($this->asset->asset_enclosure_url) . '",
-			poster: "' . JURI::root() . $this->item->item_image . '"
+			poster: "' . JURI::root() . $this->item->episode_image . '"
 		  });
 		},
 		swfPath: "' . JURI::root() . 'media/com_podcast/js/jplayer",

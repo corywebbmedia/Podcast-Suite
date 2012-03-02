@@ -47,23 +47,23 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 		<itunes:image href="<?php echo $this->escape($this->feed->feed_image) ?>"/>
 <?php foreach ($this->items as $item): ?>
 		<item>
-			<title><?php echo $this->escape($item->item_title) ?></title>
-			<itunes:author><?php echo $this->escape($item->item_author) ?></itunes:author>
-			<itunes:subtitle><?php echo $this->escape($item->item_subtitle) ?></itunes:subtitle>
-			<itunes:summary><?php echo $this->escape($item->item_summary) ?></itunes:summary>
-			<description><?php echo $this->escape($item->item_summary) ?></description>
+			<title><?php echo $this->escape($item->episode_title) ?></title>
+			<itunes:author><?php echo $this->escape($item->episode_author) ?></itunes:author>
+			<itunes:subtitle><?php echo $this->escape($item->episode_subtitle) ?></itunes:subtitle>
+			<itunes:summary><?php echo $this->escape($item->episode_summary) ?></itunes:summary>
+			<description><?php echo $this->escape($item->episode_summary) ?></description>
 			<enclosure url="<?php echo $this->escape($item->asset_enclosure_url) ?>" length="<?php echo $this->escape($item->asset_enclosure_length) ?>" type="<?php echo $this->escape($item->asset_enclosure_type) ?>"/>
-			<guid isPermaLink="false"><?php echo $this->escape($item->item_guid) ?></guid>
-			<pubDate><?php echo date('r', strtotime($item->item_pubDate)) ?></pubDate>
+			<guid isPermaLink="false"><?php echo $this->escape($item->episode_guid) ?></guid>
+			<pubDate><?php echo date('r', strtotime($item->episode_pubDate)) ?></pubDate>
 			<itunes:duration><?php echo $this->escape($item->asset_duration) ?></itunes:duration>
-			<itunes:keywords><?php echo $this->escape($item->item_keywords) ?></itunes:keywords>
+			<itunes:keywords><?php echo $this->escape($item->episode_keywords) ?></itunes:keywords>
 <?php if ($item->asset_closed_caption): ?>
 			<itunes:isClosedCaptioned>yes</itunes:isClosedCaptioned>
 <?php endif ?>
-<?php if ($item->item_image): ?>
-			<itunes:image href="<?php echo $this->escape($item->item_image) ?>"/>
+<?php if ($item->episode_image): ?>
+			<itunes:image href="<?php echo $this->escape($item->episode_image) ?>"/>
 <?php endif ?>
-<?php if ($item->item_block): ?>
+<?php if ($item->episode_block): ?>
 			<itunes:block>yes</itunes:block>
 <?php endif ?>
 		</item>
