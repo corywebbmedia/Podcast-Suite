@@ -52,6 +52,10 @@ EpisodeMedia.add_item = function (asset) {
 	$$('#' + EpisodeMedia.asset_list + ' .default-toggle').addEvent('click', function () {
 		EpisodeMedia.change_default(parseInt(this.get('rel'), 10));
 	});
+	
+	if (asset.asset_default === "1") {
+		EpisodeMedia.set_default(asset.podcast_asset_id);
+	}
 };
 
 EpisodeMedia.destroy = function (podcast_asset_id) {
@@ -212,7 +216,7 @@ EpisodeMediaUploader.init = function () {
 				asset_duration: json.enclosure_duration
 			};
 
-			if (EpisodeMedia.asset_ids.length === 0) asset.asset_default = '1';
+			if (EpisodeMedia.asset_ids.length === 0) asset.asset_default = "1";
 
 			EpisodeMedia.add_item(asset);
 		}
