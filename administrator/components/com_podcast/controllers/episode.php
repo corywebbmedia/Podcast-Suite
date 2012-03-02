@@ -6,25 +6,22 @@ jimport('joomla.application.component.controllerform');
 class PodcastControllerEpisode extends JControllerForm
 {
 	protected $list_view = 'episodes';
-	
-	public function save()
+
+	public function postSaveHook($model, $validData)
 	{
-		JRequest::checkToken() or die('Invalid Token');
-		
-		$form = JRequest::getVar('jform');
 		$db = JFactory::getDBO();
-		
+
 		$assets = explode(',', JRequest::getString('asset_ids'));
 		$default = JRequest::getInt('asset_default');
-		$episode_id = $form['episode_id'];
-		
+		$episode_id = $model->getItem()->episode_id;
+
 		$query = $db->getQuery(true);
 		$query->delete('#__podcast_assets_map')->where('episode_id = '.$episode_id);
 		$db->setQuery($query);
 		$db->query();
-		
+
 		$assets = array_unique($assets);
-		
+
 		foreach ($assets as $asset)
 		{
 			$row = null;
@@ -34,6 +31,6 @@ class PodcastControllerEpisode extends JControllerForm
 			$db->insertObject('#__podcast_assets_map', $row);
 		}
 
-		parent::save();
+		return true;
 	}
 }
