@@ -1,4 +1,11 @@
 <?php
+/**
+ * @author      Joseph LeBlanc - Cory Webb Media
+ * @link        www.corywebbmedia.com
+ * @copyright   Copyright 2012 Cory Webb Media. All Rights Reserved.
+ * @category    cwm_podcast
+ * @package
+ */
 defined( '_JEXEC' ) or die;
 
 jimport('joomla.application.component.modellist');
@@ -8,12 +15,12 @@ class PodcastModelEpisodes extends JModelList
 	public function getListQuery()
 	{
 		$query = parent::getListQuery();
-		
+
 		$query->select('tbl.*,
 			f.feed_title')
 				->from('#__podcast_episodes AS tbl')
 				->join('LEFT', '#__podcast_feeds AS f USING (feed_id)');
-		
+
 		return $query;
 	}
 
@@ -22,7 +29,7 @@ class PodcastModelEpisodes extends JModelList
 		$episodes = $this->getItems();
 		$ids = array();
 		$assets = array();
-		
+
 		foreach ($episodes as $episode)
 		{
 			$ids[] = $episode->episode_id;
@@ -37,15 +44,15 @@ class PodcastModelEpisodes extends JModelList
 		$db->setQuery($query);
 
 		$items = $db->loadObjectList();
-		
-		foreach ($items as $item) 
+
+		foreach ($items as $item)
 		{
 			if (!isset($assets[$item->episode_id])) $assets[$item->episode_id] = array();
-			
+
 			if ($item->default) array_unshift($assets[$item->episode_id], $item);
 			else array_push($assets[$item->episode_id], $item);
 		}
-		
+
 		return $assets;
 	}
 }

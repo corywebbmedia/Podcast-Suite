@@ -1,4 +1,11 @@
 <?php
+/**
+ * @author      Joseph LeBlanc - Cory Webb Media
+ * @link        www.corywebbmedia.com
+ * @copyright   Copyright 2012 Cory Webb Media. All Rights Reserved.
+ * @category    cwm_podcast
+ * @package
+ */
 defined( '_JEXEC' ) or die;
 
 jimport( 'joomla.application.component.view');
@@ -14,7 +21,7 @@ class PodcastViewFeed extends JView
 		$this->item = $this->get('Item');
 
 		$this->addToolbar();
-		
+
 		JRequest::setVar('hidemainmenu', true);
 
 		parent::display($tpl);
