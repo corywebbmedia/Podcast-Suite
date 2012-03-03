@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="podcast">
+	<name>plg_content_podcast</name>
+	<author>Podcast Suite</author>
+	<creationDate>February 2012</creationDate>
+	<copyright>Copyright (C) 2011-2012</copyright>
+	<license>GNU General Public License version 2</license>
+	<authorEmail>joe@corywebbmedia.com</authorEmail>
+	<authorUrl>podcastsuite.com</authorUrl>
+	<version>2.0</version>
+	<description>A plugin designed to display podcast episodes in standard Joomla articles.</description>
+	<files>
+		<filename plugin="podcast">podcast.php</filename>
+		<filename>index.html</filename>
+	</files>
+	<config />
+</extension>

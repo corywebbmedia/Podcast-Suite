@@ -23,7 +23,7 @@ class PodcastModelEpisodes extends JModelList
 		if (!empty($search)) {
 			$db = $this->getDbo();
 			$search = $db->Quote('%'.$db->escape($search, true).'%');
-			$query->where('tbl.item_title LIKE '.$search);
+			$query->where('tbl.episode_title LIKE '.$search);
 		}
 
         // Filter by folder
@@ -46,8 +46,8 @@ class PodcastModelEpisodes extends JModelList
 		$items = parent::getItems();
 
 		foreach ($items as &$item) {
-			if ($item->item_pubDate == '0000-00-00') {
-				$item->item_pubDate = null;
+			if ($item->episode_pubDate == '0000-00-00') {
+				$item->episode_pubDate = null;
 			}
 		}
 
@@ -69,6 +69,6 @@ class PodcastModelEpisodes extends JModelList
 		$this->setState('filter.state', $state);
 
 		// List state information.
-		parent::populateState('pm.item_title', 'asc');
+		parent::populateState('pm.episode_title', 'asc');
 	}
 }

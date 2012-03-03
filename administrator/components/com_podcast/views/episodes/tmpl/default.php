@@ -38,10 +38,10 @@ $feeds = array();
 					<input type="checkbox" name="checkall-toggle" value="" title="<?php echo JText::_('JGLOBAL_CHECK_ALL'); ?>" onclick="Joomla.checkAll(this)" />
 				</th>
 				<th class="title">
-					<?php echo JHtml::_('grid.sort', 'COM_PODCAST_EPISODE_TITLE', 'item_title', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_PODCAST_EPISODE_TITLE', 'episode_title', $listDirn, $listOrder); ?>
 				</th>
 				<th>
-					<?php echo JHtml::_('grid.sort', 'COM_PODCAST_LOCATION', 'item_enclosure_url', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_PODCAST_LOCATION', 'episode_enclosure_url', $listDirn, $listOrder); ?>
 				</th>
 				<th>
 					<?php echo JHtml::_('grid.sort', 'COM_PODCAST_FEED', 'feed_title', $listDirn, $listOrder); ?>
@@ -50,7 +50,7 @@ $feeds = array();
 					<?php echo JHtml::_('grid.sort', 'JENABLED', 'published', $listDirn, $listOrder); ?>
 				</th>
 				<th>
-					<?php echo JHtml::_('grid.sort', 'COM_PODCAST_PUBLISHED_DATE', 'item_pubDate', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_PODCAST_PUBLISHED_DATE', 'episode_pubDate', $listDirn, $listOrder); ?>
 				</th>
 			</tr>
 		</thead>
@@ -68,7 +68,7 @@ $feeds = array();
 					<?php echo JHtml::_('grid.id', $i, $item->episode_id); ?>
 				</td>
 				<td>
-					<a href="<?php echo JRoute::_('index.php?option=com_podcast&task=episode.edit&episode_id='. $item->episode_id); ?>"><?php echo $this->escape($item->item_title) ?></a>
+					<a href="<?php echo JRoute::_('index.php?option=com_podcast&task=episode.edit&episode_id='. $item->episode_id); ?>"><?php echo $this->escape($item->episode_title) ?></a>
 				</td>
 				<td>
 					<a href="<?php echo $item->asset_enclosure_url ?>"><?php echo $this->escape($item->asset_enclosure_url) ?></a>
@@ -80,7 +80,7 @@ $feeds = array();
 					<?php echo JHtml::_('jgrid.published', $item->published, $i, 'episodes.'); ?>
 				</td>
 				<td>
-					<?php echo JHTML::_('date', $item->item_pubDate) ?>
+					<?php echo JHTML::_('date', $item->episode_pubDate) ?>
 				</td>
 			</tr>
 			<?php endforeach; ?>

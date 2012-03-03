@@ -18,10 +18,6 @@
 		<include name="podcast.xml" />
 	</fileset>
 
-	<fileset dir="${srcdir}/plugins/podcast/default/" id="default_podcast_plugin">
-		<include name="**" />
-	</fileset>
-
 	<fileset dir="${srcdir}" id="podcast_module">
 		<include name="modules/mod_podcast/**" />
 	</fileset>
@@ -40,7 +36,6 @@
 
 	<fileset dir="${srcdir}" id="full_package">
 		<include name="build/com_podcast.zip" />
-		<include name="build/plg_default_podcast.zip" />
 		<include name="build/getid3.zip" />
 		<include name="build/podcast.zip" />
 		<include name="pkg_podcast.xml" />
@@ -55,11 +50,6 @@
 			<fileset refid="admin_component_files" />
 			<fileset refid="component_manifest" />
 			<fileset refid="podcast_media" />
-		</zip>
-
-		<delete file="build/plg_default_podcast.zip" quiet="true" />
-		<zip destfile="build/plg_default_podcast.zip">
-			<fileset refid="default_podcast_plugin" />
 		</zip>
 
 		<delete file="build/getid3.zip" quiet="true" />

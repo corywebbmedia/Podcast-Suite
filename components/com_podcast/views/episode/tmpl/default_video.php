@@ -6,31 +6,18 @@
  * @category	cwm_podcast
  * @package
  */
-defined('_JEXEC') or die;
 
-$doc = JFactory::getDocument();
-$doc->addScript('http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js');
-$doc->addScript(JURI::root() . 'media/com_podcast/js/jplayer/jquery.jplayer.min.js');
-$doc->addStyleSheet(JURI::root() . 'media/com_podcast/js/jplayer/skins/blue.monday/jplayer.blue.monday.css');
+defined('_JEXEC') or die;
 
 $extension = $this->storage->getAssetExtension($this->asset->asset_enclosure_url);
 
-$doc->addScriptDeclaration('
-jQuery.noConflict();
-jQuery(document).ready(function(){
-	  jQuery("#jquery_jplayer_' . $this->item->episode_id . '").jPlayer({
-		ready: function () {
-		  jQuery(this).jPlayer("setMedia", {
-			' . $extension . ': "' . $this->storage->getAssetUrl($this->asset->asset_enclosure_url) . '",
-			poster: "' . JURI::root() . $this->item->item_image . '"
-		  });
-		},
-		swfPath: "' . JURI::root() . 'media/com_podcast/js/jplayer",
-		supplied: "' . $extension . '",
-		cssSelectorAncestor: "#jp_container_' . $this->item->episode_id . '"
-	  });
-	});
-');
+PodcastHelper::init_player(array(
+	'extension' => $extension,
+	'episode_id' => $this->item->episode_id,
+	'asset_url' => $this->storage->getAssetUrl($this->asset->asset_enclosure_url),
+	'poster' => JURI::root() . $this->item->episode_image
+));
+
 ?>
 
 <div id="jp_container_<?php echo $this->item->episode_id; ?>" class="jp-video">
