@@ -1,3 +1,5 @@
+// (c) 2012 Cory Webb Media, GNU/GPLv2 license.
+
 var EpisodeMedia = {
 	assets: null,
 	asset_ids: [],

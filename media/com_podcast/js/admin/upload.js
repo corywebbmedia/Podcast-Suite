@@ -1,3 +1,5 @@
+// (c) 2012 Cory Webb Media, GNU/GPLv2 license.
+
 // requires: plupload
 // requires: plupload.html5
 // requires: plupload.flash
