@@ -1,4 +1,14 @@
-<?php defined( '_JEXEC' ) or die; ?>
+<?php
+/**
+ * @author      Joseph LeBlanc - Cory Webb Media
+ * @link        www.corywebbmedia.com
+ * @copyright   Copyright 2012 Cory Webb Media. All Rights Reserved.
+ * @category    cwm_podcast
+ * @package
+ */
+defined( '_JEXEC' ) or die;
+
+?>
 <form action="index.php?option=com_podcast&amp;feed_id=<?php echo $this->item->feed_id ?>"
 	method="post" name="adminForm" class="form-validate">
 	<div class="width-60 fltlft">

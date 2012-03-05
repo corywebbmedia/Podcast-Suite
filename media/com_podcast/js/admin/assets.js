@@ -1,3 +1,4 @@
+// (c) 2012 Cory Webb Media, GNU/GPLv2 license.
 // requires uploader
 
 window.addEvent('domready', function () {
