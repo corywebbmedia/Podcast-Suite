@@ -173,7 +173,7 @@ Assets.file_tree = function(node, state) {
 		filter = Assets.filterS3(node);
 		Assets.folder_current = node.text;
 	} else {
-		filter = Assets.recrusive_file_path(current, Assets.folder_root);
+		filter = Assets.recrusive_file_path(current, Assets.folder_root) + '/';
 		Assets.folder_current = filter;
 	}
 
