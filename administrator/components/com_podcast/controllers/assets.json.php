@@ -9,7 +9,7 @@
 defined( '_JEXEC' ) or die;
 
 jimport('joomla.application.component.controller');
-jimport('podcast.asset');
+jimport('podcast.helper');
 
 class PodcastControllerAssets extends JController
 {
@@ -90,7 +90,7 @@ class PodcastControllerAssets extends JController
 
 		$folder = JRequest::getVar('folder', '');
 
-		$storage = PodcastAsset::getStorage();
+		$storage = PodcastHelper::getStorage();
 
 		if ($storage->createFolder($folder)) {
 			$status = 'success';
@@ -106,9 +106,9 @@ class PodcastControllerAssets extends JController
 
 		$model = $this->getModel('asset');
 
-		$storage = PodcastAsset::getStorage();
+		$storage = PodcastHelper::getStorage();
 
-		$folder = JRequest::getVar('folder', PodcastAsset::getOptions()->get('folder', '/media/podcasts/'));
+		$folder = JRequest::getVar('folder', PodcastHelper::getOptions()->get('folder', '/media/podcasts/'));
 		$result = $storage->putFile($folder);
 
 		if (is_array($result)) {

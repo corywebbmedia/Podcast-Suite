@@ -10,6 +10,7 @@
 defined('_JEXEC') or die;
 
 jimport('joomla.application.component.controlleradmin');
+jimport('podcast.helper');
 
 class PodcastControllerAssets extends JControllerAdmin
 {
@@ -43,12 +44,20 @@ class PodcastControllerAssets extends JControllerAdmin
 			
 			if (count($cid))
 			{
-					// Get the model.
+				// Get the model.
 				$model = $this->getModel();
-
-				// Make sure the item ids are integers
-				jimport('joomla.utilities.arrayhelper');
-				JArrayHelper::toInteger($cid);
+				$options = PodcastHelper::getOptions();
+				
+				// delete if settings say to
+				if ($options->get('delete_action', 'record') == 'file')
+				{
+					$asset_model = $this->getModel('asset');
+					foreach ($cid as $id)
+					{
+						$asset = $asset_model->getItem($id);
+						PodcastHelper::getStorage()->deleteFile($asset->asset_enclosure_url);
+					}
+				}
 
 				// Remove the items.
 				if ($model->delete($cid))

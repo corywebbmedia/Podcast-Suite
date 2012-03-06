@@ -9,7 +9,7 @@
 defined( '_JEXEC' ) or die;
 
 jimport('joomla.application.component.view');
-jimport('podcast.asset');
+jimport('podcast.helper');
 
 class PodcastViewEpisodes extends JView
 {
@@ -19,7 +19,7 @@ class PodcastViewEpisodes extends JView
 	{
 		$this->items = $this->get('Items');
 		$this->assets = $this->get('Assets');
-		$this->storage = PodcastAsset::getStorage();
+		$this->storage = PodcastHelper::getStorage();
 
 		parent::display($tpl);
 	}

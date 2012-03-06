@@ -10,7 +10,7 @@
 defined('_JEXEC') or die;
 
 jimport('joomla.application.component.modellist');
-jimport('podcast.asset');
+jimport('podcast.helper');
 
 class PodcastModelAssets extends JModelList
 {
@@ -45,7 +45,7 @@ class PodcastModelAssets extends JModelList
     {
         $path = JRequest::getVar('path', JPATH_ROOT.'/media/podcasts/');
 
-        $folders = PodcastAsset::getStorage()->getFolders($path);
+        $folders = PodcastHelper::getStorage()->getFolders($path);
 
         return $folders;
     }

@@ -9,7 +9,7 @@
 defined( '_JEXEC' ) or die;
 
 jimport('joomla.application.component.view');
-jimport('podcast.asset');
+jimport('podcast.helper');
 
 class PodcastViewFeed extends JView
 {
@@ -20,7 +20,7 @@ class PodcastViewFeed extends JView
 	public function display($tpl = null)
 	{
 		$this->feed = $this->get('Feed');
-		$this->storage = PodcastAsset::getStorage();
+		$this->storage = PodcastHelper::getStorage();
 
 		if ($this->feed->published != 1) {
 			throw new Exception(JText::_('JGLOBAL_RESOURCE_NOT_FOUND'), 404);

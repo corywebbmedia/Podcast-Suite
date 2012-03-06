@@ -10,7 +10,7 @@
 defined('_JEXEC') or die;
 
 jimport('joomla.application.component.modeladmin');
-jimport('podcast.asset');
+jimport('podcast.helper');
 
 class PodcastModelAsset extends JModelAdmin
 {
@@ -49,7 +49,7 @@ class PodcastModelAsset extends JModelAdmin
 			'asset_enclosure_type' => $file->enclosure_type,
 			'asset_duration' => $file->enclosure_duration,
 			'asset_enclosure_url' => $file->enclosure_url,
-			'storage_engine' => PodcastAsset::getOptions()->get('storage')
+			'storage_engine' => PodcastHelper::getOptions()->get('storage')
 		));
 
 		$asset->store();

@@ -8,7 +8,7 @@
  */
 defined( '_JEXEC' ) or die;
 
-jimport('podcast.asset');
+jimport('podcast.helper');
 
 JHtml::_('behavior.mootools');
 JHtml::_('behavior.tree', 'folders_tree', array('div' => 'folders', 'onClick' => 'Assets.file_tree'));
@@ -26,9 +26,9 @@ $doc->addScriptDeclaration("Upload.config.token = '" . JUtility::getToken() . "'
 
 $doc->addScript(JURI::root().'media/com_podcast/js/admin/assets.js');
 $doc->addScriptDeclaration("Assets.token = '" . JUtility::getToken() . "';");
-$doc->addScriptDeclaration("Assets.folder_root = '" . PodcastAsset::getStorage()->getRoot() . "';");
+$doc->addScriptDeclaration("Assets.folder_root = '" . PodcastHelper::getStorage()->getRoot() . "';");
 $doc->addScriptDeclaration("Assets.url_root = '" . JURI::root() . "';");
-$doc->addScriptDeclaration("Assets.storage_engine = '".PodcastAsset::getStorage()->getType()."';");
+$doc->addScriptDeclaration("Assets.storage_engine = '".PodcastHelper::getStorage()->getType()."';");
 
 ?>
 

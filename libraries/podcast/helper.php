@@ -10,7 +10,7 @@
 
 defined('_JEXEC') or die;
 
-class PodcastAsset
+class PodcastHelper
 {
     protected static $storage = null;
     protected static $options = null;

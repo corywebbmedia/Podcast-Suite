@@ -1,12 +1,13 @@
 CREATE TABLE IF NOT EXISTS `#__podcast_assets` (
-  `asset_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `podcast_asset_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `asset_enclosure_url` varchar(500) NOT NULL,
   `asset_enclosure_length` varchar(31) NOT NULL,
   `asset_enclosure_type` varchar(255) NOT NULL,
   `asset_duration` varchar(31) NOT NULL,
   `asset_closed_caption` int(1) NOT NULL DEFAULT '0',
+  `storage_engine` varchar(20) NOT NULL,
   `enabled` int(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`asset_id`)
+  PRIMARY KEY (`podcast_asset_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 INSERT INTO `#__podcast_assets` (`podcast_asset_id`, `asset_enclosure_url`, `asset_enclosure_length`, `asset_enclosure_type`, `asset_duration`, `asset_closed_caption`, `storage_engine`, `enabled`) VALUES
@@ -20,7 +21,7 @@ INSERT INTO `#__podcast_assets` (`podcast_asset_id`, `asset_enclosure_url`, `ass
 (8, '/media/podcasts/german_lesson_3.mp3', '15208198', 'audio/mpeg', '31:41', 0, 'local', 1);
 
 CREATE TABLE IF NOT EXISTS `#__podcast_assets_map` (
-  `asset_id` int(11) NOT NULL,
+  `podcast_asset_id` int(11) NOT NULL,
   `episode_id` int(11) NOT NULL,
   `default` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

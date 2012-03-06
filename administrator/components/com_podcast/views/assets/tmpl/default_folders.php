@@ -9,7 +9,7 @@ defined( '_JEXEC' ) or die;
  * @param boolean $root
  * @return void
  */
-function setupPodcastAssetFolders($folders, $root = true)
+function setupPodcastHelperFolders($folders, $root = true)
 {
 	foreach ($folders as $node => $children)
 	{
@@ -17,7 +17,7 @@ function setupPodcastAssetFolders($folders, $root = true)
 		{
 			echo '<li><a href="#">'.$node.'</a>';
 			echo '<ul>';
-			setupPodcastAssetFolders($children, false);
+			setupPodcastHelperFolders($children, false);
 			echo '</ul>';
 			echo '</li>';
 		}
@@ -28,4 +28,4 @@ function setupPodcastAssetFolders($folders, $root = true)
 	}
 }
 
-setupPodcastAssetFolders($this->folders);
+setupPodcastHelperFolders($this->folders);

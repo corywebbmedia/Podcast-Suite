@@ -9,7 +9,7 @@
 defined( '_JEXEC' ) or die;
 
 jimport('joomla.application.component.view');
-jimport('podcast.asset');
+jimport('podcast.helper');
 
 class PodcastViewFeed extends JView
 {

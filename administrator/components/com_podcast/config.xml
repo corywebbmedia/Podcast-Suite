@@ -10,6 +10,10 @@
     
     <fieldset name="local_options" label="COM_PODCAST_STORAGE_LOCAL" addfieldpath="/administrator/components/com_podcast/models/fields">
         <field type="text" name="local_root" default="/media/podcasts/" label="*Root" description="*Root" />
+		<field type="radio" name="delete_action" default="record" label="*Delete Action" description="">
+			<option value="record">Record Only</option>
+			<option value="file">Record and File</option>
+		</field>
 	</fieldset>
     
     <!--<fieldset name="amazons3_options" label="COM_PODCAST_STORAGE_AMAZONS3" addfieldpath="/administrator/components/com_podcast/models/fields">
