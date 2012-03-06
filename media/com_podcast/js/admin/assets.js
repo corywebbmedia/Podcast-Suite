@@ -35,6 +35,8 @@ window.addEvent('domready', function () {
 	});
 
 	$('check_all').addEvent('click', Assets.toggle_checks);
+	
+	$('new_folder_button').addEvent('click', Assets.add_folder);
 });
 
 var Assets = {
@@ -51,7 +53,8 @@ var Assets = {
 	pagination_template_html: null,
 	folder_root: null,
 	folder_current: null,
-	storage_engine: null
+	storage_engine: null,
+	url_root: null
 };
 
 // Loads the assets
@@ -185,6 +188,41 @@ Assets.file_tree = function(node, state) {
 	Assets.page(1);
 };
 
+Assets.rebuild_tree = function() {
+	new Request.HTML({
+		url: 'index.php?option=com_podcast&view=assets&format=raw&layout=default_folders',
+		onSuccess: function  (responseTree, responseElements, responseHTML, responseJavaScript) {
+			$('folders').innerHTML = '';
+			var folders_tree = new Element('ul', {id: 'folders_tree', html: responseHTML});
+			folders_tree.inject($('folders'), 'after');
+			tree = new MooTreeControl({ div: 'folders', mode: 'folders', grid: true, theme: Assets.url_root + '/media/system/images/mootree.gif', onClick: Assets.file_tree},{ text: 'Root', open: true});
+			tree.adopt('folders_tree');
+		}
+	}).get();
+};
+
+Assets.add_folder = function() {
+
+  var request_vars = {
+		option: 'com_podcast',
+		format: 'json',
+		task: 'assets.create_folder',
+		folder: Assets.folder_current + '/' + $('new_folder_name').get('value')
+  };
+
+  request_vars[Assets.token] = 1;
+
+  new Request.JSON({
+		url: 'index.php',
+		onSuccess: function	 (result) {
+			Assets.rebuild_tree();
+		},
+		onFailure: function	 (xhr) {
+			throw xhr;
+		}
+	}).post(request_vars);
+};
+
 Assets.filterS3 = function(node) {
 	var filter = Assets.folder_root;
 	return filter.replace("bucket", node.text);
@@ -215,7 +253,7 @@ Assets.toggle_checks = function	 (check_all) {
 	}
 };
 
-Assets.toggle_check = function  (check) {
+Assets.toggle_check = function	(check) {
 	var checked = parseInt($('boxchecked').get('value'), 10);
 
 	if (check.target.checked === true) {

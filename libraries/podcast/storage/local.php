@@ -12,6 +12,7 @@ defined('_JEXEC') or die;
 
 jimport('podcast.storage');
 jimport('joomla.filesystem.folder');
+jimport('joomla.filesystem.path');
 
 class PodcastStorageLocal extends PodcastStorage
 {
@@ -40,6 +41,19 @@ class PodcastStorageLocal extends PodcastStorage
 	public function getRoot()
 	{
 		return PodcastAsset::getOptions()->get('local_root', JPATH_ROOT.'/media/podcasts/');
+	}
+
+	public function createFolder($path)
+	{
+		$root = $this->getRoot();
+
+		$full = JPath::clean(JPATH_ROOT . $path);
+
+		if (!JFolder::create($full)) {
+			throw new Exception("Could not create folder $path");
+		}
+
+		return true;
 	}
 
 	public function putFile($folder)

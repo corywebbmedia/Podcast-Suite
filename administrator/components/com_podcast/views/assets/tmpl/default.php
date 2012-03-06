@@ -27,6 +27,7 @@ $doc->addScriptDeclaration("Upload.config.token = '" . JUtility::getToken() . "'
 $doc->addScript(JURI::root().'media/com_podcast/js/admin/assets.js');
 $doc->addScriptDeclaration("Assets.token = '" . JUtility::getToken() . "';");
 $doc->addScriptDeclaration("Assets.folder_root = '" . PodcastAsset::getStorage()->getRoot() . "';");
+$doc->addScriptDeclaration("Assets.url_root = '" . JURI::root() . "';");
 $doc->addScriptDeclaration("Assets.storage_engine = '".PodcastAsset::getStorage()->getType()."';");
 
 ?>
@@ -36,8 +37,15 @@ $doc->addScriptDeclaration("Assets.storage_engine = '".PodcastAsset::getStorage(
 		<legend><?php echo JText::_('COM_PODCAST_MEDIA_FOLDERS') ?></legend>
 		<div id="folders"></div>
 		<ul id="folders_tree">
-		<?php $this->setupFolders($this->folders); ?>
+		<?php
+			echo $this->loadTemplate('folders');
+		?>
 		</ul>
+		<div id="new_folder">
+			<p>&nbsp;</p>
+			<p>Add new subfolder* <span="folder_path"></span></p>
+			<p><input type="text" name="new_folder_name" value="" id="new_folder_name" /> <input type="button" name="new_folder_button" value="New Folder*" id="new_folder_button"></p>
+		</div>
 	</fieldset>
 	<fieldset>
 		<legend><?php echo JText::_('COM_PODCAST_MEDIA_UPLOADED_FILES') ?></legend>

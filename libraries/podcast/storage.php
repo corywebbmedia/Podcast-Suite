@@ -5,7 +5,7 @@
  * @link        www.corywebbmedia.com
  * @copyright   Copyright 2012 Cory Webb Media. All Rights Reserved.
  * @category    cwm_podcast
- * @package     
+ * @package
  */
 defined('_JEXEC') or die;
 
@@ -24,20 +24,21 @@ abstract class PodcastStorage
     abstract public function getAssetUrl($path);
     abstract public function getFolders($path = '');
 	abstract public function getRoot();
+	abstract public function createFolder($path);
 
     public function getAssetExtension($file)
     {
         $info = pathinfo($file);
         return $info['extension'];
     }
-    
+
     public function getAssetType($type)
-    {   
+    {
         if (strpos($type, 'video') !== false || in_array($type, $this->video_mime_types)) return 'video';
         if (strpos($type, 'audio') !== false || in_array($type, $this->audio_mime_types)) return 'audio';
         else return 'attachment';
     }
-	
+
     public function getSize($size)
     {
         if (!empty($size))
@@ -50,7 +51,7 @@ abstract class PodcastStorage
             return $output;
         }
     }
-    
+
     public function getType()
     {
         return $this->type;

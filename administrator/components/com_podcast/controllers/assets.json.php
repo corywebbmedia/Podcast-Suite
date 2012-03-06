@@ -84,6 +84,23 @@ class PodcastControllerAssets extends JController
 		print $result;
 	}
 
+	public function create_folder()
+	{
+		JRequest::checkToken() or jexit( JText::_('JINVALID_TOKEN') );
+
+		$folder = JRequest::getVar('folder', '');
+
+		$storage = PodcastAsset::getStorage();
+
+		if ($storage->createFolder($folder)) {
+			$status = 'success';
+		} else {
+			$status = 'fail';
+		}
+
+		echo json_encode(array('status' => $status));
+	}
+
 	public function upload() {
 		JRequest::checkToken('get') or die;
 
