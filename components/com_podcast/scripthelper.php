@@ -9,7 +9,7 @@
 
 defined( '_JEXEC' ) or die;
 
-class PodcastHelper
+class PodcastScripthelper
 {
 	public function init_player($settings)
 	{

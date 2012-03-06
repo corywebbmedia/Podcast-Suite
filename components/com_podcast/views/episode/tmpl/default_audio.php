@@ -11,7 +11,7 @@ defined('_JEXEC') or die;
 
 $extension = $this->storage->getAssetExtension($this->asset->asset_enclosure_url);
 
-PodcastHelper::init_player(array(
+PodcastScripthelper::init_player(array(
 	'extension' => $extension,
 	'episode_id' => $this->item->episode_id,
 	'asset_url' => $this->storage->getAssetUrl($this->asset->asset_enclosure_url),

@@ -12,7 +12,7 @@ defined( '_JEXEC' ) or die;
 jimport( 'joomla.application.component.view');
 jimport('podcast.helper');
 
-require JPATH_COMPONENT . '/helper.php';
+require JPATH_COMPONENT . '/scripthelper.php';
 
 class PodcastViewEpisode extends JView
 {
