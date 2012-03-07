@@ -1,8 +1,6 @@
 <?php
 defined( '_JEXEC' ) or die;
 
-jimport('podcast.render.episode');
-
 class plgContentPodcast extends JPlugin
 {
 	function onContentPrepare($context, &$row, &$params, $page = 0)
@@ -11,6 +9,8 @@ class plgContentPodcast extends JPlugin
 		if (JString::strpos($row->text, '{podcast') === false) {
 			return true;
 		}
+
+		jimport('podcast.render.episode');
 
 		$row->text = preg_replace_callback('/\{podcast_(episode) (\d+)\}/', 'plgContentPodcast::callbackMatchProcess', $row->text);
 		$row->text = preg_replace_callback('/\{podcast_(player) (\d+)\}/', 'plgContentPodcast::callbackMatchProcess', $row->text);
