@@ -1,6 +1,8 @@
 <?php
 defined( '_JEXEC' ) or die;
 
+// TODO: the player parameter needs some work because the "standalone" layouts
+// currently rely on an episode being present.
 class plgContentPodcast extends JPlugin
 {
 	function onContentPrepare($context, &$row, &$params, $page = 0)
