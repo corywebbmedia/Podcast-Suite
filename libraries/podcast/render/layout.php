@@ -25,7 +25,13 @@ class PodcastRenderLayout
 	{
 		$this->layout_file = $file;
 		$this->episode_id = $episode_id;
+
+		// have to get the data from the database ready to go
 		$this->seed_data();
+
+		// must manually load the language file
+		$language = JFactory::getLanguage();
+		$language->load('com_podcast');
 	}
 
 	/**
