@@ -17,11 +17,15 @@ require JPATH_COMPONENT . '/scripthelper.php';
 class PodcastViewEpisode extends JView
 {
 	protected $item;
+	protected $assets;
+	protected $asset;
+	protected $storage;
 
 	public function display($tpl = null)
 	{
 		$this->item = $this->get('Item');
 		$this->assets = $this->get('Assets');
+		$this->asset = $this->assets[0];
 		$this->storage = PodcastHelper::getStorage();
 
 		if (!count($this->assets)) {

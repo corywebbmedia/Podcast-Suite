@@ -12,8 +12,6 @@ defined( '_JEXEC' ) or die;
 $doc = JFactory::getDocument();
 $doc->addStyleSheet(JURI::root().'media/com_podcast/css/podcast.css');
 
-$this->asset = $this->assets[0];
-
 ?>
 
 <div class="podcast_header_title">
