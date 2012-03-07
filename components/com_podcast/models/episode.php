@@ -46,4 +46,12 @@ class PodcastModelEpisode extends JModel
 
 		return $db->loadObjectList();
 	}
+
+	public function getAssetByID($podcast_asset_id)
+	{
+		JTable::addIncludePath(JPATH_BASE . '/administrator/components/com_podcast/tables');
+		$table = JTable::getInstance('Asset', 'PodcastTable');
+		$table->load($podcast_asset_id);
+		return $table;
+	}
 }

@@ -24,9 +24,11 @@ class plgContentPodcast extends JPlugin
 	{
 		try {
 			if ($matches[1] === 'episode') {
-				$layout = new PodcastRenderLayout('full', $matches[2]);
+				$layout = new PodcastRenderLayout('full');
+				$layout->episode_id = $matches[2];
 			} else if ($matches[1] === 'player') {
-				$layout = new PodcastRenderLayout('player', $matches[2]);
+				$layout = new PodcastRenderLayout('player');
+				$layout->podcast_asset_id = $matches[2];
 			}
 		} catch (PodcastRenderException $e) {
 			return $e->getMessage();

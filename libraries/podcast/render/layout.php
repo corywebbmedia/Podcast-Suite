@@ -17,22 +17,18 @@ class PodcastRenderException extends Exception {}
  */
 class PodcastRenderLayout
 {
+	public $type;
 	public $layout_file;
 	public $episode_id;
+	public $podcast_asset_id;
 	public $item;
 	public $assets;
 	public $asset;
 	public $storage;
 
-	public function __construct($type, $episode_id)
+	public function __construct($type)
 	{
-		$this->episode_id = $episode_id;
-
-		// have to get the data from the database ready to go
-		$this->seed_data();
-
-		// picks the layout to use based on the media type.
-		$this->set_layout_file($type);
+		$this->type = $type;
 
 		// must manually load the language file
 		$language = JFactory::getLanguage();
@@ -51,20 +47,27 @@ class PodcastRenderLayout
 
 		$model = JModel::getInstance('Episode', 'PodcastModel');
 
-		$this->item = $model->getItem($this->episode_id);
-		$this->assets = $model->getAssets($this->episode_id);
+		if (isset($this->episode_id)) {
+			$this->item = $model->getItem($this->episode_id);
+			$this->assets = $model->getAssets($this->episode_id);
 
-		if (!count($this->assets)) {
-			throw new PodcastRenderException("Error, no assets found for the episode!");
+			if (!count($this->assets)) {
+				throw new PodcastRenderException("Error, no assets found for the episode!");
+			}
+
+			$this->asset = $this->assets[0];
 		}
 
-		$this->asset = $this->assets[0];
+		if (isset($this->podcast_asset_id)) {
+			$this->asset = $model->getAssetByID($this->podcast_asset_id);
+		}
+
 		$this->storage = PodcastHelper::getStorage();
 	}
 
-	public function set_layout_file($type)
+	public function set_layout_file()
 	{
-		if ($type == 'player') {
+		if ($this->type == 'player') {
 
 			if (strpos($this->asset->asset_enclosure_type, 'audio') !== false) {
 				$this->layout_file = 'default_audio.php';
@@ -81,6 +84,9 @@ class PodcastRenderLayout
 
 	public function render()
 	{
+		$this->seed_data();
+		$this->set_layout_file();
+
 		ob_start();
 		require $this->_get_template_file($this->layout_file);
 		$contents = ob_get_contents();
