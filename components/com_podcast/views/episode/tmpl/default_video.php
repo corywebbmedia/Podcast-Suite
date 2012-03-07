@@ -11,6 +11,9 @@ defined('_JEXEC') or die;
 
 $extension = $this->storage->getAssetExtension($this->asset->asset_enclosure_url);
 
+$doc = JFactory::getDocument();
+$doc->addStyleSheet(JURI::root() . 'media/com_podcast/js/jplayer/skins/suite/jplayer.suite.css');
+
 PodcastScripthelper::init_player(array(
 	'extension' => $extension,
 	'episode_id' => $this->item->episode_id,
