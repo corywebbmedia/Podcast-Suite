@@ -10,7 +10,7 @@ class plgContentPodcast extends JPlugin
 			return true;
 		}
 
-		jimport('podcast.render.episode');
+		jimport('podcast.render.layout');
 
 		$row->text = preg_replace_callback('/\{podcast_(episode) (\d+)\}/', 'plgContentPodcast::callbackMatchProcess', $row->text);
 		$row->text = preg_replace_callback('/\{podcast_(player) (\d+)\}/', 'plgContentPodcast::callbackMatchProcess', $row->text);
@@ -21,9 +21,11 @@ class plgContentPodcast extends JPlugin
 	public function callbackMatchProcess($matches)
 	{
 		if ($matches[1] === 'episode') {
-			return PodcastRenderEpisode::full_episode($matches[2]);
+			$layout = new PodcastRenderLayout('full', $matches[2]);
 		} else if ($matches[1] === 'player') {
-			return PodcastRenderEpisode::player($matches[2]);
+			$layout = new PodcastRenderLayout('player', $matches[2]);
 		}
+
+		return $layout->render();
 	}
 }

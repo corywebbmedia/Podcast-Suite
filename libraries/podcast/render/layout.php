@@ -21,9 +21,14 @@ class PodcastRenderLayout
 	public $assets;
 	public $storage;
 
-	public function __construct($file, $episode_id)
+	public function __construct($type, $episode_id)
 	{
-		$this->layout_file = $file;
+		if ($type == 'player') {
+			$this->layout_file = 'default_audio.php';
+		} else {
+			$this->layout_file = 'default.php';
+		}
+
 		$this->episode_id = $episode_id;
 
 		// have to get the data from the database ready to go
