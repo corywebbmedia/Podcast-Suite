@@ -18,7 +18,7 @@ class PodcastScripthelper
 		$doc = JFactory::getDocument();
 
 		$doc->addScript(JURI::root() . 'media/com_podcast/js/jplayer/jquery.jplayer.min.js');
-		$doc->addStyleSheet(JURI::root() . 'media/com_podcast/js/jplayer/skins/blue.monday/jplayer.blue.monday.css');
+		$doc->addStyleSheet(JURI::root() . 'media/com_podcast/js/jplayer/skins/suite/jplayer.suite.css');
 
 		// TODO: migrate this into a proper JavaScript file and bootstrap the
 		// object.
