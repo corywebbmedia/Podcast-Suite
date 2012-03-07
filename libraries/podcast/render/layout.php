@@ -6,6 +6,8 @@ jimport('podcast.helper');
 require JPATH_BASE . '/components/com_podcast/scripthelper.php';
 
 
+class PodcastRenderException extends Exception {}
+
 /**
  * This class mimics the PodcastViewEpisode class so that template files can
  * be reused.
@@ -19,20 +21,18 @@ class PodcastRenderLayout
 	public $episode_id;
 	public $item;
 	public $assets;
+	public $asset;
 	public $storage;
 
 	public function __construct($type, $episode_id)
 	{
-		if ($type == 'player') {
-			$this->layout_file = 'default_audio.php';
-		} else {
-			$this->layout_file = 'default.php';
-		}
-
 		$this->episode_id = $episode_id;
 
 		// have to get the data from the database ready to go
 		$this->seed_data();
+
+		// picks the layout to use based on the media type.
+		$this->set_layout_file($type);
 
 		// must manually load the language file
 		$language = JFactory::getLanguage();
@@ -53,8 +53,31 @@ class PodcastRenderLayout
 
 		$this->item = $model->getItem($this->episode_id);
 		$this->assets = $model->getAssets($this->episode_id);
+
+		if (!count($this->assets)) {
+			throw new PodcastRenderException("Error, no assets found for the episode!");
+		}
+
 		$this->asset = $this->assets[0];
 		$this->storage = PodcastHelper::getStorage();
+	}
+
+	public function set_layout_file($type)
+	{
+		if ($type == 'player') {
+
+			if (strpos($this->asset->asset_enclosure_type, 'audio') !== false) {
+				$this->layout_file = 'default_audio.php';
+			} else if (strpos($this->asset->asset_enclosure_type, 'video') !== false) {
+				$this->layout_file = 'default_video.php';
+			} else {
+				$this->layout_file = 'default_attachment.php';
+			}
+
+
+		} else {
+			$this->layout_file = 'default.php';
+		}
 	}
 
 	public function render()

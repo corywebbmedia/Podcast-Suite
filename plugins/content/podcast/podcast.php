@@ -20,10 +20,14 @@ class plgContentPodcast extends JPlugin
 
 	public function callbackMatchProcess($matches)
 	{
-		if ($matches[1] === 'episode') {
-			$layout = new PodcastRenderLayout('full', $matches[2]);
-		} else if ($matches[1] === 'player') {
-			$layout = new PodcastRenderLayout('player', $matches[2]);
+		try {
+			if ($matches[1] === 'episode') {
+				$layout = new PodcastRenderLayout('full', $matches[2]);
+			} else if ($matches[1] === 'player') {
+				$layout = new PodcastRenderLayout('player', $matches[2]);
+			}
+		} catch (PodcastRenderException $e) {
+			return $e->getMessage();
 		}
 
 		return $layout->render();
