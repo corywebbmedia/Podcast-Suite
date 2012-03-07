@@ -74,7 +74,6 @@ class PodcastRenderLayout
 				$this->layout_file = 'default_attachment.php';
 			}
 
-
 		} else {
 			$this->layout_file = 'default.php';
 		}
@@ -114,7 +113,7 @@ class PodcastRenderLayout
 	protected function _get_template_file($filename)
 	{
 		$template = JFactory::getApplication()->getTemplate();
-		$override_path = JPATH_BASE . '/' . $template . '/html/com_podcast/episode/' . $filename;
+		$override_path = JPATH_BASE . '/templates/' . $template . '/html/com_podcast/episode/' . $filename;
 
 		if (JFile::exists($override_path)) {
 			return $override_path;
