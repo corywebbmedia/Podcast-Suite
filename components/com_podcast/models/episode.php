@@ -13,9 +13,11 @@ jimport('joomla.application.component.model');
 class PodcastModelEpisode extends JModel
 {
 
-	public function getItem()
+	public function getItem($episode_id = null)
 	{
-		$episode_id = JRequest::getInt('episode_id', 0);
+		if (!$episode_id) {
+			$episode_id = JRequest::getInt('episode_id', 0);
+		}
 
 		$db = JFactory::getDBO();
 		$query = $db->getQuery(true);
