@@ -16,15 +16,15 @@ $doc->addStyleSheet(JURI::root() . 'media/com_podcast/js/jplayer/skins/suite/jpl
 
 PodcastScripthelper::init_player(array(
 	'extension' => $extension,
-	'episode_id' => $this->item->episode_id,
+	'podcast_asset_id' => $this->asset->podcast_asset_id,
 	'asset_url' => $this->storage->getAssetUrl($this->asset->asset_enclosure_url),
 	'poster' => ''
 ));
 
 ?>
 
-<div id="jquery_jplayer_<?php echo $this->item->episode_id; ?>" class="jp-jplayer"></div>
-  <div id="jp_container_<?php echo $this->item->episode_id; ?>" class="jp-audio">
+<div id="jquery_jplayer_<?php echo $this->asset->podcast_asset_id; ?>" class="jp-jplayer"></div>
+  <div id="jp_container_<?php echo $this->asset->podcast_asset_id; ?>" class="jp-audio">
 	<div class="jp-type-single">
 	  <div class="jp-gui jp-interface">
 		<ul class="jp-controls">

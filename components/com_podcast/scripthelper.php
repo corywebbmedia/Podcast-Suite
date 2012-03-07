@@ -23,7 +23,7 @@ class PodcastScripthelper
 		// object.
 		$doc->addScriptDeclaration('
 		jQuery(document).ready(function(){
-			  jQuery("#jquery_jplayer_' . $settings['episode_id'] . '").jPlayer({
+			  jQuery("#jquery_jplayer_' . $settings['podcast_asset_id'] . '").jPlayer({
 				ready: function () {
 				  jQuery(this).jPlayer("setMedia", {
 					' . $settings['extension'] . ': "' . $settings['asset_url'] . '",
@@ -32,7 +32,7 @@ class PodcastScripthelper
 				},
 				swfPath: "' . JURI::root() . 'media/com_podcast/js/jplayer",
 				supplied: "' . $settings['extension'] . '",
-				cssSelectorAncestor: "#jp_container_' . $settings['episode_id'] . '"
+				cssSelectorAncestor: "#jp_container_' . $settings['podcast_asset_id'] . '"
 			  });
 			});
 		');
