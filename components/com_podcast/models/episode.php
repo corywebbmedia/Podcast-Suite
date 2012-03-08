@@ -13,9 +13,11 @@ jimport('joomla.application.component.model');
 class PodcastModelEpisode extends JModel
 {
 
-	public function getItem()
+	public function getItem($episode_id = null)
 	{
-		$episode_id = JRequest::getInt('episode_id', 0);
+		if (!$episode_id) {
+			$episode_id = JRequest::getInt('episode_id', 0);
+		}
 
 		$db = JFactory::getDBO();
 		$query = $db->getQuery(true);
@@ -43,5 +45,13 @@ class PodcastModelEpisode extends JModel
 		$db->setQuery($query);
 
 		return $db->loadObjectList();
+	}
+
+	public function getAssetByID($podcast_asset_id)
+	{
+		JTable::addIncludePath(JPATH_BASE . '/administrator/components/com_podcast/tables');
+		$table = JTable::getInstance('Asset', 'PodcastTable');
+		$table->load($podcast_asset_id);
+		return $table;
 	}
 }

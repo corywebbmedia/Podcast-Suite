@@ -11,18 +11,26 @@ defined('_JEXEC') or die;
 
 $extension = $this->storage->getAssetExtension($this->asset->asset_enclosure_url);
 
-PodcastScripthelper::init_player(array(
+$doc = JFactory::getDocument();
+$doc->addStyleSheet(JURI::root() . 'media/com_podcast/js/jplayer/skins/suite/jplayer.suite.css');
+
+$player_config = array(
 	'extension' => $extension,
-	'episode_id' => $this->item->episode_id,
-	'asset_url' => $this->storage->getAssetUrl($this->asset->asset_enclosure_url),
-	'poster' => JURI::root() . $this->item->episode_image
-));
+	'podcast_asset_id' => $this->asset->podcast_asset_id,
+	'asset_url' => $this->storage->getAssetUrl($this->asset->asset_enclosure_url)
+);
+
+if (isset($this->item->episode_image)) {
+	$player_config['poster'] = JURI::root() . $this->item->episode_image;
+}
+
+PodcastScripthelper::init_player($player_config);
 
 ?>
 
-<div id="jp_container_<?php echo $this->item->episode_id; ?>" class="jp-video">
+<div id="jp_container_<?php echo $this->asset->podcast_asset_id; ?>" class="jp-video">
 	<div class="jp-type-single">
-		<div id="jquery_jplayer_<?php echo $this->item->episode_id; ?>" class="jp-jplayer"></div>
+		<div id="jquery_jplayer_<?php echo $this->asset->podcast_asset_id; ?>" class="jp-jplayer"></div>
 		<div class="jp-gui">
 			<div class="jp-video-play">
 				<a href="javascript:;" class="jp-video-play-icon" tabindex="1"><?php echo JText::_('COM_PODCAST_PLAYER_VIDEO_PLAY') ?></a>
