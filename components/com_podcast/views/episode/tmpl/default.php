@@ -23,7 +23,7 @@ $doc->addStyleSheet(JURI::root().'media/com_podcast/css/podcast.css');
 <div class="podcast_header_meta">
 	<span class="podcast_keywords"><?php echo $this->escape($this->item->episode_keywords) ?></span>
 	<span class="podcast_author"><?php echo JText::_('COM_PODCAST_EPISODE_AUTHOR'); ?>: <?php echo $this->escape($this->item->episode_author) ?></span>
-	<span class="podcast_date"><?php echo JText::_('COM_PODCAST_EPISODE_DATE') ?>: <?php echo $this->escape($this->item->episode_pubDate) ?></span>
+	<span class="podcast_date"><?php echo JText::_('COM_PODCAST_EPISODE_DATE') ?>: <?php echo JHtml::_('date', strtotime($this->item->episode_pubDate), JText::_('DATE_FORMAT_LC1')); ?></span>
 	<span class="podcast_duration"><?php echo JText::_('COM_PODCAST_EPISODE_DURATION') ?>: <?php echo $this->escape($this->asset->asset_duration) ?></span>
 </div>
 
