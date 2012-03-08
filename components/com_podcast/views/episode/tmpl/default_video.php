@@ -50,12 +50,12 @@ PodcastScripthelper::init_player($player_config);
 						<li><a href="javascript:;" class="jp-stop" tabindex="1"><?php echo JText::_('COM_PODCAST_PLAYER_VIDEO_STOP') ?></a></li>
 						<li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute"><?php echo JText::_('COM_PODCAST_PLAYER_VIDEO_MUTE') ?></a></li>
 						<li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute"><?php echo JText::_('COM_PODCAST_PLAYER_VIDEO_UNMUTE') ?></a></li>
-						<li>
-							<div class="jp-volume-bar">
-								<div class="jp-volume-bar-value"></div>
-							</div>
-						</li>
 						<li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume"><?php echo JText::_('COM_PODCAST_PLAYER_VIDEO_MAXVOLUME') ?></a></li>
+					</ul>
+					<div class="jp-volume-bar">
+						<div class="jp-volume-bar-value"></div>
+					</div>
+					<ul class="jp-toggles">
 						<li><a href="javascript:;" class="jp-full-screen" tabindex="1" title="full screen"><?php echo JText::_('COM_PODCAST_PLAYER_VIDEO_FULLSCREEN') ?></a></li>
 						<li><a href="javascript:;" class="jp-restore-screen" tabindex="1" title="restore screen"><?php echo JText::_('COM_PODCAST_PLAYER_VIDEO_RESTORESCREEN') ?></a></li>
 						<li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat"><?php echo JText::_('COM_PODCAST_PLAYER_VIDEO_REPEAT') ?></a></li>
