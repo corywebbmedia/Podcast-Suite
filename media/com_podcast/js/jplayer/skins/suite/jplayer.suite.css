@@ -27,16 +27,18 @@ div.jp-video {
 	border:1px solid #3F596A;
 	background-color:#0F161A;
 	position:relative;
-	border-radius: 5px;
 }
 div.jp-audio {
 	width:420px;
+	border-radius: 5px;
 }
 div.jp-video-270p {
 	width:480px;
+	border-radius: 0 0 5px 5px;
 }
 div.jp-video-360p {
 	width:640px;
+	border-radius: 0 0 5px 5px;
 }
 div.jp-video-full {
 	/* Rules for IE6 (full-screen) */
@@ -84,7 +86,8 @@ div.jp-audio div.jp-type-playlist div.jp-interface {
 }
 
 div.jp-video div.jp-interface {
-	border-top:1px solid #009be3;
+	border-top:1px solid #333;
+	height:67px;
 }
 
 /* @group CONTROLS */
