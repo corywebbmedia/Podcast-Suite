@@ -120,7 +120,7 @@ class PodcastControllerAssets extends JController
 
 			if (!$asset) {
 				$result->result = false;
-				$result->message = 'Could not store in assets table';
+				$result->message = JText::_('COM_PODCAST_ASSETS_UPLOAD_COUNDNT_STORE');
 			} else {
 				$result->podcast_asset_id = $asset;
 			}

@@ -198,5 +198,5 @@ $doc->addScriptDeclaration("EpisodeMedia.token = '" . JUtility::getToken() . "';
 <div class="clr"></div>
 
 <div id="podcast_suite_link">
-	<p><a href="http://podcastsuite.com">Podcast Suite v2.0</a> | Copyright &copy; 2012 <a href="http://www.corywebbmedia.com">Cory Webb Media, LLC</a></p>
+	<p><?php echo JText::_('COM_PODCAST_COPYRIGHT'); ?></p>
 </div>
