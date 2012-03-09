@@ -391,4 +391,8 @@
 /plugins/finder/
 /plugins/extension/
 /plugins/editors/
-/plugins/editors-xtd/
+/plugins/editors-xtd/article
+/plugins/editors-xtd/image
+/plugins/editors-xtd/pagebreak
+/plugins/editors-xtd/readmore
+/plugins/editors-xtd/index.html
