@@ -87,6 +87,13 @@
 			required="true"
 			default=""/>
 
+		<field name="feed_language"
+			type="language"
+			label="COM_PODCAST_FEED_LANGUAGE"
+			description="COM_PODCAST_FEED_LANGUAGE_DESC"
+			required="true"
+			default=""/>
+
 		<field name="feed_copyright"
 			type="text"
 			label="COM_PODCAST_FEED_COPYRIGHT"
