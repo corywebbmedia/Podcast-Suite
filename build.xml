@@ -34,6 +34,10 @@
 		<include name="**" />
 	</fileset>
 
+	<fileset dir="${srcdir}/plugins/content/podcast/" id="podcast_content_plugin">
+		<include name="**" />
+	</fileset>
+
 	<fileset dir="${srcdir}" id="full_package">
 		<include name="build/com_podcast.zip" />
 		<include name="build/getid3.zip" />
@@ -60,6 +64,11 @@
 		<delete file="build/podcast.zip" quiet="true" />
 		<zip destfile="build/podcast.zip">
 			<fileset refid="podcast_library" />
+		</zip>
+
+		<delete file="build/plg_content_podcast.zip" quiet="true" />
+		<zip destfile="build/plg_content_podcast.zip">
+			<fileset refid="podcast_content_plugin" />
 		</zip>
 
 		<delete file="build/PodcastSuite.zip" quiet="true" />
