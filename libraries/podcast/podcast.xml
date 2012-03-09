@@ -12,8 +12,9 @@
 	<description>Provides support for different asset storage engines</description>
 
 	<files>
-		<file>asset.php</file>
+		<file>helper.php</file>
 		<folder>storage</folder>
+		<folder>render</folder>
 		<file>storage.php</file>
 	</files>
 </extension>
