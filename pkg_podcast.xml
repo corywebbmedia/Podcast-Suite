@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="package" method="upgrade" version="2.5.0">
-	<name>pkg_podcast</name>
+	<name>Podcast Suite</name>
 	<packagename>podcast</packagename>
 	<author>Podcast Suite</author>
 	<creationDate>February 2012</creationDate>
@@ -9,11 +9,14 @@
 	<authorEmail>joe@corywebbmedia.com</authorEmail>
 	<authorUrl>podcastsuite.com</authorUrl>
 	<version>2.0</version>
-	<description>COM_PODCAST_DESC</description>
+	<description>Podcast Suite is the best way of publishing and displaying podcasts in Joomla!</description>
 
 	<files folder="build">
 		<file type="library" id="getid3">getid3.zip</file>
 		<file type="library" id="podcast">podcast.zip</file>
 		<file type="component" id="com_podcast">com_podcast.zip</file>
+		<file type="plugin" group="content" id="podcast">plg_content_podcast.zip</file>
+		<file type="plugin" group="editors-xtd" id="podcastepisode">plg_editorxtd_podcastepisode.zip</file>
+		<file type="plugin" group="editors-xtd" id="podcastmedia">plg_editorxtd_podcastmedia.zip</file>
 	</files>
 </extension>

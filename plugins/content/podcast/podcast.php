@@ -15,7 +15,7 @@ class plgContentPodcast extends JPlugin
 		jimport('podcast.render.layout');
 
 		$row->text = preg_replace_callback('/\{podcast_(episode) (\d+)\}/', 'plgContentPodcast::callbackMatchProcess', $row->text);
-		$row->text = preg_replace_callback('/\{podcast_(player) (\d+)\}/', 'plgContentPodcast::callbackMatchProcess', $row->text);
+		$row->text = preg_replace_callback('/\{podcast_(media) (\d+)\}/', 'plgContentPodcast::callbackMatchProcess', $row->text);
 
 		return true;
 	}
@@ -26,8 +26,8 @@ class plgContentPodcast extends JPlugin
 			if ($matches[1] === 'episode') {
 				$layout = new PodcastRenderLayout('full');
 				$layout->episode_id = $matches[2];
-			} else if ($matches[1] === 'player') {
-				$layout = new PodcastRenderLayout('player');
+			} else if ($matches[1] === 'media') {
+				$layout = new PodcastRenderLayout('media');
 				$layout->podcast_asset_id = $matches[2];
 			}
 		} catch (PodcastRenderException $e) {

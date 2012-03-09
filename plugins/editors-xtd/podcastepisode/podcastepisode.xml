@@ -14,5 +14,9 @@
 		<filename>index.html</filename>
 		<folder>language</folder>
 	</files>
+	<languages folder="language/en-GB">
+		<language tag="en-GB">en-GB.plg_editors-xtd_podcastepisode.ini</language>
+		<language tag="en-GB">en-GB.plg_editors-xtd_podcastepisode.sys.ini</language>
+	</languages>
 	<config />
 </extension>
