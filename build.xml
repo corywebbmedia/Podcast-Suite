@@ -42,6 +42,7 @@
 		<include name="build/com_podcast.zip" />
 		<include name="build/getid3.zip" />
 		<include name="build/podcast.zip" />
+		<include name="build/plg_content_podcast.zip" />
 		<include name="pkg_podcast.xml" />
 	</fileset>
 
