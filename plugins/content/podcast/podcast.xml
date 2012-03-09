@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="2.5" type="plugin" group="content">
-	<name>Content - Podcast</name>
+	<name>PLG_CONTENT_PODCAST</name>
 	<author>Podcast Suite</author>
 	<creationDate>February 2012</creationDate>
 	<copyright>Copyright (C) 2011-2012</copyright>
@@ -8,10 +8,14 @@
 	<authorEmail>joe@corywebbmedia.com</authorEmail>
 	<authorUrl>podcastsuite.com</authorUrl>
 	<version>2.0</version>
-	<description>A plugin designed to display podcast episodes in standard Joomla articles.</description>
+	<description>PLG_CONTENT_PODCAST_XML_DESCRIPTION</description>
 	<files>
 		<filename plugin="podcast">podcast.php</filename>
 		<filename>index.html</filename>
 	</files>
+	<languages folder="language/en-GB">
+		<language tag="en-GB">en-GB.plg_content_podcast.ini</language>
+		<language tag="en-GB">en-GB.plg_content_podcast.sys.ini</language>
+	</languages>
 	<config />
 </extension>
