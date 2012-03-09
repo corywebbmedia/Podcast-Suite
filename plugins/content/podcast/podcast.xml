@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension version="2.5" type="plugin" group="podcast">
+<extension version="2.5" type="plugin" group="content">
 	<name>Content - Podcast</name>
 	<author>Podcast Suite</author>
 	<creationDate>February 2012</creationDate>

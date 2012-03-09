@@ -15,6 +15,6 @@
 		<file type="library" id="getid3">getid3.zip</file>
 		<file type="library" id="podcast">podcast.zip</file>
 		<file type="component" id="com_podcast">com_podcast.zip</file>
-		<file type="plugin" id="plg_content_podcast">plg_content_podcast.zip</file>
+		<file type="plugin" group="content" id="podcast">plg_content_podcast.zip</file>
 	</files>
 </extension>
