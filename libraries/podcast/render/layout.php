@@ -67,7 +67,7 @@ class PodcastRenderLayout
 
 	public function set_layout_file()
 	{
-		if ($this->type == 'player') {
+		if ($this->type == 'media') {
 
 			if (strpos($this->asset->asset_enclosure_type, 'audio') !== false) {
 				$this->layout_file = 'default_audio.php';
