@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="2.5" type="plugin" group="podcast">
-	<name>plg_content_podcast</name>
+	<name>Content - Podcast</name>
 	<author>Podcast Suite</author>
 	<creationDate>February 2012</creationDate>
 	<copyright>Copyright (C) 2011-2012</copyright>
