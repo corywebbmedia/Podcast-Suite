@@ -46,4 +46,42 @@ class PodcastModelMigrate extends JModel
 
 		return $this->old_db;
 	}
+
+	public function import_feeds()
+	{
+		$db = $this->get_old_joomla_db();
+
+		$query = $db->getQuery(true);
+
+		$query->select("params")
+				->from("#__components")
+				->where("link = 'option=com_podcast'");
+
+		$db->setQuery($query);
+		$params = $db->loadResult();
+
+		jimport('joomla.registry.format');
+		$formatter = JRegistryFormat::getInstance('INI');
+		$params = $formatter->stringToObject($params);
+
+		$row = JTable::getInstance('feed', 'PodcastTable');
+		$row->feed_title = $params->title;
+		$row->feed_link = JURI::root(); // not defined in earlier versions, may want to change this
+		$row->feed_language = JFactory::getLanguage()->getDefault(); // not defined earlier, defaulting to default
+		$row->feed_copyright = $params->copyright;
+		$row->feed_subtitle = $params->itSubtitle;
+		$row->feed_author = $params->itAuthor;
+		$row->feed_block = $params->itBlock;
+		$row->feed_explicit = $params->itExplicit;
+		$row->feed_keywords = $params->itKeywords;
+		$row->feed_summary = $params->description;
+		$row->feed_owner_name = $params->itOwnerName;
+		$row->feed_owner_email = $params->itOwnerEmail;
+		$row->feed_image = $params->itImage;
+		$row->feed_category1 = $params->itCategory1;
+		$row->feed_category2 = $params->itCategory2;
+		$row->feed_category3 = $params->itCategory3;
+
+		return $row->store();
+	}
 }
