@@ -24,7 +24,8 @@ MigratePodcast.perform_task = function (task_num) {
 	var req = {
 		option: 'com_podcast',
 		format: 'json',
-		task: 'migrate.' + MigratePodcast.tasks[task_num]
+		task: 'migrate.' + MigratePodcast.tasks[task_num],
+		joomla_path: MigratePodcast.existing_joomla
 	};
 
 	req[MigratePodcast.token] = 1;
@@ -39,6 +40,7 @@ MigratePodcast.perform_task = function (task_num) {
 };
 
 MigratePodcast.start_migration = function () {
+	MigratePodcast.existing_joomla = $('path_to_old_joomla_site').get('value');
 	MigratePodcast.perform_task(0);
 };
 
