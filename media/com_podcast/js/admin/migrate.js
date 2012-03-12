@@ -34,7 +34,11 @@ MigratePodcast.perform_task = function (task_num) {
 		url: 'index.php',
 		onSuccess: function (response) {
 			console.log(response);
-			MigratePodcast.perform_task(task_num + 1);
+			if (response.status === 'success') {
+				MigratePodcast.perform_task(task_num + 1);
+			} else {
+				alert('task failed with this message: ' + response.message);
+			}
 		}
 	}).post(req);
 };
