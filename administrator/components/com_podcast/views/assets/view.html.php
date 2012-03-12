@@ -29,7 +29,7 @@ class PodcastViewAssets extends JView
 
 		$bar = JToolBar::getInstance('toolbar');
 
-		$button = '<a class="toolbar" href="#" id="upload_toolbar_button"><span class="icon-32-upload"></span>'.JText::_('Upload').'</a>';
+		$button = '<a class="toolbar" href="#" id="upload_toolbar_button"><span class="icon-32-upload"></span>'.JText::_('JTOOLBAR_UPLOAD').'</a>';
 		$bar->appendButton('Custom', $button, 'upload');
 
 		JToolBarHelper::divider();

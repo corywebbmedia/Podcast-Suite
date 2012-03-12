@@ -9,10 +9,10 @@
 	</fieldset>-->
     
     <fieldset name="local_options" label="COM_PODCAST_STORAGE_LOCAL" addfieldpath="/administrator/components/com_podcast/models/fields">
-        <field type="text" name="local_root" default="/media/podcasts/" label="*Root" description="*Root" />
-		<field type="radio" name="delete_action" default="record" label="*Delete Action" description="">
-			<option value="record">Record Only</option>
-			<option value="file">Record and File</option>
+        <field type="text" name="local_root" default="/media/podcasts/" label="COM_PODCAST_ROOT" description="COM_PODCAST_ROOT_DESC" />
+		<field type="radio" name="delete_action" default="record" label="COM_PODCAST_DELETE_ACTION" description="COM_PODCAST_DELETE_ACTION_DESC">
+			<option value="record">COM_PODCAST_DELETE_ACTION_RECORD</option>
+			<option value="file">COM_PODCAST_DELETE_ACTION_FILE</option>
 		</field>
 	</fieldset>
     

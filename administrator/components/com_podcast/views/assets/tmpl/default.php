@@ -43,8 +43,8 @@ $doc->addScriptDeclaration("Assets.storage_engine = '".PodcastHelper::getStorage
 		</ul>
 		<div id="new_folder">
 			<p>&nbsp;</p>
-			<p>Add new subfolder* <span="folder_path"></span></p>
-			<p><input type="text" name="new_folder_name" value="" id="new_folder_name" /> <input type="button" name="new_folder_button" value="New Folder*" id="new_folder_button"></p>
+			<p><?php echo JText::_('COM_PODCAST_MEDIA_NEW_SUBFOLDER'); ?></p>
+			<p><input type="text" name="new_folder_name" value="" id="new_folder_name" /> <input type="button" name="new_folder_button" value="<?php echo JText::_('COM_PODCAST_MEDIA_NEW_FOLDER'); ?>" id="new_folder_button"></p>
 		</div>
 	</fieldset>
 	<fieldset>
