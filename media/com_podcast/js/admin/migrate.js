@@ -11,13 +11,9 @@ var MigratePodcast = {
 	existing_joomla: null
 };
 
-MigratePodcast.tasks_complete = function  () {
-	alert('done!');
-};
-
 MigratePodcast.perform_task = function (task_num) {
 	if (task_num === MigratePodcast.tasks.length) {
-		MigratePodcast.tasks_complete();
+		MigratePodcast.display_status_update('COMPLETE');
 		return;
 	}
 
@@ -33,14 +29,20 @@ MigratePodcast.perform_task = function (task_num) {
 	new Request.JSON({
 		url: 'index.php',
 		onSuccess: function (response) {
-			console.log(response);
+			MigratePodcast.display_status_update(response.message);
+
 			if (response.status === 'success') {
 				MigratePodcast.perform_task(task_num + 1);
 			} else {
-				alert('task failed with this message: ' + response.message);
+				MigratePodcast.display_status_update('FAILED');
 			}
 		}
 	}).post(req);
+};
+
+MigratePodcast.display_status_update = function (message) {
+	var item = new Element('li', {html: message});
+	item.inject($('migration_statuses'));
 };
 
 MigratePodcast.start_migration = function () {

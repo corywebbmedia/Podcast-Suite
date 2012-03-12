@@ -31,5 +31,12 @@ $document->addScriptDeclaration("MigratePodcast.token = '" . JUtility::getToken(
 			<input type="button" name="thebigscarybutton" value="Are You Absolutely Sure You Want To Do This???" id="thebigscarybutton" />
 
 		</fieldset>
+
+		<fieldset class="adminform">
+			<legend>Migration Status*</legend>
+
+			<ul id="migration_statuses">
+			</ul>
+		</fieldset>
 	</div>
 </form>
