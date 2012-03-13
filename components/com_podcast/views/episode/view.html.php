@@ -20,6 +20,7 @@ class PodcastViewEpisode extends JView
 	protected $assets;
 	protected $asset;
 	protected $storage;
+	protected $params;
 
 	public function display($tpl = null)
 	{
@@ -27,6 +28,7 @@ class PodcastViewEpisode extends JView
 		$this->assets = $this->get('Assets');
 		$this->asset = $this->assets[0];
 		$this->storage = PodcastHelper::getStorage();
+		$this->params = JFactory::getApplication()->getParams();
 
 		if (!count($this->assets)) {
 			print 'Error, no assets attached to this episode!';

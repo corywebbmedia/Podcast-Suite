@@ -7,5 +7,8 @@
  * @category    cwm_podcast
  * @package     
  */
+
 defined('_JEXEC') or die;
 
+?>
+<a href="<?php echo $this->storage->getAssetUrl($this->asset->asset_enclosure_url); ?>"><?php echo $this->asset->asset_enclosure_url; ?></a>
