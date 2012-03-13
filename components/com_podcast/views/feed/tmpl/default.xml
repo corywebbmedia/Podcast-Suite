@@ -21,4 +21,45 @@
 			/>
 		</fieldset>
 	</fields>
+	
+	<fields name="params">
+		<fieldset name="display" label="COM_PODCAST_FIELDSET_DISPLAY">
+			<field name="show_title" type="list" default="1" label="COM_PODCAST_FIELD_SHOW_TITLE" description="COM_PODCAST_FIELD_SHOW_TITLE_DESC">
+				<option value="1">JSHOW</option>
+				<option value="0">JHIDE</option>
+			</field>
+			<field name="show_subtitle" type="list" default="1" label="COM_PODCAST_FIELD_SHOW_SUBTITLE" description="COM_PODCAST_FIELD_SHOW_SUBTITLE_DESC">
+				<option value="1">JSHOW</option>
+				<option value="0">JHIDE</option>
+			</field>
+			<field name="show_summary" type="list" default="1" label="COM_PODCAST_FIELD_SHOW_SUMMARY" description="COM_PODCAST_FIELD_SHOW_SUMMARY_DESC">
+				<option value="1">JSHOW</option>
+				<option value="0">JHIDE</option>
+			</field>
+			<field name="show_subscribe" type="list" default="1" label="COM_PODCAST_FIELD_SHOW_SUBSCRIBE" description="COM_PODCAST_FIELD_SHOW_SUBSCRIBE_DESC">
+				<option value="1">JSHOW</option>
+				<option value="0">JHIDE</option>
+			</field>
+			<field name="show_image" type="list" default="1" label="COM_PODCAST_FIELD_SHOW_IMAGE" description="COM_PODCAST_FIELD_SHOW_IMAGE_DESC">
+				<option value="1">JSHOW</option>
+				<option value="0">JHIDE</option>
+			</field>
+			<field name="show_episodes" type="list" default="1" label="COM_PODCAST_FIELD_SHOW_EPISODES" description="COM_PODCAST_FIELD_SHOW_EPISODES_DESC">
+				<option value="1">JSHOW</option>
+				<option value="0">JHIDE</option>
+			</field>
+			<field name="show_author" type="list" default="1" label="COM_PODCAST_FIELD_SHOW_AUTHOR" description="COM_PODCAST_FIELD_SHOW_AUTHOR_DESC">
+				<option value="1">JSHOW</option>
+				<option value="0">JHIDE</option>
+			</field>
+			<field name="show_keywords" type="list" default="1" label="COM_PODCAST_FIELD_SHOW_KEYWORDS" description="COM_PODCAST_FIELD_SHOW_KEYWORDS_DESC">
+				<option value="1">JSHOW</option>
+				<option value="0">JHIDE</option>
+			</field>
+			<field name="show_copyright" type="list" default="1" label="COM_PODCAST_FIELD_SHOW_COPYRIGHT" description="COM_PODCAST_FIELD_SHOW_COPYRIGHT_DESC">
+				<option value="1">JSHOW</option>
+				<option value="0">JHIDE</option>
+			</field>
+		</fieldset>
+	</fields>
 </metadata>

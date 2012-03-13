@@ -15,10 +15,12 @@ class PodcastViewFeed extends JView
 {
 	protected $items;
 	protected $feed;
+	protected $params;
 
 	public function display($tpl = null)
 	{
 		$this->feed = $this->get('Feed');
+		$this->params = JFactory::getApplication()->getParams();
 
 		if ($this->feed->published != 1) {
 			throw new Exception(JText::_('JGLOBAL_RESOURCE_NOT_FOUND'), 404);
