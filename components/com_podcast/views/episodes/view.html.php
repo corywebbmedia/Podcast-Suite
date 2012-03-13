@@ -14,12 +14,16 @@ jimport('podcast.helper');
 class PodcastViewEpisodes extends JView
 {
 	protected $items;
+	protected $params;
+	protected $assets;
+	protected $storage;
 
 	public function display($tpl = null)
 	{
 		$this->items = $this->get('Items');
 		$this->assets = $this->get('Assets');
 		$this->storage = PodcastHelper::getStorage();
+		$this->params = JFactory::getApplication()->getParams();
 
 		parent::display($tpl);
 	}
