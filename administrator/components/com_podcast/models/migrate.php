@@ -2,6 +2,7 @@
 defined( '_JEXEC' ) or die;
 
 jimport('joomla.application.component.model');
+jimport('podcast.helper');
 
 class PodcastModelMigrate extends JModel
 {
@@ -99,6 +100,106 @@ class PodcastModelMigrate extends JModel
 
 	}
 
+	public function import_podcast_assets()
+	{
+		$rows = $this->_get_old_podcast_records();
+		$enclosures = $this->_get_old_podcast_enclosures();
+		$params = $this->_get_old_podcast_params();
+
+		$old_media_path = $this->path . '/' . $params->get('mediapath') . '/';
+
+		$folder = PodcastHelper::getOptions()->get('folder', '/media/podcasts/');
+
+		foreach ($rows as $row) {
+
+			$newrow = JTable::getInstance('asset', 'PodcastTable');
+
+			if (stripos($row->filename, 'http') === 0) {
+				$newrow->asset_enclosure_url = $row->filename;
+
+				if (isset($enclosures[$row->filename])) {
+					$newrow->asset_enclosure_length = $enclosures[$row->filename]['length'];
+					$newrow->asset_enclosure_type = $enclosures[$row->filename]['mime'];
+				}
+
+			} else {
+				$file_info = $this->_get_file_info($old_media_path . $row->filename);
+				$newrow->asset_enclosure_url = $folder . $row->filename;
+				$newrow->asset_enclosure_length = $file_info['length'];
+				$newrow->asset_enclosure_type = $file_info['type'];
+				$newrow->storage_engine = 'local';
+			}
+
+			$newrow->asset_duration = $row->itDuration;
+		}
+	}
+
+	private function _get_file_info($filepath)
+	{
+		jimport('getid3.getid3.getid3');
+
+        $getid3 = new getID3;
+        $info = $getid3->analyze($filepath);
+
+		$parsed = array();
+
+		$parsed['length'] = (isset($info['filesize']) ? $info['filesize'] : 0);
+        $parsed['type'] = (isset($info['mime_type']) ? $info['mime_type'] : '');
+        $parsed['duration'] = (isset($info['playtime_string']) ? $info['playtime_string'] : '');
+
+        return $parsed;
+	}
+
+	private function _get_old_podcast_records()
+	{
+		$db = $this->get_old_joomla_db();
+
+		$query = $db->getQuery(true);
+
+		$query->select("*")->from("#__podcast");
+
+		$db->setQuery($query);
+		return $db->loadObjectList();
+	}
+
+	private function _get_old_podcast_enclosures()
+	{
+		$db = $this->get_old_joomla_db();
+
+		$query = $db->getQuery(true);
+
+		$query->select("*")
+			->from("#__content")
+			->where("introtext LIKE '%{enclose %'");
+
+		$db->setQuery($query);
+		$content = $db->loadObjectList();
+
+		$enclosures = array();
+
+		foreach ($content as $item) {
+			if (preg_match('/\{enclose (.*)\}/', $item->introtext, $matches)) {
+				$enclose_pieces = explode(' ', $matches[0]);
+
+				$info = array('content_id' => $item->id);
+
+				if (count($enclose_pieces) > 1) {
+ 					$info = array(
+						'file' => $enclose_pieces[0],
+						'length' => $enclose_pieces[1],
+						'mime' => $enclose_pieces[2]
+					);
+				}
+
+				$info['row'] = $item;
+
+				$enclose_pieces[0] = $info;
+			}
+		}
+
+		return $enclosures;
+	}
+
 	private function _get_old_podcast_params()
 	{
 		if (!isset($this->old_params)) {
@@ -142,4 +243,9 @@ class PodcastModelMigrate extends JModel
 		return $db->loadResult();
 	}
 
+	// TODO: this should remove {enclose} tags
+	private function _clean_introtext($text)
+	{
+		return $text;
+	}
 }
