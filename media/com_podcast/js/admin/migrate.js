@@ -3,6 +3,7 @@
 var MigratePodcast = {
 	token: null,
 	tasks: ['import_feeds',
+			'import_podcast_assets',
 			'import_podcast_episodes',
 			'import_content_descriptions',
 			'import_files',
