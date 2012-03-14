@@ -15,6 +15,7 @@
 		<filename>index.html</filename>
 		<folder>models</folder>
 		<filename>podcast.php</filename>
+		<filename>scripthelper.php</filename>
 		<folder>views</folder>
 	</files>
 
