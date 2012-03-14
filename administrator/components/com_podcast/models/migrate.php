@@ -98,6 +98,7 @@ class PodcastModelMigrate extends JModel
 			$newrow->published = $enclosures[$row->filename]['row']->state;
 		}
 
+		return true;
 	}
 
 	public function import_podcast_assets()
@@ -132,6 +133,14 @@ class PodcastModelMigrate extends JModel
 
 			$newrow->asset_duration = $row->itDuration;
 		}
+
+		return true;
+	}
+
+	public function translate_plugin_tags()
+	{
+
+		return true;
 	}
 
 	private function _get_file_info($filepath)
