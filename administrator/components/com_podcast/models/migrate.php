@@ -76,6 +76,29 @@ class PodcastModelMigrate extends JModel
 
 		return $row->store();
 	}
+
+	public function import_podcast_episodes()
+	{
+		$rows = $this->_get_old_podcast_records();
+		$feed_id = $this->_get_latest_feed_id();
+		$enclosures = $this->_get_old_podcast_enclosures();
+
+		foreach ($rows as $row) {
+			$newrow = JTable::getInstance('episode', 'PodcastTable');
+			$newrow->feed_id = $feed_id;
+			$newrow->episode_title = $enclosures[$row->filename]['row']->title;
+			$newrow->episode_author = $row->itAuthor;
+			$newrow->episode_subtitle = $row->itSubtitle;
+			$newrow->episode_summary = $this->_clean_introtext($enclosures[$row->filename]['row']->introtext);
+			$newrow->episode_pubDate = $enclosures[$row->filename]['row']->publish_up;
+			$newrow->episode_keywords = $row->itKeywords;
+			$newrow->episode_created = $enclosures[$row->filename]['row']->created;
+			$newrow->episode_block = $row->itBlock;
+			$newrow->published = $enclosures[$row->filename]['row']->state;
+		}
+
+	}
+
 	private function _get_old_podcast_params()
 	{
 		if (!isset($this->old_params)) {
