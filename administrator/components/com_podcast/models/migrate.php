@@ -243,9 +243,15 @@ class PodcastModelMigrate extends JModel
 		return $db->loadResult();
 	}
 
-	// TODO: this should remove {enclose} tags
 	private function _clean_introtext($text)
 	{
+		$patterns = array(
+			'/\{enclose (.*)\}/',
+			'/\{player (.*)\}/'
+		);
+
+		$text = preg_replace($patterns, '', $text);
+
 		return $text;
 	}
 }
