@@ -5,7 +5,6 @@ var MigratePodcast = {
 	tasks: ['import_feeds',
 			'import_podcast_assets',
 			'import_podcast_episodes',
-			'import_content_descriptions',
 			'import_files',
 			'translate_plugin_tags'],
 	current_task: null,

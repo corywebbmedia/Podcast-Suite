@@ -50,15 +50,6 @@ class PodcastControllerMigrate extends JController
 		echo json_encode(array('message' => 'episodes imported', 'status' => $status));
 	}
 
-	public function import_content_descriptions()
-	{
-		JRequest::checkToken() or jexit( JText::_('JINVALID_TOKEN') );
-
-		$model = $this->_getModelWithPath();
-
-		echo json_encode(array('message' => 'content descriptions imported', 'status' => 'success'));
-	}
-
 	public function import_files()
 	{
 		JRequest::checkToken() or jexit( JText::_('JINVALID_TOKEN') );
