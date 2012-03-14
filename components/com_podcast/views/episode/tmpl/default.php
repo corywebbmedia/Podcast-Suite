@@ -15,8 +15,8 @@ $doc->addStyleSheet(JURI::root().'media/com_podcast/css/podcast.css');
 ?>
 
 <div class="podcast_header_title">
-	<?php if ($this->params->get('show_image', '1') == '1' && $item->episode_image) : ?>
-		<img src="<?php echo JURI::base().$item->episode_image; ?>" class="podcast_episodes_image" />
+	<?php if ($this->params->get('show_image', '1') == '1' && $this->item->episode_image) : ?>
+		<img src="<?php echo JURI::base().$this->item->episode_image; ?>" class="podcast_episodes_image" />
 	<?php endif; ?>
 	<?php if ($this->params->get('show_title', '1') == '1') : ?>
 		<h3 class="podcast_title"><?php echo $this->escape($this->item->episode_title) ?></h3>
