@@ -8,6 +8,7 @@ class PodcastModelMigrate extends JModel
 	public $path;
 	protected $old_config;
 	protected $old_db;
+	protected $old_params;
 
 	public function get_old_joomla_config()
 	{
@@ -49,20 +50,7 @@ class PodcastModelMigrate extends JModel
 
 	public function import_feeds()
 	{
-		$db = $this->get_old_joomla_db();
-
-		$query = $db->getQuery(true);
-
-		$query->select("params")
-				->from("#__components")
-				->where("link = 'option=com_podcast'");
-
-		$db->setQuery($query);
-		$params = $db->loadResult();
-
-		jimport('joomla.registry.format');
-		$formatter = JRegistryFormat::getInstance('INI');
-		$params = $formatter->stringToObject($params);
+		$params = $this->_get_old_podcast_params();
 
 		$row = JTable::getInstance('feed', 'PodcastTable');
 		$row->feed_title = $params->title;
@@ -84,4 +72,26 @@ class PodcastModelMigrate extends JModel
 
 		return $row->store();
 	}
+	private function _get_old_podcast_params()
+	{
+		if (!isset($this->old_params)) {
+			$db = $this->get_old_joomla_db();
+
+			$query = $db->getQuery(true);
+
+			$query->select("params")
+					->from("#__components")
+					->where("link = 'option=com_podcast'");
+
+			$db->setQuery($query);
+			$params = $db->loadResult();
+
+			jimport('joomla.registry.format');
+			$formatter = JRegistryFormat::getInstance('INI');
+			$this->old_params = $formatter->stringToObject($params);
+		}
+
+		return $this->old_params;
+	}
+
 }
