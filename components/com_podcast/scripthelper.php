@@ -55,7 +55,7 @@ class PodcastScripthelper
 		//
 		// http://www.designvsdevelop.com/jquery-in-joomla-i-was-wrong/
 		//
-		$doc->addScript(JURI::root() . 'media/com_podcast/js/jquery_no_conflict.js');
+		$doc->addScript(JURI::root() . 'media/com_podcast/js/jplayer/jquery_no_conflict.js');
 
 		return true;
 	}
