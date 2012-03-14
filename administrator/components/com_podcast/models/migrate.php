@@ -70,6 +70,10 @@ class PodcastModelMigrate extends JModel
 		$row->feed_category2 = $params->itCategory2;
 		$row->feed_category3 = $params->itCategory3;
 
+		if (!$this->_get_latest_feed_id()) {
+			$row->feed_default = 1;
+		}
+
 		return $row->store();
 	}
 	private function _get_old_podcast_params()
@@ -92,6 +96,27 @@ class PodcastModelMigrate extends JModel
 		}
 
 		return $this->old_params;
+	}
+
+	/**
+	 * NOTE: This function currently returns the latest ID from the feeds
+	 * table. This entire function may need to be replaced with a more
+	 * sophisticated method of matching multiple import feeds to episodes.
+	 *
+	 * @return int
+	 */
+	private function _get_latest_feed_id()
+	{
+		$db = $this->getDbo();
+
+		$query = $db->getQuery(true);
+
+		$query->select('max(feed_id)')
+			->from('#__podcast_feeds');
+
+		$db->setQuery($query);
+
+		return $db->loadResult();
 	}
 
 }
