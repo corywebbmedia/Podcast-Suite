@@ -96,6 +96,9 @@ class PodcastModelMigrate extends JModel
 			$newrow->episode_created = $enclosures[$row->filename]['row']->created;
 			$newrow->episode_block = $row->itBlock;
 			$newrow->published = $enclosures[$row->filename]['row']->state;
+			$newrow->store();
+
+			$this->_store_episode_asset_map($newrow->episode_id, $row->filename);
 		}
 
 		return true;
@@ -139,6 +142,7 @@ class PodcastModelMigrate extends JModel
 
 	public function translate_plugin_tags()
 	{
+
 
 		return true;
 	}
@@ -262,5 +266,33 @@ class PodcastModelMigrate extends JModel
 		$text = preg_replace($patterns, '', $text);
 
 		return $text;
+	}
+
+	private function _store_episode_asset_map($episode_id, $filename)
+	{
+		$path = PodcastHelper::getOptions()->get('folder', '/media/podcasts/') . $filename;
+
+		$db = JFactory::getDocument();
+		$quote = $db->getQuery(true);
+
+		$path = $db->getEscaped($path);
+
+		$quote->select("podcast_asset_id")
+			->from("#__podcast_assets")
+			->where("asset_enclosure_url = '{$path}'");
+
+		$db->setQuery($query);
+
+		$podcast_asset_id = $db->loadResult();
+
+		if ($podcast_asset_id) {
+			$query = $db->getQuery(true);
+
+			$query->insert('#__podcast_assets_map')
+				->columns('podcast_asset_id', 'episode_id', 'default')
+				->values((int) $podcast_asset_id, (int) $episode_id, 1);
+
+			$db->setQuery($query)->query();
+		}
 	}
 }
