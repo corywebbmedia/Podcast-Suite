@@ -26,7 +26,13 @@ class PodcastControllerMigrate extends JController
 
 		$model = $this->_getModelWithPath();
 
-		echo json_encode(array('message' => 'episodes imported', 'status' => 'success'));
+		if ($model->import_podcast_episodes()) {
+			$status = 'success';
+		} else {
+			$status = 'failed';
+		}
+
+		echo json_encode(array('message' => 'episodes imported', 'status' => $status));
 	}
 
 	public function import_content_descriptions()
