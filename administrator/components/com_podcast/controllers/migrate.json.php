@@ -56,6 +56,12 @@ class PodcastControllerMigrate extends JController
 
 		$model = $this->_getModelWithPath();
 
+		if ($model->import_files()) {
+			$status = 'success';
+		} else {
+			$status = 'failed';
+		}
+
 		echo json_encode(array('message' => 'files imported', 'status' => 'success'));
 	}
 

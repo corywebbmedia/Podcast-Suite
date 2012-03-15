@@ -140,6 +140,21 @@ class PodcastModelMigrate extends JModel
 		return true;
 	}
 
+	public function import_files()
+	{
+		jimport('joomla.filesystem.file');
+
+		$params = $this->_get_old_podcast_params();
+		$old_path = $this->path . '/' . $params->get('mediapath') . '/';
+		$new_path = JPATH_ROOT . PodcastHelper::getOptions()->get('folder', '/media/podcasts/');
+
+		$podcasts = $this->_get_old_podcast_records();
+
+		foreach ($podcasts as $row) {
+			JFile::copy($old_path . $row->filename, $new_path . $row->filename);
+		}
+	}
+
 	/**
 	 * This migration step assumes you've already migrated your core Joomla
 	 * content and have leftover {enclose} and {player} tags that need to be
