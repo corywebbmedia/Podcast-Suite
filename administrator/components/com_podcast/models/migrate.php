@@ -189,7 +189,11 @@ class PodcastModelMigrate extends JModel
 
 	private function _callback_replace_tags($matches)
 	{
-		static $path = PodcastHelper::getOptions()->get('folder', '/media/podcasts/');
+		static $path;
+
+		if (!isset($path)) {
+			$path = PodcastHelper::getOptions()->get('folder', '/media/podcasts/');
+		}
 
 		$pieces = explode(' ', $matches[2]);
 
