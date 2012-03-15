@@ -65,7 +65,13 @@ class PodcastControllerMigrate extends JController
 
 		$model = $this->_getModelWithPath();
 
-		echo json_encode(array('message' => 'plugin tags translated', 'status' => 'success'));
+		if ($model->translate_plugin_tags()) {
+			$status = 'success';
+		} else {
+			$status = 'failed';
+		}
+
+		echo json_encode(array('message' => 'plugin tags translated', 'status' => $status));
 	}
 
 	protected function _getModelWithPath()

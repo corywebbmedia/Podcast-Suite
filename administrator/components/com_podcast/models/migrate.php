@@ -140,11 +140,57 @@ class PodcastModelMigrate extends JModel
 		return true;
 	}
 
+	/**
+	 * This migration step assumes you've already migrated your core Joomla
+	 * content and have leftover {enclose} and {player} tags that need to be
+	 * converted to {podcast_episode} and {podcast_media}
+	 *
+	 * @return void
+	 * @author Joseph LeBlanc
+	 */
 	public function translate_plugin_tags()
 	{
+		$db = JFactory::getDocument();
+		$query = $db->getQuery(true);
 
+		$query->select("id, `introtext`, `fulltext`")
+			->from("#__content")
+			->where("`introtext` LIKE '%{enclose%'", "OR")
+			->where("`introtext` LIKE '%{player%'", "OR")
+			->where("`fulltext` LIKE '%{enclose%'", "OR")
+			->where("`fulltext` LIKE '%{player%'", "OR");
+
+		$db->setQuery($query);
+
+		$rows = $db->loadObjectList();
+
+		foreach ($rows as $row) {
+			$introtext = preg_replace_callback('/\{(enclose|player) (.*)\}/', 'PodcastModelMigrate::_callback_replace_tags', $row->introtext);
+			$fulltext = preg_replace_callback('/\{(enclose|player) (.*)\}/', 'PodcastModelMigrate::_callback_replace_tags', $row->fulltext);
+		}
 
 		return true;
+	}
+
+	private function _callback_replace_tags($matches)
+	{
+		static $path = PodcastHelper::getOptions()->get('folder', '/media/podcasts/');
+
+		$pieces = explode(' ', $matches[2]);
+
+		$db = JFactory::getDocument();
+		$query = $db->getQuery(true);
+
+		$file = $db->getEscaped($path . $pieces[0]);
+
+		$query->select("podcast_asset_id")
+			->from("#__podcast_assets")
+			->where("asset_enclosure_url = '{$file}'");
+
+		$db->setQuery($query);
+		$podcast_asset_id = $db->loadResult();
+
+		return '{podcast_player '  . $podcast_asset_id . '}';
 	}
 
 	private function _get_file_info($filepath)
@@ -273,11 +319,11 @@ class PodcastModelMigrate extends JModel
 		$path = PodcastHelper::getOptions()->get('folder', '/media/podcasts/') . $filename;
 
 		$db = JFactory::getDocument();
-		$quote = $db->getQuery(true);
+		$query = $db->getQuery(true);
 
 		$path = $db->getEscaped($path);
 
-		$quote->select("podcast_asset_id")
+		$query->select("podcast_asset_id")
 			->from("#__podcast_assets")
 			->where("asset_enclosure_url = '{$path}'");
 
