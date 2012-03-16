@@ -260,21 +260,20 @@ class PodcastModelMigrate extends JModel
 
 		foreach ($content as $item) {
 			if (preg_match('/\{enclose (.*)\}/', $item->introtext, $matches)) {
-				$enclose_pieces = explode(' ', $matches[0]);
+				$enclose_pieces = explode(' ', $matches[1]);
 
-				$info = array('content_id' => $item->id);
+				$info = array(
+					'content_id' => $item->id,
+					'row' => $item,
+					'file' => $enclose_pieces[0]
+				);
 
 				if (count($enclose_pieces) > 1) {
- 					$info = array(
-						'file' => $enclose_pieces[0],
-						'length' => $enclose_pieces[1],
-						'mime' => $enclose_pieces[2]
-					);
+					$info['length'] = $enclose_pieces[1];
+					$info['mime'] = $enclose_pieces[2];
 				}
 
-				$info['row'] = $item;
-
-				$enclose_pieces[0] = $info;
+				$enclosures[$enclose_pieces[0]] = $info;
 			}
 		}
 
