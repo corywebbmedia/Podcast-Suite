@@ -16,7 +16,7 @@
 		</field>
 	</fieldset>
 	
-	<fieldset name="display" label="COM_PODCAST_DISPLAY_OPTIONS">
+	<fieldset name="display" label="COM_PODCAST_FIELDSET_DISPLAY">
 			<field name="show_title" type="list" default="1" label="COM_PODCAST_FIELD_SHOW_TITLE" description="COM_PODCAST_FIELD_SHOW_TITLE_DESC">
 				<option value="1">JSHOW</option>
 				<option value="0">JHIDE</option>

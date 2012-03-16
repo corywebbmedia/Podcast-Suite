@@ -14,6 +14,12 @@
  * Date: 1st September 2011
  */
 
+ /* Resets */
+ div.podcast_media ul.jp-controls {
+	 margin-top: 0 !important;
+	 martin-bottom: 0 !important;
+ }
+ 
 div.jp-audio,
 div.jp-video {
 
@@ -110,7 +116,8 @@ div.jp-interface ul.jp-controls {
 
 div.jp-audio ul.jp-controls {
 	width: 380px;
-	padding:15px 20px 0 20px;
+	padding:15px 20px 0 20px !important;
+	margin-bottom: 0 !important;
 }
 
 div.jp-video div.jp-type-single ul.jp-controls {
@@ -140,17 +147,17 @@ a.jp-pause {
 }
 
 a.jp-play {
-	background: url("jplayer.suite.png") 0 0 no-repeat;
+	background: url("jplayer.suite.png") 0 0 no-repeat !important;
 }
 a.jp-play:hover {
-	background: url("jplayer.suite.png") -41px 0 no-repeat;
+	background: url("jplayer.suite.png") -41px 0 no-repeat !important;
 }
 a.jp-pause {
-	background: url("jplayer.suite.png") 0 -42px no-repeat;
+	background: url("jplayer.suite.png") 0 -42px no-repeat !important;
 	display: none;
 }
 a.jp-pause:hover {
-	background: url("jplayer.suite.png") -41px -42px no-repeat;
+	background: url("jplayer.suite.png") -41px -42px no-repeat !important;
 }
 
 a.jp-stop, a.jp-previous, a.jp-next {
@@ -160,26 +167,26 @@ a.jp-stop, a.jp-previous, a.jp-next {
 }
 
 a.jp-stop {
-	background: url("jplayer.suite.png") 0 -83px no-repeat;
+	background: url("jplayer.suite.png") 0 -83px no-repeat !important;
 	margin-left:10px;
 }
 
 a.jp-stop:hover {
-	background: url("jplayer.suite.png") -29px -83px no-repeat;
+	background: url("jplayer.suite.png") -29px -83px no-repeat !important;
 }
 
 a.jp-previous {
-	background: url("jplayer.suite.png") 0 -112px no-repeat;
+	background: url("jplayer.suite.png") 0 -112px no-repeat !important;
 }
 a.jp-previous:hover {
-	background: url("jplayer.suite.png") -29px -112px no-repeat;
+	background: url("jplayer.suite.png") -29px -112px no-repeat !important;
 }
 
 a.jp-next {
-	background: url("jplayer.suite.png") 0 -141px no-repeat;
+	background: url("jplayer.suite.png") 0 -141px no-repeat !important;
 }
 a.jp-next:hover {
-	background: url("jplayer.suite.png") -29px -141px no-repeat;
+	background: url("jplayer.suite.png") -29px -141px no-repeat !important;
 }
 
 /* @end */
@@ -273,24 +280,24 @@ div.jp-video a.jp-volume-max {
 }
 
 a.jp-mute {
-	background: url("jplayer.suite.png") 0 -170px no-repeat;
+	background: url("jplayer.suite.png") 0 -170px no-repeat !important;
 }
 a.jp-mute:hover {
-	background: url("jplayer.suite.png") -19px -170px no-repeat;
+	background: url("jplayer.suite.png") -19px -170px no-repeat !important;
 }
 a.jp-unmute {
-	background: url("jplayer.suite.png") -60px -170px no-repeat;
+	background: url("jplayer.suite.png") -60px -170px no-repeat !important;
 	display: none;
 }
 a.jp-unmute:hover {
-	background: url("jplayer.suite.png") -79px -170px no-repeat;
+	background: url("jplayer.suite.png") -79px -170px no-repeat !important;
 }
 
 a.jp-volume-max {
-	background: url("jplayer.suite.png") 0 -186px no-repeat;
+	background: url("jplayer.suite.png") 0 -186px no-repeat !important;
 }
 a.jp-volume-max:hover {
-	background: url("jplayer.suite.png") -19px -186px no-repeat;
+	background: url("jplayer.suite.png") -19px -186px  !important;
 }
 
 div.jp-volume-bar {
@@ -477,11 +484,11 @@ a.jp-video-play-icon {
 	left:50%;
 	top:50%;
 
-	background: url("jplayer.suite.video.play.png") 0 0 no-repeat;
+	background: url("jplayer.suite.video.play.png") 0 0 no-repeat !important;
 	text-indent:-9999px;
 }
 div.jp-video-play:hover a.jp-video-play-icon {
-	background: url("jplayer.suite.video.play.png") 0 -100px no-repeat;
+	background: url("jplayer.suite.video.play.png") 0 -100px no-repeat !important;
 }
 
 
@@ -508,8 +515,8 @@ div.jp-jplayer {
 
 ul.jp-toggles {
 	list-style-type:none;
-	padding:0;
-	margin:0 auto;
+	padding:0 !important;
+	margin:0 auto !important;
 	overflow:hidden;
 }
 
@@ -543,55 +550,55 @@ ul.jp-toggles li a {
 }
 
 a.jp-full-screen {
-	background: url("jplayer.suite.png") 0 -310px no-repeat;
+	background: url("jplayer.suite.png") 0 -310px no-repeat !important;
 	margin-left: 20px;
 }
 
 a.jp-full-screen:hover {
-	background: url("jplayer.suite.png") -30px -310px no-repeat;
+	background: url("jplayer.suite.png") -30px -310px no-repeat !important;
 }
 
 a.jp-restore-screen {
-	background: url("jplayer.suite.png") -60px -310px no-repeat;
+	background: url("jplayer.suite.png") -60px -310px no-repeat !important;
 	margin-left: 20px;
 }
 
 a.jp-restore-screen:hover {
-	background: url("jplayer.suite.png") -90px -310px no-repeat;
+	background: url("jplayer.suite.png") -90px -310px no-repeat !important;
 }
 
 a.jp-repeat {
-	background: url("jplayer.suite.png") 0 -290px no-repeat;
+	background: url("jplayer.suite.png") 0 -290px no-repeat !important;
 }
 
 a.jp-repeat:hover {
-	background: url("jplayer.suite.png") -30px -290px no-repeat;
+	background: url("jplayer.suite.png") -30px -290px no-repeat !important;
 }
 
 a.jp-repeat-off {
-	background: url("jplayer.suite.png") -60px -290px no-repeat;
+	background: url("jplayer.suite.png") -60px -290px no-repeat !important;
 }
 
 a.jp-repeat-off:hover {
-	background: url("jplayer.suite.png") -90px -290px no-repeat;
+	background: url("jplayer.suite.png") -90px -290px no-repeat !important;
 }
 
 a.jp-shuffle {
-	background: url("jplayer.suite.png") 0 -270px no-repeat;
+	background: url("jplayer.suite.png") 0 -270px no-repeat !important;
 	margin-left: 5px;
 }
 
 a.jp-shuffle:hover {
-	background: url("jplayer.suite.png") -30px -270px no-repeat;
+	background: url("jplayer.suite.png") -30px -270px no-repeat !important;
 }
 
 a.jp-shuffle-off {
-	background: url("jplayer.suite.png") -60px -270px no-repeat;
+	background: url("jplayer.suite.png") -60px -270px no-repeat !important;
 	margin-left: 5px;
 }
 
 a.jp-shuffle-off:hover {
-	background: url("jplayer.suite.png") -90px -270px no-repeat;
+	background: url("jplayer.suite.png") -90px -270px no-repeat !important;
 }
 
 
