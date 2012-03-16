@@ -112,7 +112,7 @@ class PodcastModelMigrate extends JModel
 		$enclosures = $this->_get_old_podcast_enclosures();
 		$params = $this->_get_old_podcast_params();
 
-		$old_media_path = $this->path . '/' . $params->get('mediapath') . '/';
+		$old_media_path = $this->path . '/' . $params->mediapath . '/';
 
 		$folder = PodcastHelper::getOptions()->get('folder', '/media/podcasts/');
 
@@ -148,7 +148,7 @@ class PodcastModelMigrate extends JModel
 		jimport('joomla.filesystem.file');
 
 		$params = $this->_get_old_podcast_params();
-		$old_path = $this->path . '/' . $params->get('mediapath') . '/';
+		$old_path = $this->path . '/' . $params->mediapath . '/';
 		$new_path = JPATH_ROOT . PodcastHelper::getOptions()->get('folder', '/media/podcasts/');
 
 		$podcasts = $this->_get_old_podcast_records();
