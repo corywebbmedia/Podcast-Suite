@@ -68,16 +68,19 @@ class PodcastControllerAssets extends JController
 
 	public function add_custom_asset()
 	{
-		$asset = JRequest::getVar('asset', '{}');
+		$request = JRequest::getVar('asset', '{}');
+		
+		$asset = new stdClass();
+		$asset->asset_enclosure_url = $request['asset_enclosure_url'];
+		$asset->asset_enclosure_length = $request['asset_enclosure_length'];
+		$asset->asset_enclosure_type = $request['asset_enclosure_type'];
+		$asset->asset_duration = $request['asset_duration'];
+		$asset->asset_closed_caption = $request['asset_closed_caption'];
+		$asset->storage_engine = 'custom';
 
 		$db = JFactory::getDBO();
-
-		$db->setQuery(
-				$db->getQuery(true)
-				->insert('#__podcast_assets')
-				->columns('asset_enclosure_url', 'asset_enclosure_length', 'asset_enclosure_type', 'asset_duration', 'asset_closed_captioned', 'storage_engine')
-				->values($db->quote($asset['asset_enclosure_url']), $db->quote($asset['asset_enclosure_length']), $db->quote($asset['asset_enclosure_type']), $db->quote($asset['asset_duration']), $db->quote($asset['asset_closed_caption'], 'custom'))
-		)->query();
+		
+		$db->insertObject('#__podcast_assets', $asset);
 
 		$result = $db->insertid();
 
