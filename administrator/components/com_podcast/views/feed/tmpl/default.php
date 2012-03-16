@@ -40,6 +40,16 @@ defined( '_JEXEC' ) or die;
 
 
 		</fieldset>
+		
+		<?php if ($this->item->feed_id) : ?>
+		<fieldset class="adminform">
+			
+			<ul class="adminformlist">
+				<li><label><?php echo JText::_('COM_PODCAST_FIELD_SHOW_SUBSCRIBE'); ?></label><input type="text" size="50" value="<?php echo str_replace('/administrator', '', JURI::current()); ?>?option=com_podcast&view=feed&format=raw&feed_id=<?php echo $this->item->feed_id; ?>" onclick="javascript:this.focus();this.select();" /></li>
+			</ul>
+			
+		</fieldset>
+		<?php endif; ?>
 	</div>
 
 	<div class="width-40 fltrt">

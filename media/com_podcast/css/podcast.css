@@ -13,6 +13,7 @@
 }
 h3.podcast_title {
     margin-bottom: 5px;
+	margin-top: 0px;
     font-size: 22px;
 }
 h5.podcast_subtitle, h5.podcast_feed { 
@@ -46,4 +47,9 @@ h5.podcast_subtitle, h5.podcast_feed {
 .podcast_subscribe a {
     font-size: 1.2em;
     line-height: 1.2em;
+}
+.podcast_episodes_image {
+	height: 100px;
+	float: left;
+	margin: 0 10px 10px 0;
 }

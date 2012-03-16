@@ -15,6 +15,65 @@
 			<option value="file">COM_PODCAST_DELETE_ACTION_FILE</option>
 		</field>
 	</fieldset>
+	
+	<fieldset name="display" label="COM_PODCAST_FIELDSET_DISPLAY">
+			<field name="show_title" type="list" default="1" label="COM_PODCAST_FIELD_SHOW_TITLE" description="COM_PODCAST_FIELD_SHOW_TITLE_DESC">
+				<option value="1">JSHOW</option>
+				<option value="0">JHIDE</option>
+			</field>
+			<field name="show_subtitle" type="list" default="1" label="COM_PODCAST_FIELD_SHOW_SUBTITLE" description="COM_PODCAST_FIELD_SHOW_SUBTITLE_DESC">
+				<option value="1">JSHOW</option>
+				<option value="0">JHIDE</option>
+			</field>
+			<field name="show_summary" type="list" default="1" label="COM_PODCAST_FIELD_SHOW_SUMMARY" description="COM_PODCAST_FIELD_SHOW_SUMMARY_DESC">
+				<option value="1">JSHOW</option>
+				<option value="0">JHIDE</option>
+			</field>
+			<field name="show_image" type="list" default="1" label="COM_PODCAST_FIELD_SHOW_IMAGE" description="COM_PODCAST_FIELD_SHOW_IMAGE_DESC">
+				<option value="1">JSHOW</option>
+				<option value="0">JHIDE</option>
+			</field>
+			<field name="show_feed" type="list" default="1" label="COM_PODCAST_FIELD_SHOW_FEED" description="COM_PODCAST_FIELD_SHOW_FEED_DESC">
+				<option value="1">JSHOW</option>
+				<option value="0">JHIDE</option>
+			</field>
+			<field name="show_author" type="list" default="1" label="COM_PODCAST_FIELD_SHOW_AUTHOR" description="COM_PODCAST_FIELD_SHOW_AUTHOR_DESC">
+				<option value="1">JSHOW</option>
+				<option value="0">JHIDE</option>
+			</field>
+			<field name="show_date" type="list" default="1" label="COM_PODCAST_FIELD_SHOW_DATE" description="COM_PODCAST_FIELD_SHOW_DATE_DESC">
+				<option value="1">JSHOW</option>
+				<option value="0">JHIDE</option>
+			</field>
+			<field name="show_duration" type="list" default="1" label="COM_PODCAST_FIELD_SHOW_DURATION" description="COM_PODCAST_FIELD_SHOW_DURATION_DESC">
+				<option value="1">JSHOW</option>
+				<option value="0">JHIDE</option>
+			</field>
+			<field name="show_media" type="list" default="1" label="COM_PODCAST_FIELD_SHOW_MEDIA" description="COM_PODCAST_FIELD_SHOW_MEDIA_DESC">
+				<option value="1">JSHOW</option>
+				<option value="0">JHIDE</option>
+			</field>
+			<field name="show_assets" type="list" default="1" label="COM_PODCAST_FIELD_SHOW_ASSETS" description="COM_PODCAST_FIELD_SHOW_ASSETS_DESC">
+				<option value="1">JSHOW</option>
+				<option value="0">JHIDE</option>
+			</field>
+			<field name="show_subscribe" type="list" default="1" label="COM_PODCAST_FIELD_SHOW_SUBSCRIBE" description="COM_PODCAST_FIELD_SHOW_SUBSCRIBE_DESC">
+				<option value="1">JSHOW</option>
+				<option value="0">JHIDE</option>
+			</field>
+			<field name="show_episodes" type="list" default="1" label="COM_PODCAST_FIELD_SHOW_EPISODES" description="COM_PODCAST_FIELD_SHOW_EPISODES_DESC">
+				<option value="1">JSHOW</option>
+				<option value="0">JHIDE</option>
+			</field>
+			<field name="show_keywords" type="list" default="1" label="COM_PODCAST_FIELD_SHOW_KEYWORDS" description="COM_PODCAST_FIELD_SHOW_KEYWORDS_DESC">
+				<option value="1">JSHOW</option>
+				<option value="0">JHIDE</option>
+			</field>
+			<field name="show_copyright" type="list" default="1" label="COM_PODCAST_FIELD_SHOW_COPYRIGHT" description="COM_PODCAST_FIELD_SHOW_COPYRIGHT_DESC">
+				<option value="1">JSHOW</option>
+				<option value="0">JHIDE</option>
+			</field>
+	</fieldset>
     
     <!--<fieldset name="amazons3_options" label="COM_PODCAST_STORAGE_AMAZONS3" addfieldpath="/administrator/components/com_podcast/models/fields">
         <field type="text" name="amazons3_key" default="" label="COM_PODCAST_STORAGE_AMAZONS3_KEY" description="*Web Services Key" />

@@ -37,6 +37,10 @@ class PodcastViewAssets extends JView
 		JToolBarHelper::deleteList('', 'assets.delete');
 
 		JToolBarHelper::divider();
+		
+		JToolBarHelper::preferences('com_podcast');
+		
+		JToolBarHelper::divider();
 
 		$button = '<a class="toolbar" href="http://podcastsuite.com/support" target="_blank"><span class="icon-32-help"></span>'.JText::_('JTOOLBAR_HELP').'</a>';
 		$bar->appendButton('Custom', $button, 'help');
