@@ -354,11 +354,11 @@ class PodcastModelMigrate extends JModel
 		$podcast_asset_id = $db->loadResult();
 
 		if ($podcast_asset_id) {
-			$query = $db->getQuery(true);
+			$episode_id = (int) $episode_id;
+			$podcast_asset_id = (int) $podcast_asset_id;
 
-			$query->insert('#__podcast_assets_map')
-				->columns('podcast_asset_id', 'episode_id', 'default')
-				->values((int) $podcast_asset_id, (int) $episode_id, 1);
+			$query = "INSERT INTO #__podcast_assets_map "
+					." VALUES ('{$podcast_asset_id}', '{$episode_id}', '1')";
 
 			$db->setQuery($query)->query();
 		}
