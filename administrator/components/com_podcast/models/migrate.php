@@ -137,6 +137,7 @@ class PodcastModelMigrate extends JModel
 			}
 
 			$newrow->asset_duration = $row->itDuration;
+			$newrow->store();
 		}
 
 		return true;
