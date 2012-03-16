@@ -167,7 +167,7 @@ class PodcastModelMigrate extends JModel
 	 */
 	public function translate_plugin_tags()
 	{
-		$db = JFactory::getDocument();
+		$db = $this->getDbo();
 		$query = $db->getQuery(true);
 
 		$query->select("id, `introtext`, `fulltext`")
@@ -199,7 +199,7 @@ class PodcastModelMigrate extends JModel
 
 		$pieces = explode(' ', $matches[2]);
 
-		$db = JFactory::getDocument();
+		$db = JFactory::getDBO();
 		$query = $db->getQuery(true);
 
 		$file = $db->getEscaped($path . $pieces[0]);
@@ -339,7 +339,7 @@ class PodcastModelMigrate extends JModel
 	{
 		$path = PodcastHelper::getOptions()->get('folder', '/media/podcasts/') . $filename;
 
-		$db = JFactory::getDocument();
+		$db = JFactory::getDBO();
 		$query = $db->getQuery(true);
 
 		$path = $db->getEscaped($path);
