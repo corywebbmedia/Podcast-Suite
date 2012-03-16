@@ -95,7 +95,7 @@ class PodcastStorageLocal extends PodcastStorage
         $fileName = isset($_REQUEST["name"]) ? $_REQUEST["name"] : '';
 
         // Clean the fileName for security reasons
-        $fileName = preg_replace('/[^\w\._]+/', '_', $fileName);
+        $fileName = JFile::makeSafe($fileName);
 
         // Make sure the fileName is unique but only if chunking is disabled
         if ($chunks < 2 && file_exists($targetDir . $fileName))
@@ -233,7 +233,7 @@ class PodcastStorageLocal extends PodcastStorage
             $result->enclosure_length = (isset($info['filesize']) ? $info['filesize'] : 0);
             $result->enclosure_type = (isset($info['mime_type']) ? $info['mime_type'] : '');
             $result->enclosure_duration = (isset($info['playtime_string']) ? $info['playtime_string'] : '');
-            $filePath = str_replace('\\', '/', $filePath);
+            $filePath = JPath::clean($filePath);
             $result->enclosure_url = $folder.basename($filePath);
 			$result->storage_engine = $this->type;
         }
