@@ -41,32 +41,28 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 					<?php echo JHtml::_('grid.sort', 'COM_PODCAST_FEED_TITLE', 'feed_title', $listDirn, $listOrder); ?>
 				</th>
 				<th>
-					<?php echo JHtml::_('grid.sort', 'COM_PODCAST_FEED_DEFAULT', 'feed_default', $listDirn, $listOrder); ?>
-				</th>
-				<th>
 					<?php echo JHtml::_('grid.sort', 'COM_PODCAST_FEED_SUMMARY', 'feed_summary', $listDirn, $listOrder); ?>
 				</th>
-
-				<th>
-					<?php echo JHtml::_('grid.sort', 'COM_PODCAST_FEED_URL', 'feed_id', $listDirn, $listOrder); ?>
-				</th>
-
-				<th width="5%">
-					<?php echo JHtml::_('grid.sort', 'JENABLED', 'published', $listDirn, $listOrder); ?>
-				</th>
-
 				<th>
 					<?php echo JHtml::_('grid.sort', 'COM_PODCAST_EPISODE_COUNT', 'item_count', $listDirn, $listOrder); ?>
 				</th>
-
 				<th>
 					<?php echo JHtml::_('grid.sort', 'COM_PODCAST_FEED_CREATED', 'feed_created', $listDirn, $listOrder); ?>
+				</th>
+				<th>
+					<?php echo JText::_('COM_PODCAST_FIELD_SHOW_SUBSCRIBE'); ?>
+				</th>
+				<th width="1%">
+					<?php echo JHtml::_('grid.sort', 'JENABLED', 'published', $listDirn, $listOrder); ?>
+				</th>
+				<th width="1%">
+					<?php echo JHtml::_('grid.sort', 'COM_PODCAST_FEED_DEFAULT', 'feed_default', $listDirn, $listOrder); ?>
 				</th>
 			</tr>
 		</thead>
 		<tfoot>
 			<tr>
-				<td colspan="8">
+				<td colspan="20">
 					<?php echo $this->pagination->getListFooter(); ?>
 				</td>
 			</tr>
@@ -80,29 +76,23 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 				<td>
 					<a href="<?php echo JRoute::_('index.php?option=com_podcast&task=feed.edit&feed_id='. $item->feed_id); ?>"><?php echo $this->escape($item->feed_title) ?></a>
 				</td>
-
-				<td class="center">
-					<?php echo JHtml::_('jgrid.isdefault', $item->feed_default, $i, 'feeds.', !$item->feed_default); ?>
-				</td>
-
 				<td>
 					<?php echo $this->escape($item->feed_summary) ?>
 				</td>
-
-				<td>
-					<a href="<?php echo $this->escape($item->feed_link) ?>"><?php echo $this->escape($item->feed_link) ?></a>
+				<td class="center">
+					<a href="<?php echo JRoute::_('index.php?option=com_podcast&view=episodes&filter_feed='.$item->feed_id); ?>"><?php echo $this->escape($item->item_count) ?> <?php echo JText::_('COM_PODCAST_FEEDS_VIEW'); ?> &raquo;</a>
 				</td>
-
+				<td>
+					<?php echo JHTML::_('date', $item->feed_created) ?>
+				</td>
+				<td>
+					<a href="<?php echo str_replace('/administrator', '', JURI::current()); ?>?option=com_podcast&view=feed&format=raw&feed_id=<?php echo $item->feed_id; ?>"><?php echo JText::_('COM_PODCAST_FEEDS_VIEW'); ?> &raquo;</a>
+				</td>
 				<td class="center">
 					<?php echo JHtml::_('jgrid.published', $item->published, $i, 'feeds.'); ?>
 				</td>
-
 				<td class="center">
-					<a href="<?php echo JRoute::_('index.php?option=com_podcast&view=episodes&filter_feed='.$item->feed_id); ?>"><?php echo $this->escape($item->item_count) ?> <?php echo JText::_('View'); ?>&raquo;</a>
-				</td>
-
-				<td>
-					<?php echo JHTML::_('date', $item->feed_created) ?>
+					<?php echo JHtml::_('jgrid.isdefault', $item->feed_default, $i, 'feeds.', !$item->feed_default); ?>
 				</td>
 			</tr>
 			<?php endforeach; ?>
