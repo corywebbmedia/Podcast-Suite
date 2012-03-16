@@ -33,16 +33,26 @@ function PodcastParseRoute($segments)
 
 function PodcastEpisodeGetAlias($id)
 {
-	$db = JFactory::getDbo();
-	$query = $db->getQuery(true);
+	static $aliases;
 
-	$query->select('alias')
-		->from('#__podcast_episodes')
-		->where("episode_id = '{$id}'");
+	// Cache to improve the performance on multiple alias lookups
+	if (!isset($aliases)) {
+		$db = JFactory::getDbo();
+		$query = $db->getQuery(true);
 
-	$db->setQuery($query);
+		$query->select('episode_id, alias')
+			->from('#__podcast_episodes');
 
-	return $db->loadResult();
+		$db->setQuery($query);
+
+		$aliases = $db->loadAssocList('episode_id', 'alias');
+	}
+
+	if (isset($aliases[$id])) {
+		return $aliases[$id];
+	}
+
+	return false;
 }
 
 function PodcastEpisodeAliasID($alias)
