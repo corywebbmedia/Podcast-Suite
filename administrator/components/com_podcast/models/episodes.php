@@ -17,11 +17,9 @@ class PodcastModelEpisodes extends JModelList
 		$query = parent::getListQuery();
 
 		$query->select('tbl.*, f.feed_title, a.asset_enclosure_url')
-				->select('a.asset_enclosure_length, a.asset_duration')
-				->select('a.asset_enclosure_type, a.asset_closed_caption')
 				->from('#__podcast_episodes AS tbl')
-				->join('LEFT', '#__podcast_assets_map AS m ON tbl.episode_id = m.episode_id')
-				->join('LEFT', '#__podcast_assets AS a ON a.podcast_asset_id = m.podcast_asset_id')
+				->join('LEFT', '#__podcast_assets_map AS m USING(episode_id)')
+				->join('LEFT', '#__podcast_assets AS a USING(podcast_asset_id)')
 				->join('LEFT', '#__podcast_feeds AS f USING(feed_id)')
 				->group('tbl.episode_id');
 

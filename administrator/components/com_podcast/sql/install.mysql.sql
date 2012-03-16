@@ -10,10 +10,12 @@ CREATE TABLE IF NOT EXISTS `#__podcast_assets` (
   PRIMARY KEY (`podcast_asset_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
-CREATE TABLE IF NOT EXISTS `#__podcast_assets_map` (
+CREATE TABLE `#__podcast_assets_map` (
   `podcast_asset_id` int(11) NOT NULL,
   `episode_id` int(11) NOT NULL,
-  `default` int(1) NOT NULL DEFAULT '0'
+  `default` int(1) NOT NULL DEFAULT '0',
+  KEY `podcast_asset_id` (`podcast_asset_id`),
+  KEY `episode_id` (`episode_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `#__podcast_episodes` (
