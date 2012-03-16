@@ -7,7 +7,6 @@ var MigratePodcast = {
 			'import_podcast_episodes',
 			'import_files',
 			'translate_plugin_tags'],
-	current_task: null,
 	existing_joomla: null
 };
 
