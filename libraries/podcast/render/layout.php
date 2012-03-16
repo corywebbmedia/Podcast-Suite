@@ -1,6 +1,7 @@
 <?php
 defined( '_JEXEC' ) or die;
 
+jimport('joomla.application.component.helper');
 jimport('podcast.helper');
 
 require JPATH_BASE . '/components/com_podcast/scripthelper.php';
@@ -25,6 +26,7 @@ class PodcastRenderLayout
 	public $assets;
 	public $asset;
 	public $storage;
+	public $params;
 
 	public function __construct($type)
 	{
@@ -33,6 +35,7 @@ class PodcastRenderLayout
 		// must manually load the language file
 		$language = JFactory::getLanguage();
 		$language->load('com_podcast');
+		$this->params = JComponentHelper::getParams('com_podcast');
 	}
 
 	/**
