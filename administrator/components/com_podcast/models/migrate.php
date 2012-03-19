@@ -75,7 +75,11 @@ class PodcastModelMigrate extends JModel
 			$row->feed_default = 1;
 		}
 
-		return $row->store();
+		if ($row->check()) {
+			return $row->store();
+		}
+
+		return false;
 	}
 
 	public function import_podcast_episodes()
@@ -97,7 +101,10 @@ class PodcastModelMigrate extends JModel
 				$newrow->episode_created = $enclosures[$row->filename]['row']->created;
 				$newrow->episode_block = $row->itBlock;
 				$newrow->published = $enclosures[$row->filename]['row']->state;
-				$newrow->store();
+
+				if ($newrow->check()) {
+					$newrow->store();
+				}
 
 				$this->_store_episode_asset_map($newrow->episode_id, $row->filename);
 			}
