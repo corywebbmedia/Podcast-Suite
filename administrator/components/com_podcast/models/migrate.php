@@ -88,26 +88,38 @@ class PodcastModelMigrate extends JModel
 		$feed_id = $this->_get_latest_feed_id();
 		$enclosures = $this->_get_old_podcast_enclosures();
 
-		foreach ($rows as $row) {
-			if (isset($enclosures[$row->filename])) {
-				$newrow = JTable::getInstance('episode', 'PodcastTable');
-				$newrow->feed_id = $feed_id;
-				$newrow->episode_title = $enclosures[$row->filename]['row']->title;
-				$newrow->episode_author = $row->itAuthor;
-				$newrow->episode_subtitle = $row->itSubtitle;
-				$newrow->episode_summary = $this->_clean_introtext($enclosures[$row->filename]['row']->introtext);
-				$newrow->episode_pubDate = $enclosures[$row->filename]['row']->publish_up;
-				$newrow->episode_keywords = $row->itKeywords;
-				$newrow->episode_created = $enclosures[$row->filename]['row']->created;
-				$newrow->episode_block = $row->itBlock;
-				$newrow->published = $enclosures[$row->filename]['row']->state;
+		foreach ($enclosures as $filename => $enc) {
+			$content = $enc['row'];
 
-				if ($newrow->check()) {
-					$newrow->store();
+			$newrow = JTable::getInstance('episode', 'PodcastTable');
+
+			$newrow->feed_id = $feed_id;
+			$newrow->episode_title = $content->title;
+			$newrow->episode_summary = $this->_clean_introtext($content->introtext);
+			$newrow->episode_pubDate = $content->publish_up;
+			$newrow->episode_created = $content->created;
+			$newrow->published = $content->state;
+
+			if (isset($rows[$filename])) {
+				$row = $rows[$filename];
+
+				$newrow->episode_author = $row->itAuthor;
+
+				if (isset($row->itSubtitle)) {
+					$newrow->episode_subtitle = $row->itSubtitle;
+				} else {
+					$newrow->episode_subtitle = $content->title;
 				}
 
-				$this->_store_episode_asset_map($newrow->episode_id, $row->filename);
+				$newrow->episode_keywords = $row->itKeywords;
+				$newrow->episode_block = $row->itBlock;
 			}
+
+			if ($newrow->check()) {
+				$newrow->store();
+			}
+
+			$this->_store_episode_asset_map($newrow->episode_id, $row->filename);
 		}
 
 		return true;
