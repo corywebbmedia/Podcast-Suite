@@ -150,7 +150,20 @@ class PodcastModelMigrate extends JModel
 		return true;
 	}
 
-	public function import_files()
+	public function import_file_list()
+	{
+		$podcasts = $this->_get_old_podcast_records();
+
+		$list = array();
+
+		foreach ($podcasts as $row) {
+			$list[] = $row->filename;
+		}
+
+		return $list;
+	}
+
+	public function import_file($file)
 	{
 		jimport('joomla.filesystem.file');
 
@@ -158,11 +171,7 @@ class PodcastModelMigrate extends JModel
 		$old_path = $this->path . '/' . $params->mediapath . '/';
 		$new_path = JPATH_ROOT . PodcastHelper::getOptions()->get('folder', '/media/podcasts/');
 
-		$podcasts = $this->_get_old_podcast_records();
-
-		foreach ($podcasts as $row) {
-			JFile::copy($old_path . $row->filename, $new_path . $row->filename);
-		}
+		JFile::copy($old_path . $file, $new_path . $file);
 	}
 
 	/**
