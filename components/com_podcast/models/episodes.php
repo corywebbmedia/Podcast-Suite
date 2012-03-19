@@ -21,7 +21,8 @@ class PodcastModelEpisodes extends JModelList
 		$query->select('tbl.*,
 			f.feed_title')
 				->from('#__podcast_episodes AS tbl')
-				->join('LEFT', '#__podcast_feeds AS f USING (feed_id)');
+				->join('LEFT', '#__podcast_feeds AS f USING (feed_id)')
+				->where('tbl.published = 1');
 
 		if ($feed_id) $query->where('tbl.feed_id = '.$feed_id);
 				
