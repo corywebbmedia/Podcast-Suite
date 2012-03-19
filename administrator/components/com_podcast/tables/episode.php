@@ -29,7 +29,7 @@ class PodcastTableEpisode extends JTable
 
 		// Backfill the GUID on new records
 		if (!$this->episode_id) {
-			$this->episode_guid = sha1(time() . JURI::root() . $this->episode_enclosure_url);
+			$this->episode_guid = md5(microtime() . $this->episode_title . $this->episode_subtitle . $this->feed_id);
 		}
 
 		// backfill creation date on new records to today
