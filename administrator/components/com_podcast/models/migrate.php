@@ -203,14 +203,25 @@ class PodcastModelMigrate extends JModel
 		$rows = $db->loadObjectList();
 
 		foreach ($rows as $row) {
-			$introtext = preg_replace_callback('/\{(enclose|player) (.*)\}/', 'PodcastModelMigrate::_callback_replace_tags', $row->introtext);
-			$fulltext = preg_replace_callback('/\{(enclose|player) (.*)\}/', 'PodcastModelMigrate::_callback_replace_tags', $row->fulltext);
+			$introtext = preg_replace_callback('/\{(enclose|player) (.*)\}/', 'PodcastModelMigrate::callback_replace_tags', $row->introtext);
+			$fulltext = preg_replace_callback('/\{(enclose|player) (.*)\}/', 'PodcastModelMigrate::callback_replace_tags', $row->fulltext);
+
+			$introtext = $db->getEscaped($introtext);
+			$fulltext = $db->getEscaped($fulltext);
+
+			$query = $db->getQuery(true);
+			$query->update('#__content')
+				->set("`introtext` = '{$introtext}'")
+				->set("`fulltext` = '{$fulltext}'")
+				->where("id = '{$row->id}'");
+
+			$db->setQuery($query)->query();
 		}
 
 		return true;
 	}
 
-	private function _callback_replace_tags($matches)
+	public function callback_replace_tags($matches)
 	{
 		static $path;
 
@@ -223,7 +234,11 @@ class PodcastModelMigrate extends JModel
 		$db = JFactory::getDBO();
 		$query = $db->getQuery(true);
 
-		$file = $db->getEscaped($path . $pieces[0]);
+		if (stripos($pieces[0], 'http') === 0) {
+			$file = $db->getEscaped($pieces[0]);
+		} else {
+			$file = $db->getEscaped($path . $pieces[0]);
+		}
 
 		$query->select("podcast_asset_id")
 			->from("#__podcast_assets")
@@ -232,7 +247,11 @@ class PodcastModelMigrate extends JModel
 		$db->setQuery($query);
 		$podcast_asset_id = $db->loadResult();
 
-		return '{podcast_player '  . $podcast_asset_id . '}';
+		if ($podcast_asset_id) {
+			return '{podcast_media '  . $podcast_asset_id . '}';
+		}
+
+		return $matches[0];
 	}
 
 	private function _get_file_info($filepath)
