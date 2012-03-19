@@ -13,7 +13,7 @@ jimport('joomla.application.component.controllerform');
 class PodcastControllerEpisode extends JControllerForm
 {
 	protected $list_view = 'episodes';
-
+	
 	public function postSaveHook($model, $validData)
 	{
 		$db = JFactory::getDBO();
@@ -31,11 +31,14 @@ class PodcastControllerEpisode extends JControllerForm
 
 		foreach ($assets as $asset)
 		{
-			$row = null;
-			$row->podcast_asset_id = $asset;
-			$row->episode_id = $episode_id;
-			$row->default = ($asset == $default) ? 1 : 0;
-			$db->insertObject('#__podcast_assets_map', $row);
+			if ($asset > 0)
+			{
+				$row = null;
+				$row->podcast_asset_id = $asset;
+				$row->episode_id = $episode_id;
+				$row->default = ($asset == $default) ? 1 : 0;
+				$db->insertObject('#__podcast_assets_map', $row);
+			}
 		}
 
 		return true;
