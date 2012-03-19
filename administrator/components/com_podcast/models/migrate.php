@@ -357,7 +357,11 @@ class PodcastModelMigrate extends JModel
 
 	private function _store_episode_asset_map($episode_id, $filename)
 	{
-		$path = PodcastHelper::getOptions()->get('folder', '/media/podcasts/') . $filename;
+		if (stripos($filename, 'http') === 0) {
+			$path = $filename;
+		} else {
+			$path = PodcastHelper::getOptions()->get('folder', '/media/podcasts/') . $filename;
+		}
 
 		$db = JFactory::getDBO();
 		$query = $db->getQuery(true);
