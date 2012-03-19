@@ -152,15 +152,7 @@ class PodcastModelMigrate extends JModel
 
 	public function import_file_list()
 	{
-		$podcasts = $this->_get_old_podcast_records();
-
-		$list = array();
-
-		foreach ($podcasts as $row) {
-			$list[] = $row->filename;
-		}
-
-		return $list;
+		return array_keys($this->_get_old_podcast_records());
 	}
 
 	public function import_file($file)
@@ -256,7 +248,7 @@ class PodcastModelMigrate extends JModel
 		$query->select("*")->from("#__podcast");
 
 		$db->setQuery($query);
-		return $db->loadObjectList();
+		return $db->loadObjectList('filename');
 	}
 
 	private function _get_old_podcast_enclosures()
