@@ -8,6 +8,12 @@
  */
 defined( '_JEXEC' ) or die;
 
+if (!file_exists(JPATH_ADMINISTRATOR . '/components/com_podcast')) {
+	throw new Exception("Please install Podcast Suite before using the migrator.", 500);
+}
+
+JTable::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_podcast/tables');
+
 jimport('joomla.application.component.controller');
 
 $controller = JController::getInstance('Migratepodcast');
