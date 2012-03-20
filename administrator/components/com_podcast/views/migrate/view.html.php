@@ -14,6 +14,6 @@ class PodcastViewMigrate extends JView
 
 	public function addToolbar()
 	{
-		JToolBarHelper::title('Migrate from Podcast Suite 1.5*');
+		JToolBarHelper::title('Migrate from Podcast Suite 1.5');
 	}
 }

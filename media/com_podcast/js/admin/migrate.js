@@ -79,7 +79,7 @@ MigratePodcast.import_single_file = function (file_num) {
 				MigratePodcast.display_status_update(response.message);
 				MigratePodcast.import_single_file(file_num + 1);
 			} else {
-				MigratePodcast.display_status_update('FILE IMPORT FAILED');
+				MigratePodcast.display_status_update('FILE IMPORT FAILED: ' + MigratePodcast.files[file_num]);
 			}
 		}
 	}).post(req);
@@ -97,7 +97,7 @@ MigratePodcast.start_migration = function () {
 };
 
 MigratePodcast.finish_migration = function () {
-	MigratePodcast.display_status_update('COMPLETE');
+	MigratePodcast.display_status_update('MIGRATION COMPLETE');
 };
 
 window.addEvent('domready', function () {

@@ -17,7 +17,7 @@ class PodcastControllerMigrate extends JController
 			$status = 'failed';
 		}
 
-		echo json_encode(array('message' => 'feeds imported', 'status' => $status));
+		echo json_encode(array('message' => 'Feed imported.', 'status' => $status));
 	}
 
 	public function import_podcast_assets()
@@ -32,7 +32,7 @@ class PodcastControllerMigrate extends JController
 			$status = 'failed';
 		}
 
-		echo json_encode(array('message' => 'assets imported', 'status' => $status));
+		echo json_encode(array('message' => 'Assets imported.', 'status' => $status));
 	}
 
 	public function import_podcast_episodes()
@@ -47,7 +47,7 @@ class PodcastControllerMigrate extends JController
 			$status = 'failed';
 		}
 
-		echo json_encode(array('message' => 'episodes imported', 'status' => $status));
+		echo json_encode(array('message' => 'Episodes imported.', 'status' => $status));
 	}
 
 	public function import_file()
@@ -64,7 +64,7 @@ class PodcastControllerMigrate extends JController
 			$status = 'failed';
 		}
 
-		echo json_encode(array('message' => "file {$file} imported", 'status' => 'success'));
+		echo json_encode(array('message' => "File {$file} imported.", 'status' => 'success'));
 	}
 
 	public function get_import_files()
@@ -86,7 +86,7 @@ class PodcastControllerMigrate extends JController
 			$status = 'failed';
 		}
 
-		echo json_encode(array('message' => 'plugin tags translated', 'status' => $status));
+		echo json_encode(array('message' => 'Plugin tags translated.', 'status' => $status));
 	}
 
 	protected function _getModelWithPath()
