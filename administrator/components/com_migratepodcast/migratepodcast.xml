@@ -13,6 +13,7 @@
 	<administration>
 		<languages folder="administrator/language/en-GB">
 			<language tag="en-GB">en-GB.com_migratepodcast.sys.ini</language>
+			<language tag="en-GB">en-GB.com_migratepodcast.ini</language>
 		</languages>
 		<menu link="option=com_migratepodcast" img="../media/com_podcast/images/icons/podcast-16.png">COM_MIGRATEPODCAST</menu>
 		<files folder="administrator/components/com_migratepodcast">
