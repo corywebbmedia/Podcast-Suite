@@ -54,4 +54,22 @@ class PodcastModelEpisode extends JModelAdmin
 
 		return $data;
 	}
+	
+	public function validate($form, $data, $group = null)
+	{
+		$data = parent::validate($form, $data, $group);
+		
+		$db = JFactory::getDBO();
+		$query = $db->getQuery(true);
+		$query->select('episode_id')->from('#__podcast_assets_map')->where('episode_id = '.JRequest::getInt('episode_id'));
+		$db->setQuery($query)->query();
+		if (!$db->getNumRows())
+		{
+			$data['published'] = '0';
+		}
+		
+		JFactory::getApplication()->enqueueMessage(JText::_('COM_PODCAST_EPISODE_CANNOT_PUBLISH_NO_MEDIA'));
+
+		return $data;
+	}
 }

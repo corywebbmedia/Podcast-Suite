@@ -26,6 +26,7 @@ class PodcastModelEpisode extends JModel
 				->from('#__podcast_episodes AS tbl')
 				->join('LEFT', '#__podcast_feeds AS f USING (feed_id)')
 				->where('tbl.episode_id = '.$episode_id)
+				->where('tbl.published = 1')
 				->limit(1);
 		$db->setQuery($query);
 

@@ -25,7 +25,8 @@ class PodcastModelFeed extends JModelList
 			$query->select('*, COUNT(e.episode_id) AS episodes')
 					->from('#__podcast_feeds')
 					->join('LEFT', '#__podcast_episodes AS e USING (feed_id)')
-					->where("feed_id = '{$feed_id}'");
+					->where("feed_id = '{$feed_id}'")
+					->where('published = 1');
 
 			$db->setQuery($query);
 			$feed = $db->loadObject();
