@@ -2,6 +2,9 @@
 <project name="Podcast Suite" basedir="." default="copy">
 
 	<property name="srcdir" value="${project.basedir}" override="true" />
+
+	<!-- Start with the main package -->
+
 	<property name="component" value="com_podcast" override="true" />
 
 	<fileset dir="${srcdir}" id="front_component_files">
@@ -56,6 +59,19 @@
 		<include name="pkg_podcast.xml" />
 	</fileset>
 
+	<!-- Bundle migrator separately -->
+
+	<property name="migrator_component" value="com_migratepodcast" override="true" />
+
+	<fileset dir="${srcdir}" id="admin_migratorcomponent_files">
+		<include name="administrator/components/${migrator_component}/**" />
+		<include name="administrator/language/en-GB/en-GB.${migrator_component}*" />
+	</fileset>
+
+	<fileset dir="${srcdir}/administrator/components/${migrator_component}/" id="migratorcomponent_manifest">
+		<include name="migratepodcast.xml" />
+	</fileset>
+
 	<target name="copy" description="copy target">
 		<echo msg="Creating component archive..." />
 
@@ -99,6 +115,16 @@
 
 		<echo msg="Files copied and installable archives created OK!" />
 
-	  </target>
+		<echo msg="Creating migrator archive..." />
+
+		<delete file="build/com_migratepodcast.zip" quiet="true" />
+		<zip destfile="build/com_migratepodcast.zip">
+			<fileset refid="admin_migratorcomponent_files" />
+			<fileset refid="migratorcomponent_manifest" />
+		</zip>
+
+		<echo msg="Files copied and installable archives created OK!" />
+
+	</target>
 
 </project>
