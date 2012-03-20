@@ -8,7 +8,7 @@
 	<authorEmail>joe@corywebbmedia.com</authorEmail>
 	<authorUrl>podcastsuite.com</authorUrl>
 	<version>2.0</version>
-	<description>COM_MIGRATEPODCAST_DESC</description>
+	<description>Helps migrate from Podcast Suite 1.5 to Podcast Suite 2.0</description>
 
 	<administration>
 		<languages folder="administrator/language/en-GB">
