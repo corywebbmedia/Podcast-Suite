@@ -119,7 +119,7 @@ class PodcastModelMigrate extends JModel
 				$newrow->store();
 			}
 
-			$this->_store_episode_asset_map($newrow->episode_id, $row->filename);
+			$this->_store_episode_asset_map($newrow->episode_id, $filename);
 		}
 
 		return true;
@@ -135,27 +135,32 @@ class PodcastModelMigrate extends JModel
 
 		$folder = PodcastHelper::getOptions()->get('folder', '/media/podcasts/');
 
-		foreach ($rows as $row) {
-
+		foreach ($enclosures as $filename => $enc) {
 			$newrow = JTable::getInstance('asset', 'PodcastTable');
 
-			if (stripos($row->filename, 'http') === 0) {
-				$newrow->asset_enclosure_url = $row->filename;
+			if (stripos($filename, 'http') === 0) {
+				$newrow->asset_enclosure_url = $filename;
 
-				if (isset($enclosures[$row->filename])) {
-					$newrow->asset_enclosure_length = $enclosures[$row->filename]['length'];
-					$newrow->asset_enclosure_type = $enclosures[$row->filename]['mime'];
+				if (isset($enc['length'])) {
+					$newrow->asset_enclosure_length = $enc['length'];
+				}
+
+				if (isset($enc['mime'])) {
+					$newrow->asset_enclosure_type = $enc['mime'];
 				}
 
 			} else {
-				$file_info = $this->_get_file_info($old_media_path . $row->filename);
-				$newrow->asset_enclosure_url = $folder . $row->filename;
+				$file_info = $this->_get_file_info($old_media_path . $filename);
+				$newrow->asset_enclosure_url = $folder . $filename;
 				$newrow->asset_enclosure_length = $file_info['length'];
 				$newrow->asset_enclosure_type = $file_info['type'];
 				$newrow->storage_engine = 'local';
 			}
 
-			$newrow->asset_duration = $row->itDuration;
+			if (isset($rows[$filename])) {
+				$newrow->asset_duration = $rows[$filename]->itDuration;
+			}
+
 			$newrow->store();
 		}
 
