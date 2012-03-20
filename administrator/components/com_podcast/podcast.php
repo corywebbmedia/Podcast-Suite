@@ -12,11 +12,6 @@ if (!JFactory::getUser()->authorise('core.manage', 'com_podcast')) {
 	return JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR'));
 }
 
-if (!is_dir(JPATH_ROOT.'/media/podcasts'))
-{
-	JFolder::create(JPATH_ROOT.'/media/podcasts');
-}
-
 $document = JFactory::getDocument();
 $document->addStyleSheet(JURI::root() . '/media/com_podcast/css/admin.css');
 

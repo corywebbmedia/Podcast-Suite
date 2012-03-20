@@ -68,4 +68,7 @@
 		</files>
 	</administration>
 
+	<installfile>install.podcast.php</installfile>
+	<uninstallfile>uninstall.podcast.php</uninstallfile>
+
 </extension>
