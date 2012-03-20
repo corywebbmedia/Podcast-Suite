@@ -3,7 +3,7 @@ defined( '_JEXEC' ) or die;
 
 jimport( 'joomla.application.component.view');
 
-class PodcastViewMigrate extends JView
+class MigratepodcastViewMigrate extends JView
 {
 	public function display($tpl = null)
 	{
