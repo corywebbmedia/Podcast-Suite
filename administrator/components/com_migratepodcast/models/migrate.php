@@ -4,7 +4,7 @@ defined( '_JEXEC' ) or die;
 jimport('joomla.application.component.model');
 jimport('podcast.helper');
 
-class PodcastModelMigrate extends JModel
+class MigratepodcastModelMigrate extends JModel
 {
 	public $path;
 	protected $old_config;

@@ -4,7 +4,7 @@ defined( '_JEXEC' ) or die;
 JHTML::_('behavior.mootools');
 
 $document = JFactory::getDocument();
-$document->addScript(JURI::root() . 'media/com_podcast/js/admin/migrate.js');
+$document->addScript(JURI::base() . 'components/com_migratepodcast/views/migrate/tmpl/migrate.js');
 $document->addScriptDeclaration("MigratePodcast.token = '" . JUtility::getToken() . "';");
 
 ?>

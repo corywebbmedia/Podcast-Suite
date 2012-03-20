@@ -3,7 +3,7 @@ defined( '_JEXEC' ) or die;
 
 jimport('joomla.application.component.controller');
 
-class PodcastControllerMigrate extends JController
+class MigratepodcastControllerMigrate extends JController
 {
 	public function import_feeds()
 	{
