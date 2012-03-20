@@ -21,6 +21,11 @@
 		<include name="podcast.xml" />
 	</fileset>
 
+	<fileset dir="${srcdir}/administrator/components/${component}/" id="component_install_files">
+		<include name="install.podcast.php" />
+		<include name="uninstall.podcast.php" />
+	</fileset>
+
 	<fileset dir="${srcdir}" id="podcast_module">
 		<include name="modules/mod_podcast/**" />
 	</fileset>
@@ -72,6 +77,8 @@
 		<include name="migratepodcast.xml" />
 	</fileset>
 
+	<!-- Build packages -->
+
 	<target name="copy" description="copy target">
 		<echo msg="Creating component archive..." />
 
@@ -79,6 +86,7 @@
 		<zip destfile="build/com_podcast.zip">
 			<fileset refid="front_component_files" />
 			<fileset refid="admin_component_files" />
+			<fileset refid="component_install_files" />
 			<fileset refid="component_manifest" />
 			<fileset refid="podcast_media" />
 		</zip>
