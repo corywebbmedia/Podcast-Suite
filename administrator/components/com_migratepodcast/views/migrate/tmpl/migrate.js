@@ -17,7 +17,7 @@ MigratePodcast.perform_task = function (task_num) {
 	}
 
 	var req = {
-		option: 'com_podcast',
+		option: 'com_migratepodcast',
 		format: 'json',
 		task: 'migrate.' + MigratePodcast.tasks[task_num],
 		joomla_path: MigratePodcast.existing_joomla
@@ -41,7 +41,7 @@ MigratePodcast.perform_task = function (task_num) {
 
 MigratePodcast.import_files = function () {
 	var req = {
-		option: 'com_podcast',
+		option: 'com_migratepodcast',
 		format: 'json',
 		task: 'migrate.get_import_files',
 		joomla_path: MigratePodcast.existing_joomla
@@ -63,7 +63,7 @@ MigratePodcast.import_single_file = function (file_num) {
 	}
 
 	var req = {
-		option: 'com_podcast',
+		option: 'com_migratepodcast',
 		format: 'json',
 		task: 'migrate.import_file',
 		file: MigratePodcast.files[file_num],
