@@ -48,7 +48,7 @@ $feeds = array();
 					<?php echo JHtml::_('grid.sort', 'COM_PODCAST_EPISODE_TITLE', 'episode_title', $listDirn, $listOrder); ?>
 				</th>
 				<th>
-					<?php echo JHtml::_('grid.sort', 'COM_PODCAST_LOCATION', 'episode_enclosure_url', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_PODCAST_LOCATION', 'asset_enclosure_url', $listDirn, $listOrder); ?>
 				</th>
 				<th>
 					<?php echo JHtml::_('grid.sort', 'COM_PODCAST_FEED', 'feed_title', $listDirn, $listOrder); ?>

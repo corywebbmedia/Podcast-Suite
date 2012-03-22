@@ -12,6 +12,22 @@ jimport('joomla.application.component.modellist');
 
 class PodcastModelFeeds extends JModelList
 {
+	public function __construct($config = array())
+	{
+		if (empty($config['filter_fields'])) {
+			$config['filter_fields'] = array(
+				'feed_title',
+				'feed_summary',
+				'item_count',
+				'feed_created',
+				'published',
+				'feed_default'
+			);
+		}
+
+		parent::__construct($config);
+	}
+
 	protected function getListQuery()
 	{
 		$query = parent::getListQuery();
@@ -35,6 +51,14 @@ class PodcastModelFeeds extends JModelList
 			$query->where('pf.published = ' . (int) $state);
 		}
 
+		$orderCol = $this->getState('list.ordering');
+		$orderDirn = $this->getState('list.direction');
+
+		if ($orderCol != '') {
+			$db = $this->getDbo();
+			$query->order($db->getEscaped($orderCol.' '.$orderDirn));
+		}
+
 		return $query;
 	}
 
@@ -49,6 +73,6 @@ class PodcastModelFeeds extends JModelList
 		$this->setState('filter.state', $state);
 
 		// List state information.
-		parent::populateState('pf.feed_title', 'asc');
+		parent::populateState('feed_title', 'asc');
 	}
 }
