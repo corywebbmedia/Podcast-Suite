@@ -53,6 +53,7 @@ class PodcastModelFeed extends JModelList
 			->join('LEFT', '#__podcast_assets AS a USING(podcast_asset_id)')
 			->where("tbl.feed_id = '{$feed_id}'")
 			->where("tbl.published = 1")
+			->where("episode_pubDate < '" . JFactory::getDate()->toSql() . "'")
 			->order("episode_pubDate DESC");
 
 		$media = JRequest::getVar('media', '');

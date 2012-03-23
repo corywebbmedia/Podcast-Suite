@@ -22,6 +22,7 @@ class PodcastModelEpisodes extends JModelList
 				->from('#__podcast_episodes AS tbl')
 				->join('LEFT', '#__podcast_feeds AS f USING (feed_id)')
 				->where('tbl.published = 1')
+				->where("episode_pubDate < '" . JFactory::getDate()->toSql() . "'")
 				->order("episode_pubDate DESC");
 
 		if ($feed_id) $query->where('tbl.feed_id = '.$feed_id);
