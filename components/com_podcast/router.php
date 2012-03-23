@@ -44,8 +44,13 @@ function PodcastEpisodeGetAlias($id)
 			->from('#__podcast_episodes');
 
 		$db->setQuery($query);
+		$rows = $db->loadObjectList();
 
-		$aliases = $db->loadAssocList('episode_id', 'alias');
+		$aliases = array();
+
+		foreach ($rows as $row) {
+			$aliases[$row->episode_id] = $row->alias;
+		}
 	}
 
 	if (isset($aliases[$id])) {
