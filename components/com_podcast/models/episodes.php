@@ -18,8 +18,7 @@ class PodcastModelEpisodes extends JModelList
 
 		$feed_id = JRequest::getInt('feed_id', 0);
 
-		$query->select('tbl.*,
-			f.feed_title')
+		$query->select('tbl.*, f.feed_title')
 				->from('#__podcast_episodes AS tbl')
 				->join('LEFT', '#__podcast_feeds AS f USING (feed_id)')
 				->where('tbl.published = 1')
