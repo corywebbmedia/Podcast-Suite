@@ -7,9 +7,13 @@ function PodcastBuildRoute(&$query)
 
 	if (isset($query['view']) && isset($query['episode_id'])) {
 		if ($query['view'] == 'episode') {
-			$segments[] = PodcastEpisodeGetAlias($query['episode_id']);
-			unset($query['episode_id']);
-			unset($query['view']);
+			$alias = PodcastEpisodeGetAlias($query['episode_id']);
+
+			if ($alias) {
+				$segments[] = $alias;
+				unset($query['episode_id']);
+				unset($query['view']);
+			}
 		}
 	}
 
