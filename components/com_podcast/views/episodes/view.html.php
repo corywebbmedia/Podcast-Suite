@@ -16,12 +16,14 @@ class PodcastViewEpisodes extends JView
 	protected $items;
 	protected $params;
 	protected $assets;
+	protected $pagination;
 	protected $storage;
 
 	public function display($tpl = null)
 	{
 		$this->items = $this->get('Items');
 		$this->assets = $this->get('Assets');
+		$this->pagination = $this->get('Pagination');
 		$this->storage = PodcastHelper::getStorage();
 		$this->params = JFactory::getApplication()->getParams();
 
