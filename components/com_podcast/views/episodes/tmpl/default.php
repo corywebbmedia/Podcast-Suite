@@ -55,6 +55,7 @@ $asset = $this->assets[$item->episode_id][0];
 
 <?php endforeach; ?>
 
+<?php if ($this->params->get('show_pagination', '1') == '1') : ?>
 <div class="pagination">
 	<p class="counter">
 		<?php echo $this->pagination->getPagesCounter(); ?>
@@ -62,3 +63,4 @@ $asset = $this->assets[$item->episode_id][0];
 
 	<?php echo $this->pagination->getPagesLinks(); ?>
 </div>
+<?php endif; ?>

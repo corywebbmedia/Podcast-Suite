@@ -17,7 +17,7 @@
 			/>
 		</fieldset>
 	</fields>
-	
+
 	<fields name="params">
 		<fieldset name="display" label="COM_PODCAST_FIELDSET_DISPLAY">
 			<field name="show_feed" type="list" default="1" label="COM_PODCAST_FIELD_SHOW_FEED" description="COM_PODCAST_FIELD_SHOW_FEED_DESC">
@@ -49,6 +49,10 @@
 				<option value="0">JHIDE</option>
 			</field>
 			<field name="show_duration" type="list" default="1" label="COM_PODCAST_FIELD_SHOW_DURATION" description="COM_PODCAST_FIELD_SHOW_DURATION_DESC">
+				<option value="1">JSHOW</option>
+				<option value="0">JHIDE</option>
+			</field>
+			<field name="show_pagination" type="list" default="1" label="COM_PODCAST_FIELD_SHOW_PAGINATION" description="COM_PODCAST_FIELD_SHOW_PAGINATION_DESC">
 				<option value="1">JSHOW</option>
 				<option value="0">JHIDE</option>
 			</field>
