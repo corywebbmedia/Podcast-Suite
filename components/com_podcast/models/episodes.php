@@ -15,17 +15,18 @@ class PodcastModelEpisodes extends JModelList
 	public function getListQuery()
 	{
 		$query = parent::getListQuery();
-		
+
 		$feed_id = JRequest::getInt('feed_id', 0);
 
 		$query->select('tbl.*,
 			f.feed_title')
 				->from('#__podcast_episodes AS tbl')
 				->join('LEFT', '#__podcast_feeds AS f USING (feed_id)')
-				->where('tbl.published = 1');
+				->where('tbl.published = 1')
+				->order("episode_pubDate DESC");
 
 		if ($feed_id) $query->where('tbl.feed_id = '.$feed_id);
-				
+
 		return $query;
 	}
 
