@@ -51,7 +51,6 @@ class PodcastModelFeed extends JModelList
 			->from('#__podcast_episodes AS tbl')
 			->join('LEFT', '#__podcast_assets_map AS m USING(episode_id)')
 			->join('LEFT', '#__podcast_assets AS a USING(podcast_asset_id)')
-			->where('m.default = 1')
 			->where("tbl.feed_id = '{$feed_id}'")
 			->where("tbl.published = 1")
 			->order("episode_pubDate DESC");
@@ -62,6 +61,8 @@ class PodcastModelFeed extends JModelList
 			$db = $this->getDbo();
 			$media = $db->getEscaped($media);
 			$query->where("a.asset_enclosure_type = '$media'");
+		} else {
+			$query->where('m.default = 1');
 		}
 
 		return $query;
