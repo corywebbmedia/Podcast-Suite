@@ -178,7 +178,7 @@ var EpisodeMediaUploader = {
 	uploader: null,
 	config: {
 		browse_button_id: null,
-		container_id: null,
+		container: null,
 		token: null
 	}
 };
@@ -405,7 +405,7 @@ window.addEvent('domready', function () {
 	EpisodeMedia.init();
 
 	EpisodeMediaUploader.config.browse_button_id = 'upload_media';
-	EpisodeMediaUploader.config.container_id = 'uploader_container';
+	EpisodeMediaUploader.config.container = 'uploader_container';
 
 	EpisodeMediaUploader.init();
 });

@@ -6,7 +6,7 @@ window.addEvent('domready', function () {
 
 	var uploader = Upload.new_uploader({
 		browse_button_id: 'upload_toolbar_button',
-		container_id: 'uploader_container'
+		container: 'uploader_container'
 	});
 	
 	uploader.bind('FilesAdded', function () {

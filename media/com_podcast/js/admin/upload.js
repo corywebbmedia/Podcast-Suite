@@ -9,7 +9,7 @@ var Upload = {
 		token: null,
 		url_root: 'index.php?option=com_podcast&task=assets.upload&format=json',
 		browse_button_id: null,
-		container_id: null,
+		container: null,
 		chunk_size: '1mb'
 	}
 };
@@ -32,7 +32,7 @@ Upload.new_uploader = function () {
 	var uploader = new plupload.Uploader({
 		runtimes : 'html5,flash',
 		browse_button : config.browse_button_id,
-		container: config.container_id,
+		container: config.container,
 		chunk_size: config.chunk_size,
 		max_file_size : '1gb',
 		url : Upload.config.url_root + '&' + Upload.config.token + '=1',
