@@ -40,7 +40,8 @@ EpisodeMedia.add_item = function (asset) {
 
 	// render markup
 	var asset_html = Mustache.to_html(EpisodeMedia.asset_template_html, asset);
-	$(EpisodeMedia.asset_list).innerHTML += asset_html;
+	var existing_html = $(EpisodeMedia.asset_list).get('html');
+	$(EpisodeMedia.asset_list).set('html', existing_html + asset_html);
 
 	// update ids
 	EpisodeMedia.asset_ids.push(podcast_asset_id);
@@ -279,7 +280,8 @@ AvailableAssets.add_item = function (asset) {
 	asset.asset_enclosure_length = EpisodeMedia.convertLength(asset.asset_enclosure_length);
 	
 	var asset_html = Mustache.to_html(AvailableAssets.asset_template_html, asset);
-	$(AvailableAssets.asset_list).innerHTML += asset_html;
+	var existing = $(AvailableAssets.asset_list).get('html');
+	$(AvailableAssets.asset_list).set('html', existing + asset_html);
 };
 
 AvailableAssets.page = function(page) {
@@ -298,13 +300,13 @@ AvailableAssets.page = function(page) {
 		format: 'json',
 		task: 'assets.list_available_assets'
 	});
-	AvailableAssets.asset_template_html = $(AvailableAssets.asset_template).innerHTML;
-	AvailableAssets.pagination_template_html = $(AvailableAssets.pagination_template).innerHTML;
+	AvailableAssets.asset_template_html = $(AvailableAssets.asset_template).get('html');
+	AvailableAssets.pagination_template_html = $(AvailableAssets.pagination_template).get('html');
 };
 
 // Setup pagination
 AvailableAssets.setup_pagination = function() {
-	$(AvailableAssets.pagination_holder).innerHTML = Mustache.to_html(AvailableAssets.pagination_template_html, AvailableAssets.pagination);
+	$(AvailableAssets.pagination_holder).set('html', Mustache.to_html(AvailableAssets.pagination_template_html, AvailableAssets.pagination));
 	
 	var pages = AvailableAssets.pagination;
 	
@@ -313,12 +315,15 @@ AvailableAssets.setup_pagination = function() {
 		$('page_prev').getElement('div').set('html', '<span>'+$('page_prev').getElement('a').get('text'));
 	}
 	
+	var existing = null;
 	for (var i = 1; i <= pages.total; i++) {
 		if (i == pages.current) {
-			$('page_pages').getElement('div').innerHTML += '<span>'+i+'</span>';
+			existing = $('page_pages').getElement('div').get('html');
+			$('page_pages').getElement('div').set('html', existing + '<span>'+i+'</span>');
 		}
 		else {
-			$('page_pages').getElement('div').innerHTML += '<a href="#assets" onclick="AvailableAssets.page('+i+');" title="'+i+'">'+i+'</a>';
+			existing = $('page_pages').getElement('div').get('html');
+			$('page_pages').getElement('div').set('html', existing + '<a href="#assets" onclick="AvailableAssets.page('+i+');" title="'+i+'">'+i+'</a>');
 		}
 	}
 	
