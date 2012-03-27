@@ -25,7 +25,7 @@ window.addEvent('domready', function () {
 	});
 
 	uploader.bind('UploadProgress', function(up, file) {
-		$(file.id).getElementsByTagName('b')[0].set('html', '<span>' + file.percent + "%</span>");
+		$$('#' + file.id + ' b')[0].set('html', '<span>' + file.percent + "%</span>");
 	});
 	
 	uploader.bind('FileUploaded', function(up, file, info) {

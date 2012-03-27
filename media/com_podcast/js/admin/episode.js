@@ -205,7 +205,7 @@ EpisodeMediaUploader.init = function () {
 	});
 
 	this.uploader.bind('UploadProgress', function(up, file) {
-		$(file.id).getElementsByTagName('b')[0].set('html', '<span>' + file.percent + "%</span>");
+		$$('#' + file.id + ' b')[0].set('html', '<span>' + file.percent + "%</span>");
 	});
 	
 	this.uploader.bind('FileUploaded', function(up, file, info) {
