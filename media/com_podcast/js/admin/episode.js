@@ -209,9 +209,9 @@ EpisodeMediaUploader.init = function () {
 	});
 	
 	this.uploader.bind('FileUploaded', function(up, file, info) {
-		if (info.status == 200) {
-			var json = JSON.decode(info.response);
-			
+		var json = JSON.decode(info.response);
+
+		if (json.result === true) {
 			var asset = {
 				podcast_asset_id: json.podcast_asset_id,
 				asset_enclosure_url: json.enclosure_url,
