@@ -23,6 +23,7 @@ $doc->addScript(JURI::root().'media/com_podcast/js/plupload/plupload.html5.js');
 
 $doc->addScript(JURI::root().'media/com_podcast/js/admin/upload.js');
 $doc->addScriptDeclaration("Upload.config.token = '" . JUtility::getToken() . "';");
+$doc->addScriptDeclaration("Upload.url_root = '" . JURI::root() . "';");
 
 $doc->addScript(JURI::root().'media/com_podcast/js/admin/assets.js');
 $doc->addScriptDeclaration("Assets.token = '" . JUtility::getToken() . "';");
