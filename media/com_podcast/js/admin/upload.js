@@ -36,7 +36,7 @@ Upload.new_uploader = function () {
 		chunk_size: config.chunk_size,
 		max_file_size : '1gb',
 		url : Upload.config.url_root + '&' + Upload.config.token + '=1',
-		flash_swf_url : Upload.url_root +' media/com_podcast/js/plupload/plupload.flash.swf'
+		flash_swf_url : Upload.url_root + 'media/com_podcast/js/plupload/plupload.flash.swf'
 	});
 	
 	uploader.init();
