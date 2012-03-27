@@ -99,13 +99,13 @@ $doc->addScriptDeclaration("EpisodeMedia.token = '" . JUtility::getToken() . "';
 					</tr>
 				</script>
 			</table>
-			<div class="media-toolbar">
+			<div id="uploader_container">
 				<input type="button" name="upload_media" value="<?php echo JText::_('COM_PODCAST_EPISODE_BUTTON_UPLOAD') ?>" id="upload_media" class="button" />
 				<input type="button" name="add_custom" value="<?php echo JText::_('COM_PODCAST_EPISODE_BUTTON_ADD_CUSTOM') ?>" id="add_custom" class="button" />
 				<input type="button" name="browse_available" value="<?php echo JText::_('COM_PODCAST_EPISODE_BUTTON_BROWSE_AVAILABLE') ?>" id="browse_available" class="button" />
 			</div>
 
-			<div id="uploader_container">
+			<div id="uploaded_files">
 				<ul id="upload_file_list"></ul>
 			</div>
 

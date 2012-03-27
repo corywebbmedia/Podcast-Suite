@@ -25,4 +25,5 @@
 
 /* Uploader */
 
-#uploader_container { display: block; clear: both; }
+#uploaded_files { display: block; clear: both; }
+#uploader_container {position: relative;}
