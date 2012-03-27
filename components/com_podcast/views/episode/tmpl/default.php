@@ -56,9 +56,10 @@ $doc->addStyleSheet(JURI::root().'media/com_podcast/css/podcast.css');
 <?php endif; ?>
 
 <?php if ($this->params->get('show_assets', '1') == '1' && count($this->assets) > 1) : array_shift($this->assets); ?>
+<h3><?php echo JText::_('COM_PODCAST_EPISODE_ADDITIONAL_ASSETS'); ?></h3>
 <ul class="podcast_assets">
 	<?php foreach ($this->assets as $asset) : ?>
-	<li><?php echo $asset->asset_enclosure_url; ?></li>
+	<li><a href="<?php echo $this->storage->getAssetUrl($asset->asset_enclosure_url) ?>"><?php echo $this->storage->getAssetUrl($asset->asset_enclosure_url) ?></a></li>
 	<?php endforeach ?>
 </ul>
 <?php endif; ?>

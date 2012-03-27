@@ -21,10 +21,13 @@ class PodcastStorageLocal extends PodcastStorage
 
     public function getAssetUrl($path)
     {
+		// If a url, don't append base url
+		if (substr($path, 0, 4) === 'http') return $path;
+		
         // trim any preceding slashes
         $path = trim($path, '/\\');
-
-        return JURI::root().$path;
+		
+		return JURI::root().$path;
     }
 
     public function getFolders($path = '', $tree = true)

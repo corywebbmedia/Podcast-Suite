@@ -42,6 +42,7 @@ class PodcastModelEpisode extends JModel
 		$query->select('tbl.*')
 				->from('#__podcast_assets AS tbl')
 				->join('LEFT', '#__podcast_assets_map AS m USING (podcast_asset_id)')
+				->order('m.default DESC')
 				->where('m.episode_id = '.$episode);
 		$db->setQuery($query);
 
