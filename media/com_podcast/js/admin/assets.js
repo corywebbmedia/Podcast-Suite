@@ -19,12 +19,13 @@ window.addEvent('domready', function () {
 
 	uploader.bind('FilesAdded', function(up, files) {
 		for (i = 0; i < files.length; i++) {
-			$('upload_file_list').innerHTML += '<li id="' + files[i].id + '">' + files[i].name + ' (' + plupload.formatSize(files[i].size) + ') <b></b></li>';
+			var existing = $('upload_file_list').get('html');
+			$('upload_file_list').set('html', existing + '<li id="' + files[i].id + '">' + files[i].name + ' (' + plupload.formatSize(files[i].size) + ') <b></b></li>');
 		}
 	});
 
 	uploader.bind('UploadProgress', function(up, file) {
-		$(file.id).getElementsByTagName('b')[0].innerHTML = '<span>' + file.percent + "%</span>";
+		$(file.id).getElementsByTagName('b')[0].set('html', '<span>' + file.percent + "%</span>");
 	});
 	
 	uploader.bind('FileUploaded', function(up, file, info) {
@@ -94,7 +95,8 @@ Assets.add_item = function (asset) {
 	asset.asset_enclosure_length = Assets.convertLength(asset.asset_enclosure_length);
 	
 	var asset_html = Mustache.to_html(Assets.asset_template_html, asset);
-	$(Assets.asset_list).innerHTML += asset_html;
+	var existing_html = $(Assets.asset_list).get('html');
+	$(Assets.asset_list).set('html', existing_html + asset_html);
 };
 
 // Requests a new page
@@ -113,13 +115,13 @@ Assets.page = function(page) {
 		format: 'json',
 		task: 'assets.list_available_assets'
 	});
-	Assets.asset_template_html = $(Assets.asset_template).innerHTML;
-	Assets.pagination_template_html = $(Assets.pagination_template).innerHTML;
+	Assets.asset_template_html = $(Assets.asset_template).get('html');
+	Assets.pagination_template_html = $(Assets.pagination_template).get('html');
 };
 
 // Setup pagination
 Assets.setup_pagination = function() {
-	$(Assets.pagination_holder).innerHTML = Mustache.to_html(Assets.pagination_template_html, Assets.pagination);
+	$(Assets.pagination_holder).set('html', Mustache.to_html(Assets.pagination_template_html, Assets.pagination));
 	
 	var pages = Assets.pagination;
 	
@@ -128,12 +130,15 @@ Assets.setup_pagination = function() {
 		$('page_prev').getElement('div').set('html', '<span>'+$('page_prev').getElement('a').get('text'));
 	}
 	
+	var existing = null;
 	for (i = 1; i <= pages.total; i++) {
 		if (i == pages.current) {
-			$('page_pages').getElement('div').innerHTML += '<span>'+i+'</span>';
+			existing = $('page_pages').getElement('div').get('html');
+			$('page_pages').getElement('div').set('html', existing + '<span>'+i+'</span>');
 		}
 		else {
-			$('page_pages').getElement('div').innerHTML += '<a href="#assets" onclick="Assets.page('+i+');" title="'+i+'">'+i+'</a>';
+			existing = $('page_pages').getElement('div').get('html');
+			$('page_pages').getElement('div').set('html', existing + '<a href="#assets" onclick="Assets.page('+i+');" title="'+i+'">'+i+'</a>');
 		}
 	}
 	
@@ -192,7 +197,7 @@ Assets.rebuild_tree = function() {
 	new Request.HTML({
 		url: 'index.php?option=com_podcast&view=assets&format=raw&layout=default_folders',
 		onSuccess: function  (responseTree, responseElements, responseHTML, responseJavaScript) {
-			$('folders').innerHTML = '';
+			$('folders').set('html', '');
 			var folders_tree = new Element('ul', {id: 'folders_tree', html: responseHTML});
 			folders_tree.inject($('folders'), 'after');
 			tree = new MooTreeControl({ div: 'folders', mode: 'folders', grid: true, theme: Assets.url_root + '/media/system/images/mootree.gif', onClick: Assets.file_tree},{ text: 'Root', open: true});

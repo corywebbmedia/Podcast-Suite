@@ -170,7 +170,7 @@ EpisodeMedia.init = function () {
 		episode_id: EpisodeMedia.episode_id
 	});
 	
-	EpisodeMedia.asset_template_html = $(EpisodeMedia.asset_template).innerHTML;
+	EpisodeMedia.asset_template_html = $(EpisodeMedia.asset_template).get('html');
 };
 
 
@@ -199,12 +199,13 @@ EpisodeMediaUploader.init = function () {
 
 	this.uploader.bind('FilesAdded', function(up, files) {
 		for (var i = 0; i < files.length; i++) {
-			$('upload_file_list').innerHTML += '<li id="' + files[i].id + '">' + files[i].name + ' (' + plupload.formatSize(files[i].size) + ') <b></b></li>';
+			var existing = $('upload_file_list').get('html');
+			$('upload_file_list').set('html', existing + '<li id="' + files[i].id + '">' + files[i].name + ' (' + plupload.formatSize(files[i].size) + ') <b></b></li>');
 		}
 	});
 
 	this.uploader.bind('UploadProgress', function(up, file) {
-		$(file.id).getElementsByTagName('b')[0].innerHTML = '<span>' + file.percent + "%</span>";
+		$(file.id).getElementsByTagName('b')[0].set('html', '<span>' + file.percent + "%</span>");
 	});
 	
 	this.uploader.bind('FileUploaded', function(up, file, info) {
