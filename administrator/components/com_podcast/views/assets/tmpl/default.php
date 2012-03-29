@@ -34,7 +34,7 @@ $doc->addScriptDeclaration("Assets.storage_engine = '".PodcastHelper::getStorage
 ?>
 
 <div class="width-30 fltlft">
-	<fieldset>
+	<fieldset class="adminform">
 		<legend><?php echo JText::_('COM_PODCAST_MEDIA_FOLDERS') ?></legend>
 		<div id="folders"></div>
 		<ul id="folders_tree">
@@ -43,12 +43,25 @@ $doc->addScriptDeclaration("Assets.storage_engine = '".PodcastHelper::getStorage
 		?>
 		</ul>
 		<div id="new_folder">
-			<p>&nbsp;</p>
-			<p><?php echo JText::_('COM_PODCAST_MEDIA_NEW_SUBFOLDER'); ?></p>
-			<p><input type="text" name="new_folder_name" value="" id="new_folder_name" /> <input type="button" name="new_folder_button" value="<?php echo JText::_('COM_PODCAST_MEDIA_NEW_FOLDER'); ?>" id="new_folder_button"></p>
+			<p><input type="text" name="new_folder_name" value="" id="new_folder_name" /> <input type="button" name="new_folder_button" value="<?php echo JText::_('COM_PODCAST_MEDIA_NEW_SUBFOLDER'); ?>" id="new_folder_button"></p>
 		</div>
 	</fieldset>
-	<fieldset>
+	<fieldset class="adminform" id="custom_media">
+			<legend><?php echo JText::_('COM_PODCAST_EPISODE_CUSTOM_MEDIA') ?></legend>
+
+			<label for="asset_enclosure_url"><?php echo JText::_('COM_PODCAST_EPISODE_CUSTOM_MEDIA_URL') ?></label><input type="text" name="asset_enclosure_url" value="" id="asset_enclosure_url">
+			<label for="asset_enclosure_length"><?php echo JText::_('COM_PODCAST_EPISODE_CUSTOM_MEDIA_LENGTH') ?></label><input type="text" name="asset_enclosure_length" value="" id="asset_enclosure_length">
+			<label for="asset_enclosure_type"><?php echo JText::_('COM_PODCAST_EPISODE_CUSTOM_MEDIA_TYPE') ?></label><input type="text" name="asset_enclosure_type" value="" id="asset_enclosure_type">
+			<label for="asset_duration"><?php echo JText::_('COM_PODCAST_EPISODE_CUSTOM_MEDIA_DURATION') ?></label><input type="text" name="asset_duration" value="" id="asset_duration">
+			<label for="asset_closed_caption"><?php echo JText::_('COM_PODCAST_EPISODE_CUSTOM_MEDIA_CLOSED_CAPTIONED') ?></label><select name="asset_closed_caption" id="asset_closed_caption">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+			</select>
+			<div class="clr"></div>
+			<input type="button" value="<?php echo JText::_('COM_PODCAST_EPISODE_BUTTON_ADD_CUSTOM_MEDIA') ?>" class="button" id="add_custom_media" />
+
+		</fieldset>
+	<fieldset class="adminform">
 		<legend><?php echo JText::_('COM_PODCAST_MEDIA_UPLOADED_FILES') ?></legend>
 
 		<div id="uploader_container">
@@ -59,13 +72,20 @@ $doc->addScriptDeclaration("Assets.storage_engine = '".PodcastHelper::getStorage
 
 <div class="width-70 fltrt" id="files">
 
-	<form action="<?php echo JRoute::_('index.php?option=com_podcast') ?>" method="post" accept-charset="utf-8" name="adminForm" id="adminForm">
-		<fieldset>
+	<form action="<?php echo JRoute::_('index.php?option=com_podcast&view=assets') ?>" method="post" accept-charset="utf-8" name="adminForm" id="adminForm">
+		<fieldset class="adminform">
 			<legend><?php echo JText::_('COM_PODCAST_MEDIA_ASSETS') ?></legend>
 			<div class="filter-search fltlft">
 				<label class="filter-search-lbl" for="filter_search"><?php echo JText::_('JSEARCH_FILTER_LABEL'); ?>&nbsp;</label>
 				<input type="text" name="filter_search" id="search_assets" value="" title="<?php echo JText::_('COM_PODCAST_SEARCH_EPISODES'); ?>" size="50" />
 				<button type="button" id="search_clear"><?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?></button>
+			</div>
+			<div class="fltrt">
+				<select name="engine" id="engine" onchange="Assets.page();">
+					<option value=""><?php echo JText::_('COM_PODCAST_STORAGE_SELECT'); ?></option>
+					<option value="custom"<?php if (JRequest::getString('filter_engine', '') == 'custom') echo ' selected="selected"'; ?>><?php echo JText::_('COM_PODCAST_STORAGE_CUSTOM'); ?></option>
+					<option value="local"<?php if (JRequest::getString('filter_engine', '') == 'local') echo ' selected="selected"'; ?>><?php echo JText::_('COM_PODCAST_STORAGE_LOCAL'); ?></option>
+				</select>
 			</div>
 
 		<table class="adminlist">

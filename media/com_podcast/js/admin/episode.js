@@ -286,6 +286,7 @@ AvailableAssets.add_item = function (asset) {
 };
 
 AvailableAssets.page = function(page) {
+	if (isNaN(page)) page = 1;
 	new Request.JSON({
 		url: 'index.php',
 		onSuccess: function	 (results) {
@@ -298,6 +299,7 @@ AvailableAssets.page = function(page) {
 		option: 'com_podcast',
 		page: page - 1,
 		search: AvailableAssets.search_string,
+		engine: $('engine').get('value'),
 		format: 'json',
 		task: 'assets.list_available_assets'
 	});
