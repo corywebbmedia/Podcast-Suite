@@ -7,7 +7,6 @@
  * @category    cwm_podcast
  * @package
  */
-
 defined('_JEXEC') or die;
 
 jimport('podcast.storage');
@@ -16,34 +15,37 @@ jimport('joomla.filesystem.path');
 
 class PodcastStorageLocal extends PodcastStorage
 {
-    protected $type = 'local';
-    protected $tree = array();
 
-    public function getAssetUrl($path)
-    {
+	protected $type = 'local';
+	protected $tree = array();
+
+	public function getAssetUrl($path)
+	{
 		// If a url, don't append base url
-		if (substr($path, 0, 4) === 'http') return $path;
-		
-        // trim any preceding slashes
-        $path = trim($path, '/\\');
-		
-		return JURI::root().$path;
-    }
+		if (substr($path, 0, 4) === 'http')
+			return $path;
 
-    public function getFolders($path = '', $tree = true)
-    {
-        if ($path == '') {
-            $path = PodcastHelper::getOptions()->get('local_root', JPATH_ROOT.'/media/podcasts/');
-        }
+		// trim any preceding slashes
+		$path = trim($path, '/\\');
 
-        $folders = $this->retrieveTree($path);
+		return JURI::root() . $path;
+	}
 
-        return $folders;
-    }
+	public function getFolders($path = '', $tree = true)
+	{
+		if ($path == '')
+		{
+			$path = PodcastHelper::getOptions()->get('local_root', JPATH_ROOT . '/media/podcasts/');
+		}
+
+		$folders = $this->retrieveTree($path);
+
+		return $folders;
+	}
 
 	public function getRoot()
 	{
-		return PodcastHelper::getOptions()->get('local_root', JPATH_ROOT.'/media/podcasts/');
+		return PodcastHelper::getOptions()->get('local_root', JPATH_ROOT . '/media/podcasts/');
 	}
 
 	public function createFolder($path)
@@ -52,212 +54,232 @@ class PodcastStorageLocal extends PodcastStorage
 
 		$full = JPath::clean(JPATH_ROOT . $path);
 
-		if (!JFolder::create($full)) {
+		if (!JFolder::create($full))
+		{
 			throw new Exception("Could not create folder $path");
 		}
 
 		return true;
 	}
-	
+
 	public function deleteFile($path)
 	{
-		return unlink(JPATH_ROOT.$path);
+		return unlink(JPATH_ROOT . $path);
 	}
 
 	public function putFile($folder)
-    {
-        $result = new stdClass();
-        $result->result = false;
-        $result->message = 'Loading...';
+	{
+		$result = new stdClass();
+		$result->result = false;
+		$result->message = 'Loading...';
 
-        // HTTP headers for no cache etc
-        header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
-        header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
-        header("Cache-Control: no-store, no-cache, must-revalidate");
-        header("Cache-Control: post-check=0, pre-check=0", false);
-        header("Pragma: no-cache");
+		// HTTP headers for no cache etc
+		header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+		header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+		header("Cache-Control: no-store, no-cache, must-revalidate");
+		header("Cache-Control: post-check=0, pre-check=0", false);
+		header("Pragma: no-cache");
 
-        // Settings
+		// Settings
 
-		if (!$folder) {
+		if (!$folder)
+		{
 			$folder = PodcastHelper::getOptions()->get('folder', '/media/podcasts/');
 		}
 
-		if (!in_array(substr($folder, 0, 1), array('/','\/'))) $folder = '/'.$folder;
-		if (!in_array(substr($folder, -1, 1), array('/','\/'))) $folder = $folder.'/';
+		if (!in_array(substr($folder, 0, 1), array('/', '\/')))
+			$folder = '/' . $folder;
+		if (!in_array(substr($folder, -1, 1), array('/', '\/')))
+			$folder = $folder . '/';
 
-        $targetDir        = JPath::clean(JPATH_ROOT . $folder);
-        $cleanupTargetDir = true; // Remove old files
-        $maxFileAge       = 5 * 3600; // Temp file age in seconds
-        // 5 minutes execution time
-        @set_time_limit(5 * 60);
+		$targetDir		= JPath::clean(JPATH_ROOT . $folder);
+		$cleanupTargetDir = true; // Remove old files
+		$maxFileAge	   = 5 * 3600; // Temp file age in seconds
+		// 5 minutes execution time
+		@set_time_limit(5 * 60);
 
-        // Get parameters
-        $chunk    = isset($_REQUEST["chunk"]) ? intval($_REQUEST["chunk"]) : 0;
-        $chunks   = isset($_REQUEST["chunks"]) ? intval($_REQUEST["chunks"]) : 0;
-        $fileName = isset($_REQUEST["name"]) ? $_REQUEST["name"] : '';
+		// Get parameters
+		$chunk	= isset($_REQUEST["chunk"]) ? intval($_REQUEST["chunk"]) : 0;
+		$chunks   = isset($_REQUEST["chunks"]) ? intval($_REQUEST["chunks"]) : 0;
+		$fileName = isset($_REQUEST["name"]) ? $_REQUEST["name"] : '';
 
-        // Clean the fileName for security reasons
-        $fileName = JFile::makeSafe($fileName);
+		// Clean the fileName for security reasons
+		$fileName = JFile::makeSafe($fileName);
 
-        // Make sure the fileName is unique but only if chunking is disabled
-        if ($chunks < 2 && file_exists($targetDir . $fileName))
-        {
-            $ext        = strrpos($fileName, '.');
-            $fileName_a = substr($fileName, 0, $ext);
-            $fileName_b = substr($fileName, $ext);
+		// Make sure the fileName is unique but only if chunking is disabled
+		if ($chunks < 2 && file_exists($targetDir . $fileName))
+		{
+			$ext		= strrpos($fileName, '.');
+			$fileName_a = substr($fileName, 0, $ext);
+			$fileName_b = substr($fileName, $ext);
 
-            $count = 1;
-            while (file_exists($targetDir . $fileName_a . '_' . $count . $fileName_b))
-                $count++;
+			$count = 1;
+			while (file_exists($targetDir . $fileName_a . '_' . $count . $fileName_b))
+				$count++;
 
-            $fileName = $fileName_a . '_' . $count . $fileName_b;
-        }
+			$fileName = $fileName_a . '_' . $count . $fileName_b;
+		}
 
-        $filePath = $targetDir . $fileName;
+		$filePath = $targetDir . $fileName;
 
-        // Create target dir
-        if (!file_exists($targetDir))
-            @mkdir($targetDir);
+		// Create target dir
+		if (!file_exists($targetDir))
+			@mkdir($targetDir);
 
-        // Remove old temp files
-        if ($cleanupTargetDir && is_dir($targetDir) && ($dir = opendir($targetDir)))
-        {
-            while (($file = readdir($dir)) !== false)
-            {
-                $tmpfilePath = $targetDir . $file;
+		// Remove old temp files
+		if ($cleanupTargetDir && is_dir($targetDir) && ($dir = opendir($targetDir)))
+		{
+			while (($file = readdir($dir)) !== false)
+			{
+				$tmpfilePath = $targetDir . $file;
 
-                // Remove temp file if it is older than the max age and is not the current file
-                if (preg_match('/\.part$/', $file) && (filemtime($tmpfilePath) < time() - $maxFileAge) && ($tmpfilePath != "{$filePath}.part"))
-                {
-                    @unlink($tmpfilePath);
-                }
-            }
+				// Remove temp file if it is older than the max age and is not the current file
+				if (preg_match('/\.part$/', $file) && (filemtime($tmpfilePath) < time() - $maxFileAge) && ($tmpfilePath != "{$filePath}.part"))
+				{
+					@unlink($tmpfilePath);
+				}
+			}
 
-            closedir($dir);
-        }
-        else
-        {
-            $result->message = 'Failed to open temp directory.';
-            return $result;
-        }
+			closedir($dir);
+		}
+		else
+		{
+			$result->message = 'Failed to open temp directory.';
+			return $result;
+		}
 
 
 
-        // Look for the content type header
-        if (isset($_SERVER["HTTP_CONTENT_TYPE"]))
-            $contentType = $_SERVER["HTTP_CONTENT_TYPE"];
+		// Look for the content type header
+		if (isset($_SERVER["HTTP_CONTENT_TYPE"]))
+			$contentType = $_SERVER["HTTP_CONTENT_TYPE"];
 
-        if (isset($_SERVER["CONTENT_TYPE"]))
-            $contentType = $_SERVER["CONTENT_TYPE"];
+		if (isset($_SERVER["CONTENT_TYPE"]))
+			$contentType = $_SERVER["CONTENT_TYPE"];
 
-        // Handle non multipart uploads older WebKit versions didn't support multipart in HTML5
-        if (strpos($contentType, "multipart") !== false)
-        {
-            if (isset($_FILES['file']['tmp_name']) && is_uploaded_file($_FILES['file']['tmp_name']))
-            {
-                // Open temp file
-                $out = fopen("{$filePath}.part", $chunk == 0 ? "wb" : "ab");
-                if ($out)
-                {
-                    // Read binary input stream and append it to temp file
-                    $in = fopen($_FILES['file']['tmp_name'], "rb");
+		// Handle non multipart uploads older WebKit versions didn't support multipart in HTML5
+		if (strpos($contentType, "multipart") !== false)
+		{
+			if (isset($_FILES['file']['tmp_name']) && is_uploaded_file($_FILES['file']['tmp_name']))
+			{
+				// Open temp file
+				$out = fopen("{$filePath}.part", $chunk == 0 ? "wb" : "ab");
+				if ($out)
+				{
+					// Read binary input stream and append it to temp file
+					$in = fopen($_FILES['file']['tmp_name'], "rb");
 
-                    if ($in)
-                    {
-                        while ($buff = fread($in, 4096))
-                            fwrite($out, $buff);
-                    }
-                    else
-                    {
-                        $result->message = 'Failed to open input stream.';
-                        return $result;
-                    }
+					if ($in)
+					{
+						while ($buff = fread($in, 4096))
+							fwrite($out, $buff);
+					}
+					else
+					{
+						$result->message = 'Failed to open input stream.';
+						return $result;
+					}
 
-                    fclose($in);
-                    fclose($out);
-                    @unlink($_FILES['file']['tmp_name']);
-                }
-                else
-                {
-                    $result->message = 'Failed to open output stream.';
-                    return $result;
-                }
-            }
-            else
-            {
-                $result->message = 'Failed to move uploaded file.';
-                return $result;
-            }
-        }
-        else
-        {
-            // Open temp file
-            $out = fopen("{$filePath}.part", $chunk == 0 ? "wb" : "ab");
-            if ($out)
-            {
-                // Read binary input stream and append it to temp file
-                $in = fopen("php://input", "rb");
+					fclose($in);
+					fclose($out);
+					@unlink($_FILES['file']['tmp_name']);
+				}
+				else
+				{
+					$result->message = 'Failed to open output stream.';
+					return $result;
+				}
+			}
+			else
+			{
+				$result->message = 'Failed to move uploaded file.';
+				return $result;
+			}
+		}
+		else
+		{
+			// Open temp file
+			$out = fopen("{$filePath}.part", $chunk == 0 ? "wb" : "ab");
+			if ($out)
+			{
+				// Read binary input stream and append it to temp file
+				$in = fopen("php://input", "rb");
 
-                if ($in)
-                {
-                    while ($buff = fread($in, 4096))
-                        fwrite($out, $buff);
-                }
-                else
-                {
-                    $result->message = 'Failed to open input stream.';
-                    return $result;
-                }
+				if ($in)
+				{
+					while ($buff = fread($in, 4096))
+						fwrite($out, $buff);
+				}
+				else
+				{
+					$result->message = 'Failed to open input stream.';
+					return $result;
+				}
 
-                fclose($in);
-                fclose($out);
-            }
-            else
-            {
-                $result->message = 'Failed to open output stream.';
-                return $result;
-            }
-        }
+				fclose($in);
+				fclose($out);
+			}
+			else
+			{
+				$result->message = 'Failed to open output stream.';
+				return $result;
+			}
+		}
 
-        // Check if file has been uploaded
-        if (!$chunks || $chunk == $chunks - 1)
-        {
-            // Strip the temp .part suffix off
-            rename("{$filePath}.part", $filePath);
+		// Check if file has been uploaded
+		if (!$chunks || $chunk == $chunks - 1)
+		{
+			// Strip the temp .part suffix off
+			rename("{$filePath}.part", $filePath);
 
 			jimport('getid3.getid3.getid3');
 
-            $getid3 = new getID3;
-            $info = $getid3->analyze($filePath);
+			$getid3 = new getID3;
+			$info   = $getid3->analyze($filePath);
 
-            $result->result = true;
-            $result->message = 'Success';
-            $result->enclosure_length = (isset($info['filesize']) ? $info['filesize'] : 0);
-            $result->enclosure_type = (isset($info['mime_type']) ? $info['mime_type'] : '');
-            $result->enclosure_duration = (isset($info['playtime_string']) ? $info['playtime_string'] : '');
-            $filePath = JPath::clean($filePath);
-            $result->enclosure_url = $folder.basename($filePath);
+			$result->result = true;
+			$result->message = 'Success';
+			$result->enclosure_length = (isset($info['filesize']) ? $info['filesize'] : 0);
+			$result->enclosure_type = (isset($info['mime_type']) ? $info['mime_type'] : '');
+			$result->enclosure_duration = (isset($info['playtime_string']) ? $info['playtime_string'] : '');
+			$filePath = JPath::clean($filePath);
+			$result->enclosure_url = $folder . basename($filePath);
 			$result->storage_engine = $this->type;
-        }
+		}
 
-        return $result;
-    }
+		return $result;
+	}
 
-    public function retrieveTree($path)  {
+	public function retrieveFileTree($path)
+	{
+		$dir = new RecursiveDirectoryIterator($path);
 
-        $dir = @opendir($path);
+		foreach (new RecursiveIteratorIterator($dir) as $file)
+		{
+			$files[] = (string) $file;
+		}
 
-        if ($dir) {
-            while (($element = readdir($dir)) !== false) {
-                if (is_dir($path.'/'.$element) && $element != '.' && $element != '..') {
-                    $array[$element] = $this->retrieveTree($path.'/'.$element);
-                }
-            }
-            closedir($dir);
-        }
+		return (isset($files) ? $files : false);
+	}
 
-        return (isset($array) ? $array : false);
-    }
+	public function retrieveTree($path)
+	{
+
+		$dir = @opendir($path);
+
+		if ($dir)
+		{
+			while (($element = readdir($dir)) !== false)
+			{
+				if (is_dir($path . '/' . $element) && $element != '.' && $element != '..')
+				{
+					$array[$element] = $this->retrieveTree($path . '/' . $element);
+				}
+			}
+			closedir($dir);
+		}
+
+		return (isset($array) ? $array : false);
+	}
 
 }

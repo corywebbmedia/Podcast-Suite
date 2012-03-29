@@ -34,7 +34,7 @@ $doc->addScriptDeclaration("Assets.storage_engine = '".PodcastHelper::getStorage
 ?>
 
 <div class="width-30 fltlft">
-	<fieldset>
+	<fieldset class="adminform">
 		<legend><?php echo JText::_('COM_PODCAST_MEDIA_FOLDERS') ?></legend>
 		<div id="folders"></div>
 		<ul id="folders_tree">
@@ -61,7 +61,7 @@ $doc->addScriptDeclaration("Assets.storage_engine = '".PodcastHelper::getStorage
 			<input type="button" value="<?php echo JText::_('COM_PODCAST_EPISODE_BUTTON_ADD_CUSTOM_MEDIA') ?>" class="button" id="add_custom_media" />
 
 		</fieldset>
-	<fieldset>
+	<fieldset class="adminform">
 		<legend><?php echo JText::_('COM_PODCAST_MEDIA_UPLOADED_FILES') ?></legend>
 
 		<div id="uploader_container">
@@ -73,7 +73,7 @@ $doc->addScriptDeclaration("Assets.storage_engine = '".PodcastHelper::getStorage
 <div class="width-70 fltrt" id="files">
 
 	<form action="<?php echo JRoute::_('index.php?option=com_podcast&view=assets') ?>" method="post" accept-charset="utf-8" name="adminForm" id="adminForm">
-		<fieldset>
+		<fieldset class="adminform">
 			<legend><?php echo JText::_('COM_PODCAST_MEDIA_ASSETS') ?></legend>
 			<div class="filter-search fltlft">
 				<label class="filter-search-lbl" for="filter_search"><?php echo JText::_('JSEARCH_FILTER_LABEL'); ?>&nbsp;</label>
