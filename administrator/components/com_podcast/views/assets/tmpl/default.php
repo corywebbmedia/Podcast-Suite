@@ -43,9 +43,7 @@ $doc->addScriptDeclaration("Assets.storage_engine = '".PodcastHelper::getStorage
 		?>
 		</ul>
 		<div id="new_folder">
-			<p>&nbsp;</p>
-			<p><?php echo JText::_('COM_PODCAST_MEDIA_NEW_SUBFOLDER'); ?></p>
-			<p><input type="text" name="new_folder_name" value="" id="new_folder_name" /> <input type="button" name="new_folder_button" value="<?php echo JText::_('COM_PODCAST_MEDIA_NEW_FOLDER'); ?>" id="new_folder_button"></p>
+			<p><input type="text" name="new_folder_name" value="" id="new_folder_name" /> <input type="button" name="new_folder_button" value="<?php echo JText::_('COM_PODCAST_MEDIA_NEW_SUBFOLDER'); ?>" id="new_folder_button"></p>
 		</div>
 	</fieldset>
 	<fieldset class="adminform" id="custom_media">
@@ -74,13 +72,20 @@ $doc->addScriptDeclaration("Assets.storage_engine = '".PodcastHelper::getStorage
 
 <div class="width-70 fltrt" id="files">
 
-	<form action="<?php echo JRoute::_('index.php?option=com_podcast') ?>" method="post" accept-charset="utf-8" name="adminForm" id="adminForm">
+	<form action="<?php echo JRoute::_('index.php?option=com_podcast&view=assets') ?>" method="post" accept-charset="utf-8" name="adminForm" id="adminForm">
 		<fieldset>
 			<legend><?php echo JText::_('COM_PODCAST_MEDIA_ASSETS') ?></legend>
 			<div class="filter-search fltlft">
 				<label class="filter-search-lbl" for="filter_search"><?php echo JText::_('JSEARCH_FILTER_LABEL'); ?>&nbsp;</label>
 				<input type="text" name="filter_search" id="search_assets" value="" title="<?php echo JText::_('COM_PODCAST_SEARCH_EPISODES'); ?>" size="50" />
 				<button type="button" id="search_clear"><?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?></button>
+			</div>
+			<div class="fltrt">
+				<select name="engine" id="engine" onchange="Assets.page();">
+					<option value=""><?php echo JText::_('COM_PODCAST_STORAGE_SELECT'); ?></option>
+					<option value="custom"<?php if (JRequest::getString('filter_engine', '') == 'custom') echo ' selected="selected"'; ?>><?php echo JText::_('COM_PODCAST_STORAGE_CUSTOM'); ?></option>
+					<option value="local"<?php if (JRequest::getString('filter_engine', '') == 'local') echo ' selected="selected"'; ?>><?php echo JText::_('COM_PODCAST_STORAGE_LOCAL'); ?></option>
+				</select>
 			</div>
 
 		<table class="adminlist">

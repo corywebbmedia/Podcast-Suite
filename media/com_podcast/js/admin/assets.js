@@ -116,6 +116,7 @@ Assets.page = function(page) {
 		option: 'com_podcast',
 		page: page - 1,
 		search: Assets.search_string,
+		engine: $('engine').get('value'),
 		format: 'json',
 		task: 'assets.list_available_assets'
 	});

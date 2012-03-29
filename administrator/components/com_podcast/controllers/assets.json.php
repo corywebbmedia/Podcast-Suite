@@ -34,6 +34,7 @@ class PodcastControllerAssets extends JController
 	{
 		$page = JRequest::getInt('page', 0);
 		$search = JRequest::getString('search', '');
+		$engine = JRequest::getString('engine', '');
 
 		$db = JFactory::getDBO();
 		$query = $db->getQuery(true);
@@ -43,6 +44,7 @@ class PodcastControllerAssets extends JController
 			->where("enabled = '1'");
 
 		if ($search) $query->where('asset_enclosure_url LIKE "%'.$search.'%"');
+		if ($engine) $query->where('storage_engine = "'.$engine.'"');
 
 		$db->setQuery($query, $page * 10, 10);
 		$db->query();

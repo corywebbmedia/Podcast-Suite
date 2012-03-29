@@ -115,6 +115,13 @@ $doc->addScriptDeclaration("EpisodeMedia.token = '" . JUtility::getToken() . "';
 			<a name="assets"></a>
 			<legend><?php echo JText::_('COM_PODCAST_EPISODE_ASSETS'); ?></legend>
 			<label><?php echo JText::_('COM_PODCAST_EPISODE_ASSETS_SEARCH'); ?> </label><input type="text" value="" id="search_assets" size="30" />
+			<div class="fltrt">
+				<select name="engine" id="engine" onchange="AvailableAssets.page();">
+					<option value=""><?php echo JText::_('COM_PODCAST_STORAGE_SELECT'); ?></option>
+					<option value="custom"<?php if (JRequest::getString('filter_engine', '') == 'custom') echo ' selected="selected"'; ?>><?php echo JText::_('COM_PODCAST_STORAGE_CUSTOM'); ?></option>
+					<option value="local"<?php if (JRequest::getString('filter_engine', '') == 'local') echo ' selected="selected"'; ?>><?php echo JText::_('COM_PODCAST_STORAGE_LOCAL'); ?></option>
+				</select>
+			</div>
 			<table class="adminlist">
 				<thead>
 					<tr>
