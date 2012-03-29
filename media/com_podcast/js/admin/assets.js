@@ -74,6 +74,10 @@ Assets.init = function() {
 	});
 
 	Assets.folder_current = Assets.folder_root;
+	
+	$('add_custom_media').addEvent('click', function() {
+		CustomAsset.add();
+	});
 };
 
 // Render the assets returned from the server
@@ -268,4 +272,33 @@ Assets.toggle_check = function	(check) {
 	}
 
 	$('boxchecked').set('value', checked);
+};
+
+// Custom Asset method for adding a new asset
+CustomAsset = {
+	add: function() {
+		var asset = {
+			asset_enclosure_url: $('asset_enclosure_url').get('value'),
+			asset_enclosure_length: $('asset_enclosure_length').get('value'),
+			asset_enclosure_type: $('asset_enclosure_type').get('value'),
+			asset_duration: $('asset_duration').get('value'),
+			asset_closed_caption: $('asset_closed_caption').get('value')
+		};
+		
+		var req = new Request({
+			url: 'index.php',
+			data: {
+				option: 'com_podcast',
+				view: 'assets',
+				asset: asset,
+				format: 'json',
+				task: 'assets.add_custom_asset'
+			},
+			onSuccess: function(response) {
+				if (response > 0) {
+					Assets.page();
+				}
+			}
+		}).send();
+	}
 };
