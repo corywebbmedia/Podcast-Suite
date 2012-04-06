@@ -32,6 +32,12 @@ class PodcastModelFeed extends JModelList
 			$feed = $db->loadObject();
 
 			$this->_seedCategories($feed);
+			
+			if (strpos($feed->feed_image, 'http') !== 0) {
+				$root = JURI::root();
+				if (strpos($feed->feed_image, '/') === 0) $root = trim($root, '/');
+				$feed->feed_image = $root . $feed->feed_image;
+			}
 
 			$this->feed = $feed;
 		}
@@ -75,7 +81,12 @@ class PodcastModelFeed extends JModelList
 
 		foreach ($items as &$item) {
 			if (strpos($item->asset_enclosure_url, 'http') !== 0) {
-				$item->asset_enclosure_url = JURI::root() . $item->asset_enclosure_url;
+				$item->asset_enclosure_url = trim(JURI::root(), '/') . $item->asset_enclosure_url;
+			}
+			if (strpos($item->episode_image, 'http') !== 0 && $item->episode_image) {
+				$root = JURI::root();
+				if (strpos($item->episode_image, '/') === 0) $root = trim($root, '/');
+				$item->episode_image = $root . $item->episode_image;
 			}
 		}
 
