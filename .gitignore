@@ -396,3 +396,7 @@
 /plugins/editors-xtd/pagebreak
 /plugins/editors-xtd/readmore
 /plugins/editors-xtd/index.html
+/administrator/components/com_joomlaupdate/
+/administrator/language/en-GB/en-GB.com_joomlaupdate.ini
+/administrator/language/en-GB/en-GB.com_joomlaupdate.sys.ini
+/media/com_joomlaupdate/
