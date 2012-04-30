@@ -14,8 +14,19 @@ class plgContentPodcast extends JPlugin
 
 		jimport('podcast.render.layout');
 
-		$row->text = preg_replace_callback('/\{podcast_(episode) (\d+)\}/', 'plgContentPodcast::callbackMatchProcess', $row->text);
-		$row->text = preg_replace_callback('/\{podcast_(media) (\d+)\}/', 'plgContentPodcast::callbackMatchProcess', $row->text);
+		// Unfortunately, PHP 5.2 does not allow static callbacks, so we must
+		// string replace manually.
+		preg_match('/\{podcast_(media) (\d+)\}/', $row->text, $matches);
+
+		if (count($matches)) {
+			$row->text = JString::str_ireplace($matches[0], $this->callbackMatchProcess($matches), $row->text);
+		}
+
+		preg_match('/\{podcast_(episode) (\d+)\}/', $row->text, $matches);
+
+		if (count($matches)) {
+			$row->text = JString::str_ireplace($matches[0], $this->callbackMatchProcess($matches), $row->text);
+		}
 
 		return true;
 	}
