@@ -116,8 +116,10 @@
 			<fileset refid="plg_editorxtd_podcastmedia" />
 		</zip>
 
-		<delete file="build/PodcastSuite.zip" quiet="true" />
-		<zip destfile="build/PodcastSuite.zip">
+		
+		<xmlproperty file="pkg_podcast.xml" keepRoot="false" prefix="manifest" />
+		<delete file="build/PodcastSuite-${manifest.version}.zip" quiet="true" />
+		<zip destfile="build/PodcastSuite-${manifest.version}.zip">
 			<fileset refid="full_package" />
 		</zip>
 
