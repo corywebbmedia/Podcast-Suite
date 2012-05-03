@@ -41,6 +41,12 @@ class PodcastScripthelper
 
 	public function init_jquery()
 	{
+		$params = JComponentHelper::getParams('com_podcast');
+
+		if ($params->get('load_jquery', 1) == 0) {
+			return true;
+		}
+
 		if (self::jquery_already_loaded()) {
 			return true;
 		}

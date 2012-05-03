@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
 
-    <!--<fieldset name="options" label="COM_PODCAST_SETTINGS" addfieldpath="/administrator/components/com_podcast/models/fields">
-        <field type="list" name="storage" default="local" label="COM_PODCAST_STORAGE_ENGINE" description="COM_PODCAST_STORAGE_ENGINE_DESC">
+	<fieldset name="options" label="COM_PODCAST_SETTINGS" addfieldpath="/administrator/components/com_podcast/models/fields">
+		<field name="load_jquery" type="list" default="1" label="COM_PODCAST_FIELD_LOAD_JQUERY" description="COM_PODCAST_FIELD_LOAD_JQUERY_DESC">
+			<option value="1">JYES</option>
+			<option value="0">JNO</option>
+		</field>
+    <!--<field type="list" name="storage" default="local" label="COM_PODCAST_STORAGE_ENGINE" description="COM_PODCAST_STORAGE_ENGINE_DESC">
             <option value="local">COM_PODCAST_STORAGE_LOCAL</option>
             <option value="amazons3">COM_PODCAST_STORAGE_AMAZONS3</option>
-        </field>
-	</fieldset>-->
+        </field>-->
+	</fieldset>
 
     <fieldset name="local_options" label="COM_PODCAST_STORAGE_LOCAL" addfieldpath="/administrator/components/com_podcast/models/fields">
         <field type="text" name="local_root" default="/media/podcasts/" label="COM_PODCAST_ROOT" description="COM_PODCAST_ROOT_DESC" />
