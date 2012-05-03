@@ -37,8 +37,6 @@ window.addEvent('domready', function () {
 
 	$('check_all').addEvent('click', Assets.toggle_checks);
 	
-	$('scan_toolbar_button').addEvent('click', Assets.scan);
-	
 	$('new_folder_button').addEvent('click', Assets.add_folder);
 });
 
@@ -57,10 +55,7 @@ var Assets = {
 	folder_root: null,
 	folder_current: null,
 	storage_engine: null,
-	url_root: null,
-	scanTotal: 0,
-	scanCurrent: 1,
-	scanFiles: null
+	url_root: null
 };
 
 // Loads the assets
@@ -210,7 +205,7 @@ Assets.rebuild_tree = function() {
 			$('folders').set('html', '');
 			var folders_tree = new Element('ul', {id: 'folders_tree', html: responseHTML});
 			folders_tree.inject($('folders'), 'after');
-			tree = new MooTreeControl({div: 'folders', mode: 'folders', grid: true, theme: Assets.url_root + '/media/system/images/mootree.gif', onClick: Assets.file_tree},{text: 'Root', open: true});
+			tree = new MooTreeControl({ div: 'folders', mode: 'folders', grid: true, theme: Assets.url_root + '/media/system/images/mootree.gif', onClick: Assets.file_tree},{ text: 'Root', open: true});
 			tree.adopt('folders_tree');
 		}
 	}).get();
@@ -280,54 +275,6 @@ Assets.toggle_check = function	(check) {
 	$('boxchecked').set('value', checked);
 };
 
-Assets.scan = function () {
-	Assets.scanCurrent = 0;
-	new Request.JSON({
-		url: 'index.php?'+Assets.token+'=1',
-		onSuccess: function	(responseJSON) {
-			Assets.scanTotal = responseJSON.length;
-			Assets.scanFiles = responseJSON;
-			i = 0;
-			//console.info('Checking 1-10 of '+Assets.scanTotal);
-			while (Assets.scanCurrent < Assets.scanTotal)	{
-				Assets.syncFiles();
-				//console.info('Checking '+Assets.scanCurrent+'-'+(Assets.scanCurrent+9)+ ' of '+Assets.scanTotal);
-				i++;
-			}
-			Assets.page(1);
-		}
-	}).get({
-		option: 'com_podcast',
-		format: 'json',
-		task: 'assets.scan'
-	});
-}
-
-Assets.syncFiles = function () {
-	// Send a request to check 10 at a time
-	var items = Assets.scanFiles.splice(0, 10);
-	Assets.scanCurrent += 10;
-	
-	new Request({
-		url: 'index.php?'+Assets.token+'=1',
-		method: 'post',
-		data: {
-			option: 'com_podcast',
-			view: 'assets',
-			items: JSON.encode(items),
-			format: 'json',
-			task: 'assets.scan_files'
-		},
-		onSuccess: function(response) {
-			console.info(response);
-			
-		}
-	}).send();
-	
-	if (Assets.scanCurrent >= Assets.scanTotal) return false;
-	return true;
-}
-
 // Custom Asset method for adding a new asset
 CustomAsset = {
 	add: function() {
@@ -340,7 +287,7 @@ CustomAsset = {
 		};
 		
 		var req = new Request({
-			url: 'index.php?'+Assets.token+'=1',
+			url: 'index.php',
 			data: {
 				option: 'com_podcast',
 				view: 'assets',
