@@ -71,7 +71,7 @@ class PodcastControllerAssets extends JController
 	public function add_custom_asset()
 	{
 		$request = JRequest::getVar('asset', '{}');
-		
+
 		$asset = new stdClass();
 		$asset->asset_enclosure_url = $request['asset_enclosure_url'];
 		$asset->asset_enclosure_length = $request['asset_enclosure_length'];
@@ -81,7 +81,7 @@ class PodcastControllerAssets extends JController
 		$asset->storage_engine = 'custom';
 
 		$db = JFactory::getDBO();
-		
+
 		$db->insertObject('#__podcast_assets', $asset);
 
 		$result = $db->insertid();
@@ -113,7 +113,7 @@ class PodcastControllerAssets extends JController
 
 		$storage = PodcastHelper::getStorage();
 
-		$folder = JRequest::getVar('folder', PodcastHelper::getOptions()->get('folder', '/media/podcasts/'));
+		$folder = JRequest::getVar('folder', PodcastHelper::getOptions()->get('local_root', '/media/podcasts/'));
 		$result = $storage->putFile($folder);
 
 		if (is_array($result)) {
