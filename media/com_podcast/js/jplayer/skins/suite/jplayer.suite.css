@@ -19,6 +19,10 @@
 	 margin-top: 0 !important;
 	 martin-bottom: 0 !important;
  }
+div.podcast_media ul li {
+	margin: 0 !important;
+	padding: 0 !important;
+}
  
 div.jp-audio,
 div.jp-video {
@@ -532,7 +536,7 @@ div.jp-audio .jp-type-playlist ul.jp-toggles {
 }
 
 div.jp-video ul.jp-toggles {
-	margin-top:10px;
+	margin-top:10px !important;
 	width:100px;
 }
 

@@ -16,6 +16,7 @@ $doc->addStyleSheet(JURI::root() . 'media/com_podcast/js/jplayer/skins/suite/jpl
 
 $player_config = array(
 	'extension' => $extension,
+	'type' => $this->asset->asset_enclosure_type,
 	'podcast_asset_id' => $this->asset->podcast_asset_id,
 	'asset_url' => $this->storage->getAssetUrl($this->asset->asset_enclosure_url)
 );

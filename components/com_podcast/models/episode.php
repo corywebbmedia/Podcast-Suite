@@ -46,7 +46,17 @@ class PodcastModelEpisode extends JModel
 				->where('m.episode_id = '.$episode);
 		$db->setQuery($query);
 
-		return $db->loadObjectList();
+		$assets = $db->loadObjectList();
+		$valid = array();
+		
+		foreach ($assets as $asset) {
+			if ($asset->asset_enclosure_type == 'video/mp4') {
+				$asset->asset_enclosure_type = 'video/m4v';
+			}
+			$valid[] = $asset;
+		}
+		
+		return $valid;
 	}
 
 	public function getAssetByID($podcast_asset_id)

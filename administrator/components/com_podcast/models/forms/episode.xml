@@ -36,7 +36,8 @@
 			label="COM_PODCAST_EPISODE_SUMMARY"
 			description="COM_PODCAST_EPISODE_SUMMARY_DESC"
 			rows="8"
-			default="" />
+			default=""
+			filter="raw" />
 
 	</fieldset>
 

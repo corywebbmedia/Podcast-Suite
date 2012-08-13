@@ -51,7 +51,7 @@ $doc->addStyleSheet(JURI::root().'media/com_podcast/css/podcast.css');
 
 <?php if ($this->params->get('show_summary', '1') == '1') : ?>
 <div class="podcast_summary">
-	<?php echo $this->escape($this->item->episode_summary) ?>
+	<?php echo $this->item->episode_summary; ?>
 </div>
 <?php endif; ?>
 

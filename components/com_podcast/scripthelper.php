@@ -14,7 +14,11 @@ class PodcastScripthelper
 	public function init_player($settings)
 	{
 		self::init_jquery();
-
+		$type = $settings['type'];
+		if (strpos($type, '/') !== false) {
+			$type = substr($type, strpos($type, '/') + 1);
+		}
+		
 		$doc = JFactory::getDocument();
 
 		$doc->addScript(JURI::root() . 'media/com_podcast/js/jplayer/jquery.jplayer.min.js');
@@ -22,16 +26,17 @@ class PodcastScripthelper
 		// TODO: migrate this into a proper JavaScript file and bootstrap the
 		// object.
 		$doc->addScriptDeclaration('
+		
 		jQuery(document).ready(function(){
 			  jQuery("#jquery_jplayer_' . $settings['podcast_asset_id'] . '").jPlayer({
 				ready: function () {
 				  jQuery(this).jPlayer("setMedia", {
-					' . $settings['extension'] . ': "' . $settings['asset_url'] . '",
-					poster: "' . $settings['poster'] . '"
+					' . $type . ': "' . $settings['asset_url'] . '",
+					poster: ""
 				  });
 				},
 				swfPath: "' . JURI::root() . 'media/com_podcast/js/jplayer",
-				supplied: "' . $settings['extension'] . '",
+				supplied: "' . $type . '",
 				cssSelectorAncestor: "#jp_container_' . $settings['podcast_asset_id'] . '"
 			  });
 			});
