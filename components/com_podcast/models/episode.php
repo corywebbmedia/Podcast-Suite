@@ -48,14 +48,20 @@ class PodcastModelEpisode extends JModel
 
 		$assets = $db->loadObjectList();
 		$valid = array();
-		
+
 		foreach ($assets as $asset) {
 			if ($asset->asset_enclosure_type == 'video/mp4') {
 				$asset->asset_enclosure_type = 'video/m4v';
 			}
+			if ($asset->asset_enclosure_type == 'video/quicktime') {
+				$asset->asset_enclosure_type = 'video/mov';
+			}
+			if ($asset->asset_enclosure_type == 'audio/mpeg') {
+				$asset->asset_enclosure_type = 'audio/mp3';
+			}
 			$valid[] = $asset;
 		}
-		
+
 		return $valid;
 	}
 
@@ -64,6 +70,17 @@ class PodcastModelEpisode extends JModel
 		JTable::addIncludePath(JPATH_BASE . '/administrator/components/com_podcast/tables');
 		$table = JTable::getInstance('Asset', 'PodcastTable');
 		$table->load($podcast_asset_id);
+
+		if ($table->asset_enclosure_type == 'video/mp4') {
+			$table->asset_enclosure_type = 'video/m4v';
+		}
+		if ($table->asset_enclosure_type == 'video/quicktime') {
+			$table->asset_enclosure_type = 'video/mov';
+		}
+		if ($table->asset_enclosure_type == 'audio/mpeg') {
+			$table->asset_enclosure_type = 'audio/mp3';
+		}
+
 		return $table;
 	}
 }

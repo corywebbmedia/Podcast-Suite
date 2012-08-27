@@ -57,7 +57,7 @@ class PodcastScripthelper
 		}
 
 		$doc = JFactory::getDocument();
-		$doc->addScript('http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js');
+		$doc->addScript(substr(JURI::root(), 0, strpos(JURI::root(), ':')).'://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js');
 
 		// Important: must be added as a separate file so that the ordering is
 		// correct. Otherwise, <script>s floating in the <head> section can
