@@ -28,6 +28,8 @@ class PodcastControllerAssets extends JController
 
 		$db->setQuery($query);
 		echo json_encode($db->loadObjectList());
+
+		JFactory::getApplication()->close();
 	}
 
 	public function list_available_assets()
@@ -66,6 +68,8 @@ class PodcastControllerAssets extends JController
 		$response->pagination->next = ($pagination->{'pages.current'} < $pagination->{'pages.total'} - 1) ? $pagination->{'pages.current'} + 1 : $pagination->{'pages.total'};
 
 		echo json_encode($response);
+
+		JFactory::getApplication()->close();
 	}
 
 	public function add_custom_asset()
@@ -87,6 +91,8 @@ class PodcastControllerAssets extends JController
 		$result = $db->insertid();
 
 		print $result;
+
+		JFactory::getApplication()->close();
 	}
 
 	public function create_folder()
@@ -104,6 +110,8 @@ class PodcastControllerAssets extends JController
 		}
 
 		echo json_encode(array('status' => $status));
+
+		JFactory::getApplication()->close();
 	}
 
 	public function upload() {
@@ -132,5 +140,7 @@ class PodcastControllerAssets extends JController
 		}
 
 		echo json_encode($result);
+
+		JFactory::getApplication()->close();
 	}
 }

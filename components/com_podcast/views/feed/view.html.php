@@ -26,6 +26,9 @@ class PodcastViewFeed extends JView
 			throw new Exception(JText::_('JGLOBAL_RESOURCE_NOT_FOUND'), 404);
 		}
 
+		$pathway = JFactory::getApplication()->getPathway();
+		$pathway->addItem($this->feed->feed_title, JFactory::getUri()->toString());
+
 		parent::display($tpl);
 	}
 }

@@ -27,6 +27,11 @@ class PodcastViewEpisodes extends JView
 		$this->storage = PodcastHelper::getStorage();
 		$this->params = JFactory::getApplication()->getParams();
 
+		if (isset($this->items[0]->feed_title)) {
+			$pathway = JFactory::getApplication()->getPathway();
+			$pathway->addItem($this->items[0]->feed_title, JFactory::getUri()->toString());
+		}
+
 		parent::display($tpl);
 	}
 }
