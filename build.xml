@@ -26,8 +26,12 @@
 		<include name="uninstall.podcast.php" />
 	</fileset>
 
-	<fileset dir="${srcdir}" id="podcast_module">
-		<include name="modules/mod_podcast/**" />
+	<fileset dir="${srcdir}/modules/mod_podcast/" id="podcast_module">
+		<include name="*" />
+	</fileset>
+
+	<fileset dir="${srcdir}/language/en-GB" id="podcast_module_lang">
+		<include name="en-GB.mod_podcast*" />
 	</fileset>
 
 	<fileset dir="${srcdir}" id="podcast_media">
@@ -61,6 +65,7 @@
 		<include name="build/plg_content_podcast.zip" />
 		<include name="build/plg_editorxtd_podcastepisode.zip" />
 		<include name="build/plg_editorxtd_podcastmedia.zip" />
+		<include name="build/mod_podcast.zip" />
 		<include name="pkg_podcast.xml" />
 	</fileset>
 
@@ -116,7 +121,12 @@
 			<fileset refid="plg_editorxtd_podcastmedia" />
 		</zip>
 
-		
+		<delete file="build/mod_podcast.zip" quiet="true" />
+		<zip destfile="build/mod_podcast.zip">
+			<fileset refid="podcast_module" />
+			<fileset refid="podcast_module_lang" />
+		</zip>
+
 		<xmlproperty file="pkg_podcast.xml" keepRoot="false" prefix="manifest" />
 		<delete file="build/PodcastSuite-${manifest.version}.zip" quiet="true" />
 		<zip destfile="build/PodcastSuite-${manifest.version}.zip">

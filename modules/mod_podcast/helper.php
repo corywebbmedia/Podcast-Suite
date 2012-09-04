@@ -14,7 +14,8 @@ class ModPodcastHelper
 				->join('LEFT', '#__podcast_assets_map AS m USING(episode_id)')
 				->join('LEFT', '#__podcast_assets AS a USING(podcast_asset_id)')
 				->join('LEFT', '#__podcast_feeds AS f USING(feed_id)')
-				->group('tbl.episode_id');
+				->group('tbl.episode_id')
+				->order('tbl.episode_pubDate DESC');
 
 		// Filter by folder
 		$feed = $params->get('feed_id');

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" version="2.5" client="site" method="upgrade">
 	<name>mod_podcast</name>
-	<author></author>
-	<creationDate></creationDate>
-	<copyright></copyright>
-	<license></license>
-	<authorEmail></authorEmail>
-	<authorUrl></authorUrl>
-	<version>2.5.0</version>
-	<description></description>
+	<author>Podcast Suite</author>
+	<creationDate>February 2012</creationDate>
+	<copyright>Copyright (C) 2011-2012</copyright>
+	<license>GNU General Public License version 2</license>
+	<authorEmail>joe@corywebbmedia.com</authorEmail>
+	<authorUrl>podcastsuite.com</authorUrl>
+	<version>2.0.6</version>
+	<description>MOD_PODCAST_DESC</description>
 	<files>
 		<filename module="mod_podcast">mod_podcast.php</filename>
 		<folder>tmpl</folder>
@@ -23,8 +23,9 @@
 	<config>
 		<fields name="params" addfieldpath="/administrator/components/com_podcast/models/fields">
 			<fieldset name="basic">
-				<field name="feed_id" type="feed" label="*Feed" />
-				<field name="limit" type="text" label="*Limit" />
+				<field name="feed_id" type="feed" label="MOD_PODCAST_FEED" />
+				<field name="limit" type="text" label="MOD_PODCAST_LIMIT" />
+				<field name="date_format" type="text" label="MOD_PODCAST_DATE_FORMAT" />
 			</fieldset>
 			<fieldset name="advanced">
 				<field name="layout" type="modulelayout" label="JFIELD_ALT_LAYOUT_LABEL" description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
@@ -40,5 +41,4 @@
 			</fieldset>
 		</fields>
 	</config>
-	
 </extension>
