@@ -27,7 +27,7 @@
 	</fileset>
 
 	<fileset dir="${srcdir}/modules/mod_podcast/" id="podcast_module">
-		<include name="*" />
+		<include name="**" />
 	</fileset>
 
 	<fileset dir="${srcdir}/language/en-GB" id="podcast_module_lang">

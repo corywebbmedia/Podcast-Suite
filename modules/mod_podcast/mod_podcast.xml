@@ -23,9 +23,9 @@
 	<config>
 		<fields name="params" addfieldpath="/administrator/components/com_podcast/models/fields">
 			<fieldset name="basic">
-				<field name="feed_id" type="feed" label="MOD_PODCAST_FEED" />
-				<field name="limit" type="text" label="MOD_PODCAST_LIMIT" />
-				<field name="date_format" type="text" label="MOD_PODCAST_DATE_FORMAT" />
+				<field name="feed_id" type="feed" label="MOD_PODCAST_FEED" description="MOD_PODCAST_FEED_DESC" />
+				<field name="limit" type="text" label="MOD_PODCAST_LIMIT" description="MOD_PODCAST_LIMIT_DESC" />
+				<field name="date_format" type="text" label="MOD_PODCAST_DATE_FORMAT" description="MOD_PODCAST_DATE_FORMAT_DESC" />
 			</fieldset>
 			<fieldset name="advanced">
 				<field name="layout" type="modulelayout" label="JFIELD_ALT_LAYOUT_LABEL" description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
