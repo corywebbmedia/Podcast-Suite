@@ -400,3 +400,17 @@
 /administrator/language/en-GB/en-GB.com_joomlaupdate.ini
 /administrator/language/en-GB/en-GB.com_joomlaupdate.sys.ini
 /media/com_joomlaupdate/
+
+/modules/mod_k2*
+/administrator/components/com_k2/
+/administrator/language/en-GB/en-GB.plg_finder_k2*
+/administrator/language/en-GB/en-GB.plg_search_k2*
+/administrator/language/en-GB/en-GB.plg_system_k2*
+/administrator/language/en-GB/en-GB.plg_user_k2*
+/administrator/language/en-GB/en-GB.com_k2*
+/administrator/language/en-GB/en-GB.mod_k2*
+/administrator/language/en-GB/en-GB.plg_k2*
+/components/com_k2
+/language/en-GB/en-GB.mod_k2*
+/language/en-GB/en-GB.com_k2*
+/media/k2
