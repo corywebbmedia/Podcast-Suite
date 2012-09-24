@@ -4,7 +4,7 @@ defined( '_JEXEC' ) or die;
 jimport('joomla.application.component.helper');
 jimport('podcast.helper');
 
-require JPATH_BASE . '/components/com_podcast/scripthelper.php';
+require JPATH_ROOT . '/components/com_podcast/scripthelper.php';
 
 
 class PodcastRenderException extends Exception {}
@@ -46,7 +46,7 @@ class PodcastRenderLayout
 	 */
 	public function seed_data()
 	{
-		JModel::addIncludePath(JPATH_BASE . '/components/com_podcast/models');
+		JModel::addIncludePath(JPATH_ROOT . '/components/com_podcast/models');
 
 		$model = JModel::getInstance('Episode', 'PodcastModel');
 
@@ -122,12 +122,12 @@ class PodcastRenderLayout
 	protected function _get_template_file($filename)
 	{
 		$template = JFactory::getApplication()->getTemplate();
-		$override_path = JPATH_BASE . '/templates/' . $template . '/html/com_podcast/episode/' . $filename;
+		$override_path = JPATH_ROOT . '/templates/' . $template . '/html/com_podcast/episode/' . $filename;
 
 		if (JFile::exists($override_path)) {
 			return $override_path;
 		}
 
-		return JPATH_BASE . '/components/com_podcast/views/episode/tmpl/' . $filename;
+		return JPATH_ROOT . '/components/com_podcast/views/episode/tmpl/' . $filename;
 	}
 }
